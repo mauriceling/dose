@@ -1193,6 +1193,105 @@ def register_IO(array, apointer, inputdata, output, source, spointer):
     397: Put value from register #97 to current tape cell
     398: Put value from register #98 to current tape cell
     399: Put value from register #99 to current tape cell
+    501: Clear register #1 (set to 0)
+	502: Clear register #2 (set to 0)
+	503: Clear register #3 (set to 0)
+	504: Clear register #4 (set to 0)
+	505: Clear register #5 (set to 0)
+	506: Clear register #6 (set to 0)
+	507: Clear register #7 (set to 0)
+	508: Clear register #8 (set to 0)
+	509: Clear register #9 (set to 0)
+	510: Clear register #10 (set to 0)
+	511: Clear register #11 (set to 0)
+	512: Clear register #12 (set to 0)
+	513: Clear register #13 (set to 0)
+	514: Clear register #14 (set to 0)
+	515: Clear register #15 (set to 0)
+	516: Clear register #16 (set to 0)
+	517: Clear register #17 (set to 0)
+	518: Clear register #18 (set to 0)
+	519: Clear register #19 (set to 0)
+	520: Clear register #20 (set to 0)
+	521: Clear register #21 (set to 0)
+	522: Clear register #22 (set to 0)
+	523: Clear register #23 (set to 0)
+	524: Clear register #24 (set to 0)
+	525: Clear register #25 (set to 0)
+	526: Clear register #26 (set to 0)
+	527: Clear register #27 (set to 0)
+	528: Clear register #28 (set to 0)
+	529: Clear register #29 (set to 0)
+	530: Clear register #30 (set to 0)
+	531: Clear register #31 (set to 0)
+	532: Clear register #32 (set to 0)
+	533: Clear register #33 (set to 0)
+	534: Clear register #34 (set to 0)
+	535: Clear register #35 (set to 0)
+	536: Clear register #36 (set to 0)
+	537: Clear register #37 (set to 0)
+	538: Clear register #38 (set to 0)
+	539: Clear register #39 (set to 0)
+	540: Clear register #40 (set to 0)
+	541: Clear register #41 (set to 0)
+	542: Clear register #42 (set to 0)
+	543: Clear register #43 (set to 0)
+	544: Clear register #44 (set to 0)
+	545: Clear register #45 (set to 0)
+	546: Clear register #46 (set to 0)
+	547: Clear register #47 (set to 0)
+	548: Clear register #48 (set to 0)
+	549: Clear register #49 (set to 0)
+	550: Clear register #50 (set to 0)
+	551: Clear register #51 (set to 0)
+	552: Clear register #52 (set to 0)
+	553: Clear register #53 (set to 0)
+	554: Clear register #54 (set to 0)
+	555: Clear register #55 (set to 0)
+	556: Clear register #56 (set to 0)
+	557: Clear register #57 (set to 0)
+	558: Clear register #58 (set to 0)
+	559: Clear register #59 (set to 0)
+	560: Clear register #60 (set to 0)
+	561: Clear register #61 (set to 0)
+	562: Clear register #62 (set to 0)
+	563: Clear register #63 (set to 0)
+	564: Clear register #64 (set to 0)
+	565: Clear register #65 (set to 0)
+	566: Clear register #66 (set to 0)
+	567: Clear register #67 (set to 0)
+	568: Clear register #68 (set to 0)
+	569: Clear register #69 (set to 0)
+	570: Clear register #70 (set to 0)
+	571: Clear register #71 (set to 0)
+	572: Clear register #72 (set to 0)
+	573: Clear register #73 (set to 0)
+	574: Clear register #74 (set to 0)
+	575: Clear register #75 (set to 0)
+	576: Clear register #76 (set to 0)
+	577: Clear register #77 (set to 0)
+	578: Clear register #78 (set to 0)
+	579: Clear register #79 (set to 0)
+	580: Clear register #80 (set to 0)
+	581: Clear register #81 (set to 0)
+	582: Clear register #82 (set to 0)
+	583: Clear register #83 (set to 0)
+	584: Clear register #84 (set to 0)
+	585: Clear register #85 (set to 0)
+	586: Clear register #86 (set to 0)
+	587: Clear register #87 (set to 0)
+	588: Clear register #88 (set to 0)
+	589: Clear register #89 (set to 0)
+	590: Clear register #90 (set to 0)
+	591: Clear register #91 (set to 0)
+	592: Clear register #92 (set to 0)
+	593: Clear register #93 (set to 0)
+	594: Clear register #94 (set to 0)
+	595: Clear register #95 (set to 0)
+	596: Clear register #96 (set to 0)
+	597: Clear register #97 (set to 0)
+	598: Clear register #98 (set to 0)
+	599: Clear register #99 (set to 0)
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '201': register[0] = array[apointer]
@@ -1393,6 +1492,106 @@ def register_IO(array, apointer, inputdata, output, source, spointer):
     if cmd == '397': array[apointer] = register[96]
     if cmd == '398': array[apointer] = register[97]
     if cmd == '399': array[apointer] = register[98]
+    if cmd == '501': register[1] = 0
+    if cmd == '501': register[1] = 0
+    if cmd == '502': register[2] = 0
+    if cmd == '503': register[3] = 0
+    if cmd == '504': register[4] = 0
+    if cmd == '505': register[5] = 0
+    if cmd == '506': register[6] = 0
+    if cmd == '507': register[7] = 0
+    if cmd == '508': register[8] = 0
+    if cmd == '509': register[9] = 0
+    if cmd == '510': register[10] = 0
+    if cmd == '511': register[11] = 0
+    if cmd == '512': register[12] = 0
+    if cmd == '513': register[13] = 0
+    if cmd == '514': register[14] = 0
+    if cmd == '515': register[15] = 0
+    if cmd == '516': register[16] = 0
+    if cmd == '517': register[17] = 0
+    if cmd == '518': register[18] = 0
+    if cmd == '519': register[19] = 0
+    if cmd == '520': register[20] = 0
+    if cmd == '521': register[21] = 0
+    if cmd == '522': register[22] = 0
+    if cmd == '523': register[23] = 0
+    if cmd == '524': register[24] = 0
+    if cmd == '525': register[25] = 0
+    if cmd == '526': register[26] = 0
+    if cmd == '527': register[27] = 0
+    if cmd == '528': register[28] = 0
+    if cmd == '529': register[29] = 0
+    if cmd == '530': register[30] = 0
+    if cmd == '531': register[31] = 0
+    if cmd == '532': register[32] = 0
+    if cmd == '533': register[33] = 0
+    if cmd == '534': register[34] = 0
+    if cmd == '535': register[35] = 0
+    if cmd == '536': register[36] = 0
+    if cmd == '537': register[37] = 0
+    if cmd == '538': register[38] = 0
+    if cmd == '539': register[39] = 0
+    if cmd == '540': register[40] = 0
+    if cmd == '541': register[41] = 0
+    if cmd == '542': register[42] = 0
+    if cmd == '543': register[43] = 0
+    if cmd == '544': register[44] = 0
+    if cmd == '545': register[45] = 0
+    if cmd == '546': register[46] = 0
+    if cmd == '547': register[47] = 0
+    if cmd == '548': register[48] = 0
+    if cmd == '549': register[49] = 0
+    if cmd == '550': register[50] = 0
+    if cmd == '551': register[51] = 0
+    if cmd == '552': register[52] = 0
+    if cmd == '553': register[53] = 0
+    if cmd == '554': register[54] = 0
+    if cmd == '555': register[55] = 0
+    if cmd == '556': register[56] = 0
+    if cmd == '557': register[57] = 0
+    if cmd == '558': register[58] = 0
+    if cmd == '559': register[59] = 0
+    if cmd == '560': register[60] = 0
+    if cmd == '561': register[61] = 0
+    if cmd == '562': register[62] = 0
+    if cmd == '563': register[63] = 0
+    if cmd == '564': register[64] = 0
+    if cmd == '565': register[65] = 0
+    if cmd == '566': register[66] = 0
+    if cmd == '567': register[67] = 0
+    if cmd == '568': register[68] = 0
+    if cmd == '569': register[69] = 0
+    if cmd == '570': register[70] = 0
+    if cmd == '571': register[71] = 0
+    if cmd == '572': register[72] = 0
+    if cmd == '573': register[73] = 0
+    if cmd == '574': register[74] = 0
+    if cmd == '575': register[75] = 0
+    if cmd == '576': register[76] = 0
+    if cmd == '577': register[77] = 0
+    if cmd == '578': register[78] = 0
+    if cmd == '579': register[79] = 0
+    if cmd == '580': register[80] = 0
+    if cmd == '581': register[81] = 0
+    if cmd == '582': register[82] = 0
+    if cmd == '583': register[83] = 0
+    if cmd == '584': register[84] = 0
+    if cmd == '585': register[85] = 0
+    if cmd == '586': register[86] = 0
+    if cmd == '587': register[87] = 0
+    if cmd == '588': register[88] = 0
+    if cmd == '589': register[89] = 0
+    if cmd == '590': register[90] = 0
+    if cmd == '591': register[91] = 0
+    if cmd == '592': register[92] = 0
+    if cmd == '593': register[93] = 0
+    if cmd == '594': register[94] = 0
+    if cmd == '595': register[95] = 0
+    if cmd == '596': register[96] = 0
+    if cmd == '597': register[97] = 0
+    if cmd == '598': register[98] = 0
+    if cmd == '599': register[99] = 0
     return (array, apointer, inputdata, output, source, spointer)
 
 def jump_identifier(array, apointer, inputdata, output, source, spointer):
@@ -1670,56 +1869,56 @@ ragaraja = {'000': forward, '001': tape_move,
             '494': not_used, '495': not_used,
             '496': not_used, '497': not_used,
             '498': not_used, '499': not_used,
-            '500': jump_identifier, '501': not_used,
-            '502': not_used, '503': not_used,
-            '504': not_used, '505': not_used,
-            '506': not_used, '507': not_used,
-            '508': not_used, '509': not_used,
-            '510': not_used, '511': not_used,
-            '512': not_used, '513': not_used,
-            '514': not_used, '515': not_used,
-            '516': not_used, '517': not_used,
-            '518': not_used, '519': not_used,
-            '520': not_used, '521': not_used,
-            '522': not_used, '523': not_used,
-            '524': not_used, '525': not_used,
-            '526': not_used, '527': not_used,
-            '528': not_used, '529': not_used,
-            '530': not_used, '531': not_used,
-            '532': not_used, '533': not_used,
-            '534': not_used, '535': not_used,
-            '536': not_used, '537': not_used,
-            '538': not_used, '539': not_used,
-            '540': not_used, '541': not_used,
-            '542': not_used, '543': not_used,
-            '544': not_used, '545': not_used,
-            '546': not_used, '547': not_used,
-            '548': not_used, '549': not_used,
-            '550': not_used, '551': not_used,
-            '552': not_used, '553': not_used,
-            '554': not_used, '555': not_used,
-            '556': not_used, '557': not_used,
-            '558': not_used, '559': not_used,
-            '560': not_used, '561': not_used,
-            '562': not_used, '563': not_used,
-            '564': not_used, '565': not_used,
-            '566': not_used, '567': not_used,
-            '568': not_used, '569': not_used,
-            '570': not_used, '571': not_used,
-            '572': not_used, '573': not_used,
-            '574': not_used, '575': not_used,
-            '576': not_used, '577': not_used,
-            '578': not_used, '579': not_used,
-            '580': not_used, '581': not_used,
-            '582': not_used, '583': not_used,
-            '584': not_used, '585': not_used,
-            '586': not_used, '587': not_used,
-            '588': not_used, '589': not_used,
-            '590': not_used, '591': not_used,
-            '592': not_used, '593': not_used,
-            '594': not_used, '595': not_used,
-            '596': not_used, '597': not_used,
-            '598': not_used, '599': not_used,
+            '500': jump_identifier, '501': register_IO,
+            '502': register_IO, '503': register_IO,
+            '504': register_IO, '505': register_IO,
+            '506': register_IO, '507': register_IO,
+            '508': register_IO, '509': register_IO,
+            '510': register_IO, '511': register_IO,
+            '512': register_IO, '513': register_IO,
+            '514': register_IO, '515': register_IO,
+            '516': register_IO, '517': register_IO,
+            '518': register_IO, '519': register_IO,
+            '520': register_IO, '521': register_IO,
+            '522': register_IO, '523': register_IO,
+            '524': register_IO, '525': register_IO,
+            '526': register_IO, '527': register_IO,
+            '528': register_IO, '529': register_IO,
+            '530': register_IO, '531': register_IO,
+            '532': register_IO, '533': register_IO,
+            '534': register_IO, '535': register_IO,
+            '536': register_IO, '537': register_IO,
+            '538': register_IO, '539': register_IO,
+            '540': register_IO, '541': register_IO,
+            '542': register_IO, '543': register_IO,
+            '544': register_IO, '545': register_IO,
+            '546': register_IO, '547': register_IO,
+            '548': register_IO, '549': register_IO,
+            '550': register_IO, '551': register_IO,
+            '552': register_IO, '553': register_IO,
+            '554': register_IO, '555': register_IO,
+            '556': register_IO, '557': register_IO,
+            '558': register_IO, '559': register_IO,
+            '560': register_IO, '561': register_IO,
+            '562': register_IO, '563': register_IO,
+            '564': register_IO, '565': register_IO,
+            '566': register_IO, '567': register_IO,
+            '568': register_IO, '569': register_IO,
+            '570': register_IO, '571': register_IO,
+            '572': register_IO, '573': register_IO,
+            '574': register_IO, '575': register_IO,
+            '576': register_IO, '577': register_IO,
+            '578': register_IO, '579': register_IO,
+            '580': register_IO, '581': register_IO,
+            '582': register_IO, '583': register_IO,
+            '584': register_IO, '585': register_IO,
+            '586': register_IO, '587': register_IO,
+            '588': register_IO, '589': register_IO,
+            '590': register_IO, '591': register_IO,
+            '592': register_IO, '593': register_IO,
+            '594': register_IO, '595': register_IO,
+            '596': register_IO, '597': register_IO,
+            '598': register_IO, '599': register_IO,
             '600': jump_identifier, '601': not_used,
             '602': not_used, '603': not_used,
             '604': not_used, '605': not_used,
@@ -1964,6 +2163,20 @@ ragaraja_v1 = [
     '390', '391', '392', '393', '394', '395', '396', '397', '398', '399',
     ]
 
+ragaraja_v2 = ragaraja_v1 + [
+	'400',
+	'500', '501', '502', '503', '504', '505', '506', '507', '508', '509', 
+	'510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
+	'520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
+	'530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
+	'540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
+	'550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
+	'560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
+	'570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
+	'580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
+	'590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
+	'600']
+
 tested_ragaraja_instructions = [
     '000', '001', '002', '003', '004', '005', '006', '007', '008', '009', 
     '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', 
@@ -2004,6 +2217,7 @@ tested_ragaraja_instructions = [
     '370', '371', '372', '373', '374', '375', '376', '377', '378', '379',
     '380', '381', '382', '383', '384', '385', '386', '387', '388', '389',
     '390', '391', '392', '393', '394', '395', '396', '397', '398', '399',
+    '400'
     ]
 
 nBF_instructions = ['000', '004', '008', '011', '020', '050', '051', '052', 
