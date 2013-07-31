@@ -10,16 +10,28 @@ Digital Organisms Simulation Environment (DOSE) is essentially a virtual world s
 
 Hence, I decided to design an artificial life / digital organism simulator that bears resemblance to biological life and ecology. These are the foundation papers:
 
-    Lim, JZR, Aw, ZQ, Goh, DJW, How, JA, Low, SXZ, Loo, BZL, Ling, MHT. 2010. A genetic algorithm framework grounded in biology. The Python Papers Source Codes 2: 6. [Abstract] [PDF] [Zipped Codes]
+    Lim, JZR, Aw, ZQ, Goh, DJW, How, JA, Low, SXZ, Loo, BZL, Ling, MHT. 2010. A genetic algorithm framework 
+    grounded in biology. The Python Papers Source Codes 2: 6.
 
-    This manuscript describes the implementation of a GA framework that uses biological hierarchy - from chromosomes to organisms to population.
+    This manuscript describes the implementation of a GA framework that uses biological hierarchy - from 
+    chromosomes to organisms to population.
 
-    Ling, MHT. 2012. An Artificial Life Simulation Library Based on Genetic Algorithm, 3-Character Genetic Code and Biological Hierarchy. The Python Papers 7: 5. [Abstract] [PDF]
+    Ling, MHT. 2012. An Artificial Life Simulation Library Based on Genetic Algorithm, 3-Character Genetic 
+    Code and Biological Hierarchy. The Python Papers 7: 5. 
 
-    Genetic algorithm (GA) is inspired by biological evolution of genetic organisms by optimizing the genotypic combinations encoded within each individual with the help of evolutionary operators, suggesting that GA may be a suitable model for studying real-life evolutionary processes. This paper describes the design of a Python library for artificial life simulation, Digital Organism Simulation Environment (DOSE), based on GA and biological hierarchy starting from genetic sequence to population. A 3-character instruction set that does not take any operand is introduced as genetic code for digital organism. This mimics the 3-nucleotide codon structure in naturally occurring DNA. In addition, the context of a 3-dimensional world composing of ecological cells is introduced to simulate a physical ecosystem.
+    Genetic algorithm (GA) is inspired by biological evolution of genetic organisms by optimizing the genotypic 
+    combinations encoded within each individual with the help of evolutionary operators, suggesting that GA may 
+    be a suitable model for studying real-life evolutionary processes. This paper describes the design of a 
+    Python library for artificial life simulation, Digital Organism Simulation Environment (DOSE), based on GA 
+    and biological hierarchy starting from genetic sequence to population. A 3-character instruction set that 
+    does not take any operand is introduced as genetic code for digital organism. This mimics the 3-nucleotide 
+    codon structure in naturally occurring DNA. In addition, the context of a 3-dimensional world composing of 
+    ecological cells is introduced to simulate a physical ecosystem.
 
-    Ling, MHT. 2012. Ragaraja 1.0: The Genome Interpreter of Digital Organism Simulation Environment (DOSE). The Python Papers Source Codes 4: 2. [Abstract] [PDF] [Zipped Codes]
+    Ling, MHT. 2012. Ragaraja 1.0: The Genome Interpreter of Digital Organism Simulation Environment (DOSE). 
+    The Python Papers Source Codes 4: 2.
 
-    This manuscript describes the implementation and test of Ragaraja instruction set version 1.0, which is the core genomic interpreter of DOSE.
+    This manuscript describes the implementation and test of Ragaraja instruction set version 1.0, which is the 
+    core genomic interpreter of DOSE.
 
 From this foundation, the complete suite of Digital Organisms Simulation Environment (DOSE) can be build.
