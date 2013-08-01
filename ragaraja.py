@@ -1492,106 +1492,105 @@ def register_IO(array, apointer, inputdata, output, source, spointer):
     if cmd == '397': array[apointer] = register[96]
     if cmd == '398': array[apointer] = register[97]
     if cmd == '399': array[apointer] = register[98]
-    if cmd == '501': register[1] = 0
-    if cmd == '501': register[1] = 0
-    if cmd == '502': register[2] = 0
-    if cmd == '503': register[3] = 0
-    if cmd == '504': register[4] = 0
-    if cmd == '505': register[5] = 0
-    if cmd == '506': register[6] = 0
-    if cmd == '507': register[7] = 0
-    if cmd == '508': register[8] = 0
-    if cmd == '509': register[9] = 0
-    if cmd == '510': register[10] = 0
-    if cmd == '511': register[11] = 0
-    if cmd == '512': register[12] = 0
-    if cmd == '513': register[13] = 0
-    if cmd == '514': register[14] = 0
-    if cmd == '515': register[15] = 0
-    if cmd == '516': register[16] = 0
-    if cmd == '517': register[17] = 0
-    if cmd == '518': register[18] = 0
-    if cmd == '519': register[19] = 0
-    if cmd == '520': register[20] = 0
-    if cmd == '521': register[21] = 0
-    if cmd == '522': register[22] = 0
-    if cmd == '523': register[23] = 0
-    if cmd == '524': register[24] = 0
-    if cmd == '525': register[25] = 0
-    if cmd == '526': register[26] = 0
-    if cmd == '527': register[27] = 0
-    if cmd == '528': register[28] = 0
-    if cmd == '529': register[29] = 0
-    if cmd == '530': register[30] = 0
-    if cmd == '531': register[31] = 0
-    if cmd == '532': register[32] = 0
-    if cmd == '533': register[33] = 0
-    if cmd == '534': register[34] = 0
-    if cmd == '535': register[35] = 0
-    if cmd == '536': register[36] = 0
-    if cmd == '537': register[37] = 0
-    if cmd == '538': register[38] = 0
-    if cmd == '539': register[39] = 0
-    if cmd == '540': register[40] = 0
-    if cmd == '541': register[41] = 0
-    if cmd == '542': register[42] = 0
-    if cmd == '543': register[43] = 0
-    if cmd == '544': register[44] = 0
-    if cmd == '545': register[45] = 0
-    if cmd == '546': register[46] = 0
-    if cmd == '547': register[47] = 0
-    if cmd == '548': register[48] = 0
-    if cmd == '549': register[49] = 0
-    if cmd == '550': register[50] = 0
-    if cmd == '551': register[51] = 0
-    if cmd == '552': register[52] = 0
-    if cmd == '553': register[53] = 0
-    if cmd == '554': register[54] = 0
-    if cmd == '555': register[55] = 0
-    if cmd == '556': register[56] = 0
-    if cmd == '557': register[57] = 0
-    if cmd == '558': register[58] = 0
-    if cmd == '559': register[59] = 0
-    if cmd == '560': register[60] = 0
-    if cmd == '561': register[61] = 0
-    if cmd == '562': register[62] = 0
-    if cmd == '563': register[63] = 0
-    if cmd == '564': register[64] = 0
-    if cmd == '565': register[65] = 0
-    if cmd == '566': register[66] = 0
-    if cmd == '567': register[67] = 0
-    if cmd == '568': register[68] = 0
-    if cmd == '569': register[69] = 0
-    if cmd == '570': register[70] = 0
-    if cmd == '571': register[71] = 0
-    if cmd == '572': register[72] = 0
-    if cmd == '573': register[73] = 0
-    if cmd == '574': register[74] = 0
-    if cmd == '575': register[75] = 0
-    if cmd == '576': register[76] = 0
-    if cmd == '577': register[77] = 0
-    if cmd == '578': register[78] = 0
-    if cmd == '579': register[79] = 0
-    if cmd == '580': register[80] = 0
-    if cmd == '581': register[81] = 0
-    if cmd == '582': register[82] = 0
-    if cmd == '583': register[83] = 0
-    if cmd == '584': register[84] = 0
-    if cmd == '585': register[85] = 0
-    if cmd == '586': register[86] = 0
-    if cmd == '587': register[87] = 0
-    if cmd == '588': register[88] = 0
-    if cmd == '589': register[89] = 0
-    if cmd == '590': register[90] = 0
-    if cmd == '591': register[91] = 0
-    if cmd == '592': register[92] = 0
-    if cmd == '593': register[93] = 0
-    if cmd == '594': register[94] = 0
-    if cmd == '595': register[95] = 0
-    if cmd == '596': register[96] = 0
-    if cmd == '597': register[97] = 0
-    if cmd == '598': register[98] = 0
-    if cmd == '599': register[99] = 0
+    if cmd == '501': register[0] = 0
+    if cmd == '502': register[1] = 0
+    if cmd == '503': register[2] = 0
+    if cmd == '504': register[3] = 0
+    if cmd == '505': register[4] = 0
+    if cmd == '506': register[5] = 0
+    if cmd == '507': register[6] = 0
+    if cmd == '508': register[7] = 0
+    if cmd == '509': register[8] = 0
+    if cmd == '510': register[9] = 0
+    if cmd == '511': register[10] = 0
+    if cmd == '512': register[11] = 0
+    if cmd == '513': register[12] = 0
+    if cmd == '514': register[13] = 0
+    if cmd == '515': register[14] = 0
+    if cmd == '516': register[15] = 0
+    if cmd == '517': register[16] = 0
+    if cmd == '518': register[17] = 0
+    if cmd == '519': register[18] = 0
+    if cmd == '520': register[19] = 0
+    if cmd == '521': register[20] = 0
+    if cmd == '522': register[21] = 0
+    if cmd == '523': register[22] = 0
+    if cmd == '524': register[23] = 0
+    if cmd == '525': register[24] = 0
+    if cmd == '526': register[25] = 0
+    if cmd == '527': register[26] = 0
+    if cmd == '528': register[27] = 0
+    if cmd == '529': register[28] = 0
+    if cmd == '530': register[29] = 0
+    if cmd == '531': register[30] = 0
+    if cmd == '532': register[31] = 0
+    if cmd == '533': register[32] = 0
+    if cmd == '534': register[33] = 0
+    if cmd == '535': register[34] = 0
+    if cmd == '536': register[35] = 0
+    if cmd == '537': register[36] = 0
+    if cmd == '538': register[37] = 0
+    if cmd == '539': register[38] = 0
+    if cmd == '540': register[39] = 0
+    if cmd == '541': register[40] = 0
+    if cmd == '542': register[41] = 0
+    if cmd == '543': register[42] = 0
+    if cmd == '544': register[43] = 0
+    if cmd == '545': register[44] = 0
+    if cmd == '546': register[45] = 0
+    if cmd == '547': register[46] = 0
+    if cmd == '548': register[47] = 0
+    if cmd == '549': register[48] = 0
+    if cmd == '550': register[49] = 0
+    if cmd == '551': register[50] = 0
+    if cmd == '552': register[51] = 0
+    if cmd == '553': register[52] = 0
+    if cmd == '554': register[53] = 0
+    if cmd == '555': register[54] = 0
+    if cmd == '556': register[55] = 0
+    if cmd == '557': register[56] = 0
+    if cmd == '558': register[57] = 0
+    if cmd == '559': register[58] = 0
+    if cmd == '560': register[59] = 0
+    if cmd == '561': register[60] = 0
+    if cmd == '562': register[61] = 0
+    if cmd == '563': register[62] = 0
+    if cmd == '564': register[63] = 0
+    if cmd == '565': register[64] = 0
+    if cmd == '566': register[65] = 0
+    if cmd == '567': register[66] = 0
+    if cmd == '568': register[67] = 0
+    if cmd == '569': register[68] = 0
+    if cmd == '570': register[69] = 0
+    if cmd == '571': register[70] = 0
+    if cmd == '572': register[71] = 0
+    if cmd == '573': register[72] = 0
+    if cmd == '574': register[73] = 0
+    if cmd == '575': register[74] = 0
+    if cmd == '576': register[75] = 0
+    if cmd == '577': register[76] = 0
+    if cmd == '578': register[77] = 0
+    if cmd == '579': register[78] = 0
+    if cmd == '580': register[79] = 0
+    if cmd == '581': register[80] = 0
+    if cmd == '582': register[81] = 0
+    if cmd == '583': register[82] = 0
+    if cmd == '584': register[83] = 0
+    if cmd == '585': register[84] = 0
+    if cmd == '586': register[85] = 0
+    if cmd == '587': register[86] = 0
+    if cmd == '588': register[87] = 0
+    if cmd == '589': register[88] = 0
+    if cmd == '590': register[89] = 0
+    if cmd == '591': register[90] = 0
+    if cmd == '592': register[91] = 0
+    if cmd == '593': register[92] = 0
+    if cmd == '594': register[93] = 0
+    if cmd == '595': register[94] = 0
+    if cmd == '596': register[95] = 0
+    if cmd == '597': register[96] = 0
+    if cmd == '598': register[97] = 0
+    if cmd == '599': register[98] = 0
     return (array, apointer, inputdata, output, source, spointer)
 
 def jump_identifier(array, apointer, inputdata, output, source, spointer):
@@ -2217,7 +2216,18 @@ tested_ragaraja_instructions = [
     '370', '371', '372', '373', '374', '375', '376', '377', '378', '379',
     '380', '381', '382', '383', '384', '385', '386', '387', '388', '389',
     '390', '391', '392', '393', '394', '395', '396', '397', '398', '399',
-    '400'
+    '400',
+    '500', '501', '502', '503', '504', '505', '506', '507', '508', '509', 
+	'510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
+	'520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
+	'530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
+	'540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
+	'550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
+	'560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
+	'570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
+	'580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
+	'590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
+	'600'
     ]
 
 nBF_instructions = ['000', '004', '008', '011', '020', '050', '051', '052', 
