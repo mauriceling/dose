@@ -2304,6 +2304,8 @@ def activate_version(version=1):
     if version == 0.1: instructions = nBF_instructions
     if version == 1: instructions = ragaraja_v1
     if version == 0: instructions = tested_ragaraja_instructions
+    if version == 2: instructions = ragaraja_v2
     for key in ragaraja.keys():
         if key not in instructions:
             ragaraja[key] = not_used
+    return instructions
