@@ -706,7 +706,7 @@ def population_constructor(data=population_data):
         Population.postpopulation_control = data['postpopulation_control']
     if data['generation_events'] != 'default':
         Population.generation_events = data['generation_events']
-    if data['report'] != 'default':
+    if data['population_report'] != 'default':
         Population.report = data['population_report']
     return pop
     
