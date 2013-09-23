@@ -613,24 +613,24 @@ def crossover(chromosome1, chromosome2, position):
             
 population_data = \
 {
-    'nucleotide_list' : [1, 2, 3, 4],
+    'chromosome_bases' : [1, 2, 3, 4],
     'chromosome_length' : 200,
     'chromosome_type' : 'defined',
-    'chromosome' : [1] * 200,
+    'initial_chromosome' : [1] * 200,
     'background_mutation' : 0.0001,
     'genome_size' : 1,
     'population_size' : 200,
     'fitness_function' : 'default',
     'mutation_scheme' : 'default',
-    'additional_mutation_rate' : 0.01,
+    'additional_mutation' : 0.01,
     'mutation_type' : 'point',
     'goal' : 4,
-    'maximum_generation' : 'infinite',
+    'maximum_generations' : 'infinite',
     'prepopulation_control' : 'default',
     'mating' : 'default',
     'postpopulation_control' : 'default',
     'generation_events' : 'default',
-    'report' : 'default'
+    'population_report' : 'default'
 }
 
 def population_constructor(data=population_data):
@@ -638,11 +638,11 @@ def population_constructor(data=population_data):
     Function to construct a population based on a dictionary of population data.
     
     Population data contains the following keys:
-        - 'nucleotide_list' = List of allowable nucleotides (bases). 
+        - 'chromosome_bases' = List of allowable bases. 
             Default = [1, 2, 3, 4].
         - 'chromosome_length' = Length of a chromosome. Default = 200.
         - 'chromosome_type' = Type of chromosome. Default = 'defined'.
-        - 'chromosome' = Initial chromosome. Default = [1] * 200.
+        - 'initial_chromosome' = Initial chromosome. Default = [1] * 200.
         - 'background_mutation' = Background mutation rate. 
             Default = 0.0001 (0.01%).
         - 'genome_size' = Number of chromosomes per organism. Default = 1.
@@ -653,12 +653,12 @@ def population_constructor(data=population_data):
         - 'mutation_scheme' = Function simulating the mutation scheme of an 
             organism. Accepts 'default' or a function. Please refer to Organism. 
             Default = 'default'.
-        - 'additional_mutation_rate' = Mutation rate on top of background 
+        - 'additional_mutation' = Mutation rate on top of background 
             mutation rate. Default = 0.01 (1%).
         - 'mutation_type' = Type of default mutation. Default = 'point'.
         - 'goal' = Goal of the population, as evaluated by fitness function.
             Default = 4.
-        - 'maximum_generation' = Number of generations to simulate. Accepts an 
+        - 'maximum_generations' = Number of generations to simulate. Accepts an 
             integer or 'infinite'. Default = 'infinite'.
         - 'prepopulation_control' = Function simulating pre-mating population 
             control. Please refer to Population. Default = 'default'.
@@ -670,7 +670,7 @@ def population_constructor(data=population_data):
         - 'generation_events' = Function simulating other possible (usually 
             rare or random) events in the generation. Please refer to 
             Population. Default = 'default'.
-        - 'report' = Function to generate the status report of the generation.
+        - 'population_report' = Function to generate the status report of the generation.
             Please refer to Population. Default = 'default'.
         
     @param data: population data
@@ -684,19 +684,19 @@ def population_constructor(data=population_data):
     
     @since: version 0.4
     """
-    chr = Chromosome(data['chromosome'], 
-                     data['nucleotide_list'],
+    chr = Chromosome(data['initial_chromosome'], 
+                     data['chromosome_bases'],
                      data['background_mutation'])
     org = Organism([chr]*data['genome_size'],
                    data['mutation_type'],
-                   data['additional_mutation_rate'])
+                   data['additional_mutation'])
     if data['fitness_function'] != 'default':
         Organism.fitness = data['fitness_function']
     if data['mutation_scheme'] != 'default':
         Organism.mutation_scheme = data['mutation_scheme']
     org_set = [org.clone() for x in range(data['population_size'])]
     pop = Population(data['goal'], 
-                     int(data['maximum_generation']), 
+                     int(data['maximum_generations']), 
                      org_set)
     if data['prepopulation_control'] != 'default':
         Population.prepopulation_control = data['prepopulation_control']
@@ -706,8 +706,8 @@ def population_constructor(data=population_data):
         Population.postpopulation_control = data['postpopulation_control']
     if data['generation_events'] != 'default':
         Population.generation_events = data['generation_events']
-    if data['report'] != 'default':
-        Population.report = data['report']
+    if data['population_report'] != 'default':
+        Population.report = data['population_report']
     return pop
     
 def population_simulate(population, 
