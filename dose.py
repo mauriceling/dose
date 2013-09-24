@@ -155,8 +155,7 @@ def simulate(parameters, entities):
           "directory": directory})
 
     Populations = spawn_populations(parameters)
-    World = world_builder()
-o
+
     ragaraja.activate_version(parameters["ragaraja_version"])
 
     for population in Populations:
