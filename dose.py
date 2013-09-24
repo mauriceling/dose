@@ -170,7 +170,7 @@ def simulate(parameters, entities):
             eco_cell_locator(parameters, Entities.update_ecology)
             eco_cell_locator(parameters, Entities.update_local)
 
-            interpret_chromosome(parameters, Populations, World, population)
+            interpret_chromosome(parameters, Populations, Entities, population)
 
             report_generation(parameters, Populations, population, Entities, generation_count)
 
