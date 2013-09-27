@@ -5,6 +5,8 @@ from setuptools import setup, find_packages
 
 setup(name='dose',
       version='0.1',
+      packages=['dose', 
+                'dose.copads'],
       description='Digital Organisms Simulation Environment',
       long_description='''
 Digital Organism Simulation Environment (DOSE)
