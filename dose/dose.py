@@ -31,14 +31,100 @@ def coordinates(location):
     z = location[2]
     return (x,y,z)
 
+def adjacent_cells(p, location):
+    trashbin = []
+    temp_cells = []
+    world_size = [p["world_x"],p["world_y"],p["world_z"]]
+
+    for i in xrange(3):
+        new_location = [spot for spot in location]
+        new_location[0] += 1
+        temp_cells.append(new_location)
+
+        new_location = [spot for spot in location]
+        new_location[0] -= 1
+        temp_cells.append(new_location)    
+        
+    for i in xrange(2):
+        new_location = [spot for spot in location]
+        new_location[1] -= 1
+        temp_cells.append(new_location) 
+
+    for i in xrange(0,4,3):
+        temp_cells[i][1] += 1
+        temp_cells[i+1][1] -= 1
+
+    temp_cells[-1][1] += 2
+
+    for i in xrange(8):
+        for x in xrange(2):
+            if temp_cells[i][x] > world_size[x] or temp_cells[i][x] < 0:
+                if temp_cells[i] not in trashbin:
+                    trashbin.append(temp_cells[i])
+
+    for location in trashbin:
+        temp_cells.remove(location)
+    
+    return [tuple(location) for location in temp_cells]
+    
 def deploy(p, Populations, Entities, population):
-    location = p["population_locations"][p["population_names"].index(population)]
-    (x,y,z) = coordinates(location)
-    Entities.ecosystem[x][y][z]['organisms'] = p["population_size"]
-    for individual in Populations[population].agents:
-        individual.status['location'] = location
+   
+    locations = [location for location in p["population_locations"][p["population_names"].index(population)]]
+
+    if p["deployment_code"] == 1:
+        location = locations[0]
+        (x,y,z) = coordinates(location)
+        Entities.ecosystem[x][y][z]['organisms'] = p["population_size"]
+        for individual in Populations[population].agents:
+            individual.status['location'] = location
+
+    elif p["deployment_code"] == 2:
+        for individual in Populations[population].agents:
+            location = random.choice(locations)
+            (x,y,z) = coordinates(location)
+            while Entities.ecosystem[x][y][z]['organisms'] >= p["eco_cell_capacity"]:
+                location = random.choice(locations)
+                (x,y,z) = coordinates(location)
+            Entities.ecosystem[x][y][z]['organisms'] += 1
+            individual.status['location'] = location
+    
+    elif p["deployment_code"] == 3:
+        split = p["population_size"]/len(locations)
+        for group in xrange(len(locations)):
+            start = split * group
+            end = start + split
+            for i in xrange(start, end):
+                individual = Populations[population].agents[i]
+                location = locations[group]
+                (x,y,z) = coordinates(location)
+                Entities.ecosystem[x][y][z]['organisms'] += 1
+                individual.status['location'] = location
+
+    elif p["deployment_code"] == 4:
+        location = locations[0]
+        adjacent_cells = adjacent_cells(p, location)
+
+        for group in xrange((p["population_size"]/p["eco_cell_capacity"]) + 1):
+            start = p["eco_cell_capacity"] * group
+            end = start + p["eco_cell_capacity"]
+
+            for x in xrange(start,end):
+                if x == p["population_size"]: break
+
+                individual = Populations[population].agents[x]
+                if x > (p["eco_cell_capacity"] - 1):
+                    location = random.choice(adjacent_cells)
+                    (x,y,z) = coordinates(location)
+                    while Entities.ecosystem[x][y][z]['organisms'] > p["eco_cell_capacity"]:
+                        location = random.choice(adjacent_cells)
+                        (x,y,z) = coordinates(location)
+
+                Entities.ecosystem[x][y][z]['organisms'] += 1
+                individual.status['location'] = location
+
 
 def interpret_chromosome(p, Populations, Entities, population):
+    cell = [0] * p["cells"]
     for individual in Populations[population].agents:
         location = individual.status['location']
         (x,y,z) = coordinates(location)
