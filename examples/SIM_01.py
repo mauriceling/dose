@@ -56,9 +56,11 @@ class entities(dose.dose_entities):
     def mating(self): pass
     def postpopulation_control(self): pass
     def generation_events(self): pass
-    def population_report(self, population):
-        sequences = [''.join(org.genome[0].sequence) for org in population.agents]
-        location = [''.join(str(org.status['location'])) for org in population.agents]
-        return '\n'.join(sequences)
+    def population_report(self, Populations, population):
+        names = []
+        for individual in Populations[population].agents:
+            names.append(individual.status['identity'])
+
+        return '\n'.join(names)
 
 dose.simulate(parameters, entities)
