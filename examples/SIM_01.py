@@ -8,7 +8,8 @@ import dose
 parameters = {
               "simulation_code": "SIM_01",
               "population_names": ['pop_01','pop_02'],
-              "population_locations": [(0,0,0), (4,4,4)],
+              "population_locations": [[(0,0,0), (1,1,1), (2,2,2)], [(4,4,4), (3,3,3), (2,2,2)]],
+              "deployment_code": 1,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.2,
               "additional_mutation": 0,
@@ -47,7 +48,6 @@ class entities(dose.dose_entities):
     def update_local(self, x, y, z): pass
     def report(self): pass
     
-    cell = [0] * parameters["cells"]
     def fitness(self): pass
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
@@ -58,6 +58,7 @@ class entities(dose.dose_entities):
     def generation_events(self): pass
     def population_report(self, population):
         sequences = [''.join(org.genome[0].sequence) for org in population.agents]
+        location = [''.join(str(org.status['location'])) for org in population.agents]
         return '\n'.join(sequences)
 
 dose.simulate(parameters, entities)
