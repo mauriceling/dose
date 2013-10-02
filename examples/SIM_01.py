@@ -9,7 +9,7 @@ parameters = {
               "simulation_code": "SIM_01",
               "population_names": ['pop_01','pop_02'],
               "population_locations": [[(0,0,0), (1,1,1), (2,2,2)], [(4,4,4), (3,3,3), (2,2,2)]],
-              "deployment_code": 1,
+              "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.2,
               "additional_mutation": 0,
@@ -20,18 +20,18 @@ parameters = {
               "max_cell_population": 200,
               "clean_cell": True,
               "max_codon": 2000,
-              "population_size": 50,
+              "population_size": 100,
               "eco_cell_capacity": 50,
               "world_x": 5,
               "world_y": 5,
               "world_z": 5,
               "goal": 0,
-              "maximum_generations": 500,
+              "maximum_generations": 100,
               "fossilized_ratio": 0.01,
-              "fossilized_frequency": 100,
+              "fossilized_frequency": 20,
               "print_frequency": 10,
               "ragaraja_version": 2,
-              "eco_buried_frequency": 500,
+              "eco_buried_frequency": 100,
              }
 
 class entities(dose.dose_entities):
@@ -40,27 +40,38 @@ class entities(dose.dose_entities):
                  world_y = parameters["world_y"],
                  world_z = parameters["world_z"]):
         super(entities, self).__init__(world_x, world_y, world_z)
-        
+
     def organism_movement(self, x, y, z): pass
+
     def organism_location(self, x, y, z): pass
+
     def ecoregulate(self): pass
+
     def update_ecology(self, x, y, z): pass
+
     def update_local(self, x, y, z): pass
+
     def report(self): pass
-    
+
     def fitness(self): pass
+
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
                                    parameters["additional_mutation"])
-    def prepopulation_control(self): pass
-    def mating(self): pass
-    def postpopulation_control(self): pass
-    def generation_events(self): pass
-    def population_report(self, Populations, population):
-        names = []
-        for individual in Populations[population].agents:
-            names.append(individual.status['identity'])
 
-        return '\n'.join(names)
+    def prepopulation_control(self): pass
+
+    def mating(self): pass
+
+    def postpopulation_control(self): pass
+
+    def generation_events(self): pass
+
+    def population_report(self, Populations, population):
+        sequences = [''.join(org.genome[0].sequence) for org in Populations[population].agents]
+        identities = [org.status['identity'] for org in Populations[population].agents]
+        locations = [str(org.status['location']) for org in Populations[population].agents]
+        demes = [org.status['deme'] for org in Populations[population].agents]
+        return '\n'.join(identities)
 
 dose.simulate(parameters, entities)
