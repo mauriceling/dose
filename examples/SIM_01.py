@@ -40,21 +40,31 @@ class entities(dose.dose_entities):
                  world_y = parameters["world_y"],
                  world_z = parameters["world_z"]):
         super(entities, self).__init__(world_x, world_y, world_z)
-        
+
     def organism_movement(self, x, y, z): pass
+
     def organism_location(self, x, y, z): pass
+
     def ecoregulate(self): pass
+
     def update_ecology(self, x, y, z): pass
+
     def update_local(self, x, y, z): pass
+
     def report(self): pass
-    
+
     def fitness(self): pass
+
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
                                    parameters["additional_mutation"])
+
     def prepopulation_control(self): pass
+
     def mating(self): pass
+
     def postpopulation_control(self): pass
+
     def generation_events(self): pass
 
     def population_report(self, Populations, population):
