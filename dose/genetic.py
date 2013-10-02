@@ -371,8 +371,12 @@ class Organism(object):
         
         @since: version 0.4
         """
-        return deepcopy(self)
-        
+        org = deepcopy(self)
+        temp_status = {}
+        for key in self.status.keys(): 
+            temp_status[key] = self.status[key]
+        org.status = temp_status
+        return org
         
 class Population(object):
     """
