@@ -92,17 +92,16 @@ def deploy(p, Populations, Entities, population):
             individual.status['location'] = location
     
     elif p["deployment_code"] == 3:
-        split = p["population_size"]/len(locations)
-        for group in xrange(len(locations)):
-            start = split * group
-            end = start + split
-            for i in xrange(start, end):
-                individual = Populations[population].agents[i]
-                location = locations[group]
-                (x,y,z) = coordinates(location)
-                Entities.ecosystem[x][y][z]['organisms'] += 1
-                individual.status['location'] = location
-
+        iterator = 0
+        for i in xrange(p["population_size"]):
+            individual = Populations[population].agents[i]
+            location = locations[iterator]
+            (x,y,z) = coordinates(location)
+            Entities.ecosystem[x][y][z]['organisms'] += 1
+            individual.status['location'] = location
+            iterator += 1
+            if iterator == len(locations):
+                iterator = 0
     elif p["deployment_code"] == 4:
         location = locations[0]
         adjacent_cells = adjacent_cells(p, location)
