@@ -104,26 +104,22 @@ def deploy(p, Populations, Entities, population):
                 iterator = 0
     elif p["deployment_code"] == 4:
         location = locations[0]
-        adjacent_cells = adjacent_cells(p, location)
-
+        adj_cells = adjacent_cells(p, location)
         for group in xrange((p["population_size"]/p["eco_cell_capacity"]) + 1):
             start = p["eco_cell_capacity"] * group
             end = start + p["eco_cell_capacity"]
-
             for x in xrange(start,end):
                 if x == p["population_size"]: break
-
                 individual = Populations[population].agents[x]
                 if x > (p["eco_cell_capacity"] - 1):
-                    location = random.choice(adjacent_cells)
+                    location = random.choice(adj_cells)
                     (x,y,z) = coordinates(location)
                     while Entities.ecosystem[x][y][z]['organisms'] > p["eco_cell_capacity"]:
-                        location = random.choice(adjacent_cells)
+                        location = random.choice(adj_cells)
                         (x,y,z) = coordinates(location)
-
+                (x,y,z) = coordinates(location)
                 Entities.ecosystem[x][y][z]['organisms'] += 1
                 individual.status['location'] = location
-
 
 def interpret_chromosome(p, Populations, Entities, population):
     cell = [0] * p["cells"]
