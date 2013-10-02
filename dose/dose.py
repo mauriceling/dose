@@ -61,7 +61,7 @@ def adjacent_cells(p, location):
 
     for i in xrange(8):
         for x in xrange(2):
-            if temp_cells[i][x] > world_size[x] or temp_cells[i][x] < 0:
+            if temp_cells[i][x] >= world_size[x] or temp_cells[i][x] < 0:
                 if temp_cells[i] not in trashbin:
                     trashbin.append(temp_cells[i])
 
