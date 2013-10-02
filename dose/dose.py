@@ -38,49 +38,39 @@ def adjacent_cells(p, location):
     trashbin = []
     temp_cells = []
     world_size = [p["world_x"],p["world_y"],p["world_z"]]
-
     for i in xrange(3):
         new_location = [spot for spot in location]
         new_location[0] += 1
         temp_cells.append(new_location)
-
         new_location = [spot for spot in location]
         new_location[0] -= 1
         temp_cells.append(new_location)    
-        
     for i in xrange(2):
         new_location = [spot for spot in location]
         new_location[1] -= 1
         temp_cells.append(new_location) 
-
     for i in xrange(0,4,3):
         temp_cells[i][1] += 1
         temp_cells[i+1][1] -= 1
-
     temp_cells[-1][1] += 2
-
     for i in xrange(8):
         for x in xrange(2):
             if temp_cells[i][x] >= world_size[x] or temp_cells[i][x] < 0:
                 if temp_cells[i] not in trashbin:
                     trashbin.append(temp_cells[i])
-
     for location in trashbin:
         temp_cells.remove(location)
-    
     return [tuple(location) for location in temp_cells]
     
 def deploy(p, Populations, Entities, population):
    
     locations = [location for location in p["population_locations"][p["population_names"].index(population)]]
-
     if p["deployment_code"] == 1:
         location = locations[0]
         (x,y,z) = coordinates(location)
         Entities.ecosystem[x][y][z]['organisms'] = p["population_size"]
         for individual in Populations[population].agents:
             individual.status['location'] = location
-
     elif p["deployment_code"] == 2:
         for individual in Populations[population].agents:
             location = random.choice(locations)
@@ -90,7 +80,6 @@ def deploy(p, Populations, Entities, population):
                 (x,y,z) = coordinates(location)
             Entities.ecosystem[x][y][z]['organisms'] += 1
             individual.status['location'] = location
-    
     elif p["deployment_code"] == 3:
         iterator = 0
         for i in xrange(p["population_size"]):
@@ -129,18 +118,15 @@ def interpret_chromosome(p, Populations, Entities, population):
         inputdata = Entities.ecosystem[x][y][z]['local_input']
         output = Entities.ecosystem[x][y][z]['local_output']
         source = ''.join(individual.genome[0].sequence)
-
         if p["clean_cell"]:
             array = [0] * p["cells"]
         else:
             array = individual.Entities.cell
-        
         try: (array, apointer, inputdata, output, source, spointer) = \
             register_machine.interpret(source, ragaraja.ragaraja, 3,
                                        inputdata, array,
                                        p["max_cell_population"], p["max_codon"])
         except Exception: pass
-            
         individual.cell = array
         Entities.ecosystem[x][y][z]['temporary_input'] = inputdata
         Entities.ecosystem[x][y][z]['temporary_output'] = output
@@ -220,13 +206,10 @@ REPORT:
 def simulate(parameters, entities):
     
     Entities = entities()
-    
     time = str(datetime.utcnow())
     directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), parameters["simulation_code"], time[0:10])
-    
     if not os.path.exists(directory):
         os.makedirs(directory)
-
     parameters.update({"initial_chromosome":['0'] * parameters["chromosome_size"],
           "mutation_scheme": Entities.mutation_scheme,
           "fitness_function": Entities.fitness,
@@ -237,30 +220,20 @@ def simulate(parameters, entities):
           "population_report": Entities.population_report,
           "starting_time": time,
           "directory": directory})
-
     Populations = spawn_populations(parameters)
-
     ragaraja.activate_version(parameters["ragaraja_version"])
-
     for population in Populations:
         write_parameters(parameters, population)
-        deploy(parameters, Populations, Entities, population)
-    
+        deploy(parameters, Populations, Entities, population)          
         generation_count = 0
         while generation_count < parameters["maximum_generations"]:
             generation_count += 1
             Entities.ecoregulate()
-            
             eco_cell_locator(parameters, Entities.update_ecology)
             eco_cell_locator(parameters, Entities.update_local)
-
             interpret_chromosome(parameters, Populations, Entities, population)
-
             report_generation(parameters, Populations, population, Entities, generation_count)
-
             eco_cell_locator(parameters, Entities.organism_movement)
             eco_cell_locator(parameters, Entities.organism_location)
-
             eco_cell_executor(parameters, Entities.report)
-
             bury_world(parameters, generation_count, Entities)
