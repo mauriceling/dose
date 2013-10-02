@@ -11,11 +11,9 @@ def spawn_populations(p):
     temp_pop = {}
     for population in p["population_names"]:
         temp_pop[population] = genetic.population_constructor(p)
-        
-        for i in xrange(p["population_size"]):
-            temp_pop[population].agents[i].generate_name()
-            temp_pop[population].agents[i].status['deme'] = population
-
+        for individual in temp_pop[population].agents:
+            individual.generate_name()
+            individual.status['deme'] = population
     return temp_pop
 
 def eco_cell_locator(p, function):
