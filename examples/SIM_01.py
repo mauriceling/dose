@@ -34,7 +34,7 @@ parameters = {
               "eco_buried_frequency": 100,
              }
 
-class entities(dose.dose_entities):
+class entities(dose.simulation_functions):
 
     def __init__(self, world_x = parameters["world_x"],
                  world_y = parameters["world_y"],

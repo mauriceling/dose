@@ -4,7 +4,7 @@ from datetime import datetime
 import ragaraja, register_machine
 import dose_world, genetic
 
-class dose_entities(dose_world.World):
+class simulation_functions(dose_world.World):
     pass
 
 def spawn_populations(p):
@@ -203,9 +203,9 @@ REPORT:
 ''' % p)
     f.close()
 
-def simulate(parameters, entities):
+def simulate(parameters, dose_functions):
     
-    Entities = entities()
+    Entities = dose_functions()
     time = str(datetime.utcnow())
     directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), parameters["simulation_code"], time[0:10])
     if not os.path.exists(directory):
