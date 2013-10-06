@@ -69,4 +69,6 @@ class simulation_functions(dose.dose_functions):
         demes = [org.status['deme'] for org in Populations[population].agents]
         return '\n'.join(identities)
 
+    def deployment_scheme(self, Populations, World, pop_name): pass
+
 dose.simulate(parameters, simulation_functions)

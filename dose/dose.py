@@ -111,6 +111,8 @@ def adjacent_cells(sim_param, location):
 def deploy(sim_param, Populations, World, pop_name):
    
     locations = [location for location in sim_param["population_locations"][sim_param["population_names"].index(pop_name)]]
+    if sim_param["deployment_code"] == 0:
+        sim_param["deployment_scheme"](Populations, World, pop_name)
     if sim_param["deployment_code"] == 1:
         location = locations[0]
         (x,y,z) = coordinates(location)
@@ -268,6 +270,7 @@ def simulate(parameters, simulation_functions):
 					   "mating": Entities.mating,
 					   "generation_events": Entities.generation_events,
 					   "population_report": Entities.population_report,
+                       "deployment_scheme": Entities.deployment_scheme,
 					   "starting_time": time_start, 
 					   "directory": directory})
     Populations = spawn_populations(parameters)
