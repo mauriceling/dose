@@ -34,12 +34,7 @@ parameters = {
               "eco_buried_frequency": 100,
              }
 
-class entities(dose.dose_entities):
-
-    def __init__(self, world_x = parameters["world_x"],
-                 world_y = parameters["world_y"],
-                 world_z = parameters["world_z"]):
-        super(entities, self).__init__(world_x, world_y, world_z)
+class simulation_functions(dose.dose_functions):
 
     def organism_movement(self, x, y, z): pass
 
@@ -74,4 +69,6 @@ class entities(dose.dose_entities):
         demes = [org.status['deme'] for org in Populations[population].agents]
         return '\n'.join(identities)
 
-dose.simulate(parameters, entities)
+    def deployment_scheme(self, Populations, World, pop_name): pass
+
+dose.simulate(parameters, simulation_functions)
