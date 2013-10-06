@@ -211,8 +211,8 @@ def simulate(parameters, simulation_functions):
     Entities = simulation_functions(parameters["world_x"], 
                                     parameters["world_y"], 
                                     parameters["world_z"])
-    time = str(datetime.utcnow())
-    directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), parameters["simulation_code"], time[0:10])
+    time_start = str(datetime.utcnow())
+    directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), parameters["simulation_code"], time_start[0:10])
     if not os.path.exists(directory):
         os.makedirs(directory)
     parameters.update({"initial_chromosome":['0'] * parameters["chromosome_size"],
@@ -223,7 +223,7 @@ def simulate(parameters, simulation_functions):
 					   "mating": Entities.mating,
 					   "generation_events": Entities.generation_events,
 					   "population_report": Entities.population_report,
-					   "starting_time": time, 
+					   "starting_time": time_start, 
 					   "directory": directory})
     Populations = spawn_populations(parameters)
     ragaraja.activate_version(parameters["ragaraja_version"])
