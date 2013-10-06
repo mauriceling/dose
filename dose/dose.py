@@ -1,4 +1,4 @@
-import sys, os, random
+import sys, os, random, inspect
 from datetime import datetime
 
 import ragaraja, register_machine
@@ -17,17 +17,15 @@ def spawn_populations(sim_param):
             individual.status['deme'] = pop_name
     return temp_Populations
 
+
 def eco_cell_locator(sim_param, function):
     for x in range(sim_param["world_x"]):
         for y in range(sim_param["world_y"]):
             for z in range(sim_param["world_z"]):
-                function(x,y,z)
-
-def eco_cell_executor(sim_param, function):
-    for x in range(sim_param["world_x"]):
-        for y in range(sim_param["world_y"]):
-            for z in range(sim_param["world_z"]):
-                function()
+                if len(inspect.getargspec(function)[0]) == 4:
+                    function(x,y,z)
+                else:
+                    function()
 
 def coordinates(location):
     x = location[0]
@@ -240,5 +238,5 @@ def simulate(parameters, simulation_functions):
             report_generation(parameters, Populations, pop_name, Entities, generation_count)
             eco_cell_locator(parameters, Entities.organism_movement)
             eco_cell_locator(parameters, Entities.organism_location)
-            eco_cell_executor(parameters, Entities.report)
+            eco_cell_locator(parameters, Entities.report)
             bury_world(parameters, generation_count, Entities)
