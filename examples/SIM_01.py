@@ -36,11 +36,6 @@ parameters = {
 
 class entities(dose.simulation_functions):
 
-    def __init__(self, world_x = parameters["world_x"],
-                 world_y = parameters["world_y"],
-                 world_z = parameters["world_z"]):
-        super(entities, self).__init__(world_x, world_y, world_z)
-
     def organism_movement(self, x, y, z): pass
 
     def organism_location(self, x, y, z): pass

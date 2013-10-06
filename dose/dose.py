@@ -5,7 +5,8 @@ import ragaraja, register_machine
 import dose_world, genetic
 
 class simulation_functions(dose_world.World):
-    pass
+    def __init__(self, world_x, world_y, world_z):
+        super(dose_functions, self).__init__(world_x, world_y, world_z)
 
 def spawn_populations(sim_param):
     temp_Populations = {}
@@ -208,6 +209,9 @@ REPORT:
 def simulate(parameters, dose_functions):
     
     Entities = dose_functions()
+    Entities = simulation_functions(parameters["world_x"], 
+                                    parameters["world_y"], 
+                                    parameters["world_z"])
     time = str(datetime.utcnow())
     directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), parameters["simulation_code"], time[0:10])
     if not os.path.exists(directory):
