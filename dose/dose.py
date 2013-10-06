@@ -17,6 +17,53 @@ def spawn_populations(sim_param):
             individual.status['deme'] = pop_name
     return temp_Populations
 
+def filter_deme(deme_name, agents):
+    extract = []
+    for individual in agents:
+        if individual.status['deme'].upper() == deme_name.upper():
+            extract.append(individual)
+    return extract
+    
+def filter_gender(gender, agents):
+    extract = []
+    for individual in agents:
+        if individual.status['gender'].upper() == gender.upper():
+            extract.append(individual)
+    return extract
+
+def filter_age(minimum, maximum, agents):
+    extract = []
+    for individual in agents:
+        if float(individual.status['age']) > (float(minimum) - 0.01):
+            if float(individual.status['age']) < float(maximum) + 0.01:
+                extract.append(individual)
+    return extract
+
+def filter_location(location, agents):
+    extract = []
+    for individual in agents:
+        if individual.status['location'] == location:
+            extract.append(individual)
+    return extract
+
+def filter_vitality(minimum, maximum, agents):
+    extract = []
+    for individual in agents:
+        if float(individual.status['vitality']) > (float(minimum) - 0.01):
+            if float(individual.status['vitality']) < float(maximum) + 0.01:
+                extract.append(individual)
+    return extract
+
+def filter_status(status_key, condition, agents):
+    extract = []
+    for individual in agents:
+        if type(condition) in (str, int, float, bool):
+            if individual.status[status_key] == condition:
+                extract.append(individual)
+        elif float(individual.status[status_key]) > float(condition[0]) - 0.01:
+            if float(individual.status[status_key]) < float(condition[1]) + 0.01:
+                extract.append(individual)
+    return extract
 
 def eco_cell_locator(sim_param, function):
     for x in range(sim_param["world_x"]):
