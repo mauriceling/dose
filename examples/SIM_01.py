@@ -34,7 +34,7 @@ parameters = {
               "eco_buried_frequency": 100,
              }
 
-class entities(dose.simulation_functions):
+class simulation_functions(dose.dose_functions):
 
     def organism_movement(self, x, y, z): pass
 
@@ -69,4 +69,4 @@ class entities(dose.simulation_functions):
         demes = [org.status['deme'] for org in Populations[population].agents]
         return '\n'.join(identities)
 
-dose.simulate(parameters, entities)
+dose.simulate(parameters, simulation_functions)

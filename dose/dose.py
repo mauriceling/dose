@@ -4,7 +4,7 @@ from datetime import datetime
 import ragaraja, register_machine
 import dose_world, genetic
 
-class simulation_functions(dose_world.World):
+class dose_functions(dose_world.World):
     def __init__(self, world_x, world_y, world_z):
         super(dose_functions, self).__init__(world_x, world_y, world_z)
 
@@ -206,9 +206,8 @@ REPORT:
 	
     f.close()
 
-def simulate(parameters, dose_functions):
+def simulate(parameters, simulation_functions):
     
-    Entities = dose_functions()
     Entities = simulation_functions(parameters["world_x"], 
                                     parameters["world_y"], 
                                     parameters["world_z"])
