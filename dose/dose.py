@@ -195,12 +195,13 @@ def report_generation(sim_param, Populations, pop_name, Entities, generation_cou
     report = step(Populations, pop_name, Entities)
     if generation_count % int(sim_param["fossilized_frequency"]) == 0:
         file = '%s%s_%s_' % (sim_param["directory"],
-                             sim_param["simulation_code"], pop_name)
         Populations[pop_name].freeze(file, sim_param["fossilized_ratio"])
     if generation_count % int(sim_param["print_frequency"]) == 0:
+                             sim_parameters["simulation_name"], pop_name)
         print '\nGENERATION: %s \n%s' % (str(generation_count), str(report))
         f = open(('%s%s_%s.result.txt' % (sim_param["directory"],
                                           sim_param["simulation_code"], 
+                                          sim_parameters["simulation_name"], 
                                           pop_name)), 'a')
         dtstamp = str(datetime.utcnow())
         f.write('\n'.join(['\n' + dtstamp, 'GENERATION: ' + str(generation_count), str(report)]))
@@ -210,15 +211,15 @@ def report_generation(sim_param, Populations, pop_name, Entities, generation_cou
 def bury_world(sim_param, generation_count, World):
     if generation_count % int (sim_param["eco_buried_frequency"]) == 0:
        filename = '%s%s_gen%s.eco' % (sim_param["directory"], 
-                                      sim_param["simulation_code"], 
+                                      sim_parameters["simulation_name"], 
                                       str(generation_count))
        World.eco_burial(filename)
 
 def write_parameters(sim_param, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_param["directory"],
-                                      sim_param["simulation_code"], 
+                                      sim_parameters["simulation_name"], 
                                       pop_name)), 'a')
-    f.write('''SIMULATION CODE: %(simulation_code)s                     %(starting_time)s
+    f.write('''SIMULATION: %(simulation_name)s                     
 ----------------------------------------------------------------------
 
 population_names: %(population_names)s
@@ -289,4 +290,4 @@ def simulate(parameters, simulation_functions):
             eco_cell_locator(parameters, Entities.organism_movement)
             eco_cell_locator(parameters, Entities.organism_location)
             eco_cell_locator(parameters, Entities.report)
-            bury_world(parameters, generation_count, Entities)
+            bury_world(parameters, generation_count, Entities)                                      sim_parameters["simulation_name"], 
