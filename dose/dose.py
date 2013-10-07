@@ -265,17 +265,10 @@ def simulate(sim_parameters, simulation_functions):
                                               time_start[0:10])
     if not os.path.exists(directory):
         os.makedirs(directory)
-					   "fitness_function": Entities.fitness,
-					   "mutation_scheme": Entities.mutation_scheme,
-					   "prepopulation_control": Entities.prepopulation_control,
-					   "postpopulation_control": Entities.postpopulation_control,
-					   "mating": Entities.mating,
-					   "generation_events": Entities.generation_events,
-					   "population_report": Entities.population_report,
-                       "deployment_scheme": Entities.deployment_scheme,
-					   "starting_time": time_start, 
-					   "directory": directory})
     sim_parameters.update({"initial_chromosome":['0'] * sim_parameters["chromosome_size"],
+                           "deployment_scheme": sim_functions.deployment_scheme,
+                           "starting_time": time_start,
+                           "directory": directory})
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          
