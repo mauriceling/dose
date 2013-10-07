@@ -3,35 +3,35 @@
 import run_examples_without_installation
 
 # Example codes starts from here
-import dose, genetic, random
+import dose
 
 parameters = {
-              "simulation_name": "03_no_migration_isolated_mating",
-              "population_names": ['pop_01'],
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "simulation_name": "02_basic_functions_even_deployment",
+              "population_names": ['pop_01', 'pop_02'],
+              "population_locations": [[(0,0,0),(1,1,1)],[(4,4,4),(3,3,3)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.1,
               "additional_mutation": 0,
               "mutation_type": 'point',
-              "chromosome_size": 50,
+              "chromosome_size": 30,
               "genome_size": 1,
               "cells": 50,
               "max_cell_population": 200,
               "clean_cell": True,
               "max_codon": 2000,
-              "population_size": 1250,
-              "eco_cell_capacity": 50,
+              "population_size": 100,
+              "eco_cell_capacity": 0,
               "world_x": 5,
               "world_y": 5,
-              "world_z": 1,
+              "world_z": 5,
               "goal": 0,
-              "maximum_generations": 1000,
+              "maximum_generations": 100,
               "fossilized_ratio": 0.01,
-              "fossilized_frequency": 100,
+              "fossilized_frequency": 20,
               "print_frequency": 10,
               "ragaraja_version": 2,
-              "eco_buried_frequency": 1000,
+              "eco_buried_frequency": 100,
              }
 
 class simulation_functions():
@@ -56,21 +56,7 @@ class simulation_functions():
 
     def prepopulation_control(self, Populations, pop_name): pass
 
-    def mating(self, Populations, pop_name):
-        for location in parameters["population_locations"][0]:
-            group = dose.filter_location(location, Populations[pop_name].agents)
-            temp = []
-            for x in xrange(len(group)):
-                organism1 = group[random.randint(0, len(group) - 1)]
-                organism2 = group[random.randint(0, len(group) - 1)]
-                crossover_pt = random.randint(0, len(organism1.genome[0].sequence))
-                (g1, g2) = genetic.crossover(organism1.genome[0], organism2.genome[0], crossover_pt)
-            new_org = genetic.Organism([g1])
-            new_org.status['location'] = location
-            new_org.generate_name()
-            new_org.status['deme'] = pop_name
-            temp = temp + [new_org]
-        Populations[pop_name].agents + temp
+    def mating(self, Populations, pop_name): pass
 
     def postpopulation_control(self, Populations, pop_name): pass
 

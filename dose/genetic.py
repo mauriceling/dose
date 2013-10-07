@@ -709,24 +709,10 @@ def population_constructor(data=population_data):
     org = Organism([chr]*data['genome_size'],
                    data['mutation_type'],
                    data['additional_mutation'])
-    if data['fitness_function'] != 'default':
-        Organism.fitness = data['fitness_function']
-    if data['mutation_scheme'] != 'default':
-        Organism.mutation_scheme = data['mutation_scheme']
     org_set = [org.clone() for x in range(data['population_size'])]
     pop = Population(data['goal'], 
                      int(data['maximum_generations']), 
                      org_set)
-    if data['prepopulation_control'] != 'default':
-        Population.prepopulation_control = data['prepopulation_control']
-    if data['mating'] != 'default':
-        Population.mating = data['mating']
-    if data['postpopulation_control'] != 'default':
-        Population.postpopulation_control = data['postpopulation_control']
-    if data['generation_events'] != 'default':
-        Population.generation_events = data['generation_events']
-    if data['population_report'] != 'default':
-        Population.report = data['population_report']
     return pop
     
 def population_simulate(population, 
