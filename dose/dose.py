@@ -4,9 +4,9 @@ from datetime import datetime
 import ragaraja, register_machine
 import dose_world, genetic
 
-class dose_functions(dose_world.World):
+class world_builder(dose_world.World):
     def __init__(self, world_x, world_y, world_z):
-        super(dose_functions, self).__init__(world_x, world_y, world_z)
+        super(world_builder, self).__init__(world_x, world_y, world_z)
 
 def spawn_populations(sim_parameters):
     temp_Populations = {}
@@ -209,15 +209,15 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
         f.write('\n')
         f.close
 
-def bury_world(sim_param, generation_count, World):
-    if generation_count % int (sim_param["eco_buried_frequency"]) == 0:
-       filename = '%s%s_gen%s.eco' % (sim_param["directory"], 
+def bury_world(sim_parameters, World, generation_count):
+    if generation_count % int (sim_parameters["eco_buried_frequency"]) == 0:
+       filename = '%s%s_gen%s.eco' % (sim_parameters["directory"], 
                                       sim_parameters["simulation_name"], 
                                       str(generation_count))
        World.eco_burial(filename)
 
-def write_parameters(sim_param, pop_name):
-    f = open(('%s%s_%s.result.txt' % (sim_param["directory"],
+def write_parameters(sim_parameters, pop_name):
+    f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
                                       sim_parameters["simulation_name"], 
                                       pop_name)), 'a')
     f.write('''SIMULATION: %(simulation_name)s                     
@@ -254,11 +254,11 @@ REPORT:
 ''' % (sim_parameters))
     f.close()
 
-def simulate(parameters, simulation_functions):
-    
-    Entities = simulation_functions(parameters["world_x"], 
-                                    parameters["world_y"], 
-                                    parameters["world_z"])
+def simulate(sim_parameters, simulation_functions):
+    sim_functions = simulation_functions()
+    World = world_builder(sim_parameters["world_x"],
+                          sim_parameters["world_y"],
+                          sim_parameters["world_z"])
     time_start = str(datetime.utcnow())
     directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), 
                                               sim_parameters["simulation_name"], 
@@ -280,14 +280,16 @@ def simulate(parameters, simulation_functions):
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          
         generation_count = 0
-        while generation_count < parameters["maximum_generations"]:
-            generation_count += 1
-            Entities.ecoregulate()
-            eco_cell_locator(parameters, Entities.update_ecology)
-            eco_cell_locator(parameters, Entities.update_local)
-            interpret_chromosome(parameters, Populations, Entities, pop_name)
-            report_generation(parameters, Populations, pop_name, Entities, generation_count)
-            eco_cell_locator(parameters, Entities.organism_movement)
-            eco_cell_locator(parameters, Entities.organism_location)
-            eco_cell_locator(parameters, Entities.report)
-            bury_world(parameters, generation_count, Entities)                                      sim_parameters["simulation_name"], 
+        while generation_count < sim_parameters["maximum_generations"]:
+            generation_count = generation_count + 1
+            sim_functions.ecoregulate(World)
+            eco_cell_iterator(World, sim_parameters, sim_functions.update_ecology)
+            eco_cell_iterator(World, sim_parameters, sim_functions.update_local)
+            interpret_chromosome(sim_parameters, Populations, pop_name, World)
+            report_generation(sim_parameters, Populations, pop_name, sim_functions, generation_count)
+            eco_cell_iterator(World, sim_parameters, sim_functions.organism_movement)
+            eco_cell_iterator(World, sim_parameters, sim_functions.organism_location)
+            eco_cell_iterator(World, sim_parameters, sim_functions.report)
+            bury_world(sim_parameters, World, generation_count)
+        f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
+                                      sim_parameters["simulation_name"], 

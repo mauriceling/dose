@@ -34,41 +34,41 @@ parameters = {
               "eco_buried_frequency": 100,
              }
 
-class simulation_functions(dose.dose_functions):
+class simulation_functions():
 
-    def organism_movement(self, x, y, z): pass
+    def organism_movement(self, World, x, y, z): pass
 
-    def organism_location(self, x, y, z): pass
+    def organism_location(self, World, x, y, z): pass
 
-    def ecoregulate(self): pass
+    def ecoregulate(self, World): pass
 
-    def update_ecology(self, x, y, z): pass
+    def update_ecology(self, World, x, y, z): pass
 
-    def update_local(self, x, y, z): pass
+    def update_local(self, World, x, y, z): pass
 
-    def report(self): pass
+    def report(World): pass
 
-    def fitness(self): pass
+    def fitness(self, Populations, pop_name): pass
 
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
                                    parameters["additional_mutation"])
 
-    def prepopulation_control(self): pass
+    def prepopulation_control(self, Populations, pop_name): pass
 
-    def mating(self): pass
+    def mating(self, Populations, pop_name): pass
 
-    def postpopulation_control(self): pass
+    def postpopulation_control(self, Populations, pop_name): pass
 
-    def generation_events(self): pass
+    def generation_events(self, Populations, pop_name): pass
 
-    def population_report(self, Populations, population):
-        sequences = [''.join(org.genome[0].sequence) for org in Populations[population].agents]
-        identities = [org.status['identity'] for org in Populations[population].agents]
-        locations = [str(org.status['location']) for org in Populations[population].agents]
-        demes = [org.status['deme'] for org in Populations[population].agents]
-        return '\n'.join(identities)
+    def population_report(self, Populations, pop_name):
+        sequences = [''.join(org.genome[0].sequence) for org in Populations[pop_name].agents]
+        identities = [org.status['identity'] for org in Populations[pop_name].agents]
+        locations = [str(org.status['location']) for org in Populations[pop_name].agents]
+        demes = [org.status['deme'] for org in Populations[pop_name].agents]
+        return '\n'.join(sequences)
 
-    def deployment_scheme(self, Populations, World, pop_name): pass
+    def deployment_scheme(Populations, pop_name, World): pass
 
 dose.simulate(parameters, simulation_functions)
