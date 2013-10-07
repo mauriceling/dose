@@ -1,3 +1,6 @@
 *.gitattributes
 *.sln
 *.pyc
+*.eco
+*.txt
+*.gap
