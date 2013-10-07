@@ -270,6 +270,8 @@ def simulate(sim_parameters, simulation_functions):
                            "deployment_scheme": sim_functions.deployment_scheme,
                            "starting_time": time_start,
                            "directory": directory})
+    Populations = spawn_populations(sim_parameters)
+    ragaraja.activate_version(sim_parameters["ragaraja_version"])
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          
