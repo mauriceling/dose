@@ -222,6 +222,7 @@ def write_parameters(sim_parameters, pop_name):
                                       pop_name)), 'a')
     f.write('''SIMULATION: %(simulation_name)s                     
 ----------------------------------------------------------------------
+SIMULATION STARTED: %(starting_time)s
 
 population_names: %(population_names)s
 population_locations: %(population_locations)s
@@ -286,3 +287,8 @@ def simulate(sim_parameters, simulation_functions):
             bury_world(sim_parameters, World, generation_count)
         f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
                                       sim_parameters["simulation_name"], 
+                                      pop_name)), 'a')
+        f.write('''
+----------------------------------------------------------------------
+SIMULATION ENDED: ''' + str(datetime.utcnow()))
+        f.close()
