@@ -6,12 +6,12 @@ import run_examples_without_installation
 import dose
 
 parameters = {
-              "population_names": ['pop_01','pop_02'],
-              "population_locations": [[(0,0,0), (1,1,1), (2,2,2)], [(4,4,4), (3,3,3), (2,2,2)]],
-              "deployment_code": 3,
               "simulation_name": "01_basic_functions_one_cell_deployment",
+              "population_names": ['pop_01'],
+              "population_locations": [[(0,0,0)]],
+              "deployment_code": 1,
               "chromosome_bases": ['0','1'],
-              "background_mutation": 0.2,
+              "background_mutation": 0.1,
               "additional_mutation": 0,
               "mutation_type": 'point',
               "chromosome_size": 30,
@@ -21,7 +21,7 @@ parameters = {
               "clean_cell": True,
               "max_codon": 2000,
               "population_size": 100,
-              "eco_cell_capacity": 50,
+              "eco_cell_capacity": 100,
               "world_x": 5,
               "world_y": 5,
               "world_z": 5,
