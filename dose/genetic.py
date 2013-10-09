@@ -202,13 +202,7 @@ class Organism(object):
     
     @since: version 0.4
     """
-    status = {'alive': True,                # is the organism alive?
-              'vitality': 100.0,            # % of vitality
-              'age': 0.0,                   # age of the organism
-              'lifespan': 100.0,            # maximum lifespan
-              'fitness': 100.0,             # % of fitness
-              'death': None}
-              
+    
     genome = []
     
     def __init__(self, genome='default',
@@ -236,6 +230,12 @@ class Organism(object):
             
         @since: version 0.4
         """
+        self.status = {'alive': True,                # is the organism alive?
+                       'vitality': 100.0,            # % of vitality
+                       'age': 0.0,                   # age of the organism
+                       'lifespan': 100.0,            # maximum lifespan
+                       'fitness': 100.0,             # % of fitness
+                       'death': None}
         if genome == 'default': 
             self.genome = [Chromosome()]
         elif genome == 'dummy':
@@ -245,7 +245,7 @@ class Organism(object):
         self.mutation_type = mutation_type
         self.additional_mutation_rate = additional_mutation_rate
         self.gender = gender
-    
+        
     def generate_name(self):
         name = ''.join([random.choice(('1', '2', '3', '4', '5', '6', '7',
                                        '8', '9', 'A', 'B', 'C', 'D', 'E',
@@ -372,10 +372,6 @@ class Organism(object):
         @since: version 0.4
         """
         org = deepcopy(self)
-        temp_status = {}
-        for key in self.status.keys(): 
-            temp_status[key] = self.status[key]
-        org.status = temp_status
         return org
         
 class Population(object):
