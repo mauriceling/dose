@@ -36,9 +36,9 @@ parameters = {
 
 class simulation_functions(dose.dose_functions):
 
-    def organism_movement(self, World, x, y, z): pass
+    def organism_movement(self, Populations, pop_name, World): pass
 
-    def organism_location(self, World, x, y, z): pass
+    def organism_location(self, Populations, pop_name, World): pass
 
     def ecoregulate(self, World): pass
 

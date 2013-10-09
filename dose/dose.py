@@ -5,9 +5,9 @@ import ragaraja, register_machine
 import dose_world, genetic
 
 class dose_functions():
-    def organism_movement(self, World, x, y, z):
+    def organism_movement(self, Populations, pop_name, World):
         raise NotImplementedError
-    def organism_location(self, World, x, y, z):
+    def organism_location(self, Populations, pop_name, World):
         raise NotImplementedError
     def ecoregulate(self, World): 
         raise NotImplementedError
@@ -314,8 +314,8 @@ def simulate(sim_parameters, simulation_functions):
             eco_cell_iterator(World, sim_parameters, sim_functions.update_local)
             interpret_chromosome(sim_parameters, Populations, pop_name, World)
             report_generation(sim_parameters, Populations, pop_name, sim_functions, generation_count)
-            eco_cell_iterator(World, sim_parameters, sim_functions.organism_movement)
-            eco_cell_iterator(World, sim_parameters, sim_functions.organism_location)
+            sim_functions.organism_movement(Populations, pop_name, World)
+            sim_functions.organism_location(Populations, pop_name, World)
             eco_cell_iterator(World, sim_parameters, sim_functions.report)
             bury_world(sim_parameters, World, generation_count)
         f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
