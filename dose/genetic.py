@@ -601,6 +601,9 @@ def crossover(chromosome1, chromosome2, position):
     @param position: base position of the swap over
     @type position: integer
     @return: (resulting chromosome1, resulting chromosome2)
+
+    New chromosomes inherit their parent's crossed sequences, bases and
+    background mutation rate.
     
     @since: version 0.4
     """
@@ -609,19 +612,19 @@ def crossover(chromosome1, chromosome2, position):
     position = int(position)
     if len(seq1) > position and len(seq2) > position:
         new1 = Chromosome(seq1[:position] + seq2[position:], 
-                          chromosome1.base)
+                          chromosome1.base, chromosome1.background_mutation)
         new2 = Chromosome(seq2[:position] + seq1[position:],
-                          chromosome2.base)
+                          chromosome2.background_mutation)
         return (new1, new2)
     elif len(seq1) > position:
-        new1 = Chromosome(seq1[:position], chromosome1.base)
+        new1 = Chromosome(seq1[:position], chromosome1.base, chromosome1.background_mutation)
         new2 = Chromosome(chromosome2.sequence + seq1[position:],
-                          chromosome2.base)
+                          chromosome2.base, chromosome2.background_mutation)
         return (new1, new2)
     elif len(seq2) > position:
         new1 = Chromosome(chromosome1.sequence + seq2[position:],
-                          chromosome1.base)
-        new2= Chromosome(seq2[:position], chromosome2.base)
+                          chromosome1.base, chromosome1.background_mutation)
+        new2= Chromosome(seq2[:position], chromosome2.base, chromosome2.background_mutation)
         return (new1, new2)
     else:
         return (chromosome1, chromosome2)        
