@@ -11,7 +11,7 @@ parameters = {
               "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
-              "background_mutation": 0.1,
+              "background_mutation": 0.2,
               "additional_mutation": 0,
               "mutation_type": 'point',
               "chromosome_size": 50,
@@ -34,7 +34,7 @@ parameters = {
               "eco_buried_frequency": 1000,
              }
 
-class simulation_functions():
+class simulation_functions(dose.dose_functions):
 
     def organism_movement(self, World, x, y, z): pass
 
@@ -56,32 +56,43 @@ class simulation_functions():
 
     def prepopulation_control(self, Populations, pop_name): pass
 
-    def mating(self, Populations, pop_name):
+    def mating(self, Populations, pop_name): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            temp = []
-            for x in xrange(len(group)):
-                organism1 = group[random.randint(0, len(group) - 1)]
-                organism2 = group[random.randint(0, len(group) - 1)]
-                crossover_pt = random.randint(0, len(organism1.genome[0].sequence))
-                (g1, g2) = genetic.crossover(organism1.genome[0], organism2.genome[0], crossover_pt)
-            new_org = genetic.Organism([g1])
-            new_org.status['location'] = location
-            new_org.generate_name()
-            new_org.status['deme'] = pop_name
-            temp = temp + [new_org]
-        Populations[pop_name].agents + temp
+            for x in xrange(len(group)/2):
+                parents = []
+                for i in xrange(2):
+                    parents.append(random.choice(Populations[pop_name].agents))
+                    while parents[i] not in group:
+                        parents[i] = random.choice(Populations[pop_name].agents)
+                    Populations[pop_name].agents.remove(parents[i])
+                crossover_pt = random.randint(0, len(parents[0].genome[0].sequence))
+                (new_chromo1, new_chromo2) = genetic.crossover(parents[0].genome[0], 
+                                                               parents[1].genome[0], 
+                                                               crossover_pt)
+                children = [genetic.Organism([new_chromo1],
+                                             parameters["mutation_type"],
+                                             parameters["additional_mutation"]),
+                            genetic.Organism([new_chromo2],
+                                             parameters["mutation_type"],
+                                             parameters["additional_mutation"])]
+                for child in children:
+                    child.status['location'] = location
+                    child.generate_name()
+                    child.status['deme'] = pop_name
+                    Populations[pop_name].agents.append(child)
 
     def postpopulation_control(self, Populations, pop_name): pass
 
     def generation_events(self, Populations, pop_name): pass
 
     def population_report(self, Populations, pop_name):
-        sequences = [''.join(org.genome[0].sequence) for org in Populations[pop_name].agents]
-        identities = [org.status['identity'] for org in Populations[pop_name].agents]
-        locations = [str(org.status['location']) for org in Populations[pop_name].agents]
-        demes = [org.status['deme'] for org in Populations[pop_name].agents]
-        return '\n'.join(locations)
+        report_list = []
+        for organism in Populations[pop_name].agents:
+            chromosome = ''.join(organism.genome[0].sequence)
+            location = str(organism.status['location'])
+            report_list.append(chromosome + '  ' + location)
+        return '\n'.join(report_list)
 
     def deployment_scheme(Populations, pop_name, World): pass
 
