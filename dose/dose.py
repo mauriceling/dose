@@ -256,6 +256,7 @@ SIMULATION STARTED: %(starting_time)s
 
 population_names: %(population_names)s
 population_locations: %(population_locations)s
+deployment_code: %(deployment_code)s
 chromosome_bases: %(chromosome_bases)s
 initial_chromosome: %(initial_chromosome)s
 background_mutation: %(background_mutation)s
