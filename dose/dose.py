@@ -4,6 +4,36 @@ from datetime import datetime
 import ragaraja, register_machine
 import dose_world, genetic
 
+class dose_functions():
+    def organism_movement(self, World, x, y, z):
+        raise NotImplementedError
+    def organism_location(self, World, x, y, z):
+        raise NotImplementedError
+    def ecoregulate(self, World): 
+        raise NotImplementedError
+    def update_ecology(self, World, x, y, z):
+        raise NotImplementedError
+    def update_local(self, World, x, y, z):
+        raise NotImplementedError
+    def report(World):
+        raise NotImplementedError
+    def fitness(self, Populations, pop_name):
+        raise NotImplementedError
+    def mutation_scheme(self, organism):
+        raise NotImplementedError
+    def prepopulation_control(self, Populations, pop_name):
+        raise NotImplementedError
+    def mating(self, Populations, pop_name):
+        raise NotImplementedError
+    def postpopulation_control(self, Populations, pop_name):
+        raise NotImplementedError
+    def generation_events(self, Populations, pop_name):
+        raise NotImplementedError
+    def population_report(self, Populations, pop_name):
+        raise NotImplementedError
+    def deployment_scheme(Populations, pop_name, World):
+        raise NotImplementedError
+
 class world_builder(dose_world.World):
     def __init__(self, world_x, world_y, world_z):
         super(world_builder, self).__init__(world_x, world_y, world_z)

@@ -34,7 +34,7 @@ parameters = {
               "eco_buried_frequency": 1000,
              }
 
-class simulation_functions():
+class simulation_functions(dose.dose_functions):
 
     def organism_movement(self, World, x, y, z): pass
 
