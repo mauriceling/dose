@@ -41,7 +41,7 @@ class simulation_functions(dose.dose_functions):
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
             adj_cells = helper.adjacent_cells(parameters, location)
-            for i in xrange(random.randint(0, len(group))):
+            for i in xrange(int(round((len(group) * .1)))):
                 (x,y,z) = helper.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
