@@ -38,10 +38,6 @@ class dose_functions():
     def deployment_scheme(Populations, pop_name, World):
         raise NotImplementedError
 
-class world_builder(dose_world.World):
-    def __init__(self, world_x, world_y, world_z):
-        super(world_builder, self).__init__(world_x, world_y, world_z)
-
 def filter_deme(deme_name, agents):
     extract = []
     for individual in agents:
@@ -92,9 +88,9 @@ def filter_status(status_key, condition, agents):
 
 def simulate(sim_parameters, simulation_functions):
     sim_functions = simulation_functions()
-    World = world_builder(sim_parameters["world_x"],
-                          sim_parameters["world_y"],
-                          sim_parameters["world_z"])
+    World = dose_world.World(sim_parameters["world_x"],
+                             sim_parameters["world_y"],
+                             sim_parameters["world_z"])
     time_start = str(datetime.utcnow())
     directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), 
                                               sim_parameters["simulation_name"], 
