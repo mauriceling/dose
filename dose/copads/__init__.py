@@ -19,10 +19,11 @@ Cookbook had undergone 2 editions by 2008 and ActiveState had provided an
 online platform for Python Recipes which I found to be useful and can see 
 how some of these recipes can be merged. Thus, COPADS is borned.
 
-Project website: U{http://copads.sf.net}
+Project website: U{https://github.com/copads/copads}
 
 License: Unless specified otherwise, all parts of this package, except 
-those adapted, are covered under Python Software Foundation License version 2.
+those adapted, are covered under Python Software Foundation License 
+version 2.
 """
 
 __version__ = '0.4.1'
