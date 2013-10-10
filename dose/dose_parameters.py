@@ -1,7 +1,6 @@
 '''
 Parameter file for DOSE simulation.
 Date created: 13th September 2012
-Licence: Python Software Foundation License version 2 
 
 This file contains the default parameters for DOSE simulation.
 '''

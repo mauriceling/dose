@@ -70,10 +70,10 @@ foundation papers:
     simulation, Digital Organism Simulation Environment (DOSE), based on GA 
     and biological hierarchy starting from genetic sequence to population. 
     A 3-character instruction set that does not take any operand is 
-    introduced as genetic code for digital organism. This mimics the 3-nucleotide 
-    codon structure in naturally occurring DNA. In addition, the context of 
-    a 3-dimensional world composing of ecological cells is introduced to 
-    simulate a physical ecosystem.
+    introduced as genetic code for digital organism. This mimics the 3-
+    nucleotide codon structure in naturally occurring DNA. In addition, 
+    the context of a 3-dimensional world composing of ecological cells is 
+    introduced to simulate a physical ecosystem.
     
     Ling, MHT. 2012. Ragaraja 1.0: The Genome Interpreter of Digital 
     Organism Simulation Environment (DOSE). The Python Papers Source Codes 
@@ -86,7 +86,11 @@ foundation papers:
 From this foundation, the complete suite of Digital Organisms Simulation 
 Environment (DOSE) can be build.
 
-Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)
+License: Unless otherwise specified, all files in dose/copads folder will 
+be licensed under Python Software Foundation License version 2; all other 
+files will be GNU General Public License version 3.
+
+Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
 ''',
       author='Maurice HT Ling',
       author_email='mauriceling@acm.org',

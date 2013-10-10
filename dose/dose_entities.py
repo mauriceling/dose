@@ -1,7 +1,7 @@
 '''
-Boiler-plate codes for DOSE (digital organism simulation environment) entities
+Boiler-plate codes for DOSE (digital organism simulation environment) 
+entities.
 Date created: 13th September 2012
-Licence: Python Software Foundation License version 2 
 
 Reference: Ling, MHT. 2012. An Artificial Life Simulation Library Based on 
 Genetic Algorithm, 3-Character Genetic Code and Biological Hierarchy. The 

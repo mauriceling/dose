@@ -1,7 +1,6 @@
 '''
 Default DOSE simulation runner in manuscript [1]
 Date created: 13th September 2012
-Licence: Python Software Foundation License version 2 
 
 [1] Ling, MHT. 2012. An Artificial Life Simulation Library Based on Genetic 
 Algorithm, 3-Character Genetic Code and Biological Hierarchy. The Python 

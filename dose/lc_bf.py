@@ -1,7 +1,6 @@
 '''
 Loose Circular Brainfuck (LCBF) Interpreter
 Date created: 15th August 2012
-Licence: Python Software Foundation License version 2
 
 LCBF uses all 8 operations in standard Brainfuck with the 
 following differences:

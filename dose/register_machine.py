@@ -1,7 +1,6 @@
 '''
 One dimensional tape/register machine
 Date created: 15th August 2012
-Licence: Python Software Foundation License version 2
 
 The machine consists of the following elements:
     1. Array/Tape: A circular tape for operations to occur
