@@ -19,7 +19,7 @@ class dose_functions():
         raise NotImplementedError
     def update_local(self, World, x, y, z):
         raise NotImplementedError
-    def report(World):
+    def report(self, World):
         raise NotImplementedError
     def fitness(self, Populations, pop_name):
         raise NotImplementedError
@@ -35,7 +35,7 @@ class dose_functions():
         raise NotImplementedError
     def population_report(self, Populations, pop_name):
         raise NotImplementedError
-    def deployment_scheme(Populations, pop_name, World):
+    def deployment_scheme(self, Populations, pop_name, World):
         raise NotImplementedError
 
 def filter_deme(deme_name, agents):

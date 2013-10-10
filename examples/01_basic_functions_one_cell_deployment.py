@@ -46,7 +46,7 @@ class simulation_functions():
 
     def update_local(self, World, x, y, z): pass
 
-    def report(World): pass
+    def report(self, World): pass
 
     def fitness(self, Populations, pop_name): pass
 
@@ -69,6 +69,6 @@ class simulation_functions():
         demes = [org.status['deme'] for org in Populations[pop_name].agents]
         return '\n'.join(sequences)
 
-    def deployment_scheme(Populations, pop_name, World): pass
+    def deployment_scheme(self, Populations, pop_name, World): pass
 
 dose.simulate(parameters, simulation_functions)
