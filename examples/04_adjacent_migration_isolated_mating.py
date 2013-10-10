@@ -7,7 +7,7 @@ import dose, genetic, random
 import simulation_calls as helper
 
 parameters = {
-              "simulation_name": "05_long_migration_isolated_mating",
+              "simulation_name": "04_adjacent_migration_isolated_mating",
               "population_names": ['pop_01'],
               "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
               "deployment_code": 3,
@@ -37,23 +37,22 @@ parameters = {
 
 class simulation_functions(dose.dose_functions):
 
-    def organism_movement(self, Populations, pop_name, World): pass
-
-    def organism_location(self, Populations, pop_name, World): 
+    def organism_movement(self, Populations, pop_name, World):
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
+            adj_cells = helper.adjacent_cells(parameters, location)
             for i in xrange(int(round((len(group) * .1)))):
                 (x,y,z) = helper.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
                 while immigrant not in group:
                     immigrant = random.choice(Populations[pop_name].agents)
-                new_location = random.choice(parameters["population_locations"][0])
-                while new_location == location:
-                    new_location = random.choice(parameters["population_locations"][0])
+                new_location = random.choice(adj_cells)
                 immigrant.status['location'] = new_location
                 (x,y,z) = helper.coordinates(new_location)
                 World.ecosystem[x][y][z]['organisms'] += 1
+
+    def organism_location(self, Populations, pop_name, World): pass
 
     def ecoregulate(self, World): pass
 
