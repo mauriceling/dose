@@ -1,7 +1,6 @@
 '''
 Ragaraja Interpreter
 Date created: 16th August 2012
-Licence: Python Software Foundation License version 2
 
 Ragaraja is a derivative and massive extension of Brainfuck. 
 This work is influenced by a large number of Brainfuck 

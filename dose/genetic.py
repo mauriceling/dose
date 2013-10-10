@@ -1,7 +1,6 @@
 """
 Framework for Genetic Algorithm Applications.
 Date created: 23rd February 2010
-Licence: Python Software Foundation License version 2
 
 @see: Lim, JZR, Aw, ZQ, Goh, DJW, How, JA, Low, SXZ, Loo, BZL,
 Ling, MHT. 2010. A genetic algorithm framework grounded in biology.

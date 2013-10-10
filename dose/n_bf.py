@@ -1,7 +1,6 @@
 '''
 NucleotideBF (nBF) Interpreter
 Date created: 15th August 2012
-Licence: Python Software Foundation License version 2
 
 NucleotideBF is a derivative of Brainfuck based on IUPAC 
 nucleotide code. It uses only 5 of the 8 operations in 

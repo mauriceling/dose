@@ -1,3 +1,12 @@
+'''
+Application Programming Interface (API) for DOSE (digital organism 
+simulation environment). This contains the main functions and operations 
+needed to write a DOSE simulation. This file will be imported as top 
+level (from dose import *) when DOSE is imported; hence, all functions in 
+this file can be assessed at top level.
+
+Date created: 27th September 2013
+'''
 import sys, os, random, inspect
 from datetime import datetime
 
