@@ -4,6 +4,7 @@ import run_examples_without_installation
 
 # Example codes starts from here
 import dose, genetic, random
+import simulation_calls as helper
 
 parameters = {
               "simulation_name": "04_adjacent_migration_isolated_mating",
@@ -39,16 +40,16 @@ class simulation_functions(dose.dose_functions):
     def organism_movement(self, Populations, pop_name, World):
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            adj_cells = dose.adjacent_cells(parameters, location)
+            adj_cells = helper.adjacent_cells(parameters, location)
             for i in xrange(random.randint(0, len(group))):
-                (x,y,z) = dose.coordinates(location)
+                (x,y,z) = helper.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
                 while immigrant not in group:
                     immigrant = random.choice(Populations[pop_name].agents)
                 new_location = random.choice(adj_cells)
                 immigrant.status['location'] = new_location
-                (x,y,z) = dose.coordinates(new_location)
+                (x,y,z) = helper.coordinates(new_location)
                 World.ecosystem[x][y][z]['organisms'] += 1
 
     def organism_location(self, Populations, pop_name, World): pass
