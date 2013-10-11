@@ -6,10 +6,10 @@ import run_examples_without_installation
 import dose
 
 parameters = {
-              "simulation_name": "02_basic_functions_even_deployment",
-              "population_names": ['pop_01', 'pop_02'],
-              "population_locations": [[(0,0,0),(1,1,1)],[(4,4,4),(3,3,3)]],
-              "deployment_code": 3,
+              "simulation_name": "01_basic_functions_one_cell_deployment",
+              "population_names": ['pop_01'],
+              "population_locations": [[(0,0,0)]],
+              "deployment_code": 1,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.1,
               "additional_mutation": 0,
@@ -21,7 +21,7 @@ parameters = {
               "clean_cell": True,
               "max_codon": 2000,
               "population_size": 100,
-              "eco_cell_capacity": 0,
+              "eco_cell_capacity": 100,
               "world_x": 5,
               "world_y": 5,
               "world_z": 5,
@@ -32,6 +32,8 @@ parameters = {
               "print_frequency": 10,
               "ragaraja_version": 2,
               "eco_buried_frequency": 100,
+              "database_file": "simulation.db",
+              "database_logging_frequency": 1
              }
 
 class simulation_functions(dose.dose_functions):
@@ -67,8 +69,15 @@ class simulation_functions(dose.dose_functions):
         identities = [org.status['identity'] for org in Populations[pop_name].agents]
         locations = [str(org.status['location']) for org in Populations[pop_name].agents]
         demes = [org.status['deme'] for org in Populations[pop_name].agents]
-        return '\n'.join(locations)
+        return '\n'.join(sequences)
 
     def deployment_scheme(self, Populations, pop_name, World): pass
+    
+    def database_report(self, con, cur, start_time, 
+                        Populations, World, generation_count):
+        dose.database_report_populations(con, cur, start_time, 
+                                         Populations, generation_count)
+        dose.database_report_world(con, cur, start_time, 
+                                   World, generation_count)
 
 dose.simulate(parameters, simulation_functions)

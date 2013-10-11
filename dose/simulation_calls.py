@@ -1,3 +1,8 @@
+'''
+File containing support functions for running a simulation.
+
+Date created: 10th October 2013
+'''
 import random, sys, inspect, genetic
 from datetime import datetime
 
