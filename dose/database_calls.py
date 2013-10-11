@@ -9,8 +9,10 @@ import sqlite3 as s
 def prepare_database(sim_parameters):
     '''
     Connects to logging database and prepares database for use, if
-    database does not exist. If the database is not present, it will 
-    create the database file and create the required database tables.
+    database does not exist. This function will look for database file in
+    <simulation execution directory>/Simulations/<database file>. If the 
+    database is not present, it will create the database file and create 
+    the required database tables.
     
     @param filepath: File path for logging database.
     @type filepath: string
@@ -42,14 +44,20 @@ def prepare_database(sim_parameters):
     return (con, cur)
 
 def db_log_simulation_parameters(con, cur, sim_parameters):
+    start_time = sim_parameters["starting_time"]
+    simulation_name = sim_parameters["simulation_name"]
+    for key in [k for k in sim_parameters.keys() 
+                if k != "simulation_name"]:
+        cur.execute('''insert into parameters values (?,?,?,?)''', 
+                    (str(start_time), str(simulation_name), 
+                     str(key), str(sim_parameters[key])))
     con.commit()
     return (con, cur)
 
-def db_report(con, cur, sim_functions, 
+def db_report(con, cur, sim_functions, start_time,
               Populations, World, generation_count):
-    sim_functions.database_report(con, cur, 
-                                  Populations, World, 
-                                  generation_count)
+    sim_functions.database_report(con, cur, start_time,
+                                  Populations, World, generation_count)
     con.commit()
     return (con, cur)
 

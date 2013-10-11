@@ -283,9 +283,8 @@ class dose_functions():
         @return: None
         '''
         raise NotImplementedError
-    def database_report(self, con, cur,  
-                        Populations, World,
-                        generation_count):
+    def database_report(self, con, cur, start_time,
+                        Populations, World, generation_count):
         raise NotImplementedError
 
 def filter_deme(deme_name, agents):
@@ -341,6 +340,8 @@ def simulate(sim_parameters, simulation_functions):
     World = dose_world.World(sim_parameters["world_x"],
                              sim_parameters["world_y"],
                              sim_parameters["world_z"])
+    # time_start format = <date>-<seconds since epoch>
+    # for example, 2013-10-11-1381480985.77
     time_start = '-'.join([str(datetime.utcnow()).split(' ')[0], 
                            str(time())])
     # Directory to store simulation results is in the format of
@@ -383,7 +384,7 @@ def simulate(sim_parameters, simulation_functions):
         bury_world(sim_parameters, World, generation_count)
         if sim_parameters.has_key("database_file") and \
             sim_parameters.has_key("database_logging_frequency"): 
-            (con, cur) = db_report(con, cur, sim_functions,
+            (con, cur) = db_report(con, cur, sim_functions, time_start,
                                    Populations, World, generation_count)
     close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
