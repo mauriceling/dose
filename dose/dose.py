@@ -123,10 +123,11 @@ class dose_functions():
         raise NotImplementedError
     def population_report(self, Populations, pop_name):
         '''
-        Method / function to generate a text report at regular intervals, 
+        Method / function to generate a text report of the population(s) 
+        and/or each organisms within the population at regular intervals, 
         within the simulation, as determined by "print_frequency" in the 
-        simulation parameters. This function works at 
-        the level of entire population(s).
+        simulation parameters. This function works at the level of entire 
+        population(s).
         
         @param Population: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
@@ -249,8 +250,34 @@ class dose_functions():
         '''
         raise NotImplementedError
     def report(self, World):
+        '''
+        Method / function to generate a text report of the population(s) 
+        and/or each organisms within the population at regular intervals, 
+        within the simulation, as determined by "print_frequency" in the 
+        simulation parameters. This function works at the level of world.
+        
+        @param World: dose_world.World object.
+        @return: Entire report of a population at a generation count in a 
+        string. To make it human-readable, usually the report string is 
+        both tab-delimited (for one organism) and newline-delimited (for 
+        entire population). 
+        '''
         raise NotImplementedError
     def deployment_scheme(self, Populations, pop_name, World):
+        '''
+        Method / function to implement a user-specific / simulation-
+        specific deployment scheme used to deploy organisms into the 
+        World. This function will only be used when "deployment_code" in 
+        simulation parameters dictionary equals to 0. This function works 
+        at all three levels - organism(s), population(s), and world.
+        
+        @param Population: A dictionary containing one or more populations 
+        where the value is a genetic.Population object.
+        @param pop_name: Name of the population which is used as key in 
+        the the dictionary (Populations parameter).
+        @param World: dose_world.World object.
+        @return: None
+        '''
         raise NotImplementedError
 
 def filter_deme(deme_name, agents):
