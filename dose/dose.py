@@ -284,7 +284,54 @@ class dose_functions():
         '''
         raise NotImplementedError
     def database_report(self, con, cur, start_time,
-                        Populations, World, generation_count):
+                        Population, World, generation_count):
+        '''
+        Method / function to implement database logging of each organism 
+        in each population, and the ecosystem status. The frequency of 
+        logging is determined by "database_logging_frequency" in the 
+        simulation_parameters.
+        
+        Three database tables had been defined for use in this function:
+        - organisms where the structure is (start_time text, pop_name text, 
+            org_name text, generation text, key text, value text)
+        - world where the structure is (start_time text, x text, y text, 
+            z text, generation text, key text, value text)
+        - miscellaneous where the structure is (start_time text, 
+            generation text, key text, value text)
+            
+        The logical purpose of these tables are:
+        - organisms, to log status of each organism. Starting time of 
+            current simulation (start_time), population name (pop_name), 
+            organism name (org_name), and generation count (generation) 
+            are used as complex primary key to identify the organism 
+            within a specific simulation at a specific generation. Key and 
+            value pair makes up the actual data to be logged where key is 
+            the field and value is the datum or attribute.
+        - world, to log the status of the ecosystem. Starting time of 
+            current simulation (start_time), location of ecological cell 
+            (x, y, z as coordinates), and generation count (generation) 
+            are used as complex primary key to identify the ecological cell
+            within a specific simulation at a specific generation. Key and 
+            value pair makes up the actual data to be logged where key is 
+            the field and value is the datum or attribute.
+        - miscellaneous, is used to log other undefined data. Starting 
+            time of current simulation (start_time), and generation count 
+            (generation) are used as complex primary key to identify a 
+            specific generation within a specific simulation. Key and 
+            value pair makes up the actual data to be logged where key is 
+            the field and value is the datum or attribute.
+        
+        @param con: Database connector. See Python DB-API for details.
+        @param cur: Database cursor. See Python DB-API for details.
+        @param start_time: Starting time of current simulation in the 
+        format of <date>-<seconds since epoch>; for example, 
+        2013-10-11-1381480985.77.
+        @param Population: A dictionary containing one or more populations 
+        where the value is a genetic.Population object.
+        @param World: dose_world.World object.
+        @param generation_count: Current number of generations simulated.
+        @return: None
+        '''
         raise NotImplementedError
 
 def filter_deme(deme_name, agents):
@@ -383,7 +430,8 @@ def simulate(sim_parameters, simulation_functions):
         eco_cell_iterator(World, sim_parameters, sim_functions.report)
         bury_world(sim_parameters, World, generation_count)
         if sim_parameters.has_key("database_file") and \
-            sim_parameters.has_key("database_logging_frequency"): 
+            sim_parameters.has_key("database_logging_frequency") and \
+            generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
             (con, cur) = db_report(con, cur, sim_functions, time_start,
                                    Populations, World, generation_count)
     close_results(sim_parameters, pop_name)
