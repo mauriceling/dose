@@ -60,7 +60,7 @@ class simulation_functions(dose.dose_functions):
 
     def update_local(self, World, x, y, z): pass
 
-    def report(World): pass
+    def report(self, World): pass
 
     def fitness(self, Populations, pop_name): pass
 
@@ -108,6 +108,6 @@ class simulation_functions(dose.dose_functions):
             report_list.append(chromosome + '  ' + location)
         return '\n'.join(report_list)
 
-    def deployment_scheme(Populations, pop_name, World): pass
+    def deployment_scheme(self, Populations, pop_name, World): pass
 
 dose.simulate(parameters, simulation_functions)

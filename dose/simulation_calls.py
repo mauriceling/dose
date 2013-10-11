@@ -58,7 +58,7 @@ def eco_cell_iterator(World, sim_parameters, function):
                 if len(inspect.getargspec(function)[0]) == 5:
                     function(World, x, y, z)
                 else:
-                    function()
+                    function(World)
 
 def deploy(sim_parameters, Populations, pop_name, World):
     position = sim_parameters["population_names"].index(pop_name)

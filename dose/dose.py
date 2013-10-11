@@ -248,9 +248,9 @@ class dose_functions():
         @return: None
         '''
         raise NotImplementedError
-    def report(World):
+    def report(self, World):
         raise NotImplementedError
-    def deployment_scheme(Populations, pop_name, World):
+    def deployment_scheme(self, Populations, pop_name, World):
         raise NotImplementedError
 
 def filter_deme(deme_name, agents):
