@@ -9,6 +9,7 @@ Date created: 27th September 2013
 '''
 import sys, os, random, inspect
 from datetime import datetime
+from time import time
 
 import ragaraja, register_machine
 import dose_world
@@ -333,10 +334,14 @@ def simulate(sim_parameters, simulation_functions):
     World = dose_world.World(sim_parameters["world_x"],
                              sim_parameters["world_y"],
                              sim_parameters["world_z"])
-    time_start = '/'.join(str(datetime.utcnow()).split(' '))
-    directory = "%s\\Simulations\\%s_%s\\" % (os.getcwd(), 
-                                              sim_parameters["simulation_name"], 
-                                              time_start[0:10])
+    time_start = '-'.join([str(datetime.utcnow()).split(' ')[0], 
+                           str(time())])
+    # Directory to store simulation results is in the format of
+    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
+    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-11-1381480985.77/
+    directory = '_'.join([sim_parameters["simulation_name"], time_start])
+    directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
+    directory = directory + os.sep
     if not os.path.exists(directory):
         os.makedirs(directory)
     sim_parameters.update(
