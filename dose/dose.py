@@ -18,6 +18,9 @@ from simulation_calls import spawn_populations, eco_cell_iterator, deploy
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
 
+from database_calls import prepare_database, db_log_simulation_parameters
+from database_calls import db_report
+
 class dose_functions():
     '''
     Abstract class to contain all of the simulation-specific functions 
@@ -280,6 +283,10 @@ class dose_functions():
         @return: None
         '''
         raise NotImplementedError
+    def database_report(self, con, cur,  
+                        Populations, World,
+                        generation_count):
+        raise NotImplementedError
 
 def filter_deme(deme_name, agents):
     extract = []
@@ -349,25 +356,38 @@ def simulate(sim_parameters, simulation_functions):
          "deployment_scheme": sim_functions.deployment_scheme,
          "starting_time": time_start,
          "directory": directory})
+    if sim_parameters.has_key("database_file") and \
+        sim_parameters.has_key("database_logging_frequency"): 
+        (con, cur) = prepare_database(sim_parameters)
+        (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
     Populations = spawn_populations(sim_parameters)
     ragaraja.activate_version(sim_parameters["ragaraja_version"])
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          
-        generation_count = 0
-        while generation_count < sim_parameters["maximum_generations"]:
-            generation_count = generation_count + 1
-            sim_functions.ecoregulate(World)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_ecology)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_local)
-            interpret_chromosome(sim_parameters, Populations, 
-                                 pop_name, World)
-            report_generation(sim_parameters, Populations, pop_name, 
-                              sim_functions, generation_count)
-            sim_functions.organism_movement(Populations, pop_name, World)
-            sim_functions.organism_location(Populations, pop_name, World)
-            eco_cell_iterator(World, sim_parameters, sim_functions.report)
-            bury_world(sim_parameters, World, generation_count)
-        close_results(sim_parameters, pop_name)
+    generation_count = 0
+    while generation_count < sim_parameters["maximum_generations"]:
+        generation_count = generation_count + 1
+        sim_functions.ecoregulate(World)
+        eco_cell_iterator(World, sim_parameters, 
+                          sim_functions.update_ecology)
+        eco_cell_iterator(World, sim_parameters, 
+                          sim_functions.update_local)
+        interpret_chromosome(sim_parameters, Populations, 
+                             pop_name, World)
+        report_generation(sim_parameters, Populations, pop_name, 
+                          sim_functions, generation_count)
+        sim_functions.organism_movement(Populations, pop_name, World)
+        sim_functions.organism_location(Populations, pop_name, World)
+        eco_cell_iterator(World, sim_parameters, sim_functions.report)
+        bury_world(sim_parameters, World, generation_count)
+        if sim_parameters.has_key("database_file") and \
+            sim_parameters.has_key("database_logging_frequency"): 
+            (con, cur) = db_report(con, cur, sim_functions,
+                                   Populations, World, generation_count)
+    close_results(sim_parameters, pop_name)
+    if sim_parameters.has_key("database_file") and \
+        sim_parameters.has_key("database_logging_frequency"): 
+        con.commit()
+        con.close()
+            
