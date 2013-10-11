@@ -73,8 +73,8 @@ class simulation_functions(dose.dose_functions):
 
     def deployment_scheme(self, Populations, pop_name, World): pass
     
-    def database_report(self, con, cur, Populations, World,
-                        generation_count):
+    def database_report(self, con, cur, Populations, World, 
+                        start_time, generation_count):
         pass
 
 dose.simulate(parameters, simulation_functions)
