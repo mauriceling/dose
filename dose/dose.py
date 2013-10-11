@@ -334,6 +334,52 @@ class dose_functions():
         '''
         raise NotImplementedError
 
+def database_report_populations(con, cur, start_time, 
+                                Populations, generation_count):
+    generation = str(generation_count)
+    for pop_name in Populations.keys():
+        for org in Populations[pop_name].agents:
+            org_name = str(org.status['identity'])
+            # log each item in Organism.status dictionary
+            for key in [key for key in org.status.keys()
+                               if key != 'identity']:
+                value = str(org.status[key])
+                cur.execute('insert into organisms values (?,?,?,?,?,?)', 
+                    (str(start_time), str(pop_name), org_name, 
+                     generation, key, value))
+            # log each chromosome sequence
+            for chromosome_count in range(len(org.genome)):
+                key = 'chromosome_' + str(chromosome_count)
+                sequence = ''.join(org.genome[chromosome_count].sequence)
+                cur.execute('insert into organisms values (?,?,?,?,?,?)', 
+                    (str(start_time), str(pop_name), org_name, 
+                     generation, key, sequence))
+    con.commit()
+    
+def database_report_world(con, cur, start_time, World, generation_count):
+    generation = str(generation_count)
+    ecosystem = World.ecosystem
+    location = [(x, y, z) 
+                for x in range(len(ecosystem))
+                    for y in range(len(ecosystem[x]))
+                        for z in range(len(ecosystem[x][y]))]
+    for cell in location:
+        eco_cell = ecosystem[cell[0]][cell[1]][cell[2]]
+        for key in eco_cell.keys():
+            value = eco_cell[key]
+            if hasattr(value, '__iter__'):
+                value = '|'.join(value)
+                cur.execute('insert into world values (?,?,?,?,?,?,?)', 
+                            (str(start_time), 
+                             str(cell[0]),  str(cell[1]), str(cell[2]), 
+                             generation, key, value))
+            else:
+                cur.execute('insert into world values (?,?,?,?,?,?,?)', 
+                            (str(start_time), 
+                             str(cell[0]), str(cell[1]), str(cell[2]), 
+                             generation, key, str(value)))
+    con.commit()
+    
 def filter_deme(deme_name, agents):
     extract = []
     for individual in agents:
