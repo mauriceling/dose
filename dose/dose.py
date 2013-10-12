@@ -8,8 +8,6 @@ this file can be assessed at top level.
 Date created: 27th September 2013
 '''
 import sys, os, random, inspect
-from datetime import datetime
-from time import time
 
 import ragaraja, register_machine
 import dose_world
@@ -17,6 +15,7 @@ import dose_world
 from simulation_calls import spawn_populations, eco_cell_iterator, deploy
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
+from simulation_calls import prepare_simulation
 
 from database_calls import prepare_database, db_log_simulation_parameters
 from database_calls import db_report
@@ -429,60 +428,45 @@ def filter_status(status_key, condition, agents):
     return extract
 
 def simulate(sim_parameters, simulation_functions):
-    sim_functions = simulation_functions()
-    World = dose_world.World(sim_parameters["world_x"],
-                             sim_parameters["world_y"],
-                             sim_parameters["world_z"])
-    # time_start format = <date>-<seconds since epoch>
-    # for example, 2013-10-11-1381480985.77
-    time_start = '-'.join([str(datetime.utcnow()).split(' ')[0], 
-                           str(time())])
-    # Directory to store simulation results is in the format of
-    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
-    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-11-1381480985.77/
-    directory = '_'.join([sim_parameters["simulation_name"], time_start])
-    directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
-    directory = directory + os.sep
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    sim_parameters.update(
-        {"initial_chromosome":['0'] * sim_parameters["chromosome_size"],
-         "deployment_scheme": sim_functions.deployment_scheme,
-         "starting_time": time_start,
-         "directory": directory})
+    (sim_parameters, sim_functions, 
+     World, Populations) = prepare_simulation(sim_parameters, 
+                                              simulation_functions)
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
         (con, cur) = prepare_database(sim_parameters)
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
-    Populations = spawn_populations(sim_parameters)
     ragaraja.activate_version(sim_parameters["ragaraja_version"])
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          
     generation_count = 0
     while generation_count < sim_parameters["maximum_generations"]:
-        generation_count = generation_count + 1
-        sim_functions.ecoregulate(World)
-        eco_cell_iterator(World, sim_parameters, 
-                          sim_functions.update_ecology)
-        eco_cell_iterator(World, sim_parameters, 
-                          sim_functions.update_local)
-        interpret_chromosome(sim_parameters, Populations, 
-                             pop_name, World)
-        report_generation(sim_parameters, Populations, pop_name, 
-                          sim_functions, generation_count)
-        sim_functions.organism_movement(Populations, pop_name, World)
-        sim_functions.organism_location(Populations, pop_name, World)
-        eco_cell_iterator(World, sim_parameters, sim_functions.report)
-        bury_world(sim_parameters, World, generation_count)
-        if sim_parameters.has_key("database_file") and \
-            sim_parameters.has_key("database_logging_frequency") and \
-            generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
-            (con, cur) = db_report(con, cur, sim_functions, time_start,
-                                   Populations, World, generation_count)
-    close_results(sim_parameters, pop_name)
+        for pop_name in Populations:
+            generation_count = generation_count + 1
+            sim_functions.ecoregulate(World)
+            eco_cell_iterator(World, sim_parameters, 
+                              sim_functions.update_ecology)
+            eco_cell_iterator(World, sim_parameters, 
+                              sim_functions.update_local)
+            if sim_parameters["interpret_chromosome"]:
+                interpret_chromosome(sim_parameters, Populations, 
+                                     pop_name, World)
+            report_generation(sim_parameters, Populations, pop_name, 
+                              sim_functions, generation_count)
+            sim_functions.organism_movement(Populations, pop_name, World)
+            sim_functions.organism_location(Populations, pop_name, World)
+            eco_cell_iterator(World, sim_parameters, sim_functions.report)
+            bury_world(sim_parameters, World, generation_count)
+            if sim_parameters.has_key("database_file") and \
+                sim_parameters.has_key("database_logging_frequency") and \
+                generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
+                (con, cur) = db_report(con, cur, sim_functions, 
+                                       sim_parameters["starting_time"],
+                                       Populations, World, generation_count)
+    for pop_name in Populations:
+        close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
         con.commit()
         con.close()
-            
+     

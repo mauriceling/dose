@@ -3,8 +3,36 @@ File containing support functions for running a simulation.
 
 Date created: 10th October 2013
 '''
-import random, sys, inspect, genetic
+import random, sys, inspect, os
 from datetime import datetime
+from time import time
+
+import dose_world
+import genetic
+import ragaraja, register_machine
+
+def prepare_simulation(sim_parameters, simulation_functions):
+    sim_functions = simulation_functions()
+    # time_start format = <date>-<seconds since epoch>
+    # for example, 2013-10-11-1381480985.77
+    time_start = '-'.join([str(datetime.utcnow()).split(' ')[0], 
+                           str(time())])
+    # Directory to store simulation results is in the format of
+    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
+    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-11-1381480985.77/
+    directory = '_'.join([sim_parameters["simulation_name"], time_start])
+    directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
+    directory = directory + os.sep
+    if not os.path.exists(directory): os.makedirs(directory)
+    sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
+    sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
+    sim_parameters["directory"] = directory
+    sim_parameters["starting_time"] = time_start
+    World = dose_world.World(sim_parameters["world_x"],
+                             sim_parameters["world_y"],
+                             sim_parameters["world_z"])
+    Populations = spawn_populations(sim_parameters)
+    return (sim_parameters, sim_functions, World, Populations)
 
 def coordinates(location):
     x = location[0]
@@ -112,25 +140,35 @@ def deploy(sim_parameters, Populations, pop_name, World):
 
 def interpret_chromosome(sim_parameters, Populations, pop_name, World):
     cell = [0] * sim_parameters["cells"]
-    for individual in Populations[pop_name].agents:
+    for i in range(len(Populations[pop_name].agents)):
+        individual = Populations[pop_name].agents[i]
         location = individual.status['location']
         (x,y,z) = coordinates(location)
-        inputdata = World.ecosystem[x][y][z]['local_input']
-        output = World.ecosystem[x][y][z]['local_output']
-        source = ''.join(individual.genome[0].sequence)
         if sim_parameters["clean_cell"]:
             array = [0] * sim_parameters["cells"]
         else:
-            array = individual.cell
-        try: (array, apointer, inputdata, output, source, spointer) = \
-            register_machine.interpret(source, ragaraja.ragaraja, 3,
-                                       inputdata, array,
-                                       sim_parameters["max_cell_population"], 
-									   sim_parameters["max_codon"])
-        except Exception: pass
-        individual.cell = array
-        World.ecosystem[x][y][z]['temporary_input'] = inputdata
-        World.ecosystem[x][y][z]['temporary_output'] = output
+            array = Populations[pop_name].agents[i].status['blood']
+            if array == None: 
+                array = [0] * sim_parameters["cells"]
+        for chromosome_count in range(len(individual.genome)):
+            inputdata = World.ecosystem[x][y][z]['local_input']
+            output = World.ecosystem[x][y][z]['local_output']
+            source = ''.join(individual.genome[chromosome_count].sequence)
+            array = Populations[pop_name].agents[i].status['blood']
+            try: (array, apointer, inputdata, output, source, spointer) = \
+                register_machine.interpret(source, ragaraja.ragaraja, 3,
+                                           inputdata, array,
+                                           sim_parameters["max_cell_population"], 
+									       sim_parameters["max_codon"])
+            except Exception, e: 
+                error_msg = '|'.join(['Error at Chromosome_' + \
+                    str(chromosome_count), str(e)])
+                Populations[pop_name].agents[i].status['chromosome_error'] = error_msg
+                Populations[pop_name].agents[i].status['blood'] = array
+                print error_msg
+            Populations[pop_name].agents[i].status['blood'] = array
+            World.ecosystem[x][y][z]['temporary_input'] = inputdata
+            World.ecosystem[x][y][z]['temporary_output'] = output
 
 def step(Populations, pop_name, sim_functions):
     if Populations[pop_name].generation > 0:
