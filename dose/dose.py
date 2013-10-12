@@ -553,8 +553,8 @@ def simulate(sim_parameters, simulation_functions):
         deploy(sim_parameters, Populations, pop_name, World)          
     generation_count = 0
     while generation_count < sim_parameters["maximum_generations"]:
+        generation_count = generation_count + 1
         for pop_name in Populations:
-            generation_count = generation_count + 1
             sim_functions.ecoregulate(World)
             eco_cell_iterator(World, sim_parameters, 
                               sim_functions.update_ecology)
@@ -575,8 +575,7 @@ def simulate(sim_parameters, simulation_functions):
                 (con, cur) = db_report(con, cur, sim_functions, 
                                        sim_parameters["starting_time"],
                                        Populations, World, generation_count)
-    for pop_name in Populations:
-        close_results(sim_parameters, pop_name)
+    for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
         con.commit()
