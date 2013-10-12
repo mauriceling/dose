@@ -16,7 +16,7 @@ import dose_world
 from simulation_calls import spawn_populations, eco_cell_iterator, deploy
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
-from simulation_calls import prepare_simulation
+from simulation_calls import prepare_simulation, excavate_world
 
 from database_calls import prepare_database, db_log_simulation_parameters
 from database_calls import db_report

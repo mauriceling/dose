@@ -206,6 +206,12 @@ def bury_world(sim_parameters, World, generation_count):
        cPickle.dump(World, f)
        f.close()
 
+def excavate_world(eco_file):
+    import cPickle
+    f = open(eco_file, 'r')
+    World = cPickle.load(f)
+    return World
+
 def write_parameters(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
                                       sim_parameters["simulation_name"], 
