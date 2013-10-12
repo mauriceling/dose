@@ -31,7 +31,11 @@ parameters = {
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 20,
               "print_frequency": 10,
-              "ragaraja_version": 2,
+              "ragaraja_version": 0,
+              "ragaraja_instructions": ['000', '004', '008', '011', '020', 
+                                        '050', '051', '052', '053', '054', 
+                                        '055', '056', '057', '058', '059', 
+                                        '060'],
               "eco_buried_frequency": 100,
               "database_file": "simulation.db",
               "database_logging_frequency": 1
