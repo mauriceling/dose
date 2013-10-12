@@ -63,9 +63,21 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     simulation_name = sim_parameters["simulation_name"]
     for key in [k for k in sim_parameters.keys() 
                 if k not in ("simulation_name", "starting_time")]:
-        cur.execute('''insert into parameters values (?,?,?,?)''', 
-                    (str(start_time), str(simulation_name), 
-                     str(key), str(sim_parameters[key])))
+		value = sim_parameters[key]
+		if key in ("population_names", "population_locations", "chromosome_bases"):
+			value = '|'.join([str(x) for x in value])
+			cur.execute('''insert into parameters values (?,?,?,?)''', 
+						(str(start_time), str(simulation_name), 
+						 str(key), value))
+		elif key in ("initial_chromosome"):
+			value = ''.join(value)
+			cur.execute('''insert into parameters values (?,?,?,?)''', 
+						(str(start_time), str(simulation_name), 
+						 str(key), value))
+		else:
+			cur.execute('''insert into parameters values (?,?,?,?)''', 
+						(str(start_time), str(simulation_name), 
+						 str(key), str(value)))
     con.commit()
     return (con, cur)
 
