@@ -427,51 +427,40 @@ def database_report_world(con, cur, start_time, World, generation_count):
     con.commit()
     
 def filter_deme(deme_name, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['deme'].upper() == deme_name.upper():
-            extract.append(individual)
+    extract = [individual for individual in agents
+               if individual.status['deme'].upper() == deme_name.upper()]
     return extract
     
 def filter_gender(gender, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['gender'].upper() == gender.upper():
-            extract.append(individual)
+    extract = [individual for individual in agents
+               if individual.status['gender'].upper() == gender.upper()]
     return extract
 
 def filter_age(minimum, maximum, agents):
-    extract = []
-    for individual in agents:
-        if float(individual.status['age']) > (float(minimum) - 0.01):
-            if float(individual.status['age']) < float(maximum) + 0.01:
-                extract.append(individual)
+    extract = [individual for individual in agents
+               if float(individual.status['age']) > (float(minimum) - 0.01) \
+               and float(individual.status['age']) < float(maximum) + 0.01]
     return extract
 
 def filter_location(location, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['location'] == location:
-            extract.append(individual)
+    extract = [individual for individual in agents
+               if individual.status['location'] == location]
     return extract
 
 def filter_vitality(minimum, maximum, agents):
-    extract = []
-    for individual in agents:
-        if float(individual.status['vitality']) > (float(minimum) - 0.01):
-            if float(individual.status['vitality']) < float(maximum) + 0.01:
-                extract.append(individual)
+    extract = [individual for individual in agents
+               if float(individual.status['vitality']) > (float(minimum) - 0.01) \
+               and float(individual.status['vitality']) < float(maximum) + 0.01]
     return extract
 
 def filter_status(status_key, condition, agents):
-    extract = []
-    for individual in agents:
-        if type(condition) in (str, int, float, bool):
-            if individual.status[status_key] == condition:
-                extract.append(individual)
-        elif float(individual.status[status_key]) > float(condition[0]) - 0.01:
-            if float(individual.status[status_key]) < float(condition[1]) + 0.01:
-                extract.append(individual)
+    if type(condition) in (str, int, float, bool):
+        extract = [individual for individual in agents 
+                   if individual.status[status_key] == condition]
+    else: 
+        extract = [individual for individual in agents
+                   if float(individual.status[status_key]) > float(condition[0]) - 0.01 \
+                   and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
 def simulate(sim_parameters, simulation_functions):
