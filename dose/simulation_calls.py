@@ -197,11 +197,14 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
         f.close
 
 def bury_world(sim_parameters, World, generation_count):
+    import cPickle
     if generation_count % int (sim_parameters["eco_buried_frequency"]) == 0:
        filename = '%s%s_gen%s.eco' % (sim_parameters["directory"], 
                                       sim_parameters["simulation_name"], 
                                       str(generation_count))
-       World.eco_burial(filename)
+       f = open(filename, 'w')
+       cPickle.dump(World, f)
+       f.close()
 
 def write_parameters(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
