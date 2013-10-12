@@ -19,6 +19,7 @@ parameters = {
               "cells": 50,
               "max_cell_population": 200,
               "clean_cell": True,
+              "interpret_chromosome": False,
               "max_codon": 2000,
               "population_size": 100,
               "eco_cell_capacity": 0,

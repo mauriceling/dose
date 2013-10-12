@@ -229,11 +229,12 @@ class Organism(object):
             
         @since: version 0.4
         """
-        self.status = {'alive': True,                # is the organism alive?
-                       'vitality': 100.0,            # % of vitality
-                       'age': 0.0,                   # age of the organism
-                       'lifespan': 100.0,            # maximum lifespan
-                       'fitness': 100.0,             # % of fitness
+        self.status = {'alive': True,            # is the organism alive?
+                       'vitality': 100.0,        # % of vitality
+                       'age': 0.0,               # age of the organism
+                       'lifespan': 100.0,        # maximum lifespan
+                       'fitness': 100.0,         # % of fitness
+                       'blood': None,            # interpreted chromosome
                        'death': None}
         if genome == 'default': 
             self.genome = [Chromosome()]
