@@ -424,11 +424,15 @@ def simulate(sim_parameters, simulation_functions):
     (sim_parameters, sim_functions, 
      World, Populations) = prepare_simulation(sim_parameters, 
                                               simulation_functions)
+    if sim_parameters["ragaraja_version"] == 0:
+        ragaraja.activate_version(sim_parameters["ragaraja_version"],
+                                  sim_parameters["ragaraja_instructions"])
+    else:
+        ragaraja.activate_version(sim_parameters["ragaraja_version"])
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
         (con, cur) = prepare_database(sim_parameters)
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
-    ragaraja.activate_version(sim_parameters["ragaraja_version"])
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
         deploy(sim_parameters, Populations, pop_name, World)          

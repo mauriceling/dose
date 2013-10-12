@@ -64,7 +64,8 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     for key in [k for k in sim_parameters.keys() 
                 if k not in ("simulation_name", "starting_time")]:
 		value = sim_parameters[key]
-		if key in ("population_names", "population_locations", "chromosome_bases"):
+		if key in ("population_names", "population_locations", 
+                   "chromosome_bases", "ragaraja_instructions"):
 			value = '|'.join([str(x) for x in value])
 			cur.execute('''insert into parameters values (?,?,?,?)''', 
 						(str(start_time), str(simulation_name), 
