@@ -335,6 +335,37 @@ class dose_functions():
 
 def database_report_populations(con, cur, start_time, 
                                 Populations, generation_count):
+    '''
+    Function to log organisms' status and genome into database. Organisms' 
+    status is implemented as a dictionary and each key-value pair in the 
+    status is logged as a separate record. Similarly, each chromosome is 
+    logged as a separately record. A combination of starting time of the 
+    simulation, population name, organism's name, and the generation can 
+    identify all the data specific to an organism within a population, at 
+    a specific generation within a simulation. This function is a complete 
+    logger - it logs everything there is about an organism. There is 
+    nothing to log for populations. 
+    
+    The following transformations of data are made:
+    1. Organism.status['blood'] is a list of numbers resulting from 
+    interpreting the genome by Ragaraja interpreter. The numbers are 
+    concatenated and delimited by '|'. For example, [1, 2, 3] ==> 1|2|3
+    2. Organism.status['location'] is a tuple of 3 integers (x, y, z) for
+    location of ecological cell. The numbers are concatenated and 
+    delimited by '|'. For example, (2, 3, 4) ==> 2|3|4
+    3. Each chromosome in Organism.genome is a list of bases. These bases 
+    are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
+    
+    @param con: Database connector. See Python DB-API for details.
+    @param cur: Database cursor. See Python DB-API for details.
+    @param start_time: Starting time of current simulation in the 
+    format of <date>-<seconds since epoch>; for example, 
+    2013-10-11-1381480985.77.
+    @param Population: A dictionary containing one or more populations 
+    where the value is a genetic.Population object.
+    @param generation_count: Current number of generations simulated.
+    @return: None
+    '''
     generation = str(generation_count)
     for pop_name in Populations.keys():
         for org in Populations[pop_name].agents:
@@ -342,7 +373,10 @@ def database_report_populations(con, cur, start_time,
             # log each item in Organism.status dictionary
             for key in [key for key in org.status.keys()
                                if key != 'identity']:
-                value = str(org.status[key])
+                if key in ('blood', 'location'):
+                    value = '|'.join([str(x) for x in org.status[key]])
+                else: 
+                    value = str(org.status[key])
                 cur.execute('insert into organisms values (?,?,?,?,?,?)', 
                     (str(start_time), str(pop_name), org_name, 
                      generation, key, value))
@@ -356,6 +390,26 @@ def database_report_populations(con, cur, start_time,
     con.commit()
     
 def database_report_world(con, cur, start_time, World, generation_count):
+    '''
+    Function to log World.ecosystem into database. The ecosystem is made 
+    up of a collection of ecological cells, identified by the (x, y, z) 
+    coordinates within the ecosystem. Each ecological cell is implemented 
+    as a dictionary of ecological status. This function logs the entire 
+    set of ecological cells; thus, a complete logger. Each ecosystem within 
+    a specific simulation, at a specific time/generation, can be identified 
+    by a combination of starting time of simulation and generation. Each 
+    ecological cell within the ecosystem can be further identified by the 
+    (x, y, z) coordinates.
+    
+    @param con: Database connector. See Python DB-API for details.
+    @param cur: Database cursor. See Python DB-API for details.
+    @param start_time: Starting time of current simulation in the 
+    format of <date>-<seconds since epoch>; for example, 
+    2013-10-11-1381480985.77.
+    @param World: dose_world.World object.
+    @param generation_count: Current number of generations simulated.
+    @return: None
+    '''
     generation = str(generation_count)
     ecosystem = World.ecosystem
     location = [(x, y, z) 

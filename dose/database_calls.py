@@ -54,6 +54,20 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     to identify the current simulation. All parameters will be logged, 
     except for "starting_time" and "simulation_name".
     
+    The following transformations of data are made:
+    1. Population name (key = "population_names") is a list of names. 
+    These are concatenated and delimited by '|'. For example, 
+    ['pop_01', 'pop_02'] ==> pop_01|pop_02
+    2. Genetic bases (key = "chromosome_bases") is a list of bases to make 
+    up the genetic code. These are concatenated and delimited by '|'. For 
+    example, ['1', '2'] ==> 1|2
+    3. Ragaraja instructions to be used (key = "ragaraja_instructions") is 
+    a list of 3-character Ragaraja instructions in numbers. These are 
+    concatenated and delimited by '|'. For example, ['000', '004', '008'] 
+    ==> 000|004|008
+    4. Initial (ancestral) chromosome is a list of bases. These bases 
+    are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
+    
     @param con: Database connector from prepare_database() function. 
     @param cur: Database cursor from prepare_database() function.
     @param sim_parameters: Dictionary of parameters used in simulation.
@@ -64,8 +78,8 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     for key in [k for k in sim_parameters.keys() 
                 if k not in ("simulation_name", "starting_time")]:
 		value = sim_parameters[key]
-		if key in ("population_names", "population_locations", 
-                   "chromosome_bases", "ragaraja_instructions"):
+		if key in ("population_names", "chromosome_bases", 
+                   "ragaraja_instructions"):
 			value = '|'.join([str(x) for x in value])
 			cur.execute('''insert into parameters values (?,?,?,?)''', 
 						(str(start_time), str(simulation_name), 
