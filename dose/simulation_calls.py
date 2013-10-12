@@ -165,7 +165,6 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
                     str(chromosome_count), str(e)])
                 Populations[pop_name].agents[i].status['chromosome_error'] = error_msg
                 Populations[pop_name].agents[i].status['blood'] = array
-                print error_msg
             Populations[pop_name].agents[i].status['blood'] = array
             World.ecosystem[x][y][z]['temporary_input'] = inputdata
             World.ecosystem[x][y][z]['temporary_output'] = output
