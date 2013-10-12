@@ -535,6 +535,10 @@ def filter_status(status_key, condition, agents):
                    and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
+def revive_simulation(rev_parameters):
+    eco_file = os.getcwd() + rev_parameters['sim_folder'] + rev_parameters['eco_file']
+    World = excavate_world(eco_file)
+
 def simulate(sim_parameters, simulation_functions):
     (sim_parameters, sim_functions, 
      World, Populations) = prepare_simulation(sim_parameters, 
