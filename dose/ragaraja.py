@@ -2285,25 +2285,28 @@ def nBF_to_Ragaraja(source):
         else: converted.append('...')
     return ''.join(converted)
 
-def activate_version(version=1):
+def activate_version(version=1, instructions=None):
     '''
     Function to only set tested instructions as usable.
     
     @param version: Define the version to activate. Default = 1. Allowable
     versions are 
-	    - 0 (all currently tested instructions)
-	    - 0.1 (using NucleotideBF instructions)
-	    - 1 (as defined in Ling, MHT. 2012. An Artificial Life Simulation 
+	    - 0.1 (Using NucleotideBF instructions)
+	    - 0 (User-defined set of instructions to be used)
+	    - 1 (As defined in Ling, MHT. 2012. An Artificial Life Simulation 
 	    Library Based on Genetic Algorithm, 3-Character Genetic Code and 
-	    Biological Hierarchy. The Python Papers.)
+	    Biological Hierarchy. The Python Papers 7: 5.)
+	    - 99 (All currently tested instructions)
+	@param instructions: User-defined set of instructions (as list of 
+	instructions in string) to be activated. This will only be activated 
+	when version = 0.
     
     @since: version 0.4
     '''
-    instructions = None
     if version == 0.1: instructions = nBF_instructions
     if version == 1: instructions = ragaraja_v1
-    if version == 0: instructions = tested_ragaraja_instructions
     if version == 2: instructions = ragaraja_v2
+    if version == 99: instructions = tested_ragaraja_instructions
     for key in ragaraja.keys():
         if key not in instructions:
             ragaraja[key] = not_used
