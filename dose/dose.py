@@ -365,18 +365,11 @@ def database_report_world(con, cur, start_time, World, generation_count):
     for cell in location:
         eco_cell = ecosystem[cell[0]][cell[1]][cell[2]]
         for key in eco_cell.keys():
-            value = eco_cell[key]
-            if hasattr(value, '__iter__'):
-                value = '|'.join(value)
-                cur.execute('insert into world values (?,?,?,?,?,?,?)', 
-                            (str(start_time), 
-                             str(cell[0]),  str(cell[1]), str(cell[2]), 
-                             generation, key, value))
-            else:
-                cur.execute('insert into world values (?,?,?,?,?,?,?)', 
-                            (str(start_time), 
-                             str(cell[0]), str(cell[1]), str(cell[2]), 
-                             generation, key, str(value)))
+            value = str(eco_cell[key])
+            cur.execute('insert into world values (?,?,?,?,?,?,?)', 
+                        (str(start_time), 
+                         str(cell[0]), str(cell[1]), str(cell[2]), 
+                         generation, key, value))
     con.commit()
     
 def filter_deme(deme_name, agents):
