@@ -427,51 +427,111 @@ def database_report_world(con, cur, start_time, World, generation_count):
     con.commit()
     
 def filter_deme(deme_name, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['deme'].upper() == deme_name.upper():
-            extract.append(individual)
+    '''
+    Function to identify organisms (agents) with a specific sub-population 
+    name (also known as deme) within a population. Demes can be considered 
+    as strains in bacteria, breed or sub-species in animals, races in 
+    humans, and cultivars in plants. This function is can be used to 
+    support the identification of suitable mates for mating schemes.
+    
+    @param deme_name: Name of deme (sub-population name)
+    @type deme_name: string
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    extract = [individual for individual in agents
+               if individual.status['deme'].upper() == deme_name.upper()]
     return extract
     
 def filter_gender(gender, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['gender'].upper() == gender.upper():
-            extract.append(individual)
+    '''
+    Function to identify organisms (agents) with a specific gender within 
+    a population. This function is can be used to support the identification 
+    of suitable mates for mating schemes.
+    
+    @param gender: Gender 
+    @type gender: string
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    extract = [individual for individual in agents
+               if individual.status['gender'].upper() == gender.upper()]
     return extract
 
 def filter_age(minimum, maximum, agents):
-    extract = []
-    for individual in agents:
-        if float(individual.status['age']) > (float(minimum) - 0.01):
-            if float(individual.status['age']) < float(maximum) + 0.01:
-                extract.append(individual)
+    '''
+    Function to identify organisms (agents) within a certain age range in 
+    a population. This function is can be used to support the identification 
+    of suitable mates for mating schemes.
+    
+    @param minimum: Minimum age
+    @type minimum: float
+    @param maximum: Maximum age
+    @type maximum: float
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    extract = [individual for individual in agents
+               if float(individual.status['age']) > (float(minimum) - 0.01) \
+               and float(individual.status['age']) < float(maximum) + 0.01]
     return extract
 
 def filter_location(location, agents):
-    extract = []
-    for individual in agents:
-        if individual.status['location'] == location:
-            extract.append(individual)
+    '''
+    Function to identify organisms (agents) of a population within a 
+    specific ecological cell. This function is can be used to support the 
+    identification of suitable mates for mating schemes.
+    
+    @param location: (x, y, z) coordinates within the World.ecosystem
+    @param location: tuple
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    extract = [individual for individual in agents
+               if individual.status['location'] == location]
     return extract
 
 def filter_vitality(minimum, maximum, agents):
-    extract = []
-    for individual in agents:
-        if float(individual.status['vitality']) > (float(minimum) - 0.01):
-            if float(individual.status['vitality']) < float(maximum) + 0.01:
-                extract.append(individual)
+    '''
+    Function to identify organisms (agents) within a certain vitality score 
+    in a population. This function is can be used to support the identification 
+    of suitable mates for mating schemes.
+    
+    @param minimum: Minimum vitality score
+    @type minimum: float
+    @param maximum: Maximum vitality score
+    @type maximum: float
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    extract = [individual for individual in agents
+               if float(individual.status['vitality']) > (float(minimum) - 0.01) \
+               and float(individual.status['vitality']) < float(maximum) + 0.01]
     return extract
 
 def filter_status(status_key, condition, agents):
-    extract = []
-    for individual in agents:
-        if type(condition) in (str, int, float, bool):
-            if individual.status[status_key] == condition:
-                extract.append(individual)
-        elif float(individual.status[status_key]) > float(condition[0]) - 0.01:
-            if float(individual.status[status_key]) < float(condition[1]) + 0.01:
-                extract.append(individual)
+    '''
+    Generic function to identity organisms (agents) within a population 
+    via the status of organisms (Organism.status dictionary). This function 
+    is can be used to support the identification of suitable mates for 
+    mating schemes.
+    
+    @param status_key: Status (key in Organism.status dictionary) to filter
+    @type status_key: string
+    @param condition: Condition of the status (value in Organism.status 
+    dictionary) to filter. This can be a unique condition, such as "True", 
+    or a range, such as (minimum, maximum) to define the minimum and 
+    maximum value of the condition.
+    @param agents: A list of organisms, such as Population.agents.
+    @return: List of Organism objects
+    '''
+    if type(condition) in (str, int, float, bool):
+        extract = [individual for individual in agents 
+                   if individual.status[status_key] == condition]
+    else: 
+        extract = [individual for individual in agents
+                   if float(individual.status[status_key]) > float(condition[0]) - 0.01 \
+                   and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
 def simulate(sim_parameters, simulation_functions):

@@ -235,6 +235,8 @@ class Organism(object):
                        'lifespan': 100.0,        # maximum lifespan
                        'fitness': 100.0,         # % of fitness
                        'blood': None,            # interpreted chromosome
+                       'identity': '',           # name of the organism
+                       'deme': '',               # sub-population or race
                        'death': None}
         if genome == 'default': 
             self.genome = [Chromosome()]
