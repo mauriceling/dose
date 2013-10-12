@@ -8,6 +8,7 @@ this file can be assessed at top level.
 Date created: 27th September 2013
 '''
 import sys, os, random, inspect
+from shutil import copyfile
 
 import ragaraja, register_machine
 import dose_world
@@ -580,4 +581,4 @@ def simulate(sim_parameters, simulation_functions):
         sim_parameters.has_key("database_logging_frequency"): 
         con.commit()
         con.close()
-     
+    copyfile(inspect.stack()[1][1], sim_parameters['directory'] + inspect.stack()[1][1])
