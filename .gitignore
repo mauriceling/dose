@@ -1,7 +1,4 @@
 *.gitattributes
 *.sln
 *.pyc
-*.eco
-*.txt
-*.gap
-examples/Simulations
+
