@@ -6,7 +6,7 @@ import run_examples_without_installation
 import dose
 
 parameters = {
-              "simulation_name": "01_basic_functions_one_cell_deployment",
+              "simulation_name": "01db_basic_functions_one_cell_deployment",
               "population_names": ['pop_01'],
               "population_locations": [[(0,0,0)]],
               "deployment_code": 1,
