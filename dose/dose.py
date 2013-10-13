@@ -536,7 +536,7 @@ def filter_status(status_key, condition, agents):
     return extract
 
 def revive_simulation(rev_parameters):
-    eco_file = os.getcwd() + rev_parameters['sim_folder'] + rev_parameters['eco_file']
+    eco_file = rev_parameters['sim_folder'] + rev_parameters['eco_file']
     World = excavate_world(eco_file)
 
 def simulate(sim_parameters, simulation_functions):
