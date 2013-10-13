@@ -245,6 +245,43 @@ def excavate_world(eco_file):
     f = open(eco_file, 'r')
     World = cPickle.load(f)
     return World
+def write_rev_parameters(rev_parameters, pop_name):
+    f = open(('%s%s_%s.result.txt' % (rev_parameters["directory"],
+                                      rev_parameters["simulation_name"],
+                                      pop_name)), 'a')
+    f.write("""SIMULATION: %(simulation_name)s
+REVIVED FROM SIMULATION: %(sim_folder)s
+----------------------------------------------------------------------
+SIMULATION REVIVAL STARTED: %(starting_time)s
+
+population_names: %(population_names)s
+chromosome_bases: %(chromosome_bases)s
+generation_start: %(generation_start)s
+extend_gen: %(extend_gen)s
+max_generation: %(max_generation)s
+background_mutation: %(background_mutation)s
+additional_mutation: %(additional_mutation)s
+mutation_type: %(mutation_type)s
+population_size: %(population_size)s
+cells: %(cells)s
+max_cell_population: %(max_cell_population)s
+clean_cell: %(clean_cell)s
+max_codon: %(max_codon)s
+eco_cell_capacity: %(eco_cell_capacity)s
+world_x: %(world_x)s
+world_y: %(world_y)s
+world_z: %(world_z)s
+goal: %(goal)s
+fossilized_ratio: %(fossilized_ratio)s
+fossilized_frequency: %(fossilized_frequency)s
+print_frequency: %(print_frequency)s
+ragaraja_version: %(ragaraja_version)s
+eco_buried_frequency: %(eco_buried_frequency)s
+
+REPORT:
+----------------------------------------------------------------------
+""" % (rev_parameters))
+    f.close()
 
 def write_parameters(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
