@@ -53,7 +53,7 @@ class dose_functions():
         simulate pre-puberty (childhood) death. This function works at 
         the level of entire population(s).
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -68,7 +68,7 @@ class dose_functions():
         organism level. The fitness of each organism may be stored in 
         Organism.status['fitness'] and may be used by mating scheme.
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -85,11 +85,11 @@ class dose_functions():
         of the dose.filter_XXX() functions to select or choose suitable 
         mates. This function works at the level of entire population(s), 
         which means that this function will have 
-        - to manage mating scheme and progeny (offspring) generation for 
-        the entire population
-        - add or replace offsprings into the respective population(s)
+            - to manage mating scheme and progeny (offspring) generation 
+            for the entire population
+            - add or replace offsprings into the respective population(s)
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -103,7 +103,7 @@ class dose_functions():
         simulate old-age death. This function works at the level of entire 
         population(s).
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -118,7 +118,7 @@ class dose_functions():
         occurrences of multiple mutation events. This function works at 
         the level of entire population(s).
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -133,7 +133,7 @@ class dose_functions():
         simulation parameters. This function works at the level of entire 
         population(s).
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -155,12 +155,12 @@ class dose_functions():
         population(s) and world.
         
         For each organism to move, this function will have to 
-        - update the number of organisms in each 
-        World.ecosystem[x-axis][y-axis][z-axis]['organisms']
-        - update the respective Organism's location in the status 
-        dictionary (Population[pop_name].agents[<index>].status['location'])
+            - update the number of organisms in each 
+            World.ecosystem[x-axis][y-axis][z-axis]['organisms']
+            - update the respective Organism's location in the status 
+            dictionary (Population[pop_name].agents[<index>].status['location'])
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -180,12 +180,12 @@ class dose_functions():
         population(s) and world.
         
         For each organism to move, this function will have to 
-        - update the number of organisms in each 
-        World.ecosystem[x-axis][y-axis][z-axis]['organisms']
-        - update the respective Organism's location in the status 
-        dictionary (Population[pop_name].agents[<index>].status['location'])
+            - update the number of organisms in each 
+            World.ecosystem[x-axis][y-axis][z-axis]['organisms']
+            - update the respective Organism's location in the status 
+            dictionary (Population[pop_name].agents[<index>].status['location'])
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -275,7 +275,7 @@ class dose_functions():
         simulation parameters dictionary equals to 0. This function works 
         at all three levels - organism(s), population(s), and world.
         
-        @param Population: A dictionary containing one or more populations 
+        @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
         @param pop_name: Name of the population which is used as key in 
         the the dictionary (Populations parameter).
@@ -292,29 +292,29 @@ class dose_functions():
         simulation_parameters.
         
         Three database tables had been defined for use in this function:
-        - organisms where the structure is (start_time text, pop_name text, 
-            org_name text, generation text, key text, value text)
-        - world where the structure is (start_time text, x text, y text, 
-            z text, generation text, key text, value text)
-        - miscellaneous where the structure is (start_time text, 
+            - organisms where the structure is (start_time text, pop_name 
+            text, org_name text, generation text, key text, value text)
+            - world where the structure is (start_time text, x text, 
+            y text, z text, generation text, key text, value text)
+            - miscellaneous where the structure is (start_time text, 
             generation text, key text, value text)
             
         The logical purpose of these tables are:
-        - organisms, to log status of each organism. Starting time of 
+            - organisms, to log status of each organism. Starting time of 
             current simulation (start_time), population name (pop_name), 
             organism name (org_name), and generation count (generation) 
             are used as complex primary key to identify the organism 
             within a specific simulation at a specific generation. Key and 
             value pair makes up the actual data to be logged where key is 
             the field and value is the datum or attribute.
-        - world, to log the status of the ecosystem. Starting time of 
+            - world, to log the status of the ecosystem. Starting time of 
             current simulation (start_time), location of ecological cell 
             (x, y, z as coordinates), and generation count (generation) 
             are used as complex primary key to identify the ecological cell
             within a specific simulation at a specific generation. Key and 
             value pair makes up the actual data to be logged where key is 
             the field and value is the datum or attribute.
-        - miscellaneous, is used to log other undefined data. Starting 
+            - miscellaneous, is used to log other undefined data. Starting 
             time of current simulation (start_time), and generation count 
             (generation) are used as complex primary key to identify a 
             specific generation within a specific simulation. Key and 
@@ -348,21 +348,21 @@ def database_report_populations(con, cur, start_time,
     nothing to log for populations. 
     
     The following transformations of data are made:
-    1. Organism.status['blood'] is a list of numbers resulting from 
-    interpreting the genome by Ragaraja interpreter. The numbers are 
-    concatenated and delimited by '|'. For example, [1, 2, 3] ==> 1|2|3
-    2. Organism.status['location'] is a tuple of 3 integers (x, y, z) for
-    location of ecological cell. The numbers are concatenated and 
-    delimited by '|'. For example, (2, 3, 4) ==> 2|3|4
-    3. Each chromosome in Organism.genome is a list of bases. These bases 
-    are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
+        - Organism.status['blood'] is a list of numbers resulting from 
+        interpreting the genome by Ragaraja interpreter. The numbers are 
+        concatenated and delimited by '|'. For example, [1, 2, 3] ==> 1|2|3
+        - Organism.status['location'] is a tuple of 3 integers (x, y, z) for
+        location of ecological cell. The numbers are concatenated and 
+        delimited by '|'. For example, (2, 3, 4) ==> 2|3|4
+        - Each chromosome in Organism.genome is a list of bases. These bases 
+        are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
     
     @param con: Database connector. See Python DB-API for details.
     @param cur: Database cursor. See Python DB-API for details.
     @param start_time: Starting time of current simulation in the 
     format of <date>-<seconds since epoch>; for example, 
     2013-10-11-1381480985.77.
-    @param Population: A dictionary containing one or more populations 
+    @param Populations: A dictionary containing one or more populations 
     where the value is a genetic.Population object.
     @param generation_count: Current number of generations simulated.
     @return: None

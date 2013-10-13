@@ -10,7 +10,7 @@ Python Papers 7: 5.
 
 import genetic as g
 import dose_world as w
-from dose_parameters import background_mutation_rate
+from dose_parameters import initial_chromosome, background_mutation_rate
 from dose_parameters import cytoplasm_size, population_size
 from dose_parameters import maximum_generations
 from dose_parameters import world_x, world_y, world_z

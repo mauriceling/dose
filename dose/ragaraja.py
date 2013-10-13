@@ -2,39 +2,35 @@
 Ragaraja Interpreter
 Date created: 16th August 2012
 
-Ragaraja is a derivative and massive extension of Brainfuck. 
-This work is influenced by a large number of Brainfuck 
-derivatives, other esoteric programming languages, and even 
-assembly languages. Probably the most critical difference 
-between Ragaraja and other Brainfuck derivatives is the large 
-number of commands / instructions - 1000 possible commands / 
-instructions, inspired by Nandi (follower of Lord Shiva) who 
-was supposed to be the first author of Kama Sutra and wrote it 
-in 1000 chapters. 
+Ragaraja is a derivative and massive extension of Brainfuck. This work is 
+influenced by a large number of Brainfuck derivatives, other esoteric 
+programming languages, and even assembly languages. Probably the most 
+critical difference between Ragaraja and other Brainfuck derivatives is 
+the large number of commands / instructions - 1000 possible commands / 
+instructions, inspired by Nandi (follower of Lord Shiva) who was supposed 
+to be the first author of Kama Sutra and wrote it in 1000 chapters. 
 
-Etymology: Ragaraja is the name of a Mahayana Buddhist deity 
-from Esoteric traditions. The Chinese calls him Ai Ran Ming Wang. 
-Ragaraja is one of the Wisdom Kings (a group of Bodhisattvas) 
-and represents the state at which sexual excitement or agitation 
-can be channeled towards enlightenment and passionate love can 
-become compassion for all living things. Hence, I name this 
-compilation/derivative/extension of Brainfuck in 1000 
-commands/instructions/opcode to signify the epitome, a 
-channeling of raw urge to the love and compassion for and 
-towards every being. May really be viewed as Brainfuck 
-attaining enlightenment or Nirvana. Whoever that can 
-remember all 1000 commands and use it, really deserves an award. 
+Etymology: Ragaraja is the name of a Mahayana Buddhist deity from Esoteric 
+traditions. The Chinese calls him Ai Ran Ming Wang. Ragaraja is one of the 
+Wisdom Kings and represents the state at which sexual excitement or 
+agitation can be channeled towards enlightenment and passionate love can 
+become compassion for all living things. Hence, I name this compilation / 
+derivative / extension of Brainfuck in 1000 commands / instructions / 
+opcode to signify the epitome, a channeling of raw urge to the love and 
+compassion for and towards every being. May really be viewed as Brainfuck 
+attaining enlightenment or Nirvana. Whoever that can remember all 1000 
+commands and use it, really deserves an award. 
 
 The interpreter environment consists of the following elements:
 
-	1. Array/Tape: A circular tape initialized with 30 thousand cells 
-	each with zero. This can be visualized as a 30,000 cell register 
-	machine. The number of cells can increase or decrease during runtime.
-	2. Source: The program
-	3. Input List: A list of data given to the execution environment at 
-	initialization.
-	4. Output List: A list of output from the execution. This may also be 
-	used as a secondary tape. 
+    1. Array/Tape: A circular tape initialized with 30 thousand cells 
+    each with zero. This can be visualized as a 30,000 cell register 
+    machine. The number of cells can increase or decrease during runtime.
+    2. Source: The program
+    3. Input List: A list of data given to the execution environment at 
+    initialization.
+    4. Output List: A list of output from the execution. This may also be 
+    used as a secondary tape. 
 
 When the program terminates, all 4 elements are returned, and the 
 interpreter terminates itself. 
@@ -51,10 +47,10 @@ from lc_bf import call_out, accept_predefined
 register = [0]*99
 
 def instruction_padding(inst):
-	inst = str(inst)
-	if len(inst) == 1: return '00' + inst
-	if len(inst) == 2: return '0' + inst
-	if len(inst) == 3: return inst
+    inst = str(inst)
+    if len(inst) == 1: return '00' + inst
+    if len(inst) == 2: return '0' + inst
+    if len(inst) == 3: return inst
 
 def loop_start(array, apointer, inputdata, output, source, spointer):
     '''
@@ -102,53 +98,53 @@ def tape_move(array, apointer, inputdata, output, source, spointer):
     Moving tape pointer for more than one increment or decrement.
 
     Instructions handled:
-    001: Move forward by 5 cells on tape. Equivalent to 5 times of 
-    "000".
-    002: Move forward by 10 cells on tape. Equivalent to 10 times of 
-    "000".
-    003: Move forward by NxN cells on tape where N is the value of 
-    the current cell. If N is a decimal, it will move forward by the 
-    floor of NxN. For example, if N is 4.2, this operation will tape 
-    pointer forward by 17 cells. As NxN is always a positive number, 
-    it does not matter if the value of the current cell is positive 
-    or negative.
-    005: Move backward by 5 cells on tape. Equivalent to 5 times of 
-    "004".
-    006: Move backward by 10 cells on tape. Equivalent to 10 times of 
-    "004".
-    007: Move backward by NxN cells on tape where N is the value of the 
-    current cell. If N is a decimal, it will move backward by the floor 
-    of NxN. For example, if N is 4.2, this operation will tape pointer 
-    backward by 17 cells. As NxN is always a positive number, it does 
-    not matter if the value of the current cell is positive or negative.
-    043: Move the tape cell pointer to the first cell.
-    044: Move the tape cell pointer to the last cell.
-    045: Move the tape cell pointer to the location determined by the 
-    last value of the output list. If the last value of the output list 
-    is more than the length of the tape, it will take the modulus of 
-    the length of the tape. For example, the last value of the output 
-    list is 5, the tape cell pointer will point to the 5th cell on the 
-    tape. 
-    061: Move forward by the number of cells signified by the current 
-    cell.
-    062: Move backward by the number of cells signified by the current 
-    cell. 
-    140: Move tape pointer to the centre of the tape. If the tape has 
-    odd number cells, it will move to the lower cell. For example, this 
-    instruction will move the tape pointer to the 500th cell of a 
-    1000-cell tape, or 142nd of a 285-cell tape.
-    141: Move tape pointer to 1/4 the of the tape. If the tape has odd 
-    number cells, it will move to the lower cell. For example, this 
-    instruction will move the tape pointer to the 250th cell of a 
-    1000-cell tape, or 71st of a 285-cell tape.
-    142: Move tape pointer to 3/4 the of the tape. If the tape has odd 
-    number cells, it will move to the lower cell. For example, this 
-    instruction will move the tape pointer to the 750th cell of a 
-    1000-cell tape, or 213rd of a 285-cell tape. 
-    143: Move tape pointer to the position as the integer value in the 
-    current cell. If the value of the cell is larger than the length of 
-    the tape, it will move to the modulus of the integer value in the 
-    current cell. 
+        - 001: Move forward by 5 cells on tape. Equivalent to 5 times of 
+        "000".
+        - 002: Move forward by 10 cells on tape. Equivalent to 10 times of 
+        "000".
+        - 003: Move forward by NxN cells on tape where N is the value of 
+        the current cell. If N is a decimal, it will move forward by the 
+        floor of NxN. For example, if N is 4.2, this operation will tape 
+        pointer forward by 17 cells. As NxN is always a positive number, 
+        it does not matter if the value of the current cell is positive 
+        or negative.
+        - 005: Move backward by 5 cells on tape. Equivalent to 5 times of 
+        "004".
+        - 006: Move backward by 10 cells on tape. Equivalent to 10 times of 
+        "004".
+        - 007: Move backward by NxN cells on tape where N is the value of the 
+        current cell. If N is a decimal, it will move backward by the floor 
+        of NxN. For example, if N is 4.2, this operation will tape pointer 
+        backward by 17 cells. As NxN is always a positive number, it does 
+        not matter if the value of the current cell is positive or negative.
+        - 043: Move the tape cell pointer to the first cell.
+        - 044: Move the tape cell pointer to the last cell.
+        - 045: Move the tape cell pointer to the location determined by the 
+        last value of the output list. If the last value of the output list 
+        is more than the length of the tape, it will take the modulus of 
+        the length of the tape. For example, the last value of the output 
+        list is 5, the tape cell pointer will point to the 5th cell on the 
+        tape. 
+        - 061: Move forward by the number of cells signified by the current 
+        cell.
+        - 062: Move backward by the number of cells signified by the current 
+        cell. 
+        - 140: Move tape pointer to the centre of the tape. If the tape has 
+        odd number cells, it will move to the lower cell. For example, this 
+        instruction will move the tape pointer to the 500th cell of a 
+        1000-cell tape, or 142nd of a 285-cell tape.
+        - 141: Move tape pointer to 1/4 the of the tape. If the tape has odd 
+        number cells, it will move to the lower cell. For example, this 
+        instruction will move the tape pointer to the 250th cell of a 
+        1000-cell tape, or 71st of a 285-cell tape.
+        - 142: Move tape pointer to 3/4 the of the tape. If the tape has odd 
+        number cells, it will move to the lower cell. For example, this 
+        instruction will move the tape pointer to the 750th cell of a 
+        1000-cell tape, or 213rd of a 285-cell tape. 
+        - 143: Move tape pointer to the position as the integer value in the 
+        current cell. If the value of the cell is larger than the length of 
+        the tape, it will move to the modulus of the integer value in the 
+        current cell. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '001': apointer = apointer + 5
@@ -177,12 +173,12 @@ def accumulations(array, apointer, inputdata, output, source, spointer):
     Accumulate the tape cell by more than one increment or decrement.
     
     Instructions handled:
-    009: Increase value of cell by 5. Equivalent to 5 times of "008".
-    010: Increase value of cell by 10. Equivalent to 10 times of "008".
-    012: Decrease value of cell by 5. Equivalent to 5 times of "011".
-    013: Decrease value of cell by 10. Equivalent to 10 times of "011". 
-    032: Double current tape cell value.
-    033: Half current tape cell value. 
+        - 009: Increase value of cell by 5. Equivalent to 5 times of "008".
+        - 010: Increase value of cell by 10. Equivalent to 10 times of "008".
+        - 012: Decrease value of cell by 5. Equivalent to 5 times of "011".
+        - 013: Decrease value of cell by 10. Equivalent to 10 times of "011". 
+        - 032: Double current tape cell value.
+        - 033: Half current tape cell value. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '009': array[apointer] = array[apointer] + 5
@@ -198,29 +194,33 @@ def nBF_random_op(array, apointer, inputdata, output, source, spointer):
     NucleotideBF (nBF) random operations - to simulate ambiguous DNA bases.
     
     Instructions handled:
-    050: Randomly execute "008" (increment by 1) or "000" (move forward 
-    by 1). Equivalent to "R" in NucleotideBF (nBF).
-    051: Randomly execute "011" (decrement by 1) or "004" (move backward 
-    by 1). Equivalent to "Y" in NucleotideBF (nBF).
-    052: Randomly execute "000" (move forward by 1) or "004" (move backward 
-    by 1). Equivalent to "S" in NucleotideBF (nBF).
-    053: Randomly execute "008" (increment by 1) or "011" (decrement by 1). 
-    Equivalent to "W" in NucleotideBF (nBF).
-    054: Randomly execute "000" (move forward by 1) or "011" (decrement 
-    by 1). Equivalent to "K" in NucleotideBF (nBF).
-    055: Randomly execute "004" (move backward by 1) or "008" (increment 
-    by 1). Equivalent to "M" in NucleotideBF (nBF).
-    056: Randomly execute "000" (move forward by 1) or "004" (move backward 
-    by 1) or "011" (decrement by 1). Equivalent to "B" in NucleotideBF (nBF).
-    057: Randomly execute "000" (move forward by 1) or "008" (increment by 1) 
-    or "011" (decrement by 1). Equivalent to "D" in NucleotideBF (nBF).
-    058: Randomly execute "004" (move backward by 1) or "008" (Increment 
-    by 1) or "011" (decrement by 1). Equivalent to "H" in NucleotideBF (nBF).
-    059: Randomly execute "000" (move forward by 1) or "004" (move backward 
-    by 1) or "008" (increment by 1). Equivalent to "V" in NucleotideBF (nBF).
-    060: Randomly execute "000" (move forward by 1) or "004" (move backward 
-    by 1) or "008" (increment by 1) or "011" (decrement by 1). Equivalent 
-    to "N" in NucleotideBF (nBF)
+        - 050: Randomly execute "008" (increment by 1) or "000" (move 
+        forward by 1). Equivalent to "R" in NucleotideBF (nBF).
+        - 051: Randomly execute "011" (decrement by 1) or "004" (move 
+        backward by 1). Equivalent to "Y" in NucleotideBF (nBF).
+        - 052: Randomly execute "000" (move forward by 1) or "004" (move 
+        backward by 1). Equivalent to "S" in NucleotideBF (nBF).
+        - 053: Randomly execute "008" (increment by 1) or "011" (decrement 
+        by 1). Equivalent to "W" in NucleotideBF (nBF).
+        - 054: Randomly execute "000" (move forward by 1) or "011" 
+        (decrement by 1). Equivalent to "K" in NucleotideBF (nBF).
+        - 055: Randomly execute "004" (move backward by 1) or "008" 
+        (increment by 1). Equivalent to "M" in NucleotideBF (nBF).
+        - 056: Randomly execute "000" (move forward by 1) or "004" (move 
+        backward by 1) or "011" (decrement by 1). Equivalent to "B" in 
+        NucleotideBF (nBF).
+        - 057: Randomly execute "000" (move forward by 1) or "008" 
+        (increment by 1) or "011" (decrement by 1). Equivalent to "D" in 
+        NucleotideBF (nBF).
+        - 058: Randomly execute "004" (move backward by 1) or "008" 
+        (Increment by 1) or "011" (decrement by 1). Equivalent to "H" in 
+        NucleotideBF (nBF).
+        - 059: Randomly execute "000" (move forward by 1) or "004" (move 
+        backward by 1) or "008" (increment by 1). Equivalent to "V" in 
+        NucleotideBF (nBF).
+        - 060: Randomly execute "000" (move forward by 1) or "004" (move 
+        backward by 1) or "008" (increment by 1) or "011" (decrement by 1). 
+        Equivalent to "N" in NucleotideBF (nBF)
     '''
     cmd = source[spointer:spointer+3]
     r = random.random()
@@ -328,20 +328,21 @@ def tape_size(array, apointer, inputdata, output, source, spointer):
     Change the length of the tape during runtime.
     
     Instructions handled:
-    016: Add one cell to the end of the tape.
-    017: Add 10 cells to the end of the tape.
-    018: Remove one cell from the end of the tape. If original tape pointer 
-    is at the last cell before removal operation, the tape pointer will point 
-    to the last cell after removal.
-    019: Remove 10 cells from the end of the tape. If original tape pointer 
-    is at the last cell before removal operation, the tape pointer will point 
-    to the last cell after removal.
-    034: Insert a cell after the current tape cell. For example, if current 
-    tape cell is 35, a cell initialized to zero will be added as cell 36. As 
-    a result, the tape is 1 cell longer.
-    035: Delete the current cell. As a result, the tape is 1 cell shorter.
-    036: Delete the current and append to the end of the output list. As a 
-    result, the tape is 1 cell shorter. 
+        - 016: Add one cell to the end of the tape.
+        - 017: Add 10 cells to the end of the tape.
+        - 018: Remove one cell from the end of the tape. If original tape 
+        pointer is at the last cell before removal operation, the tape 
+        pointer will point to the last cell after removal.
+        - 019: Remove 10 cells from the end of the tape. If original tape 
+        pointer is at the last cell before removal operation, the tape 
+        pointer will point to the last cell after removal.
+        - 034: Insert a cell after the current tape cell. For example, if 
+        current tape cell is 35, a cell initialized to zero will be added 
+        as cell 36. As a result, the tape is 1 cell longer.
+        - 035: Delete the current cell. As a result, the tape is 1 cell 
+        shorter.
+        - 036: Delete the current and append to the end of the output list. 
+        As a result, the tape is 1 cell shorter. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '016': array = array + [0]
@@ -359,32 +360,33 @@ def source_move(array, apointer, inputdata, output, source, spointer):
     Moving the source without execution.
     
     Instructions handled:
-    023: Move source pointer forward by one instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer.
-    024: Move source pointer forward by 5 instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer.
-    025: Move source pointer forward by 10 instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer.
-    026: Move source pointer backward by one instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer.
-    027: Move source pointer backward by 5 instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer.
-    028: Move source pointer backward by 10 instruction without execution 
-    if the source pointer does not point beyond the length of the source 
-    after the move, otherwise, does not move the source pointer. 
-    082: Skip next instruction if current cell is "0". Equivalent to "/" 
-    in [[Minimal]]. However, this operation will only execute if there is 
-    at least 1 more instruction from the current instruction.
-    083: Skip the number of instructions equivalent to the absolute integer 
-    value of the current cell if the source pointer does not point beyond 
-    the length of the source after the move, otherwise, does not move the 
-    source pointer. For example, if current cell is "5.6" or "5", the next 
-    5 instructions will be skipped.
+        - 023: Move source pointer forward by one instruction without 
+        execution if the source pointer does not point beyond the length 
+        of the source after the move, otherwise, does not move the source 
+        pointer.
+        - 024: Move source pointer forward by 5 instruction without execution 
+        if the source pointer does not point beyond the length of the source 
+        after the move, otherwise, does not move the source pointer.
+        - 025: Move source pointer forward by 10 instruction without execution 
+        if the source pointer does not point beyond the length of the source 
+        after the move, otherwise, does not move the source pointer.
+        - 026: Move source pointer backward by one instruction without execution 
+        if the source pointer does not point beyond the length of the source 
+        after the move, otherwise, does not move the source pointer.
+        - 027: Move source pointer backward by 5 instruction without execution 
+        if the source pointer does not point beyond the length of the source 
+        after the move, otherwise, does not move the source pointer.
+        - 028: Move source pointer backward by 10 instruction without execution 
+        if the source pointer does not point beyond the length of the source 
+        after the move, otherwise, does not move the source pointer. 
+        - 082: Skip next instruction if current cell is "0". Equivalent to "/" 
+        in Minimal. However, this operation will only execute if there is 
+        at least 1 more instruction from the current instruction.
+        - 083: Skip the number of instructions equivalent to the absolute integer 
+        value of the current cell if the source pointer does not point beyond 
+        the length of the source after the move, otherwise, does not move the 
+        source pointer. For example, if current cell is "5.6" or "5", the next 
+        5 instructions will be skipped.
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '023' and (spointer + 3) < len(source):
@@ -412,27 +414,29 @@ def set_tape_value(array, apointer, inputdata, output, source, spointer):
     Set values into tape cell by over-writing the original value.
     
     Instructions handled:
-    084: Set current tape cell to "0".
-    085: Set current tape cell to "-1".
-    086: Set current tape cell to "1". 
-    097: Set the value of the current cell to pi (3.14159265358979323846)
-    098: Set the value of the current cell to e (2.718281828459045) 
-    187: Set all the cell values in the cells after the current cell to 
-    "0" (current cell is not affected).
-    188: Set all the cell values in the cells before the current cell to 
-    "0" (current cell is not affected). 
-    189: Set all values in tape to "0".
-    190: Set all the cell values in the tape to the value of current cell.
-    191: Set all the cell values in the tape to the tape position of 
-    current cell.
-    192: Set all the cell values in the cells after the current cell to 
-    the value of current cell.
-    193: Set all the cell values in the cells before the current cell to 
-    the value of current cell.
-    194: Set all the cell values in the cells after the current cell to 
-    the tape position of current cell.
-    195: Set all the cell values in the cells before the current cell to 
-    the tape position of current cell. 
+        - 084: Set current tape cell to "0".
+        - 085: Set current tape cell to "-1".
+        - 086: Set current tape cell to "1". 
+        - 097: Set the value of the current cell to pi 
+        (3.14159265358979323846)
+        - 098: Set the value of the current cell to e (2.718281828459045) 
+        - 187: Set all the cell values in the cells after the current cell 
+        to "0" (current cell is not affected).
+        - 188: Set all the cell values in the cells before the current 
+        cell to "0" (current cell is not affected). 
+        - 189: Set all values in tape to "0".
+        - 190: Set all the cell values in the tape to the value of current 
+        cell.
+        - 191: Set all the cell values in the tape to the tape position of 
+        current cell.
+        - 192: Set all the cell values in the cells after the current cell 
+        to the value of current cell.
+        - 193: Set all the cell values in the cells before the current cell 
+        to the value of current cell.
+        - 194: Set all the cell values in the cells after the current cell 
+        to the tape position of current cell.
+        - 195: Set all the cell values in the cells before the current cell 
+        to the tape position of current cell. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '084': array[apointer] = 0
@@ -463,165 +467,169 @@ def mathematics(array, apointer, inputdata, output, source, spointer):
     Performs mathematical and arithmetical operations.
     
     Instructions handled:
-    065: Add the value of the current cell (n) and (n+1)th cell, and 
-    store the value in the current cell. Array[n] = Array[n] + Array[n+1]
-    066: Add the value of the current cell (n) and first of the input 
-    list, and store the value in the current cell.
-    067: Add the value of the current cell (n) and last of the input 
-    list, and store the value in the current cell.
-    068: Subtract the value of the current cell (n) from (n+1)th 
-    cell, and store the value in the current cell. 
-    Array[n] = Array[n+1] - Array[n]
-    069: Subtract the value of the current cell (n) from the first 
-    of the input list, and store the value in the current cell. 
-    Array[n] = InputList[0] - Array[n]
-    070: Subtract the value of the current cell (n) from the last 
-    of the input list, and store the value in the current cell. 
-    Array[n] = InputList[-1] - Array[n]
-    071: Multiply the value of the current cell (n) and (n+1)th 
-    cell, and store the value in the current cell. 
-    Array[n] = Array[n+1] * Array[n]
-    072: Multiply the value of the current cell (n) and first of 
-    the input list, and store the value in the current cell.
-    073: Multiply the value of the current cell (n) and last of 
-    the input list, and store the value in the current cell.
-    074: Divide the value of the current cell (n) from (n+1)th 
-    cell, and store the value in the current cell. 
-    Array[n] = Array[n+1] / Array[n]
-    075: Divide the value of the current cell (n) from the first 
-    of the input list, and store the value in the current cell. 
-    Array[n] = InputList[0] / Array[n]
-    076: Divide the value of the current cell (n) from the last 
-    of the input list, and store the value in the current cell. 
-    Array[n] = InputList[-1] - Array[n]
-    077: Modulus (remainder after division) the value of the 
-    current cell (n) from (n+1)th cell, and store the value in 
-    the current cell. Array[n] = Array[n+1] % Array[n]
-    078: Modulus (remainder after division) the value of the 
-    current cell (n) from the first of the input list, and store 
-    the value in the current cell. Array[n] = InputList[0] % Array[n]
-    079: Modulus (remainder after division) the value of the 
-    current cell (n) from the last of the input list, and store 
-    the value in the current cell. Array[n] = InputList[-1] % Array[n]
-    080: Floor the value of the current cell. For example, if 
-    the value of the current cell is 6.7, it will becomes 6.
-    087: Negate the value of the current cell. Positive value will be 
-    negative. Negative value will be positive. Equivalent to "_" in L00P
-    088: Calculate the sine of the value of the current cell (measured 
-    in radians) and replace. Equivalent to "s" in Grin. 
-    Array[n] = sine(Array[n])
-    089: Calculate the cosine of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "c" in Grin. 
-    Array[n] = cosine(Array[n])
-    090: Calculate the tangent of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "t" in Grin. 
-    Array[n] = tangent(Array[n])
-    091: Calculate the arc sine of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "S" in Grin. 
-    Array[n] = arcsine(Array[n])
-    092: Calculate the arc cosine of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "C" in Grin. 
-    Array[n] = arccosine(Array[n])
-    093: Calculate the arc tangent of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "T" in Grin. 
-    Array[n] = arctangent(Array[n])
-    094: Calculate the reciprocal of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "1" in Grin. 
-    Array[n] = 1/Array[n]
-    095: Calculate the square root of the value of the current cell 
-    (measured in radians) and replace. Equivalent to "q" in Grin. 
-    Array[n] = sqrt(Array[n])
-    096: Calculate the natural logarithm of the value of the current 
-    cell (measured in radians) and replace. Equivalent to "l" in Grin. 
-    Array[n] = ln(Array[n])
-    099: Calculate the hyperbolic sine of the value of the current 
-    cell (measured in radians) and replace. Array[n] = sinh(Array[n])
-    100: Calculate the hyperbolic cosine of the value of the current 
-    cell (measured in radians) and replace. Array[n] = cosh(Array[n])
-    101: Calculate the hyperbolic tangent of the value of the current 
-    cell (measured in radians) and replace. Array[n] = tanh(Array[n])
-    102: Calculate the hyperbolic arc sine of the value of the current 
-    cell (measured in radians) and replace. Array[n] = arcsinh(Array[n])
-    103: Calculate the hyperbolic arc cosine of the value of the current 
-    cell (measured in radians) and replace. Array[n] = arccosh(Array[n])
-    104: Calculate the hyperbolic arc tangent of the value of the 
-    current cell (measured in radians) and replace. 
-    Array[n] = arctanh(Array[n])
-    105: Convert the value of the current cell (measured in radians) to 
-    degrees and replace.
-    106: Convert the value of the current cell (measured in degrees) to 
-    radians and replace.
-    107: Raise the value of the current cell (n) to e, and store the 
-    value in the current cell. Array[n] = Array[n]^e
-    108: Raise e to the value of the current cell (n), and store the 
-    value in the current cell. Array[n] = e^Array[n]
-    109: Raise 10 to the value of the current cell (n), and store the 
-    value in the current cell. Array[n] = 10^Array[n]
-    110: Raise the value of the current cell (n) to the value of (n+1)th 
-    cell, and store the value in the current cell. 
-    Array[n] = Array[n]^Array[n+1]
-    111: Calculate the n-th root of the value of the current cell (n) 
-    where n is the value of (n+1)th cell, and store the value in the 
-    current cell. Array[n] = Array[n]^(1/Array[n+1])
-    112: Calculate the error function of the value of the current cell 
-    and replace. Array[n] = erf(Array[n])
-    113: Calculate the complementary error function of the value of the 
-    current cell and replace. Array[n] = erfc(Array[n])
-    114: Calculate the factorial of the integer value of the current 
-    cell (if the integer value is positive) and replace. 
-    Array[n] = factorial(Array[n])
-    115: Calculate the factorial of the absolute integer value of the 
-    current cell and replace. Array[n] = factorial(abs(Array[n]))
-    116: Calculate the Euclidean distance (hypotenuse) value of the 
-    current cell (n) to the value of (n+1)th cell, and store the value 
-    in the current cell. 
-    Array[n] = sqrt(Array[n]*Array[n] + Array[n+1]*Array[n+1])
-    117: Calculate the logarithm value of the current cell (n) to the
-    base of the value of (n+1)th cell, and store the value in the current 
-    cell. Array[n] = log(Array[n], base=Array[n+1])
-    144: Divide current cell value by 10.
-    145: Multiply current cell value by 10.
-    146: Add all cell values from (n+1)th cell to the end of the tape and 
-    store result in current cell (n). Array[n] = sum(Array[n+1:])
-    147: Add all cell values from n-th cell to the end of the tape and store 
-    result in current cell (n). Array[n] = sum(Array[n:])
-    148: Add all cell values from first cell to the cell before n-th cell 
-    and store result in current cell (n). Array[n] = sum(Array[0:n])
-    149: Add all cell values from first cell to n-th cell (inclusive) and 
-    store result in current cell (n). Array[n] = sum(Array[0:n+1])
-    150: Add all cell values in the tape and store result in current cell (n). 
-    Array[n] = sum(Array[:])
-    151: Average all cell values from (n+1)th cell to the end of the tape 
-    and store result in current cell (n). Array[n] = average(Array[n+1:])
-    152: Average all cell values from n-th cell to the end of the tape and 
-    store result in current cell (n). Array[n] = average(Array[n:])
-    153: Average all cell values from first cell to the cell before n-th cell 
-    and store result in current cell (n). Array[n] = average(Array[0:n])
-    154: Average all cell values from first cell to n-th cell (inclusive) 
-    and store result in current cell (n). Array[n] = average(Array[0:n+1])
-    155: Half every cell value in tape.
-    156: Double every cell value in tape.
-    157: Divide every cell value in tape by 10.
-    158: Multiply every cell value in tape by 10.
-    159: Divide every cell value in tape by 100.
-    160: Multiply every cell value in tape by 100. 
-    165: Multiply every cell value in tape by -1. 
-    166: Square all the cell values in the cells after the current cell 
-    (current cell value is not affected).
-    167: Square all the cell values in the cells before the current cell 
-    (current cell value is not affected). 
-    168: Square every cell value in tape.
-    169: Square root every cell value in tape.
-    170: Square root all the cell values in the cells after the current 
-    cell (current cell value is not affected).
-    171: Square root all the cell values in the cells before the current 
-    cell (current cell value is not affected).
-    196: Set the value of the current cell to the standard deviation of 
-    the values in the tape.
-    197: Set the value of the current cell to the geometric mean of the 
-    values in the tape.
-    198: Set the value of the current cell to the harmonic mean of the 
-    values in the tape. 
+        - 065: Add the value of the current cell (n) and (n+1)th cell, and 
+        store the value in the current cell. 
+        Array[n] = Array[n] + Array[n+1]
+        - 066: Add the value of the current cell (n) and first of the input 
+        list, and store the value in the current cell.
+        - 067: Add the value of the current cell (n) and last of the input 
+        list, and store the value in the current cell.
+        - 068: Subtract the value of the current cell (n) from (n+1)th 
+        cell, and store the value in the current cell. 
+        Array[n] = Array[n+1] - Array[n]
+        - 069: Subtract the value of the current cell (n) from the first 
+        of the input list, and store the value in the current cell. 
+        Array[n] = InputList[0] - Array[n]
+        - 070: Subtract the value of the current cell (n) from the last 
+        of the input list, and store the value in the current cell. 
+        Array[n] = InputList[-1] - Array[n]
+        - 071: Multiply the value of the current cell (n) and (n+1)th 
+        cell, and store the value in the current cell. 
+        Array[n] = Array[n+1] * Array[n]
+        - 072: Multiply the value of the current cell (n) and first of 
+        the input list, and store the value in the current cell.
+        - 073: Multiply the value of the current cell (n) and last of 
+        the input list, and store the value in the current cell.
+        - 074: Divide the value of the current cell (n) from (n+1)th 
+        cell, and store the value in the current cell. 
+        Array[n] = Array[n+1] / Array[n]
+        - 075: Divide the value of the current cell (n) from the first 
+        of the input list, and store the value in the current cell. 
+        Array[n] = InputList[0] / Array[n]
+        - 076: Divide the value of the current cell (n) from the last 
+        of the input list, and store the value in the current cell. 
+        Array[n] = InputList[-1] - Array[n]
+        - 077: Modulus (remainder after division) the value of the 
+        current cell (n) from (n+1)th cell, and store the value in 
+        the current cell. Array[n] = Array[n+1] % Array[n]
+        - 078: Modulus (remainder after division) the value of the 
+        current cell (n) from the first of the input list, and store 
+        the value in the current cell. Array[n] = InputList[0] % Array[n]
+        - 079: Modulus (remainder after division) the value of the 
+        current cell (n) from the last of the input list, and store 
+        the value in the current cell. Array[n] = InputList[-1] % Array[n]
+        - 080: Floor the value of the current cell. For example, if 
+        the value of the current cell is 6.7, it will becomes 6.
+        - 087: Negate the value of the current cell. Positive value will be 
+        negative. Negative value will be positive. Equivalent to "_" in L00P
+        - 088: Calculate the sine of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "s" in Grin. 
+        Array[n] = sine(Array[n])
+        - 089: Calculate the cosine of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "c" in Grin. 
+        Array[n] = cosine(Array[n])
+        - 090: Calculate the tangent of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "t" in Grin. 
+        Array[n] = tangent(Array[n])
+        - 091: Calculate the arc sine of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "S" in Grin. 
+        Array[n] = arcsine(Array[n])
+        - 092: Calculate the arc cosine of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "C" in Grin. 
+        Array[n] = arccosine(Array[n])
+        - 093: Calculate the arc tangent of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "T" in Grin. 
+        Array[n] = arctangent(Array[n])
+        - 094: Calculate the reciprocal of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "1" in Grin. 
+        Array[n] = 1/Array[n]
+        - 095: Calculate the square root of the value of the current cell 
+        (measured in radians) and replace. Equivalent to "q" in Grin. 
+        Array[n] = sqrt(Array[n])
+        - 096: Calculate the natural logarithm of the value of the current 
+        cell (measured in radians) and replace. Equivalent to "l" in Grin. 
+        Array[n] = ln(Array[n])
+        - 099: Calculate the hyperbolic sine of the value of the current 
+        cell (measured in radians) and replace. Array[n] = sinh(Array[n])
+        - 100: Calculate the hyperbolic cosine of the value of the current 
+        cell (measured in radians) and replace. Array[n] = cosh(Array[n])
+        - 101: Calculate the hyperbolic tangent of the value of the current 
+        cell (measured in radians) and replace. Array[n] = tanh(Array[n])
+        - 102: Calculate the hyperbolic arc sine of the value of the current 
+        cell (measured in radians) and replace. Array[n] = arcsinh(Array[n])
+        - 103: Calculate the hyperbolic arc cosine of the value of the current 
+        cell (measured in radians) and replace. Array[n] = arccosh(Array[n])
+        - 104: Calculate the hyperbolic arc tangent of the value of the 
+        current cell (measured in radians) and replace. 
+        Array[n] = arctanh(Array[n])
+        - 105: Convert the value of the current cell (measured in radians) 
+        to degrees and replace.
+        - 106: Convert the value of the current cell (measured in degrees) 
+        to radians and replace.
+        - 107: Raise the value of the current cell (n) to e, and store the 
+        value in the current cell. Array[n] = Array[n]^e
+        - 108: Raise e to the value of the current cell (n), and store the 
+        value in the current cell. Array[n] = e^Array[n]
+        - 109: Raise 10 to the value of the current cell (n), and store the 
+        value in the current cell. Array[n] = 10^Array[n]
+        - 110: Raise the value of the current cell (n) to the value of 
+        (n+1)th cell, and store the value in the current cell. 
+        Array[n] = Array[n]^Array[n+1]
+        - 111: Calculate the n-th root of the value of the current cell (n) 
+        where n is the value of (n+1)th cell, and store the value in the 
+        current cell. Array[n] = Array[n]^(1/Array[n+1])
+        - 112: Calculate the error function of the value of the current 
+        cell and replace. Array[n] = erf(Array[n])
+        - 113: Calculate the complementary error function of the value of 
+        the current cell and replace. Array[n] = erfc(Array[n])
+        - 114: Calculate the factorial of the integer value of the current 
+        cell (if the integer value is positive) and replace. 
+        Array[n] = factorial(Array[n])
+        - 115: Calculate the factorial of the absolute integer value of the 
+        current cell and replace. Array[n] = factorial(abs(Array[n]))
+        - 116: Calculate the Euclidean distance (hypotenuse) value of the 
+        current cell (n) to the value of (n+1)th cell, and store the value 
+        in the current cell. 
+        Array[n] = sqrt(Array[n]*Array[n] + Array[n+1]*Array[n+1])
+        - 117: Calculate the logarithm value of the current cell (n) to the
+        base of the value of (n+1)th cell, and store the value in the current 
+        cell. Array[n] = log(Array[n], base=Array[n+1])
+        - 144: Divide current cell value by 10.
+        - 145: Multiply current cell value by 10.
+        - 146: Add all cell values from (n+1)th cell to the end of the tape 
+        and store result in current cell (n). Array[n] = sum(Array[n+1:])
+        - 147: Add all cell values from n-th cell to the end of the tape 
+        and store result in current cell (n). Array[n] = sum(Array[n:])
+        - 148: Add all cell values from first cell to the cell before n-th 
+        cell and store result in current cell (n). Array[n] = sum(Array[0:n])
+        - 149: Add all cell values from first cell to n-th cell (inclusive) 
+        and store result in current cell (n). Array[n] = sum(Array[0:n+1])
+        - 150: Add all cell values in the tape and store result in current 
+        cell (n). Array[n] = sum(Array[:])
+        - 151: Average all cell values from (n+1)th cell to the end of the 
+        tape and store result in current cell (n). 
+        Array[n] = average(Array[n+1:])
+        - 152: Average all cell values from n-th cell to the end of the 
+        tape and store result in current cell (n). 
+        Array[n] = average(Array[n:])
+        - 153: Average all cell values from first cell to the cell before 
+        n-th cell and store result in current cell (n). 
+        Array[n] = average(Array[0:n])
+        - 154: Average all cell values from first cell to n-th cell (inclusive) 
+        and store result in current cell (n). Array[n] = average(Array[0:n+1])
+        - 155: Half every cell value in tape.
+        - 156: Double every cell value in tape.
+        - 157: Divide every cell value in tape by 10.
+        - 158: Multiply every cell value in tape by 10.
+        - 159: Divide every cell value in tape by 100.
+        - 160: Multiply every cell value in tape by 100. 
+        - 165: Multiply every cell value in tape by -1. 
+        - 166: Square all the cell values in the cells after the current 
+        cell (current cell value is not affected).
+        - 167: Square all the cell values in the cells before the current 
+        cell (current cell value is not affected). 
+        - 168: Square every cell value in tape.
+        - 169: Square root every cell value in tape.
+        - 170: Square root all the cell values in the cells after the 
+        current cell (current cell value is not affected).
+        - 171: Square root all the cell values in the cells before the 
+        current cell (current cell value is not affected).
+        - 196: Set the value of the current cell to the standard deviation 
+        of the values in the tape.
+        - 197: Set the value of the current cell to the geometric mean of 
+        the values in the tape.
+        - 198: Set the value of the current cell to the harmonic mean of 
+        the values in the tape. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '065':
@@ -765,31 +773,33 @@ def output_IO(array, apointer, inputdata, output, source, spointer):
     accept values from output list.
     
     Instructions handled:
-    021: Output current tape cell location and append to the end of 
-    the output list.
-    022: Output current source location and append to the end of the 
-    output list. 
-    037: Replace the current tape cell value with the last value of 
-    the output list, and delete the last value from the output list.
-    038: Replace the current tape cell value with the last value of 
-    the output list, without deleting the last value from the output 
-    list.
-    039: Replace the current tape cell value with the first value of 
-    the output list, and delete the first value from the output list.
-    040: Replace the current tape cell value with the first value of 
-    the output list, without deleting the first value from the output 
-    list.
-    041: Remove first value from the output list.
-    042: Remove last value from the output list. 
-    172: Append all the cell values in the cells after the current cell 
-    to the end of output list (current cell is not appended to output list). 
-    173: Append all the cell values in the cells after the current cell 
-    to the end of output list (current cell is not appended to output 
-    list), then set the values of all the cells after the current cell 
-    to "0" (current cell value is not affected).
-    174: Append all the cell values in the cells to the end of output list.
-    175: Append all the cell values in the cells to the end of output list 
-    and set the tape to "0".     
+        - 021: Output current tape cell location and append to the end of 
+        the output list.
+        - 022: Output current source location and append to the end of the 
+        output list. 
+        - 037: Replace the current tape cell value with the last value of 
+        the output list, and delete the last value from the output list.
+        - 038: Replace the current tape cell value with the last value of 
+        the output list, without deleting the last value from the output 
+        list.
+        - 039: Replace the current tape cell value with the first value of 
+        the output list, and delete the first value from the output list.
+        - 040: Replace the current tape cell value with the first value of 
+        the output list, without deleting the first value from the output 
+        list.
+        - 041: Remove first value from the output list.
+        - 042: Remove last value from the output list. 
+        - 172: Append all the cell values in the cells after the current 
+        cell to the end of output list (current cell is not appended to 
+        output list). 
+        - 173: Append all the cell values in the cells after the current 
+        cell to the end of output list (current cell is not appended to 
+        output list), then set the values of all the cells after the 
+        current cell to "0" (current cell value is not affected).
+        - 174: Append all the cell values in the cells to the end of output 
+        list.
+        - 175: Append all the cell values in the cells to the end of output 
+        list and set the tape to "0".     
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '021': output.append(apointer)
@@ -817,47 +827,47 @@ def logic(array, apointer, inputdata, output, source, spointer):
     Logical operations
     
     Instructions handled:
-    120: AND operator: Given positive numbers (>0) as True and zero 
-    or negative numbers (<=0) as False, store Array[current] AND 
-    Array[current+1] in the current cell (Array[current]) where "0" 
-    is False and "1" is True.
-    121: OR operator: Given positive numbers (>0) as True and zero 
-    or negative numbers (<=0) as False, store Array[current] OR 
-    Array[current+1] in the current cell (Array[current]) where "0" 
-    is False and "1" is True.
-    122: NOT operator: Given positive numbers (>0) as True and zero 
-    or negative numbers (<=0) as False, store NOT Array[current] in 
-    the current cell (Array[current]) where "0" is False and "1" is 
-    True.
-    123: LESS-THAN operator: Store Array[current] < Array[current+1] 
-    in the current cell (Array[current]) where "0" is False and "1" 
-    is True.
-    124: MORE-THAN operator: Store Array[current] > Array[current+1] 
-    in the current cell (Array[current]) where "0" is False and "1" 
-    is True.
-    125: EQUAL operator: Store Array[current] = Array[current+1] in 
-    the current cell (Array[current]) where "0" is False and "1" is 
-    True.
-    126: NOT-EQUAL operator: Store Array[current] != Array[current+1] 
-    in the current cell (Array[current]) where "0" is False and "1" 
-    is True.
-    127: LESS-THAN-OR-EQUAL operator: Store Array[current] 
-    <= Array[current+1] in the current cell (Array[current]) where 
-    "0" is False and "1" is True.
-    128: MORE-THAN-OR-EQUAL operator: Store Array[current] => 
-    Array[current+1] in the current cell (Array[current]) where "0" 
-    is False and "1" is True.
-    129: NAND operator: Given positive numbers (>0) as True and 
-    zero or negative numbers (<=0) as False, store Array[current] 
-    NAND Array[current+1] in the current cell (Array[current]) 
-    where "0" is False and "1" is True. Array[current] NAND 
-    Array[current+1] is equivalent to NOT (Array[current] AND 
-    Array[current+1])
-    130: NOR operator: Given positive numbers (>0) as True and 
-    zero or negative numbers (<=0) as False, store Array[current] 
-    NOR Array[current+1] in the current cell (Array[current]) where 
-    "0" is False and "1" is True. Array[current] NOR Array[current+1] 
-    is equivalent to NOT (Array[current] OR Array[current+1])
+        - 120: AND operator: Given positive numbers (>0) as True and zero 
+        or negative numbers (<=0) as False, store Array[current] AND 
+        Array[current+1] in the current cell (Array[current]) where "0" 
+        is False and "1" is True.
+        - 121: OR operator: Given positive numbers (>0) as True and zero 
+        or negative numbers (<=0) as False, store Array[current] OR 
+        Array[current+1] in the current cell (Array[current]) where "0" 
+        is False and "1" is True.
+        - 122: NOT operator: Given positive numbers (>0) as True and zero 
+        or negative numbers (<=0) as False, store NOT Array[current] in 
+        the current cell (Array[current]) where "0" is False and "1" is 
+        True.
+        - 123: LESS-THAN operator: Store Array[current] < Array[current+1] 
+        in the current cell (Array[current]) where "0" is False and "1" 
+        is True.
+        - 124: MORE-THAN operator: Store Array[current] > Array[current+1] 
+        in the current cell (Array[current]) where "0" is False and "1" 
+        is True.
+        - 125: EQUAL operator: Store Array[current] = Array[current+1] in 
+        the current cell (Array[current]) where "0" is False and "1" is 
+        True.
+        - 126: NOT-EQUAL operator: Store Array[current] != Array[current+1] 
+        in the current cell (Array[current]) where "0" is False and "1" 
+        is True.
+        - 127: LESS-THAN-OR-EQUAL operator: Store Array[current] 
+        <= Array[current+1] in the current cell (Array[current]) where 
+        "0" is False and "1" is True.
+        - 128: MORE-THAN-OR-EQUAL operator: Store Array[current] => 
+        Array[current+1] in the current cell (Array[current]) where "0" 
+        is False and "1" is True.
+        - 129: NAND operator: Given positive numbers (>0) as True and 
+        zero or negative numbers (<=0) as False, store Array[current] 
+        NAND Array[current+1] in the current cell (Array[current]) 
+        where "0" is False and "1" is True. Array[current] NAND 
+        Array[current+1] is equivalent to NOT (Array[current] AND 
+        Array[current+1])
+        - 130: NOR operator: Given positive numbers (>0) as True and 
+        zero or negative numbers (<=0) as False, store Array[current] 
+        NOR Array[current+1] in the current cell (Array[current]) where 
+        "0" is False and "1" is True. Array[current] NOR Array[current+1] 
+        is equivalent to NOT (Array[current] OR Array[current+1])
     '''
     cmd = source[spointer:spointer+3]
     xValue = array[apointer]
@@ -911,11 +921,11 @@ def flipping(array, apointer, inputdata, output, source, spointer):
     Flipping of execution elements.
     
     Instructions handled:
-    046: Flip the tape. The original first cell becomes the last 
-    cell but the tape pointer does not flip in location.
-    047: Flip the output list.
-    048: Flip the instruction list (source) but the source pointer 
-    does not flip in location.
+        - 046: Flip the tape. The original first cell becomes the last 
+        cell but the tape pointer does not flip in location.
+        - 047: Flip the output list.
+        - 048: Flip the instruction list (source) but the source pointer 
+        does not flip in location.
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '046': array.reverse()
@@ -928,9 +938,9 @@ def input_IO(array, apointer, inputdata, output, source, spointer):
     Write to and accept values from input list.
     
     Instructions handled:
-    064: Writes the first value of the input list into the current 
-    cell and without removing the value from the input list. If 
-    input list is empty, "0" will be written. 
+        - 064: Writes the first value of the input list into the current 
+        cell and without removing the value from the input list. If 
+        input list is empty, "0" will be written. 
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '064':
@@ -943,20 +953,21 @@ def tape_manipulate(array, apointer, inputdata, output, source, spointer):
     Manipulating the tape.
     
     Instructions handled:
-    081: Swap the value of the current cell (n) and (n+1)th cell. 
-    133: Flip the tape from the cell after the current cell to the end of the 
-    tape (temporarily breaking the circularity of the tape).
-    161: Cut the tape before the current cell (n) and append it to the end of 
-    the tape and set tape pointer to 0. 
-    <---A--->n<---B---> ==> n<---B---><---A--->
-    162: Cut the tape after the current cell (n) and append it to the start of 
-    the tape and set tape pointer to the last cell. 
-    <---A--->n<---B---> ==> <---B---><---A--->n
-    163: Cut out the current cell and append it to the front of the tape and 
-    set tape pointer to 0. <---A--->n<---B---> ==> n<---A---><---B--->
-    164: Cut out the current cell and append it to the end of the tape and 
-    set tape pointer to the last cell. 
-    <---A--->n<---B---> ==> <---A---><---B--->n
+        - 081: Swap the value of the current cell (n) and (n+1)th cell. 
+        - 133: Flip the tape from the cell after the current cell to the 
+        end of the tape (temporarily breaking the circularity of the tape).
+        - 161: Cut the tape before the current cell (n) and append it to 
+        the end of the tape and set tape pointer to 0. 
+        <---A--->n<---B---> ==> n<---B---><---A--->
+        - 162: Cut the tape after the current cell (n) and append it to the 
+        start of the tape and set tape pointer to the last cell. 
+        <---A--->n<---B---> ==> <---B---><---A--->n
+        - 163: Cut out the current cell and append it to the front of the 
+        tape and set tape pointer to 0. 
+        <---A--->n<---B---> ==> n<---A---><---B--->
+        - 164: Cut out the current cell and append it to the end of the 
+        tape and set tape pointer to the last cell. 
+        <---A--->n<---B---> ==> <---A---><---B--->n
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '081':
@@ -994,303 +1005,303 @@ def register_IO(array, apointer, inputdata, output, source, spointer):
     Read from and write to register from tape cell.
     
     Instructions handled:
-    201: Store value of current tape cell to register #1
-    202: Store value of current tape cell to register #2
-    203: Store value of current tape cell to register #3
-    204: Store value of current tape cell to register #4
-    205: Store value of current tape cell to register #5
-    206: Store value of current tape cell to register #6
-    207: Store value of current tape cell to register #7
-    208: Store value of current tape cell to register #8
-    209: Store value of current tape cell to register #9
-    210: Store value of current tape cell to register #10
-    211: Store value of current tape cell to register #11
-    212: Store value of current tape cell to register #12
-    213: Store value of current tape cell to register #13
-    214: Store value of current tape cell to register #14
-    215: Store value of current tape cell to register #15
-    216: Store value of current tape cell to register #16
-    217: Store value of current tape cell to register #17
-    218: Store value of current tape cell to register #18
-    219: Store value of current tape cell to register #19
-    220: Store value of current tape cell to register #20
-    221: Store value of current tape cell to register #21
-    222: Store value of current tape cell to register #22
-    223: Store value of current tape cell to register #23
-    224: Store value of current tape cell to register #24
-    225: Store value of current tape cell to register #25
-    226: Store value of current tape cell to register #26
-    227: Store value of current tape cell to register #27
-    228: Store value of current tape cell to register #28
-    229: Store value of current tape cell to register #29
-    230: Store value of current tape cell to register #30
-    231: Store value of current tape cell to register #31
-    232: Store value of current tape cell to register #32
-    233: Store value of current tape cell to register #33
-    234: Store value of current tape cell to register #34
-    235: Store value of current tape cell to register #35
-    236: Store value of current tape cell to register #36
-    237: Store value of current tape cell to register #37
-    238: Store value of current tape cell to register #38
-    239: Store value of current tape cell to register #39
-    240: Store value of current tape cell to register #40
-    241: Store value of current tape cell to register #41
-    242: Store value of current tape cell to register #42
-    243: Store value of current tape cell to register #43
-    244: Store value of current tape cell to register #44
-    245: Store value of current tape cell to register #45
-    246: Store value of current tape cell to register #46
-    247: Store value of current tape cell to register #47
-    248: Store value of current tape cell to register #48
-    249: Store value of current tape cell to register #49
-    250: Store value of current tape cell to register #50
-    251: Store value of current tape cell to register #51
-    252: Store value of current tape cell to register #52
-    253: Store value of current tape cell to register #53
-    254: Store value of current tape cell to register #54
-    255: Store value of current tape cell to register #55
-    256: Store value of current tape cell to register #56
-    257: Store value of current tape cell to register #57
-    258: Store value of current tape cell to register #58
-    259: Store value of current tape cell to register #59
-    260: Store value of current tape cell to register #60
-    261: Store value of current tape cell to register #61
-    262: Store value of current tape cell to register #62
-    263: Store value of current tape cell to register #63
-    264: Store value of current tape cell to register #64
-    265: Store value of current tape cell to register #65
-    266: Store value of current tape cell to register #66
-    267: Store value of current tape cell to register #67
-    268: Store value of current tape cell to register #68
-    269: Store value of current tape cell to register #69
-    270: Store value of current tape cell to register #70
-    271: Store value of current tape cell to register #71
-    272: Store value of current tape cell to register #72
-    273: Store value of current tape cell to register #73
-    274: Store value of current tape cell to register #74
-    275: Store value of current tape cell to register #75
-    276: Store value of current tape cell to register #76
-    277: Store value of current tape cell to register #77
-    278: Store value of current tape cell to register #78
-    279: Store value of current tape cell to register #79
-    280: Store value of current tape cell to register #80
-    281: Store value of current tape cell to register #81
-    282: Store value of current tape cell to register #82
-    283: Store value of current tape cell to register #83
-    284: Store value of current tape cell to register #84
-    285: Store value of current tape cell to register #85
-    286: Store value of current tape cell to register #86
-    287: Store value of current tape cell to register #87
-    288: Store value of current tape cell to register #88
-    289: Store value of current tape cell to register #89
-    290: Store value of current tape cell to register #90
-    291: Store value of current tape cell to register #91
-    292: Store value of current tape cell to register #92
-    293: Store value of current tape cell to register #93
-    294: Store value of current tape cell to register #94
-    295: Store value of current tape cell to register #95
-    296: Store value of current tape cell to register #96
-    297: Store value of current tape cell to register #97
-    298: Store value of current tape cell to register #98
-    299: Store value of current tape cell to register #99
-    301: Put value from register #1 to current tape cell
-    302: Put value from register #2 to current tape cell
-    303: Put value from register #3 to current tape cell
-    304: Put value from register #4 to current tape cell
-    305: Put value from register #5 to current tape cell
-    306: Put value from register #6 to current tape cell
-    307: Put value from register #7 to current tape cell
-    308: Put value from register #8 to current tape cell
-    309: Put value from register #9 to current tape cell
-    310: Put value from register #10 to current tape cell
-    311: Put value from register #11 to current tape cell
-    312: Put value from register #12 to current tape cell
-    313: Put value from register #13 to current tape cell
-    314: Put value from register #14 to current tape cell
-    315: Put value from register #15 to current tape cell
-    316: Put value from register #16 to current tape cell
-    317: Put value from register #17 to current tape cell
-    318: Put value from register #18 to current tape cell
-    319: Put value from register #19 to current tape cell
-    320: Put value from register #20 to current tape cell
-    321: Put value from register #21 to current tape cell
-    322: Put value from register #22 to current tape cell
-    323: Put value from register #23 to current tape cell
-    324: Put value from register #24 to current tape cell
-    325: Put value from register #25 to current tape cell
-    326: Put value from register #26 to current tape cell
-    327: Put value from register #27 to current tape cell
-    328: Put value from register #28 to current tape cell
-    329: Put value from register #29 to current tape cell
-    330: Put value from register #30 to current tape cell
-    331: Put value from register #31 to current tape cell
-    332: Put value from register #32 to current tape cell
-    333: Put value from register #33 to current tape cell
-    334: Put value from register #34 to current tape cell
-    335: Put value from register #35 to current tape cell
-    336: Put value from register #36 to current tape cell
-    337: Put value from register #37 to current tape cell
-    338: Put value from register #38 to current tape cell
-    339: Put value from register #39 to current tape cell
-    340: Put value from register #40 to current tape cell
-    341: Put value from register #41 to current tape cell
-    342: Put value from register #42 to current tape cell
-    343: Put value from register #43 to current tape cell
-    344: Put value from register #44 to current tape cell
-    345: Put value from register #45 to current tape cell
-    346: Put value from register #46 to current tape cell
-    347: Put value from register #47 to current tape cell
-    348: Put value from register #48 to current tape cell
-    349: Put value from register #49 to current tape cell
-    350: Put value from register #50 to current tape cell
-    351: Put value from register #51 to current tape cell
-    352: Put value from register #52 to current tape cell
-    353: Put value from register #53 to current tape cell
-    354: Put value from register #54 to current tape cell
-    355: Put value from register #55 to current tape cell
-    356: Put value from register #56 to current tape cell
-    357: Put value from register #57 to current tape cell
-    358: Put value from register #58 to current tape cell
-    359: Put value from register #59 to current tape cell
-    360: Put value from register #60 to current tape cell
-    361: Put value from register #61 to current tape cell
-    362: Put value from register #62 to current tape cell
-    363: Put value from register #63 to current tape cell
-    364: Put value from register #64 to current tape cell
-    365: Put value from register #65 to current tape cell
-    366: Put value from register #66 to current tape cell
-    367: Put value from register #67 to current tape cell
-    368: Put value from register #68 to current tape cell
-    369: Put value from register #69 to current tape cell
-    370: Put value from register #70 to current tape cell
-    371: Put value from register #71 to current tape cell
-    372: Put value from register #72 to current tape cell
-    373: Put value from register #73 to current tape cell
-    374: Put value from register #74 to current tape cell
-    375: Put value from register #75 to current tape cell
-    376: Put value from register #76 to current tape cell
-    377: Put value from register #77 to current tape cell
-    378: Put value from register #78 to current tape cell
-    379: Put value from register #79 to current tape cell
-    380: Put value from register #80 to current tape cell
-    381: Put value from register #81 to current tape cell
-    382: Put value from register #82 to current tape cell
-    383: Put value from register #83 to current tape cell
-    384: Put value from register #84 to current tape cell
-    385: Put value from register #85 to current tape cell
-    386: Put value from register #86 to current tape cell
-    387: Put value from register #87 to current tape cell
-    388: Put value from register #88 to current tape cell
-    389: Put value from register #89 to current tape cell
-    390: Put value from register #90 to current tape cell
-    391: Put value from register #91 to current tape cell
-    392: Put value from register #92 to current tape cell
-    393: Put value from register #93 to current tape cell
-    394: Put value from register #94 to current tape cell
-    395: Put value from register #95 to current tape cell
-    396: Put value from register #96 to current tape cell
-    397: Put value from register #97 to current tape cell
-    398: Put value from register #98 to current tape cell
-    399: Put value from register #99 to current tape cell
-    501: Clear register #1 (set to 0)
-	502: Clear register #2 (set to 0)
-	503: Clear register #3 (set to 0)
-	504: Clear register #4 (set to 0)
-	505: Clear register #5 (set to 0)
-	506: Clear register #6 (set to 0)
-	507: Clear register #7 (set to 0)
-	508: Clear register #8 (set to 0)
-	509: Clear register #9 (set to 0)
-	510: Clear register #10 (set to 0)
-	511: Clear register #11 (set to 0)
-	512: Clear register #12 (set to 0)
-	513: Clear register #13 (set to 0)
-	514: Clear register #14 (set to 0)
-	515: Clear register #15 (set to 0)
-	516: Clear register #16 (set to 0)
-	517: Clear register #17 (set to 0)
-	518: Clear register #18 (set to 0)
-	519: Clear register #19 (set to 0)
-	520: Clear register #20 (set to 0)
-	521: Clear register #21 (set to 0)
-	522: Clear register #22 (set to 0)
-	523: Clear register #23 (set to 0)
-	524: Clear register #24 (set to 0)
-	525: Clear register #25 (set to 0)
-	526: Clear register #26 (set to 0)
-	527: Clear register #27 (set to 0)
-	528: Clear register #28 (set to 0)
-	529: Clear register #29 (set to 0)
-	530: Clear register #30 (set to 0)
-	531: Clear register #31 (set to 0)
-	532: Clear register #32 (set to 0)
-	533: Clear register #33 (set to 0)
-	534: Clear register #34 (set to 0)
-	535: Clear register #35 (set to 0)
-	536: Clear register #36 (set to 0)
-	537: Clear register #37 (set to 0)
-	538: Clear register #38 (set to 0)
-	539: Clear register #39 (set to 0)
-	540: Clear register #40 (set to 0)
-	541: Clear register #41 (set to 0)
-	542: Clear register #42 (set to 0)
-	543: Clear register #43 (set to 0)
-	544: Clear register #44 (set to 0)
-	545: Clear register #45 (set to 0)
-	546: Clear register #46 (set to 0)
-	547: Clear register #47 (set to 0)
-	548: Clear register #48 (set to 0)
-	549: Clear register #49 (set to 0)
-	550: Clear register #50 (set to 0)
-	551: Clear register #51 (set to 0)
-	552: Clear register #52 (set to 0)
-	553: Clear register #53 (set to 0)
-	554: Clear register #54 (set to 0)
-	555: Clear register #55 (set to 0)
-	556: Clear register #56 (set to 0)
-	557: Clear register #57 (set to 0)
-	558: Clear register #58 (set to 0)
-	559: Clear register #59 (set to 0)
-	560: Clear register #60 (set to 0)
-	561: Clear register #61 (set to 0)
-	562: Clear register #62 (set to 0)
-	563: Clear register #63 (set to 0)
-	564: Clear register #64 (set to 0)
-	565: Clear register #65 (set to 0)
-	566: Clear register #66 (set to 0)
-	567: Clear register #67 (set to 0)
-	568: Clear register #68 (set to 0)
-	569: Clear register #69 (set to 0)
-	570: Clear register #70 (set to 0)
-	571: Clear register #71 (set to 0)
-	572: Clear register #72 (set to 0)
-	573: Clear register #73 (set to 0)
-	574: Clear register #74 (set to 0)
-	575: Clear register #75 (set to 0)
-	576: Clear register #76 (set to 0)
-	577: Clear register #77 (set to 0)
-	578: Clear register #78 (set to 0)
-	579: Clear register #79 (set to 0)
-	580: Clear register #80 (set to 0)
-	581: Clear register #81 (set to 0)
-	582: Clear register #82 (set to 0)
-	583: Clear register #83 (set to 0)
-	584: Clear register #84 (set to 0)
-	585: Clear register #85 (set to 0)
-	586: Clear register #86 (set to 0)
-	587: Clear register #87 (set to 0)
-	588: Clear register #88 (set to 0)
-	589: Clear register #89 (set to 0)
-	590: Clear register #90 (set to 0)
-	591: Clear register #91 (set to 0)
-	592: Clear register #92 (set to 0)
-	593: Clear register #93 (set to 0)
-	594: Clear register #94 (set to 0)
-	595: Clear register #95 (set to 0)
-	596: Clear register #96 (set to 0)
-	597: Clear register #97 (set to 0)
-	598: Clear register #98 (set to 0)
-	599: Clear register #99 (set to 0)
+        - 201: Store value of current tape cell to register #1
+        - 202: Store value of current tape cell to register #2
+        - 203: Store value of current tape cell to register #3
+        - 204: Store value of current tape cell to register #4
+        - 205: Store value of current tape cell to register #5
+        - 206: Store value of current tape cell to register #6
+        - 207: Store value of current tape cell to register #7
+        - 208: Store value of current tape cell to register #8
+        - 209: Store value of current tape cell to register #9
+        - 210: Store value of current tape cell to register #10
+        - 211: Store value of current tape cell to register #11
+        - 212: Store value of current tape cell to register #12
+        - 213: Store value of current tape cell to register #13
+        - 214: Store value of current tape cell to register #14
+        - 215: Store value of current tape cell to register #15
+        - 216: Store value of current tape cell to register #16
+        - 217: Store value of current tape cell to register #17
+        - 218: Store value of current tape cell to register #18
+        - 219: Store value of current tape cell to register #19
+        - 220: Store value of current tape cell to register #20
+        - 221: Store value of current tape cell to register #21
+        - 222: Store value of current tape cell to register #22
+        - 223: Store value of current tape cell to register #23
+        - 224: Store value of current tape cell to register #24
+        - 225: Store value of current tape cell to register #25
+        - 226: Store value of current tape cell to register #26
+        - 227: Store value of current tape cell to register #27
+        - 228: Store value of current tape cell to register #28
+        - 229: Store value of current tape cell to register #29
+        - 230: Store value of current tape cell to register #30
+        - 231: Store value of current tape cell to register #31
+        - 232: Store value of current tape cell to register #32
+        - 233: Store value of current tape cell to register #33
+        - 234: Store value of current tape cell to register #34
+        - 235: Store value of current tape cell to register #35
+        - 236: Store value of current tape cell to register #36
+        - 237: Store value of current tape cell to register #37
+        - 238: Store value of current tape cell to register #38
+        - 239: Store value of current tape cell to register #39
+        - 240: Store value of current tape cell to register #40
+        - 241: Store value of current tape cell to register #41
+        - 242: Store value of current tape cell to register #42
+        - 243: Store value of current tape cell to register #43
+        - 244: Store value of current tape cell to register #44
+        - 245: Store value of current tape cell to register #45
+        - 246: Store value of current tape cell to register #46
+        - 247: Store value of current tape cell to register #47
+        - 248: Store value of current tape cell to register #48
+        - 249: Store value of current tape cell to register #49
+        - 250: Store value of current tape cell to register #50
+        - 251: Store value of current tape cell to register #51
+        - 252: Store value of current tape cell to register #52
+        - 253: Store value of current tape cell to register #53
+        - 254: Store value of current tape cell to register #54
+        - 255: Store value of current tape cell to register #55
+        - 256: Store value of current tape cell to register #56
+        - 257: Store value of current tape cell to register #57
+        - 258: Store value of current tape cell to register #58
+        - 259: Store value of current tape cell to register #59
+        - 260: Store value of current tape cell to register #60
+        - 261: Store value of current tape cell to register #61
+        - 262: Store value of current tape cell to register #62
+        - 263: Store value of current tape cell to register #63
+        - 264: Store value of current tape cell to register #64
+        - 265: Store value of current tape cell to register #65
+        - 266: Store value of current tape cell to register #66
+        - 267: Store value of current tape cell to register #67
+        - 268: Store value of current tape cell to register #68
+        - 269: Store value of current tape cell to register #69
+        - 270: Store value of current tape cell to register #70
+        - 271: Store value of current tape cell to register #71
+        - 272: Store value of current tape cell to register #72
+        - 273: Store value of current tape cell to register #73
+        - 274: Store value of current tape cell to register #74
+        - 275: Store value of current tape cell to register #75
+        - 276: Store value of current tape cell to register #76
+        - 277: Store value of current tape cell to register #77
+        - 278: Store value of current tape cell to register #78
+        - 279: Store value of current tape cell to register #79
+        - 280: Store value of current tape cell to register #80
+        - 281: Store value of current tape cell to register #81
+        - 282: Store value of current tape cell to register #82
+        - 283: Store value of current tape cell to register #83
+        - 284: Store value of current tape cell to register #84
+        - 285: Store value of current tape cell to register #85
+        - 286: Store value of current tape cell to register #86
+        - 287: Store value of current tape cell to register #87
+        - 288: Store value of current tape cell to register #88
+        - 289: Store value of current tape cell to register #89
+        - 290: Store value of current tape cell to register #90
+        - 291: Store value of current tape cell to register #91
+        - 292: Store value of current tape cell to register #92
+        - 293: Store value of current tape cell to register #93
+        - 294: Store value of current tape cell to register #94
+        - 295: Store value of current tape cell to register #95
+        - 296: Store value of current tape cell to register #96
+        - 297: Store value of current tape cell to register #97
+        - 298: Store value of current tape cell to register #98
+        - 299: Store value of current tape cell to register #99
+        - 301: Put value from register #1 to current tape cell
+        - 302: Put value from register #2 to current tape cell
+        - 303: Put value from register #3 to current tape cell
+        - 304: Put value from register #4 to current tape cell
+        - 305: Put value from register #5 to current tape cell
+        - 306: Put value from register #6 to current tape cell
+        - 307: Put value from register #7 to current tape cell
+        - 308: Put value from register #8 to current tape cell
+        - 309: Put value from register #9 to current tape cell
+        - 310: Put value from register #10 to current tape cell
+        - 311: Put value from register #11 to current tape cell
+        - 312: Put value from register #12 to current tape cell
+        - 313: Put value from register #13 to current tape cell
+        - 314: Put value from register #14 to current tape cell
+        - 315: Put value from register #15 to current tape cell
+        - 316: Put value from register #16 to current tape cell
+        - 317: Put value from register #17 to current tape cell
+        - 318: Put value from register #18 to current tape cell
+        - 319: Put value from register #19 to current tape cell
+        - 320: Put value from register #20 to current tape cell
+        - 321: Put value from register #21 to current tape cell
+        - 322: Put value from register #22 to current tape cell
+        - 323: Put value from register #23 to current tape cell
+        - 324: Put value from register #24 to current tape cell
+        - 325: Put value from register #25 to current tape cell
+        - 326: Put value from register #26 to current tape cell
+        - 327: Put value from register #27 to current tape cell
+        - 328: Put value from register #28 to current tape cell
+        - 329: Put value from register #29 to current tape cell
+        - 330: Put value from register #30 to current tape cell
+        - 331: Put value from register #31 to current tape cell
+        - 332: Put value from register #32 to current tape cell
+        - 333: Put value from register #33 to current tape cell
+        - 334: Put value from register #34 to current tape cell
+        - 335: Put value from register #35 to current tape cell
+        - 336: Put value from register #36 to current tape cell
+        - 337: Put value from register #37 to current tape cell
+        - 338: Put value from register #38 to current tape cell
+        - 339: Put value from register #39 to current tape cell
+        - 340: Put value from register #40 to current tape cell
+        - 341: Put value from register #41 to current tape cell
+        - 342: Put value from register #42 to current tape cell
+        - 343: Put value from register #43 to current tape cell
+        - 344: Put value from register #44 to current tape cell
+        - 345: Put value from register #45 to current tape cell
+        - 346: Put value from register #46 to current tape cell
+        - 347: Put value from register #47 to current tape cell
+        - 348: Put value from register #48 to current tape cell
+        - 349: Put value from register #49 to current tape cell
+        - 350: Put value from register #50 to current tape cell
+        - 351: Put value from register #51 to current tape cell
+        - 352: Put value from register #52 to current tape cell
+        - 353: Put value from register #53 to current tape cell
+        - 354: Put value from register #54 to current tape cell
+        - 355: Put value from register #55 to current tape cell
+        - 356: Put value from register #56 to current tape cell
+        - 357: Put value from register #57 to current tape cell
+        - 358: Put value from register #58 to current tape cell
+        - 359: Put value from register #59 to current tape cell
+        - 360: Put value from register #60 to current tape cell
+        - 361: Put value from register #61 to current tape cell
+        - 362: Put value from register #62 to current tape cell
+        - 363: Put value from register #63 to current tape cell
+        - 364: Put value from register #64 to current tape cell
+        - 365: Put value from register #65 to current tape cell
+        - 366: Put value from register #66 to current tape cell
+        - 367: Put value from register #67 to current tape cell
+        - 368: Put value from register #68 to current tape cell
+        - 369: Put value from register #69 to current tape cell
+        - 370: Put value from register #70 to current tape cell
+        - 371: Put value from register #71 to current tape cell
+        - 372: Put value from register #72 to current tape cell
+        - 373: Put value from register #73 to current tape cell
+        - 374: Put value from register #74 to current tape cell
+        - 375: Put value from register #75 to current tape cell
+        - 376: Put value from register #76 to current tape cell
+        - 377: Put value from register #77 to current tape cell
+        - 378: Put value from register #78 to current tape cell
+        - 379: Put value from register #79 to current tape cell
+        - 380: Put value from register #80 to current tape cell
+        - 381: Put value from register #81 to current tape cell
+        - 382: Put value from register #82 to current tape cell
+        - 383: Put value from register #83 to current tape cell
+        - 384: Put value from register #84 to current tape cell
+        - 385: Put value from register #85 to current tape cell
+        - 386: Put value from register #86 to current tape cell
+        - 387: Put value from register #87 to current tape cell
+        - 388: Put value from register #88 to current tape cell
+        - 389: Put value from register #89 to current tape cell
+        - 390: Put value from register #90 to current tape cell
+        - 391: Put value from register #91 to current tape cell
+        - 392: Put value from register #92 to current tape cell
+        - 393: Put value from register #93 to current tape cell
+        - 394: Put value from register #94 to current tape cell
+        - 395: Put value from register #95 to current tape cell
+        - 396: Put value from register #96 to current tape cell
+        - 397: Put value from register #97 to current tape cell
+        - 398: Put value from register #98 to current tape cell
+        - 399: Put value from register #99 to current tape cell
+        - 501: Clear register #1 (set to 0)
+        - 502: Clear register #2 (set to 0)
+        - 503: Clear register #3 (set to 0)
+        - 504: Clear register #4 (set to 0)
+        - 505: Clear register #5 (set to 0)
+        - 506: Clear register #6 (set to 0)
+        - 507: Clear register #7 (set to 0)
+        - 508: Clear register #8 (set to 0)
+        - 509: Clear register #9 (set to 0)
+        - 510: Clear register #10 (set to 0)
+        - 511: Clear register #11 (set to 0)
+        - 512: Clear register #12 (set to 0)
+        - 513: Clear register #13 (set to 0)
+        - 514: Clear register #14 (set to 0)
+        - 515: Clear register #15 (set to 0)
+        - 516: Clear register #16 (set to 0)
+        - 517: Clear register #17 (set to 0)
+        - 518: Clear register #18 (set to 0)
+        - 519: Clear register #19 (set to 0)
+        - 520: Clear register #20 (set to 0)
+        - 521: Clear register #21 (set to 0)
+        - 522: Clear register #22 (set to 0)
+        - 523: Clear register #23 (set to 0)
+        - 524: Clear register #24 (set to 0)
+        - 525: Clear register #25 (set to 0)
+        - 526: Clear register #26 (set to 0)
+        - 527: Clear register #27 (set to 0)
+        - 528: Clear register #28 (set to 0)
+        - 529: Clear register #29 (set to 0)
+        - 530: Clear register #30 (set to 0)
+        - 531: Clear register #31 (set to 0)
+        - 532: Clear register #32 (set to 0)
+        - 533: Clear register #33 (set to 0)
+        - 534: Clear register #34 (set to 0)
+        - 535: Clear register #35 (set to 0)
+        - 536: Clear register #36 (set to 0)
+        - 537: Clear register #37 (set to 0)
+        - 538: Clear register #38 (set to 0)
+        - 539: Clear register #39 (set to 0)
+        - 540: Clear register #40 (set to 0)
+        - 541: Clear register #41 (set to 0)
+        - 542: Clear register #42 (set to 0)
+        - 543: Clear register #43 (set to 0)
+        - 544: Clear register #44 (set to 0)
+        - 545: Clear register #45 (set to 0)
+        - 546: Clear register #46 (set to 0)
+        - 547: Clear register #47 (set to 0)
+        - 548: Clear register #48 (set to 0)
+        - 549: Clear register #49 (set to 0)
+        - 550: Clear register #50 (set to 0)
+        - 551: Clear register #51 (set to 0)
+        - 552: Clear register #52 (set to 0)
+        - 553: Clear register #53 (set to 0)
+        - 554: Clear register #54 (set to 0)
+        - 555: Clear register #55 (set to 0)
+        - 556: Clear register #56 (set to 0)
+        - 557: Clear register #57 (set to 0)
+        - 558: Clear register #58 (set to 0)
+        - 559: Clear register #59 (set to 0)
+        - 560: Clear register #60 (set to 0)
+        - 561: Clear register #61 (set to 0)
+        - 562: Clear register #62 (set to 0)
+        - 563: Clear register #63 (set to 0)
+        - 564: Clear register #64 (set to 0)
+        - 565: Clear register #65 (set to 0)
+        - 566: Clear register #66 (set to 0)
+        - 567: Clear register #67 (set to 0)
+        - 568: Clear register #68 (set to 0)
+        - 569: Clear register #69 (set to 0)
+        - 570: Clear register #70 (set to 0)
+        - 571: Clear register #71 (set to 0)
+        - 572: Clear register #72 (set to 0)
+        - 573: Clear register #73 (set to 0)
+        - 574: Clear register #74 (set to 0)
+        - 575: Clear register #75 (set to 0)
+        - 576: Clear register #76 (set to 0)
+        - 577: Clear register #77 (set to 0)
+        - 578: Clear register #78 (set to 0)
+        - 579: Clear register #79 (set to 0)
+        - 580: Clear register #80 (set to 0)
+        - 581: Clear register #81 (set to 0)
+        - 582: Clear register #82 (set to 0)
+        - 583: Clear register #83 (set to 0)
+        - 584: Clear register #84 (set to 0)
+        - 585: Clear register #85 (set to 0)
+        - 586: Clear register #86 (set to 0)
+        - 587: Clear register #87 (set to 0)
+        - 588: Clear register #88 (set to 0)
+        - 589: Clear register #89 (set to 0)
+        - 590: Clear register #90 (set to 0)
+        - 591: Clear register #91 (set to 0)
+        - 592: Clear register #92 (set to 0)
+        - 593: Clear register #93 (set to 0)
+        - 594: Clear register #94 (set to 0)
+        - 595: Clear register #95 (set to 0)
+        - 596: Clear register #96 (set to 0)
+        - 597: Clear register #97 (set to 0)
+        - 598: Clear register #98 (set to 0)
+        - 599: Clear register #99 (set to 0)
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '201': register[0] = array[apointer]
@@ -2162,18 +2173,18 @@ ragaraja_v1 = [
     ]
 
 ragaraja_v2 = ragaraja_v1 + [
-	'400',
-	'500', '501', '502', '503', '504', '505', '506', '507', '508', '509', 
-	'510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
-	'520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
-	'530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
-	'540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
-	'550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
-	'560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
-	'570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
-	'580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
-	'590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
-	'600']
+    '400',
+    '500', '501', '502', '503', '504', '505', '506', '507', '508', '509', 
+    '510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
+    '520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
+    '530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
+    '540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
+    '550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
+    '560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
+    '570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
+    '580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
+    '590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
+    '600']
 
 tested_ragaraja_instructions = [
     '000', '001', '002', '003', '004', '005', '006', '007', '008', '009', 
@@ -2217,16 +2228,16 @@ tested_ragaraja_instructions = [
     '390', '391', '392', '393', '394', '395', '396', '397', '398', '399',
     '400',
     '500', '501', '502', '503', '504', '505', '506', '507', '508', '509', 
-	'510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
-	'520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
-	'530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
-	'540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
-	'550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
-	'560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
-	'570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
-	'580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
-	'590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
-	'600'
+    '510', '511', '512', '513', '514', '515', '516', '517', '518', '519', 
+    '520', '521', '522', '523', '524', '525', '526', '527', '528', '529', 
+    '530', '531', '532', '533', '534', '535', '536', '537', '538', '539', 
+    '540', '541', '542', '543', '544', '545', '546', '547', '548', '549', 
+    '550', '551', '552', '553', '554', '555', '556', '557', '558', '559', 
+    '560', '561', '562', '563', '564', '565', '566', '567', '568', '569', 
+    '570', '571', '572', '573', '574', '575', '576', '577', '578', '579', 
+    '580', '581', '582', '583', '584', '585', '586', '587', '588', '589', 
+    '590', '591', '592', '593', '594', '595', '596', '597', '598', '599',
+    '600'
     ]
 
 nBF_instructions = ['000', '004', '008', '011', '020', '050', '051', '052', 
@@ -2287,19 +2298,60 @@ def nBF_to_Ragaraja(source):
 
 def activate_version(version=1, instructions=None):
     '''
-    Function to only set tested instructions as usable.
+    Function to set instructions for usage, based on version numbers. 
+    Allowable versions are: 
+        - 0.1: Using NucleotideBF instructions.
+        - 0: User-defined set of instructions to be used.
+        - 1: As defined in Ling, MHT. 2012. An Artificial Life Simulation 
+        Library Based on Genetic Algorithm, 3-Character Genetic Code and 
+        Biological Hierarchy. The Python Papers 7: 5.
+        - 99: All currently tested instructions.
     
-    @param version: Define the version to activate. Default = 1. Allowable
-    versions are 
-	    - 0.1 (Using NucleotideBF instructions)
-	    - 0 (User-defined set of instructions to be used)
-	    - 1 (As defined in Ling, MHT. 2012. An Artificial Life Simulation 
-	    Library Based on Genetic Algorithm, 3-Character Genetic Code and 
-	    Biological Hierarchy. The Python Papers 7: 5.)
-	    - 99 (All currently tested instructions)
-	@param instructions: User-defined set of instructions (as list of 
-	instructions in string) to be activated. This will only be activated 
-	when version = 0.
+    Instruction set for B{version 0.1} is ['000', '004', '008', '011', 
+    '020', '050', '051', '052', '053', '054', '055', '056', '057', '058', 
+    '059', '060']
+    
+    Instruction set for B{version 1} is ['000', '001', '002', '003', '004', 
+    '005', '006', '007', '008', '009', '010', '011', '012', '013', '016', 
+    '017', '018', '019', '020', '021', '022', '023', '024', '025', '032', 
+    '033', '034', '035', '036', '037', '038', '039', '040', '041', '042', 
+    '043', '044', '045', '046', '047', '050', '051', '052', '053', '054', 
+    '055', '056', '057', '058', '059', '060', '061', '062', '063', '064', 
+    '065', '066', '067', '068', '069', '070', '071', '072', '073', '074', 
+    '075', '076', '077', '078', '079', '080', '081', '084', '085', '086', 
+    '087', '088', '089', '090', '091', '092', '093', '094', '095', '096', 
+    '097', '098', '099', '100', '101', '102', '103', '104', '105', '106', 
+    '107', '108', '109', '110', '111', '112', '113', '114', '115', '116', 
+    '117', '120', '121', '122', '123', '124', '125', '126', '127', '128', 
+    '140', '141', '142', '143', '144', '145', '146', '147', '150', '151', 
+    '152', '153', '154', '155', '156', '157', '158', '159', '160', '161', 
+    '162', '163', '164', '165', '166', '167', '168', '169', '170', '171',
+    '189', '196', '197', '198', '201', '202', '203', '204', '205', '206', 
+    '207', '208', '209', '210', '211', '212', '213', '214', '215', '216', 
+    '217', '218', '219', '220', '221', '222', '223', '224', '225', '226', 
+    '227', '228', '229', '230', '231', '232', '233', '234', '235', '236', 
+    '237', '238', '239', '240', '241', '242', '243', '244', '245', '246', 
+    '247', '248', '249', '250', '251', '252', '253', '254', '255', '256', 
+    '257', '258', '259', '260', '261', '262', '263', '264', '265', '266', 
+    '267', '268', '269', '270', '271', '272', '273', '274', '275', '276', 
+    '277', '278', '279', '280', '281', '282', '283', '284', '285', '286', 
+    '287', '288', '289', '290', '291', '292', '293', '294', '295', '296', 
+    '297', '298', '299', '301', '302', '303', '304', '305', '306', '307', 
+    '308', '309', '310', '311', '312', '313', '314', '315', '316', '317', 
+    '318', '319', '320', '321', '322', '323', '324', '325', '326', '327', 
+    '328', '329', '330', '331', '332', '333', '334', '335', '336', '337', 
+    '338', '339', '340', '341', '342', '343', '344', '345', '346', '347', 
+    '348', '349', '350', '351', '352', '353', '354', '355', '356', '357', 
+    '358', '359', '360', '361', '362', '363', '364', '365', '366', '367', 
+    '368', '369', '370', '371', '372', '373', '374', '375', '376', '377', 
+    '378', '379', '380', '381', '382', '383', '384', '385', '386', '387', 
+    '388', '389', '390', '391', '392', '393', '394', '395', '396', '397', 
+    '398', '399']
+        
+    @param version: Define the version to activate. Default = 1. 
+    @param instructions: User-defined set of instructions (as list of 
+    instructions in string) to be activated. This will only be activated 
+    when version = 0.
     
     @since: version 0.4
     '''
