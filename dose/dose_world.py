@@ -37,7 +37,7 @@ class World(object):
     Genetic Algorithm, 3-Character Genetic Code and Biological Hierarchy. 
     The Python Papers 7: 5.
     '''
-    ecosystem = {}
+    
     
     def __init__(self, world_x, world_y, world_z):
         '''
@@ -50,6 +50,8 @@ class World(object):
         @param world_z: number of ecological cells on the z-axis
         @type world_z: integer
         '''
+        self.ecosystem = {}
+
         eco_cell = {'local_input': [], 'local_output': [],
                     'temporary_input': [], 'temporary_output': [],
                     'organisms': 0}
