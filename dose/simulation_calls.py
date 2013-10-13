@@ -165,7 +165,6 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
                     str(chromosome_count), str(e)])
                 Populations[pop_name].agents[i].status['chromosome_error'] = error_msg
                 Populations[pop_name].agents[i].status['blood'] = array
-                print error_msg
             Populations[pop_name].agents[i].status['blood'] = array
             World.ecosystem[x][y][z]['temporary_input'] = inputdata
             World.ecosystem[x][y][z]['temporary_output'] = output
@@ -198,11 +197,20 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
         f.close
 
 def bury_world(sim_parameters, World, generation_count):
+    import cPickle
     if generation_count % int (sim_parameters["eco_buried_frequency"]) == 0:
        filename = '%s%s_gen%s.eco' % (sim_parameters["directory"], 
                                       sim_parameters["simulation_name"], 
                                       str(generation_count))
-       World.eco_burial(filename)
+       f = open(filename, 'w')
+       cPickle.dump(World, f)
+       f.close()
+
+def excavate_world(eco_file):
+    import cPickle
+    f = open(eco_file, 'r')
+    World = cPickle.load(f)
+    return World
 
 def write_parameters(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],

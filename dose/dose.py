@@ -8,6 +8,7 @@ this file can be assessed at top level.
 Date created: 27th September 2013
 '''
 import sys, os, random, inspect
+from shutil import copyfile
 
 import ragaraja, register_machine
 import dose_world
@@ -15,7 +16,7 @@ import dose_world
 from simulation_calls import spawn_populations, eco_cell_iterator, deploy
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
-from simulation_calls import prepare_simulation
+from simulation_calls import prepare_simulation, excavate_world
 
 from database_calls import prepare_database, db_log_simulation_parameters
 from database_calls import db_report
@@ -534,6 +535,10 @@ def filter_status(status_key, condition, agents):
                    and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
+def revive_simulation(rev_parameters):
+    eco_file = os.getcwd() + rev_parameters['sim_folder'] + rev_parameters['eco_file']
+    World = excavate_world(eco_file)
+
 def simulate(sim_parameters, simulation_functions):
     (sim_parameters, sim_functions, 
      World, Populations) = prepare_simulation(sim_parameters, 
@@ -552,8 +557,8 @@ def simulate(sim_parameters, simulation_functions):
         deploy(sim_parameters, Populations, pop_name, World)          
     generation_count = 0
     while generation_count < sim_parameters["maximum_generations"]:
+        generation_count = generation_count + 1
         for pop_name in Populations:
-            generation_count = generation_count + 1
             sim_functions.ecoregulate(World)
             eco_cell_iterator(World, sim_parameters, 
                               sim_functions.update_ecology)
@@ -574,10 +579,9 @@ def simulate(sim_parameters, simulation_functions):
                 (con, cur) = db_report(con, cur, sim_functions, 
                                        sim_parameters["starting_time"],
                                        Populations, World, generation_count)
-    for pop_name in Populations:
-        close_results(sim_parameters, pop_name)
+    for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
         con.commit()
         con.close()
-     
+    copyfile(inspect.stack()[1][1], sim_parameters['directory'] + inspect.stack()[1][1])
