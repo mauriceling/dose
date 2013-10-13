@@ -32,10 +32,8 @@ parameters = {
               "fossilized_frequency": 20,
               "print_frequency": 10,
               "ragaraja_version": 0,
-              "ragaraja_instructions": ['000', '004', '008', '011', '020',
-                                        '050', '051', '052', '053', '054',
-                                        '055', '056', '057', '058', '059',
-                                        '060'],
+              "ragaraja_instructions": ['000', '001', '010', 
+                                        '011', '100', '101'],
               "eco_buried_frequency": 100,
              }
 

@@ -6,7 +6,7 @@ import run_examples_without_installation
 import dose
 
 parameters = {
-              "simulation_name": "01_basic_functions_one_cell_deployment",
+              "simulation_name": "01db_basic_functions_one_cell_deployment",
               "population_names": ['pop_01'],
               "population_locations": [[(0,0,0)]],
               "deployment_code": 1,
@@ -32,10 +32,8 @@ parameters = {
               "fossilized_frequency": 20,
               "print_frequency": 10,
               "ragaraja_version": 0,
-              "ragaraja_instructions": ['000', '004', '008', '011', '020', 
-                                        '050', '051', '052', '053', '054', 
-                                        '055', '056', '057', '058', '059', 
-                                        '060'],
+              "ragaraja_instructions": ['000', '001', '010', 
+                                        '011', '100', '101'],
               "eco_buried_frequency": 100,
               "database_file": "simulation.db",
               "database_logging_frequency": 1
