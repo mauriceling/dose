@@ -3,13 +3,48 @@ File containing support functions for running a simulation.
 
 Date created: 10th October 2013
 '''
-import random, sys, inspect, os
+import random, sys, inspect, os, cPickle
 from datetime import datetime
 from time import time
+from copy import deepcopy
 
 import dose_world
 import genetic
 import ragaraja, register_machine
+
+def prepare_revival(rev_parameters, simulation_functions):
+    sim_functions = simulation_functions()
+    # time_start format = <date>-<seconds since epoch>
+    # for example, 2013-10-11-138140985.77
+    time_start = '-'.join([str(datetime.utcnow()).split(' ')[0],
+                           str(time())])
+    # Directory to store revived simulation results is in the format of
+    # <CWD>/Simulations/<simulation folder>/<simulation name>_<date>-<seconds since epoch>/
+    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-13-1381664013.83/
+    # 06_revive/simulation_01_2013-10-13-WHATEVER/
+    directory ='_'.join([rev_parameters["simulation_name"],time_start])
+    directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
+    directory = directory + os.sep
+    if not os.path.exists(directory): os.makedirs(directory)
+    rev_parameters["directory"] = directory
+    rev_parameters["starting_time"] = time_start
+    World = excavate_world(rev_parameters['sim_folder'] + rev_parameters['eco_file'])
+    rev_parameters["world_z"] = len(World.ecosystem[0][0][0])
+    rev_parameters["world_y"] = len(World.ecosystem[0][0])
+    rev_parameters["world_x"] = len(World.ecosystem[0])
+    rev_parameters["generation_start"] = []
+    rev_parameters["max_generation"] = []
+    rev_parameters["population_size"] = []
+    Populations = {}
+    i = 0
+    for pop_name in rev_parameters['population_names']:
+        pop_file = rev_parameters['sim_folder'] + rev_parameters['pop_files'][i]
+        i = i + 1
+        Populations[pop_name] = revive_population(pop_file)
+        rev_parameters["generation_start"].append(Populations[pop_name].generation)
+        rev_parameters["max_generation"].append(Populations[pop_name].generation + rev_parameters["extend_gen"])
+        rev_parameters["population_size"].append(len(Populations[pop_name].agents))
+    return (rev_parameters, sim_functions, World, Populations)
 
 def prepare_simulation(sim_parameters, simulation_functions):
     sim_functions = simulation_functions()
@@ -197,7 +232,6 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
         f.close
 
 def bury_world(sim_parameters, World, generation_count):
-    import cPickle
     if generation_count % int (sim_parameters["eco_buried_frequency"]) == 0:
        filename = '%s%s_gen%s.eco' % (sim_parameters["directory"], 
                                       sim_parameters["simulation_name"], 

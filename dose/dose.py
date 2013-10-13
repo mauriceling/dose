@@ -16,7 +16,7 @@ import dose_world
 from simulation_calls import spawn_populations, eco_cell_iterator, deploy
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
-from simulation_calls import prepare_simulation, excavate_world
+from simulation_calls import prepare_simulation, prepare_revival, write_rev_parameters
 
 from database_calls import prepare_database, db_log_simulation_parameters
 from database_calls import db_report
@@ -535,9 +535,38 @@ def filter_status(status_key, condition, agents):
                    and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
-def revive_simulation(rev_parameters):
-    eco_file = rev_parameters['sim_folder'] + rev_parameters['eco_file']
-    World = excavate_world(eco_file)
+def revive_simulation(rev_parameters, simulation_functions):
+    (rev_parameters, sim_functions, 
+     World, Populations) = prepare_revival(rev_parameters, simulation_functions)
+    if rev_parameters["ragaraja_version"] == 0:
+        ragaraja.activate_version(rev_parameters["ragaraja_version"],
+                                  rev_parameters["ragaraja_instructions"])
+    else:
+        ragaraja.activate_version(rev_parameters["ragaraja_version"])
+    for pop_name in Populations:
+        write_rev_parameters(rev_parameters, pop_name)         
+    generation_count = 0
+    while generation_count < rev_parameters["extend_gen"]:
+        generation_count = generation_count + 1
+        for pop_name in Populations:
+            count = rev_parameters["generation_start"][rev_parameters["population_names"].index(pop_name)]
+            sim_functions.ecoregulate(World)
+            eco_cell_iterator(World, rev_parameters, 
+                              sim_functions.update_ecology)
+            eco_cell_iterator(World, rev_parameters, 
+                              sim_functions.update_local)
+            if rev_parameters["interpret_chromosome"]:
+                interpret_chromosome(rev_parameters, Populations, 
+                                     pop_name, World)
+            report_generation(rev_parameters, Populations, 
+                              pop_name, sim_functions, 
+                              count + generation_count)
+            sim_functions.organism_movement(Populations, pop_name, World)
+            sim_functions.organism_location(Populations, pop_name, World)
+            eco_cell_iterator(World, rev_parameters, sim_functions.report)
+            bury_world(rev_parameters, World, count + generation_count)
+    for pop_name in Populations: close_results(rev_parameters, pop_name)
+    copyfile(inspect.stack()[1][1], rev_parameters['directory'] + inspect.stack()[1][1])
 
 def simulate(sim_parameters, simulation_functions):
     (sim_parameters, sim_functions, 
