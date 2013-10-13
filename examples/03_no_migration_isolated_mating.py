@@ -31,7 +31,9 @@ parameters = {
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 100,
               "print_frequency": 10,
-              "ragaraja_version": 2,
+              "ragaraja_version": 0,
+              "ragaraja_instructions": ['000', '001', '010', 
+                                        '011', '100', '101'],
               "eco_buried_frequency": 1000,
              }
 
