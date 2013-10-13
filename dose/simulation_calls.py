@@ -220,7 +220,7 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
     if generation_count % int(sim_parameters["fossilized_frequency"]) == 0:
         file = '%s%s_%s_' % (sim_parameters["directory"],
                              sim_parameters["simulation_name"], pop_name)
-        Populations[pop_name].freeze(file, sim_parameters["fossilized_ratio"])
+        freeze_population(file, sim_parameters["fossilized_ratio"], Populations, pop_name)
     if generation_count % int(sim_parameters["print_frequency"]) == 0:
         print '\nGENERATION: %s \n%s' % (str(generation_count), str(report))
         f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
@@ -241,10 +241,29 @@ def bury_world(sim_parameters, World, generation_count):
        f.close()
 
 def excavate_world(eco_file):
-    import cPickle
     f = open(eco_file, 'r')
-    World = cPickle.load(f)
-    return World
+    return cPickle.load(f)
+
+def freeze_population(file, proportion, Populations, pop_name):
+    if proportion > 1.0: proportion = 1.0
+    agents = Populations[pop_name].agents
+    if len(agents) < 101 or len(agents) * proportion < 101:
+        sample = deepcopy(Populations[pop_name])
+    else:
+        new_agents = [agents[random.randint(0, len(agents) - 1)]
+                      for x in xrange(int(len(agents) * proportion))]
+        sample = deepcopy(Populations[pop_name])
+        sample.agents = new_agents
+    name = ''.join([file, 'pop', str(Populations[pop_name].generation), '_',
+                    str(len(sample.agents)), '.gap'])
+    f = open(name, 'w')
+    cPickle.dump(sample, f)
+    f.close()
+
+def revive_population(gap_file):
+    f = open(gap_file, 'r')
+    return cPickle.load(f)
+
 def write_rev_parameters(rev_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (rev_parameters["directory"],
                                       rev_parameters["simulation_name"],
