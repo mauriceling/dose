@@ -33,6 +33,8 @@ rev_parameters = {"sim_folder" : simulation_folder,
                   "ragaraja_instructions": ['000', '001', '010',
                                             '011', '100', '101'],
                   "eco_buried_frequency": 100,
+                  "database_file": "simulation.db",
+                  "database_logging_frequency": 1
                   }
 
 class simulation_functions(dose.dose_functions):
@@ -69,6 +71,13 @@ class simulation_functions(dose.dose_functions):
         locations = [str(org.status['location']) for org in Populations[pop_name].agents]
         demes = [org.status['deme'] for org in Populations[pop_name].agents]
         return '\n'.join(sequences)
+
+    def database_report(self, con, cur, start_time, 
+                        Populations, World, generation_count):
+        dose.database_report_populations(con, cur, start_time, 
+                                         Populations, generation_count)
+        dose.database_report_world(con, cur, start_time, 
+                                   World, generation_count)
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 

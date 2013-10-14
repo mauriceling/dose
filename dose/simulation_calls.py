@@ -19,9 +19,8 @@ def prepare_revival(rev_parameters, simulation_functions):
     time_start = '-'.join([str(datetime.utcnow()).split(' ')[0],
                            str(time())])
     # Directory to store revived simulation results is in the format of
-    # <CWD>/Simulations/<simulation folder>/<simulation name>_<date>-<seconds since epoch>/
-    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-13-1381664013.83/
-    # 06_revive/simulation_01_2013-10-13-WHATEVER/
+    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
+    # eg. <CWD>/Simulations/06_revive_simulation_01_2013-10-13-1381676305.55
     directory ='_'.join([rev_parameters["simulation_name"],time_start])
     directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
     directory = directory + os.sep
