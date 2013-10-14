@@ -14,8 +14,7 @@ def prepare_database(sim_parameters):
     database is not present, it will create a SQLite3 database file and 
     create the required database tables.
     
-    @param filepath: File path for logging database.
-    @type filepath: string
+    @param sim_parameters: Dictionary of simulation parameters.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
     dbpath = os.sep.join([os.getcwd(), 
@@ -55,18 +54,18 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     except for "starting_time" and "simulation_name".
     
     The following transformations of data are made:
-    1. Population name (key = "population_names") is a list of names. 
-    These are concatenated and delimited by '|'. For example, 
-    ['pop_01', 'pop_02'] ==> pop_01|pop_02
-    2. Genetic bases (key = "chromosome_bases") is a list of bases to make 
-    up the genetic code. These are concatenated and delimited by '|'. For 
-    example, ['1', '2'] ==> 1|2
-    3. Ragaraja instructions to be used (key = "ragaraja_instructions") is 
-    a list of 3-character Ragaraja instructions in numbers. These are 
-    concatenated and delimited by '|'. For example, ['000', '004', '008'] 
-    ==> 000|004|008
-    4. Initial (ancestral) chromosome is a list of bases. These bases 
-    are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
+        - Population name (key = "population_names") is a list of names. 
+        These are concatenated and delimited by '|'. For example, 
+        ['pop_01', 'pop_02'] ==> pop_01|pop_02
+        - Genetic bases (key = "chromosome_bases") is a list of bases to 
+        make up the genetic code. These are concatenated and delimited by 
+        '|'. For example, ['1', '2'] ==> 1|2
+        - Ragaraja instructions to be used (key = "ragaraja_instructions") 
+        is a list of 3-character Ragaraja instructions in numbers. These 
+        are concatenated and delimited by '|'. For example, ['000', '004', 
+        '008']  ==> 000|004|008
+        - Initial (ancestral) chromosome is a list of bases. These bases 
+        are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
     
     @param con: Database connector from prepare_database() function. 
     @param cur: Database cursor from prepare_database() function.
@@ -108,7 +107,7 @@ def db_report(con, cur, sim_functions, start_time,
     inherits dose.dose_functions class.
     @param start_time: Starting time of current simulation in the format 
     of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
-    @param Population: A dictionary containing one or more populations 
+    @param Populations: A dictionary containing one or more populations 
     where the value is a genetic.Population object.
     @param World: dose_world.World object.
     @return: (con, cur) where con = connector and cur = cursor. 
