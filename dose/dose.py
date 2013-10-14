@@ -543,6 +543,10 @@ def revive_simulation(rev_parameters, simulation_functions):
                                   rev_parameters["ragaraja_instructions"])
     else:
         ragaraja.activate_version(rev_parameters["ragaraja_version"])
+    if rev_parameters.has_key("database_file") and \
+        rev_parameters.has_key("database_logging_frequency"): 
+        (con, cur) = prepare_database(rev_parameters)
+        (con, cur) = db_log_simulation_parameters(con, cur, rev_parameters)
     for pop_name in Populations:
         write_rev_parameters(rev_parameters, pop_name)         
     generation_count = 0
@@ -565,7 +569,17 @@ def revive_simulation(rev_parameters, simulation_functions):
             sim_functions.organism_location(Populations, pop_name, World)
             eco_cell_iterator(World, rev_parameters, sim_functions.report)
             bury_world(rev_parameters, World, count + generation_count)
+            if rev_parameters.has_key("database_file") and \
+                rev_parameters.has_key("database_logging_frequency") and \
+                generation_count % int(rev_parameters["database_logging_frequency"]) == 0: 
+                (con, cur) = db_report(con, cur, sim_functions, 
+                                       rev_parameters["starting_time"],
+                                       Populations, World, generation_count)
     for pop_name in Populations: close_results(rev_parameters, pop_name)
+    if rev_parameters.has_key("database_file") and \
+        rev_parameters.has_key("database_logging_frequency"): 
+        con.commit()
+        con.close()
     copyfile(inspect.stack()[1][1], rev_parameters['directory'] + inspect.stack()[1][1])
 
 def simulate(sim_parameters, simulation_functions):
