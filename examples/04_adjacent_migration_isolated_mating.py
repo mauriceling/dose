@@ -20,7 +20,7 @@ parameters = {
               "cells": 50,
               "tape_length": 200,
               "clean_cell": True,
-              "interpret_chromosome": True,
+              "interpret_chromosome": False,
               "max_codon": 2000,
               "population_size": 1250,
               "eco_cell_capacity": 50,
@@ -36,7 +36,7 @@ parameters = {
               "ragaraja_instructions": ['000', '001', '010', 
                                         '011', '100', '101'],
               "eco_buried_frequency": 1000,
-              "database_file": "simulation.db",
+              "database_file": "case_study_01.db",
               "database_logging_frequency": 1
              }
 
@@ -115,10 +115,14 @@ class simulation_functions(dose.dose_functions):
 
     def database_report(self, con, cur, start_time, 
                         Populations, World, generation_count):
-        dose.database_report_populations(con, cur, start_time, 
-                                         Populations, generation_count)
-        dose.database_report_world(con, cur, start_time, 
-                                   World, generation_count)
+        try:
+            dose.database_report_populations(con, cur, start_time, 
+                                             Populations, generation_count)
+        except: pass
+        try:
+            dose.database_report_world(con, cur, start_time, 
+                                       World, generation_count)
+        except: pass
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
