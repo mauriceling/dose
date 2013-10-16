@@ -18,7 +18,7 @@ parameters = {
               "chromosome_size": 50,
               "genome_size": 1,
               "cells": 50,
-              "max_cell_population": 200,
+              "tape_length": 200,
               "clean_cell": True,
               "interpret_chromosome": True,
               "max_codon": 2000,
