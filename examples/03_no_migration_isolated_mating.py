@@ -101,10 +101,14 @@ class simulation_functions(dose.dose_functions):
 
     def database_report(self, con, cur, start_time, 
                         Populations, World, generation_count):
-        dose.database_report_populations(con, cur, start_time, 
-                                         Populations, generation_count)
-        dose.database_report_world(con, cur, start_time, 
-                                   World, generation_count)
+        try:
+            dose.database_report_populations(con, cur, start_time, 
+                                             Populations, generation_count)
+        except: pass
+        try:
+            dose.database_report_world(con, cur, start_time, 
+                                       World, generation_count)
+        except: pass
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
