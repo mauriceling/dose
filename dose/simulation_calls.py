@@ -192,7 +192,7 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
                                            inputdata, array,
-                                           sim_parameters["max_cell_population"], 
+                                           sim_parameters["tape_length"], 
 									       sim_parameters["max_codon"])
             except Exception, e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
@@ -282,7 +282,7 @@ additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
 population_size: %(population_size)s
 cells: %(cells)s
-max_cell_population: %(max_cell_population)s
+tape_length: %(tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
 eco_cell_capacity: %(eco_cell_capacity)s
@@ -320,7 +320,7 @@ mutation_type: %(mutation_type)s
 chromosome_size: %(chromosome_size)s
 genome_size: %(genome_size)s
 cells: %(cells)s
-max_cell_population: %(max_cell_population)s
+tape_length: %(tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
 population_size: %(population_size)s
