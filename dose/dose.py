@@ -255,10 +255,10 @@ class dose_functions():
         raise NotImplementedError
     def report(self, World):
         '''
-        Method / function to generate a text report of the population(s) 
-        and/or each organisms within the population at regular intervals, 
-        within the simulation, as determined by "print_frequency" in the 
-        simulation parameters. This function works at the level of world.
+        Method / function to generate a text report of the ecosystem status 
+        (World.ecosystem) at regular intervals, within the simulation, as 
+        determined by "print_frequency" in the simulation parameters. This 
+        function works at the level of world.
         
         @param World: dose_world.World object.
         @return: Entire report of a population at a generation count in a 
@@ -587,6 +587,137 @@ def revive_simulation(rev_parameters, simulation_functions):
     copyfile(inspect.stack()[1][1], rev_parameters['directory'] + inspect.stack()[1][1])
 
 def simulate(sim_parameters, simulation_functions):
+    '''
+    Function called by simulation to run the actual simulation based on a 
+    set of parameters and functions.
+    
+    Simulation parameters dictionary contains the following keys:
+        - simulation_name: Short name of the simulation.
+        - population_names: Population name(s) in a list.
+        - population_locations: A list of lists containing (x, y, z) 
+        coordinates in the world to deploy the populations. There must be
+        equal numbers of items in this list as population_names. However,
+        one population can be deployed into one or more ecological cell(s).
+        - deployment_code: Defines the type of deployment. Allowable values 
+        are 0 (custom deployment scheme which users can implement by over-
+        riding dose.dose_functions.deployment_scheme() function), 1 (all 
+        organisms are in one location), 2 (organisms are randomly deployed 
+        across a list of population locations given for the population), 3 
+        (oganisms are randomly deployed across a list of population locations 
+        given for the population), 4 (organisms are dispersed from a specific 
+        location where the defined location will have the maximum allocation 
+        before dispersal happens). (see simulation_calls.deployment for more details)
+        - chromosome_bases: List containing allowable bases in the 
+        chromosome.
+        - background_mutation: Defines background mutation rate where 0.01 
+        represents 1% mutation and 0.5 represents 50% mutation.
+        - additional_mutation: Defines mutation rate on top of background 
+        mutation rate where 0.01 represents 1% mutation and 0.5 represents 
+        50% mutation.
+        - mutation_type: Type of mutation for background mutation rate. 
+        Allowable values are 'point' (point mutation), 'insert' (insert a 
+        base), 'delete' (delete a base), 'invert' (invert a stretch of the 
+        chromosome), 'duplicate' (duplicate a stretch of the chromosome), 
+        'translocate' (translocate  a stretch of chromosome to another 
+        random position). 
+        - chromosome_size: Number of bases for a chromosome.
+        - genome_size: Number of chromosome(s) in a genome.
+        - cells: Number of cells for array used in Ragaraja interpreter, 
+        which will be stored as Organism.status['blood'].
+        - tape_length: Number of cells for array used in Ragaraja 
+        interpreter, which will be stored as Organism.status['blood'].
+        - clean_cell: Toggle to define if a new tape will be used for 
+        Ragaraja interpreter. If True, at every Ragaraja interpretation of 
+        the source (genome), a new tape ([0] * tape_length) will be provided. 
+        If False, the tape stored as Organism.status['blood'] (results from 
+        previous interpretation of genome) will be used.
+        - interpret_chromosome: Toggle to define whether genomes will be 
+        interpreted by Ragaraja. If True, chromosomes of each organism will 
+        be interpreted by Ragaraja. 
+        - max_codon: Maximum number of Ragaraja instructions to execute per 
+        organism, which can be used as force-break from endless loop.
+        - population_size: Number of organisms per population for initial 
+        deployment.
+        - eco_cell_capacity: Maximum number of organisms per ecological 
+        cell at the time of deployment prior to the start of simulation.
+        - world_x: Number of ecological cells in the x-axis of the 
+        World.ecosystem.
+        - world_y: Number of ecological cells in the y-axis of the 
+        World.ecosystem.
+        - world_z: Number of ecological cells in the z-axis of the 
+        World.ecosystem.
+        - goal: Goal for population to reach. This provides a goal for use 
+        in fitness functions.
+        - maximum_generations: Number of generations to simulate.
+        - fossilized_ratio: Proportion (less than 1) of the population to 
+        fossilize or freeze.
+        - fossilized_frequency: Number of generations (intervals) for each 
+        population fossilization or freezing event.
+        - print_frequency: Number of generations (intervals) for each 
+        reporting event into files.
+        - ragaraja_version: Ragaraga instruction version to activate. (see 
+        ragaraja.activate_version() for more details)
+        - ragaraja_instructions: A list defining a set of Ragaraga 
+        instructions to activate. This is only useful when ragaraja_version 
+        is 0.
+        - eco_buried_frequency: Number of generations (intervals) for each 
+        ecological freezing or burial event.
+        - database_file: Logging database file name. This file will be 
+        located in <current working directory>/Simulations folder
+        - database_logging_frequency: Number of generations (intervals) for 
+        each database logging event. 
+    
+    Methods / Functions from dose.dose_functions class to be over-ridden 
+    as simulation_functions (for more details, please look at 
+    dose.dose_functions class):
+        - organism_movement: organism_movement and organism_location are 
+        both methods / functions to execute movement of organisms within 
+        the world. The semantic difference between organism_movement and 
+        organism_location is that organism_movement is generally used for 
+        short travels while organism_location is used for long travel.
+        - organism_location: organism_movement and organism_location are 
+        both methods / functions to execute movement of organisms within 
+        the world. The semantic difference between organism_movement and 
+        organism_location is that organism_movement is generally used for 
+        short travels while organism_location is used for long travel.
+        - ecoregulate: Broad spectrum management of the entire 
+        ecosystem.
+        - update_ecology: Process the input and output from the activities 
+        of the organisms in the current ecological cell into a local 
+        ecological cell condition, and update the ecosystem.
+        - update_local: Update local ecological cell condition from the 
+        ecosystem.
+        - report: Generate a text report of ecosystem (World.ecosystem) at 
+        regular intervals, within the simulation, as determined by 
+        "print_frequency" in the simulation parameters.
+        - fitness: Calculate the fitness score of each organism within the 
+        population(s).
+        - mutation_scheme: Trigger mutational events in each chromosome 
+        of the genome within an organism.
+        - prepopulation_control: Trigger population control events before 
+        mating event in each generation.
+        - mating: Trigger mating events in each generation.
+        - postpopulation_control: Trigger population control events after 
+        mating event in each generation.
+        - generation_events: Trigger other defined events in each 
+        generation.
+        - population_report: Generate a text report of the population(s) 
+        and/or each organisms within the population at regular intervals, 
+        within the simulation, as determined by "print_frequency" in the 
+        simulation parameters
+        - database_report: Implement database logging of each organism 
+        in each population, and the ecosystem status. The frequency of 
+        logging is determined by "database_logging_frequency" in the 
+        simulation_parameters.
+        - deployment_scheme: Implement a user-specific / simulation-
+        specific deployment scheme used to deploy organisms into the 
+        World. This function will only be used when "deployment_code" in 
+        simulation parameters dictionary equals to 0.
+    
+    @param sim_parameters: Dictionary of simulation parameters
+    @param simulation_functions: A class inherited from dose.dose_functions
+    class to implement all the needed simulation functions.
+    '''
     (sim_parameters, sim_functions, 
      World, Populations) = prepare_simulation(sim_parameters, 
                                               simulation_functions)
