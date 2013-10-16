@@ -375,7 +375,11 @@ def database_report_populations(con, cur, start_time,
             for key in [key for key in org.status.keys()
                                if key != 'identity']:
                 if key in ('blood', 'location'):
-                    value = '|'.join([str(x) for x in org.status[key]])
+                    try:
+                        # TypeError will occur when genome/chromosomes are 
+                        # not interpreted
+                        value = '|'.join([str(x) for x in org.status[key]])
+                    except TypeError: value = ''
                 else: 
                     value = str(org.status[key])
                 cur.execute('insert into organisms values (?,?,?,?,?,?)', 
