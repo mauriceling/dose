@@ -122,19 +122,21 @@ def eco_cell_iterator(World, sim_parameters, function):
                 else:
                     function(World)
 
-def deploy(sim_parameters, Populations, pop_name, World):
+def deploy_0(sim_parameters, Populations, pop_name, World):
+    sim_parameters["deployment_scheme"](Populations, pop_name, World)
+
+def deploy_1(sim_parameters, Populations, pop_name, World):
     position = sim_parameters["population_names"].index(pop_name)
     locations = [location for location in sim_parameters["population_locations"][position]]
-    if sim_parameters["deployment_code"] == 0:
-        sim_parameters["deployment_scheme"](Populations, pop_name, World)
-    if sim_parameters["deployment_code"] == 1:
-        location = locations[0]
-        (x,y,z) = coordinates(location)
-        World.ecosystem[x][y][z]['organisms'] = sim_parameters["population_size"]
-        for individual in Populations[pop_name].agents:
-            individual.status['location'] = location
-    elif sim_parameters["deployment_code"] == 2:
-        for individual in Populations[pop_name].agents:
+    (x,y,z) = coordinates(locations[0])
+    World.ecosystem[x][y][z]['organisms'] = sim_parameters["population_size"]
+    for individual in Populations[pop_name].agents:
+        individual.status['location'] = locations[0]
+
+def deploy_2(sim_parameters, Populations, pop_name, World):
+    position = sim_parameters["population_names"].index(pop_name)
+    locations = [location for location in sim_parameters["population_locations"][position]]
+    for individual in Populations[pop_name].agents:
             location = random.choice(locations)
             (x,y,z) = coordinates(location)
             while World.ecosystem[x][y][z]['organisms'] >= sim_parameters["eco_cell_capacity"]:
@@ -142,35 +144,40 @@ def deploy(sim_parameters, Populations, pop_name, World):
                 (x,y,z) = coordinates(location)
             World.ecosystem[x][y][z]['organisms'] = World.ecosystem[x][y][z]['organisms'] + 1
             individual.status['location'] = location
-    elif sim_parameters["deployment_code"] == 3:
-        iterator = 0
-        for i in xrange(sim_parameters["population_size"]):
-            individual = Populations[pop_name].agents[i]
-            location = locations[iterator]
-            (x,y,z) = coordinates(location)
-            World.ecosystem[x][y][z]['organisms'] = World.ecosystem[x][y][z]['organisms'] + 1
-            individual.status['location'] = location
-            iterator += 1
-            if iterator == len(locations):
-                iterator = 0
-    elif sim_parameters["deployment_code"] == 4:
-        location = locations[0]
-        adj_cells = adjacent_cells(sim_parameters, location)
-        for group in xrange((sim_parameters["population_size"]/sim_parameters["eco_cell_capacity"]) + 1):
-            start = sim_parameters["eco_cell_capacity"] * group
-            end = start + sim_parameters["eco_cell_capacity"]
-            for x in xrange(start,end):
-                if x == sim_parameters["population_size"]: break
-                individual = Populations[pop_name].agents[x]
-                if x > (sim_parameters["eco_cell_capacity"] - 1):
-                    location = random.choice(adj_cells)
-                    (x,y,z) = coordinates(location)
-                    while World.ecosystem[x][y][z]['organisms'] > sim_parameters["eco_cell_capacity"]:
-                        location = random.choice(adj_cells)
-                        (x,y,z) = coordinates(location)
+
+def deploy_3(sim_parameters, Populations, pop_name, World):
+    position = sim_parameters["population_names"].index(pop_name)
+    locations = [location for location in sim_parameters["population_locations"][position]]
+    iterator = 0
+    for i in xrange(sim_parameters["population_size"]):
+        individual = Populations[pop_name].agents[i]
+        location = locations[iterator]
+        (x,y,z) = coordinates(location)
+        World.ecosystem[x][y][z]['organisms'] = World.ecosystem[x][y][z]['organisms'] + 1
+        individual.status['location'] = location
+        iterator += 1
+        if iterator == len(locations):
+            iterator = 0
+
+def deploy_4(sim_parameters, Populations, pop_name, World):
+    position = sim_parameters["population_names"].index(pop_name)
+    locations = [location for location in sim_parameters["population_locations"][position]]
+    adj_cells = adjacent_cells(sim_parameters, locations[0])
+    for group in xrange((sim_parameters["population_size"]/sim_parameters["eco_cell_capacity"]) + 1):
+        start = sim_parameters["eco_cell_capacity"] * group
+        end = start + sim_parameters["eco_cell_capacity"]
+        for x in xrange(start,end):
+            if x == sim_parameters["population_size"]: break
+            individual = Populations[pop_name].agents[x]
+            if x > (sim_parameters["eco_cell_capacity"] - 1):
+                location = random.choice(adj_cells)
                 (x,y,z) = coordinates(location)
-                World.ecosystem[x][y][z]['organisms'] += 1
-                individual.status['location'] = location
+                while World.ecosystem[x][y][z]['organisms'] > sim_parameters["eco_cell_capacity"]:
+                    location = random.choice(adj_cells)
+                    (x,y,z) = coordinates(random.choice(adj_cells))
+            (x,y,z) = coordinates(location)
+            World.ecosystem[x][y][z]['organisms'] += 1
+            individual.status['location'] = location
 
 def interpret_chromosome(sim_parameters, Populations, pop_name, World):
     cell = [0] * sim_parameters["cells"]
