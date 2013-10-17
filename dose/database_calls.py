@@ -6,7 +6,7 @@ Date created: 10th October 2013
 import os
 import sqlite3 as s
 
-def prepare_database(sim_parameters):
+def connect_database(sim_parameters):
     '''
     Connects to logging database and prepares database for use, if
     database does not exist. This function will look for database file in
