@@ -549,7 +549,7 @@ def revive_simulation(rev_parameters, simulation_functions):
         ragaraja.activate_version(rev_parameters["ragaraja_version"])
     if rev_parameters.has_key("database_file") and \
         rev_parameters.has_key("database_logging_frequency"): 
-        (con, cur) = connect_database(rev_parameters)
+        (con, cur) = connect_database(None, rev_parameters)
         (con, cur) = db_log_simulation_parameters(con, cur, rev_parameters)
     for pop_name in Populations:
         write_rev_parameters(rev_parameters, pop_name)         
@@ -728,7 +728,7 @@ def simulate(sim_parameters, simulation_functions):
         ragaraja.activate_version(sim_parameters["ragaraja_version"])
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
-        (con, cur) = connect_database(sim_parameters)
+        (con, cur) = connect_database(None, sim_parameters)
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)

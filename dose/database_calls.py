@@ -6,20 +6,31 @@ Date created: 10th October 2013
 import os
 import sqlite3 as s
 
-def connect_database(sim_parameters):
+def connect_database(dbpath, sim_parameters=None):
     '''
     Connects to logging database and prepares database for use, if
-    database does not exist. This function will look for database file in
-    <simulation execution directory>/Simulations/<database file>. If the 
-    database is not present, it will create a SQLite3 database file and 
-    create the required database tables.
+    database does not exist. This function can be used to connect to the 
+    logging database using a file path or using simulation parameters 
+    dictionary. 
     
-    @param sim_parameters: Dictionary of simulation parameters.
+    Simulation parameters dictionary takes precedence - if simulation 
+    parameters dictionary (sim_parameters) is not None, this function will 
+    look for database file in <simulation execution directory>/Simulations/
+    <database file>. 
+    
+    In both cases, if the database is not present, it will create a SQLite3 
+    database file and create the required database tables.
+    
+    @param dbpath: File path of logging database. This parameter will only 
+    be used when sim_parameters == None.
+    @param sim_parameters: Dictionary of simulation parameters. Default is 
+    None.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
-    dbpath = os.sep.join([os.getcwd(), 
-                          'Simulations', 
-                          sim_parameters["database_file"]])
+    if sim_parameters:
+        dbpath = os.sep.join([os.getcwd(), 
+                              'Simulations', 
+                              sim_parameters["database_file"]])
     con = s.connect(dbpath)
     cur = con.cursor()
     cur.execute('''

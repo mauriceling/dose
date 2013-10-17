@@ -2,3 +2,4 @@
 *.sln
 *.pyc
 examples/Simulations
+examples/*.db
