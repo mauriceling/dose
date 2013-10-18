@@ -51,6 +51,12 @@ def connect_database(dbpath, sim_parameters=None):
         create table if not exists miscellaneous
             (start_time text, generation text,
              key text, value text)''')
+    cur.execute('''
+        create index if not exists organisms_index1 on organisms
+            (pop_name, generation)''')
+    cur.execute('''
+        create index if not exists organisms_index2 on organisms
+            (generation, org_name)''')
     con.commit()
     return (con, cur)
 
@@ -277,7 +283,6 @@ def db_reconstruct_world(cur, start_time, generation):
     cur.execute("select max(x), max(y), max(z) from world where \
     start_time = '%s'" % start_time)
     coordinates = cur.fetchone()
-    print coordinates
     world_x = int(coordinates[0]) + 1
     world_y = int(coordinates[1]) + 1
     world_z = int(coordinates[2]) + 1
@@ -294,8 +299,9 @@ def db_reconstruct_world(cur, start_time, generation):
                     ecosystem[x][y][z][key] = None
     start_time = str(start_time)
     generation = str(generation)
+    # query plan: SCAN TABLE world
     cur.execute("select x, y, z, key, value from world where \
-    generation = '%s' and start_time =  '%s'" % (generation, start_time))
+    start_time =  '%s' and generation = '%s'" % (start_time, generation))
     for r in cur.fetchall():
         x = int(r[0])
         y = int(r[1])
@@ -307,4 +313,88 @@ def db_reconstruct_world(cur, start_time, generation):
     World.ecosystem = ecosystem
     return World
     
+def db_reconstruct_organisms(cur, start_time, population_name, generation):
+    '''
+    Function to reconstruct a list of organisms (genetic.Organism objects) 
+    of a population within a simulation (as identified by the starting time 
+    of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population
+    @param generation_count: Current number of generations simulated.
+    @return: A list of Organisms (genetic.Organism objects)
+    '''
+    import genetic as g
+    start_time = str(start_time)
+    population_name = str(population_name)
+    generation = str(generation)
+    # query plan: SEARCH TABLE organisms USING INDEX 
+    #             organisms_index2 (generation=?)
+    cur.execute("select distinct org_name from organisms where \
+    start_time = '%s' and pop_name = '%s' and generation = '%s'" %
+    (start_time, population_name, generation))
+    names = [x[0] for x in cur.fetchall()]
+    agents = [0] * len(names)
+    for i in range(len(names)):
+        org_name = str(names[i])
+        org = g.Organism()
+        org.genome = []
+        org.status['identity'] = org_name
+        # query plan: SEARCH TABLE organisms USING INDEX 
+        #             organisms_index2 (generation=? AND org_name=?)
+        cur.execute("select key, value from organisms where \
+        generation = '%s' and org_name = '%s' and \
+        start_time = '%s' and pop_name = '%s'" %
+        (generation, org_name, start_time, population_name))
+        for r in cur.fetchall():
+            key = str(r[0])
+            value = str(r[1])
+            if key == 'alive':
+                exec("org.status['alive'] = %s" % str(value))
+            elif key == 'vitality':
+                org.status['vitality'] = float(value)
+            elif key == 'age':
+                org.status['age'] = float(value)
+            elif key == 'gender':
+                exec("org.status['gender'] = %s" % str(value)) 
+            elif key == 'lifespan':
+                org.status['lifespan'] = float(value)
+            elif key == 'fitness':
+                exec("f = '%s'" % str(value))
+                if type(f) == type(1) or type(f) == type(1.0):
+                    org.status['fitness'] = float(value)
+                else:
+                    exec("org.status['fitness'] = %s" % str(value))
+            elif key == 'blood':
+                if value == '': value = '[]'
+                else: value = value.split('|')
+                exec("org.status['blood'] = %s" % str(value))
+            elif key == 'deme':
+                org.status['deme'] = str(value)
+            elif key == 'location':
+                value = tuple(value.split('|'))
+                exec("org.status['blood'] = %s" % str(value))
+            elif key == 'death':
+                exec("org.status['death'] = %s" % str(value))
+            elif key.startswith('chromosome'):
+                chr_position = key.split('_')[1]
+                sequence = [str(x) for x in str(value)]
+                cur.execute("select value from parameters where \
+                    key='background_mutation' and start_time='%s'" % 
+                    start_time)
+                background_mutation = float(cur.fetchone()[0])
+                cur.execute("select value from parameters where \
+                    key='chromosome_bases' and start_time='%s'" % 
+                    start_time)
+                bases = str(cur.fetchone()[0]).split('|')
+                exec("chromosome_bases = %s" % bases)
+                chromosome = g.Chromosome(sequence, chromosome_bases, 
+                                          background_mutation)
+                org.genome.append(chromosome)
+            else:
+                exec("org.status['%s'] = %s" % (str(key), str(value)))
+        agents[i] = org
+    return agents
     
