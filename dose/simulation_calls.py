@@ -288,7 +288,6 @@ background_mutation: %(background_mutation)s
 additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
 population_size: %(population_size)s
-cells: %(cells)s
 max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
@@ -326,7 +325,6 @@ additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
 chromosome_size: %(chromosome_size)s
 genome_size: %(genome_size)s
-cells: %(cells)s
 max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
