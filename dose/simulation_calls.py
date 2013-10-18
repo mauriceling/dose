@@ -180,17 +180,17 @@ def deploy_4(sim_parameters, Populations, pop_name, World):
             individual.status['location'] = location
 
 def interpret_chromosome(sim_parameters, Populations, pop_name, World):
-    array = [0] * sim_parameters["tape_length"]
+    array = [0] * sim_parameters["max_tape_length"]
     for i in range(len(Populations[pop_name].agents)):
         individual = Populations[pop_name].agents[i]
         location = individual.status['location']
         (x,y,z) = coordinates(location)
         if sim_parameters["clean_cell"]:
-            array = [0] * sim_parameters["tape_length"]
+            array = [0] * sim_parameters["max_tape_length"]
         else:
             array = Populations[pop_name].agents[i].status['blood']
             if array == None: 
-                array = [0] * sim_parameters["tape_length"]
+                array = [0] * sim_parameters["max_tape_length"]
         for chromosome_count in range(len(individual.genome)):
             inputdata = World.ecosystem[x][y][z]['local_input']
             output = World.ecosystem[x][y][z]['local_output']
@@ -199,7 +199,7 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
                                            inputdata, array,
-                                           sim_parameters["tape_length"], 
+                                           sim_parameters["max_tape_length"], 
 									       sim_parameters["max_codon"])
             except Exception, e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
@@ -289,7 +289,7 @@ additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
 population_size: %(population_size)s
 cells: %(cells)s
-tape_length: %(tape_length)s
+max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
 eco_cell_capacity: %(eco_cell_capacity)s
@@ -327,7 +327,7 @@ mutation_type: %(mutation_type)s
 chromosome_size: %(chromosome_size)s
 genome_size: %(genome_size)s
 cells: %(cells)s
-tape_length: %(tape_length)s
+max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
 population_size: %(population_size)s

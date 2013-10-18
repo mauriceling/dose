@@ -150,7 +150,7 @@ def db_reconstruct_simulation_parameters(cur, start_time):
                   "mutation_type": None,
                   "chromosome_size": None,
                   "genome_size": None,
-                  "tape_length": None,
+                  "max_tape_length": None,
                   "clean_cell": None,
                   "interpret_chromosome": None,
                   "max_codon": None,
@@ -195,8 +195,8 @@ def db_reconstruct_simulation_parameters(cur, start_time):
             parameters['chromosome_size'] = int(r[1])
         elif str(r[0]) == 'genome_size':
             parameters['genome_size'] = int(r[1])
-        elif str(r[0]) == 'tape_length':
-            parameters['tape_length'] = int(r[1])
+        elif str(r[0]) == 'max_tape_length':
+            parameters['max_tape_length'] = int(r[1])
         elif str(r[0]) == 'clean_cell':
             exec("parameters['clean_cell'] = %s" % str(r[1]))
         elif str(r[0]) == 'interpret_chromosome':

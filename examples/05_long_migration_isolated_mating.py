@@ -17,7 +17,7 @@ parameters = {
               "mutation_type": 'point',
               "chromosome_size": 50,
               "genome_size": 1,
-              "tape_length": 50,
+              "max_tape_length": 50,
               "clean_cell": True,
               "interpret_chromosome": False,
               "max_codon": 2000,
