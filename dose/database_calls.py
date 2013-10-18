@@ -398,3 +398,26 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
         agents[i] = org
     return agents
     
+def db_reconstruct_population(cur, start_time, 
+                              population_name, generation):
+    '''
+    Function to reconstruct a population within a simulation (as identified 
+    by the starting time of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population
+    @param generation_count: Current number of generations simulated.
+    @return: genetic.Population object
+    '''
+    import genetic
+    agents = db_reconstruct_organisms(cur, start_time, 
+                                      population_name, generation)
+    cur.execute("select value from parameters where \
+                key='goal' and start_time='%s'" % start_time)
+    g = cur.fetchone()[0]
+    try: goal = float(g)
+    except ValueError: exec("goal = %s" % str(g))
+    return genetic.Population(goal, 1e24, agents)
+    
