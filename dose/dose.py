@@ -622,8 +622,6 @@ def simulate(sim_parameters, simulation_functions):
         random position). 
         - chromosome_size: Number of bases for a chromosome.
         - genome_size: Number of chromosome(s) in a genome.
-        - cells: Number of cells for array used in Ragaraja interpreter, 
-        which will be stored as Organism.status['blood'].
         - tape_length: Number of cells for array used in Ragaraja 
         interpreter, which will be stored as Organism.status['blood'].
         - clean_cell: Toggle to define if a new tape will be used for 

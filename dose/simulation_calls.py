@@ -173,17 +173,17 @@ def deploy(sim_parameters, Populations, pop_name, World):
                 individual.status['location'] = location
 
 def interpret_chromosome(sim_parameters, Populations, pop_name, World):
-    cell = [0] * sim_parameters["cells"]
+    array = [0] * sim_parameters["tape_length"]
     for i in range(len(Populations[pop_name].agents)):
         individual = Populations[pop_name].agents[i]
         location = individual.status['location']
         (x,y,z) = coordinates(location)
         if sim_parameters["clean_cell"]:
-            array = [0] * sim_parameters["cells"]
+            array = [0] * sim_parameters["tape_length"]
         else:
             array = Populations[pop_name].agents[i].status['blood']
             if array == None: 
-                array = [0] * sim_parameters["cells"]
+                array = [0] * sim_parameters["tape_length"]
         for chromosome_count in range(len(individual.genome)):
             inputdata = World.ecosystem[x][y][z]['local_input']
             output = World.ecosystem[x][y][z]['local_output']
