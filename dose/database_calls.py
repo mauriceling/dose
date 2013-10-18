@@ -3,7 +3,7 @@ File containing support functions for database logging of simulations.
 
 Date created: 10th October 2013
 '''
-import os
+import os, copy
 import sqlite3 as s
 
 def connect_database(dbpath, sim_parameters=None):
@@ -140,35 +140,22 @@ def db_list_simulations(cur, table='parameters'):
     return cur.fetchall()
 
 def db_reconstruct_simulation_parameters(cur, start_time):
-    parameters = {"simulation_name": None,
-                  "population_names": None,
-                  "population_locations": None,
-                  "deployment_code": None,
-                  "chromosome_bases": None,
-                  "background_mutation": None,
-                  "additional_mutation": None,
-                  "mutation_type": None,
-                  "chromosome_size": None,
-                  "genome_size": None,
-                  "max_tape_length": None,
-                  "clean_cell": None,
-                  "interpret_chromosome": None,
-                  "max_codon": None,
-                  "population_size": None,
-                  "eco_cell_capacity": None,
-                  "world_x": None,
-                  "world_y": None,
-                  "world_z": None,
-                  "goal": None,
-                  "maximum_generations": None,
-                  "fossilized_ratio": None,
-                  "fossilized_frequency": None,
-                  "print_frequency": None,
-                  "ragaraja_version": None,
-                  "ragaraja_instructions": None,
-                  "eco_buried_frequency": None,
-                  "database_file": None,
-                  "database_logging_frequency": None}
+    parameters = {}
+    for key in ('simulation_name', 'population_names', 
+                'population_locations', 'deployment_code',
+                'chromosome_bases', 'background_mutation',
+                'additional_mutation', 'mutation_type',
+                'chromosome_size', 'genome_size', 'max_tape_length',
+                'clean_cell', 'interpret_chromosome', 'max_codon',
+                'population_size', 'eco_cell_capacity',
+                'world_x', 'world_y', 'world_z', 'goal',
+                'maximum_generations', 'fossilized_ratio',
+                'fossilized_frequency', 'print_frequency',
+                'ragaraja_version', 'ragaraja_instructions',
+                'eco_buried_frequency', 'database_file',
+                'database_logging_frequency'):
+        parameters[key] = None
+    start_time = str(start_time)
     cur.execute("select distinct simulation_name from parameters where \
     start_time = '%s'" % start_time)
     parameters["simulation_name"] = str(cur.fetchone()[0])
@@ -214,10 +201,8 @@ def db_reconstruct_simulation_parameters(cur, start_time):
         elif str(r[0]) == 'world_z':
             parameters['world_z'] = int(r[1])
         elif str(r[0]) == 'goal':
-            try:
-                parameters['goal'] = float(r[1])
-            except ValueError:
-                exec("parameters['goal'] = %s" % str(r[1]))
+            try: parameters['goal'] = float(r[1])
+            except ValueError: exec("parameters['goal'] = %s" % str(r[1]))
         elif str(r[0]) == 'maximum_generations':
             parameters['maximum_generations'] = int(r[1])
         elif str(r[0]) == 'fossilized_ratio':
@@ -228,10 +213,8 @@ def db_reconstruct_simulation_parameters(cur, start_time):
             parameters['print_frequency'] = int(r[1])
         elif str(r[0]) == 'ragaraja_version':
             version = str(r[1])
-            if version == '0.1':
-                parameters['ragaraja_version'] = 0.1
-            else:
-                parameters['ragaraja_version'] = int(r[1])
+            if version == '0.1': parameters['ragaraja_version'] = 0.1
+            else: parameters['ragaraja_version'] = int(r[1])
         elif str(r[0]) == 'ragaraja_instructions':
             value = str(r[1]).split('|')
             exec("parameters['ragaraja_instructions'] = %s" % str(value))
@@ -242,4 +225,43 @@ def db_reconstruct_simulation_parameters(cur, start_time):
         elif str(r[0]) == 'database_logging_frequency':
             parameters['database_logging_frequency'] = int(r[1])
     return parameters
+
+def db_reconstruct_world(cur, start_time, generation):
+    import dose_world
+    eco_cell = {'local_input': [], 'local_output': [],
+                'temporary_input': [], 'temporary_output': [],
+                'organisms': 0}
+    cur.execute("select max(x), max(y), max(z) from world where \
+    start_time = '%s'" % start_time)
+    coordinates = cur.fetchone()
+    print coordinates
+    world_x = int(coordinates[0]) + 1
+    world_y = int(coordinates[1]) + 1
+    world_z = int(coordinates[2]) + 1
+    ecosystem = {}
+    for x in range(world_x):
+        ecosystem[x] = {}
+        for y in range(world_y):
+            ecosystem[x][y] = {}
+            for z in range(world_z): 
+                ecosystem[x][y][z] = {}
+                for key in ('local_input', 'local_output',
+                            'temporary_input', 'temporary_output',
+                            'organisms'):
+                    ecosystem[x][y][z][key] = None
+    start_time = str(start_time)
+    generation = str(generation)
+    cur.execute("select x, y, z, key, value from world where \
+    generation = '%s' and start_time =  '%s'" % (generation, start_time))
+    for r in cur.fetchall():
+        x = int(r[0])
+        y = int(r[1])
+        z = int(r[2])
+        key = str(r[3])
+        value = str(r[4])
+        exec("ecosystem[%i][%i][%i]['%s'] = %s" % (x, y, z, key, value))
+    World = dose_world.World(1, 1, 1)
+    World.ecosystem = ecosystem
+    return World
+    
     
