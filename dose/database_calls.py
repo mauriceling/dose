@@ -78,8 +78,8 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
         - Initial (ancestral) chromosome is a list of bases. These bases 
         are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
     
-    @param con: Database connector from prepare_database() function. 
-    @param cur: Database cursor from prepare_database() function.
+    @param con: Database connector from connect_database() function. 
+    @param cur: Database cursor from connect_database() function.
     @param sim_parameters: Dictionary of parameters used in simulation.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
@@ -112,8 +112,8 @@ def db_report(con, cur, sim_functions, start_time,
     Wrapper around user-implemented database logging which over-rides 
     dose.dose_functions.database_report() function.
     
-    @param con: Database connector from prepare_database() function. 
-    @param cur: Database cursor from prepare_database() function.
+    @param con: Database connector from connect_database() function. 
+    @param cur: Database cursor from connect_database() function.
     @param sim_functions: Object of simulation-specific functions, which 
     inherits dose.dose_functions class.
     @param start_time: Starting time of current simulation in the format 
@@ -121,6 +121,7 @@ def db_report(con, cur, sim_functions, start_time,
     @param Populations: A dictionary containing one or more populations 
     where the value is a genetic.Population object.
     @param World: dose_world.World object.
+    @param generation_count: Current number of generations simulated.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
     sim_functions.database_report(con, cur, start_time,
@@ -129,17 +130,49 @@ def db_report(con, cur, sim_functions, start_time,
     return (con, cur)
 
 def db_list_simulations(cur, table='parameters'):
+    '''
+    Function to list simulations, identified by starting time of the 
+    simulation (and simulation name, if available), from logging database.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'parameters'.
+    @return: A list containing the results. If table = 'parameters', the 
+    returned list will be a list of list (consisting of [starting time of 
+    simulation, simulation name]). If table is not 'parameters', the 
+    returned list will be a list of starting time of simulation.
+    '''
     if table not in ('parameters', 'organisms',
                      'world', 'miscellaneous'):
         table = 'parameters'
     if table == 'parameters':
         cur.execute("""select distinct start_time, simulation_name 
                     from parameters""")
+        return [[x[0], x[1]] for x in cur.fetchall()]
     else:
         cur.execute("select distinct start_time from %s", table)
-    return cur.fetchall()
+        return [x[0] for x in cur.fetchall()]
 
 def db_reconstruct_simulation_parameters(cur, start_time):
+    '''
+    Function to reconstruct simulation parameters dictionary of a 
+    simulation (as identified by the starting time of the simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @return: Simulation parameters dictionary containing the following 
+    keys - 'simulation_name', 'population_names', 'population_locations', 
+    'deployment_code', 'chromosome_bases', 'background_mutation',
+    'additional_mutation', 'mutation_type', 'chromosome_size', 
+    'genome_size', 'max_tape_length', 'clean_cell', 'interpret_chromosome', 
+    'max_codon', 'population_size', 'eco_cell_capacity', 'world_x', 
+    'world_y', 'world_z', 'goal', 'maximum_generations', 'fossilized_ratio',
+    'fossilized_frequency', 'print_frequency', 'ragaraja_version', 
+    'ragaraja_instructions', 'eco_buried_frequency', 'database_file',
+    'database_logging_frequency'.
+    '''
     parameters = {}
     for key in ('simulation_name', 'population_names', 
                 'population_locations', 'deployment_code',
@@ -227,6 +260,16 @@ def db_reconstruct_simulation_parameters(cur, start_time):
     return parameters
 
 def db_reconstruct_world(cur, start_time, generation):
+    '''
+    Function to reconstruct the world object of a simulation (as identified 
+    by the starting time of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param generation_count: Current number of generations simulated.
+    @return: dose_world.World object
+    '''
     import dose_world
     eco_cell = {'local_input': [], 'local_output': [],
                 'temporary_input': [], 'temporary_output': [],
