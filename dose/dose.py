@@ -13,10 +13,11 @@ from shutil import copyfile
 import ragaraja, register_machine
 import dose_world
 
-from simulation_calls import spawn_populations, eco_cell_iterator, deploy
+from simulation_calls import spawn_populations, eco_cell_iterator
 from simulation_calls import interpret_chromosome, step, report_generation
 from simulation_calls import bury_world, write_parameters, close_results
 from simulation_calls import prepare_simulation, prepare_revival, write_rev_parameters
+from simulation_calls import deploy_0, deploy_1, deploy_2, deploy_3, deploy_4
 
 from database_calls import connect_database, db_log_simulation_parameters
 from database_calls import db_report
@@ -730,7 +731,16 @@ def simulate(sim_parameters, simulation_functions):
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
     for pop_name in Populations:
         write_parameters(sim_parameters, pop_name)
-        deploy(sim_parameters, Populations, pop_name, World)          
+        if sim_parameters["deployment_code"] == 0:
+            deploy_0(sim_parameters, Populations, pop_name, World)      
+        elif sim_parameters["deployment_code"] == 1:
+            deploy_1(sim_parameters, Populations, pop_name, World)  
+        elif sim_parameters["deployment_code"] == 2:
+            deploy_2(sim_parameters, Populations, pop_name, World)  
+        elif sim_parameters["deployment_code"] == 3:
+            deploy_3(sim_parameters, Populations, pop_name, World)  
+        elif sim_parameters["deployment_code"] == 4:
+            deploy_4(sim_parameters, Populations, pop_name, World)      
     generation_count = 0
     while generation_count < sim_parameters["maximum_generations"]:
         generation_count = generation_count + 1
