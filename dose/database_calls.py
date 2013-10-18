@@ -128,4 +128,118 @@ def db_report(con, cur, sim_functions, start_time,
     con.commit()
     return (con, cur)
 
+def db_list_simulations(cur, table='parameters'):
+    if table not in ('parameters', 'organisms',
+                     'world', 'miscellaneous'):
+        table = 'parameters'
+    if table == 'parameters':
+        cur.execute("""select distinct start_time, simulation_name 
+                    from parameters""")
+    else:
+        cur.execute("select distinct start_time from %s", table)
+    return cur.fetchall()
+
+def db_reconstruct_simulation_parameters(cur, start_time):
+    parameters = {"simulation_name": None,
+                  "population_names": None,
+                  "population_locations": None,
+                  "deployment_code": None,
+                  "chromosome_bases": None,
+                  "background_mutation": None,
+                  "additional_mutation": None,
+                  "mutation_type": None,
+                  "chromosome_size": None,
+                  "genome_size": None,
+                  "tape_length": None,
+                  "clean_cell": None,
+                  "interpret_chromosome": None,
+                  "max_codon": None,
+                  "population_size": None,
+                  "eco_cell_capacity": None,
+                  "world_x": None,
+                  "world_y": None,
+                  "world_z": None,
+                  "goal": None,
+                  "maximum_generations": None,
+                  "fossilized_ratio": None,
+                  "fossilized_frequency": None,
+                  "print_frequency": None,
+                  "ragaraja_version": None,
+                  "ragaraja_instructions": None,
+                  "eco_buried_frequency": None,
+                  "database_file": None,
+                  "database_logging_frequency": None}
+    cur.execute("select distinct simulation_name from parameters where \
+    start_time = '%s'" % start_time)
+    parameters["simulation_name"] = str(cur.fetchone()[0])
+    cur.execute("select key, value from parameters where \
+                 start_time = '%s'" % start_time)
+    for r in cur.fetchall():
+        if str(r[0]) == 'population_names':
+            value = str(r[1]).split('|')
+            exec("parameters['population_names'] = %s" % str(value))
+        elif str(r[0]) == 'population_locations':
+            exec("parameters['population_locations'] = %s" % str(r[1]))
+        elif str(r[0]) == 'deployment_code':
+            parameters['deployment_code'] = int(r[1])
+        elif str(r[0]) == 'chromosome_bases':
+            value = str(r[1]).split('|')
+            exec("parameters['chromosome_bases'] = %s" % str(value))
+        elif str(r[0]) == 'background_mutation':
+            parameters['background_mutation'] = float(r[1])
+        elif str(r[0]) == 'additional_mutation':
+            parameters['additional_mutation'] = float(r[1])
+        elif str(r[0]) == 'mutation_type':
+            parameters['mutation_type'] = str(r[1])
+        elif str(r[0]) == 'chromosome_size':
+            parameters['chromosome_size'] = int(r[1])
+        elif str(r[0]) == 'genome_size':
+            parameters['genome_size'] = int(r[1])
+        elif str(r[0]) == 'tape_length':
+            parameters['tape_length'] = int(r[1])
+        elif str(r[0]) == 'clean_cell':
+            exec("parameters['clean_cell'] = %s" % str(r[1]))
+        elif str(r[0]) == 'interpret_chromosome':
+            exec("parameters['interpret_chromosome'] = %s" % str(r[1]))
+        elif str(r[0]) == 'max_codon':
+            parameters['max_codon'] = int(r[1])
+        elif str(r[0]) == 'population_size':
+            parameters['population_size'] = int(r[1])
+        elif str(r[0]) == 'eco_cell_capacity':
+            parameters['eco_cell_capacity'] = int(r[1])
+        elif str(r[0]) == 'world_x':
+            parameters['world_x'] = int(r[1])
+        elif str(r[0]) == 'world_y':
+            parameters['world_y'] = int(r[1])
+        elif str(r[0]) == 'world_z':
+            parameters['world_z'] = int(r[1])
+        elif str(r[0]) == 'goal':
+            try:
+                parameters['goal'] = float(r[1])
+            except ValueError:
+                exec("parameters['goal'] = %s" % str(r[1]))
+        elif str(r[0]) == 'maximum_generations':
+            parameters['maximum_generations'] = int(r[1])
+        elif str(r[0]) == 'fossilized_ratio':
+            parameters['fossilized_ratio'] = float(r[1])
+        elif str(r[0]) == 'fossilized_frequency':
+            parameters['fossilized_frequency'] = int(r[1])
+        elif str(r[0]) == 'print_frequency':
+            parameters['print_frequency'] = int(r[1])
+        elif str(r[0]) == 'ragaraja_version':
+            version = str(r[1])
+            if version == '0.1':
+                parameters['ragaraja_version'] = 0.1
+            else:
+                parameters['ragaraja_version'] = int(r[1])
+        elif str(r[0]) == 'ragaraja_instructions':
+            value = str(r[1]).split('|')
+            exec("parameters['ragaraja_instructions'] = %s" % str(value))
+        elif str(r[0]) == 'eco_buried_frequency':
+            parameters['eco_buried_frequency'] = int(r[1])
+        elif str(r[0]) == 'database_file':
+            parameters['database_file'] = str(r[1])
+        elif str(r[0]) == 'database_logging_frequency':
+            parameters['database_logging_frequency'] = int(r[1])
+    return parameters
     
