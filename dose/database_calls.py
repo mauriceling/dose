@@ -3,7 +3,7 @@ File containing support functions for database logging of simulations.
 
 Date created: 10th October 2013
 '''
-import os
+import os, copy
 import sqlite3 as s
 
 def connect_database(dbpath, sim_parameters=None):
@@ -51,6 +51,12 @@ def connect_database(dbpath, sim_parameters=None):
         create table if not exists miscellaneous
             (start_time text, generation text,
              key text, value text)''')
+    cur.execute('''
+        create index if not exists organisms_index1 on organisms
+            (pop_name, generation)''')
+    cur.execute('''
+        create index if not exists organisms_index2 on organisms
+            (generation, org_name)''')
     con.commit()
     return (con, cur)
 
@@ -78,8 +84,8 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
         - Initial (ancestral) chromosome is a list of bases. These bases 
         are concatenated with no delimiter. For example, [1, 2, 3] ==> 123
     
-    @param con: Database connector from prepare_database() function. 
-    @param cur: Database cursor from prepare_database() function.
+    @param con: Database connector from connect_database() function. 
+    @param cur: Database cursor from connect_database() function.
     @param sim_parameters: Dictionary of parameters used in simulation.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
@@ -112,8 +118,8 @@ def db_report(con, cur, sim_functions, start_time,
     Wrapper around user-implemented database logging which over-rides 
     dose.dose_functions.database_report() function.
     
-    @param con: Database connector from prepare_database() function. 
-    @param cur: Database cursor from prepare_database() function.
+    @param con: Database connector from connect_database() function. 
+    @param cur: Database cursor from connect_database() function.
     @param sim_functions: Object of simulation-specific functions, which 
     inherits dose.dose_functions class.
     @param start_time: Starting time of current simulation in the format 
@@ -121,6 +127,7 @@ def db_report(con, cur, sim_functions, start_time,
     @param Populations: A dictionary containing one or more populations 
     where the value is a genetic.Population object.
     @param World: dose_world.World object.
+    @param generation_count: Current number of generations simulated.
     @return: (con, cur) where con = connector and cur = cursor. 
     '''
     sim_functions.database_report(con, cur, start_time,
@@ -129,46 +136,65 @@ def db_report(con, cur, sim_functions, start_time,
     return (con, cur)
 
 def db_list_simulations(cur, table='parameters'):
+    '''
+    Function to list simulations, identified by starting time of the 
+    simulation (and simulation name, if available), from logging database.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'parameters'.
+    @return: A list containing the results. If table = 'parameters', the 
+    returned list will be a list of list (consisting of [starting time of 
+    simulation, simulation name]). If table is not 'parameters', the 
+    returned list will be a list of starting time of simulation.
+    '''
     if table not in ('parameters', 'organisms',
                      'world', 'miscellaneous'):
         table = 'parameters'
     if table == 'parameters':
         cur.execute("""select distinct start_time, simulation_name 
                     from parameters""")
+        return [[x[0], x[1]] for x in cur.fetchall()]
     else:
         cur.execute("select distinct start_time from %s", table)
-    return cur.fetchall()
+        return [x[0] for x in cur.fetchall()]
 
 def db_reconstruct_simulation_parameters(cur, start_time):
-    parameters = {"simulation_name": None,
-                  "population_names": None,
-                  "population_locations": None,
-                  "deployment_code": None,
-                  "chromosome_bases": None,
-                  "background_mutation": None,
-                  "additional_mutation": None,
-                  "mutation_type": None,
-                  "chromosome_size": None,
-                  "genome_size": None,
-                  "max_tape_length": None,
-                  "clean_cell": None,
-                  "interpret_chromosome": None,
-                  "max_codon": None,
-                  "population_size": None,
-                  "eco_cell_capacity": None,
-                  "world_x": None,
-                  "world_y": None,
-                  "world_z": None,
-                  "goal": None,
-                  "maximum_generations": None,
-                  "fossilized_ratio": None,
-                  "fossilized_frequency": None,
-                  "print_frequency": None,
-                  "ragaraja_version": None,
-                  "ragaraja_instructions": None,
-                  "eco_buried_frequency": None,
-                  "database_file": None,
-                  "database_logging_frequency": None}
+    '''
+    Function to reconstruct simulation parameters dictionary of a 
+    simulation (as identified by the starting time of the simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @return: Simulation parameters dictionary containing the following 
+    keys - 'simulation_name', 'population_names', 'population_locations', 
+    'deployment_code', 'chromosome_bases', 'background_mutation',
+    'additional_mutation', 'mutation_type', 'chromosome_size', 
+    'genome_size', 'max_tape_length', 'clean_cell', 'interpret_chromosome', 
+    'max_codon', 'population_size', 'eco_cell_capacity', 'world_x', 
+    'world_y', 'world_z', 'goal', 'maximum_generations', 'fossilized_ratio',
+    'fossilized_frequency', 'print_frequency', 'ragaraja_version', 
+    'ragaraja_instructions', 'eco_buried_frequency', 'database_file',
+    'database_logging_frequency'.
+    '''
+    parameters = {}
+    for key in ('simulation_name', 'population_names', 
+                'population_locations', 'deployment_code',
+                'chromosome_bases', 'background_mutation',
+                'additional_mutation', 'mutation_type',
+                'chromosome_size', 'genome_size', 'max_tape_length',
+                'clean_cell', 'interpret_chromosome', 'max_codon',
+                'population_size', 'eco_cell_capacity',
+                'world_x', 'world_y', 'world_z', 'goal',
+                'maximum_generations', 'fossilized_ratio',
+                'fossilized_frequency', 'print_frequency',
+                'ragaraja_version', 'ragaraja_instructions',
+                'eco_buried_frequency', 'database_file',
+                'database_logging_frequency'):
+        parameters[key] = None
+    start_time = str(start_time)
     cur.execute("select distinct simulation_name from parameters where \
     start_time = '%s'" % start_time)
     parameters["simulation_name"] = str(cur.fetchone()[0])
@@ -214,10 +240,8 @@ def db_reconstruct_simulation_parameters(cur, start_time):
         elif str(r[0]) == 'world_z':
             parameters['world_z'] = int(r[1])
         elif str(r[0]) == 'goal':
-            try:
-                parameters['goal'] = float(r[1])
-            except ValueError:
-                exec("parameters['goal'] = %s" % str(r[1]))
+            try: parameters['goal'] = float(r[1])
+            except ValueError: exec("parameters['goal'] = %s" % str(r[1]))
         elif str(r[0]) == 'maximum_generations':
             parameters['maximum_generations'] = int(r[1])
         elif str(r[0]) == 'fossilized_ratio':
@@ -228,10 +252,8 @@ def db_reconstruct_simulation_parameters(cur, start_time):
             parameters['print_frequency'] = int(r[1])
         elif str(r[0]) == 'ragaraja_version':
             version = str(r[1])
-            if version == '0.1':
-                parameters['ragaraja_version'] = 0.1
-            else:
-                parameters['ragaraja_version'] = int(r[1])
+            if version == '0.1': parameters['ragaraja_version'] = 0.1
+            else: parameters['ragaraja_version'] = int(r[1])
         elif str(r[0]) == 'ragaraja_instructions':
             value = str(r[1]).split('|')
             exec("parameters['ragaraja_instructions'] = %s" % str(value))
@@ -242,4 +264,164 @@ def db_reconstruct_simulation_parameters(cur, start_time):
         elif str(r[0]) == 'database_logging_frequency':
             parameters['database_logging_frequency'] = int(r[1])
     return parameters
+
+def db_reconstruct_world(cur, start_time, generation):
+    '''
+    Function to reconstruct the world object of a simulation (as identified 
+    by the starting time of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param generation_count: Current number of generations simulated.
+    @return: dose_world.World object
+    '''
+    import dose_world
+    eco_cell = {'local_input': [], 'local_output': [],
+                'temporary_input': [], 'temporary_output': [],
+                'organisms': 0}
+    cur.execute("select max(x), max(y), max(z) from world where \
+    start_time = '%s'" % start_time)
+    coordinates = cur.fetchone()
+    world_x = int(coordinates[0]) + 1
+    world_y = int(coordinates[1]) + 1
+    world_z = int(coordinates[2]) + 1
+    ecosystem = {}
+    for x in range(world_x):
+        ecosystem[x] = {}
+        for y in range(world_y):
+            ecosystem[x][y] = {}
+            for z in range(world_z): 
+                ecosystem[x][y][z] = {}
+                for key in ('local_input', 'local_output',
+                            'temporary_input', 'temporary_output',
+                            'organisms'):
+                    ecosystem[x][y][z][key] = None
+    start_time = str(start_time)
+    generation = str(generation)
+    # query plan: SCAN TABLE world
+    cur.execute("select x, y, z, key, value from world where \
+    start_time =  '%s' and generation = '%s'" % (start_time, generation))
+    for r in cur.fetchall():
+        x = int(r[0])
+        y = int(r[1])
+        z = int(r[2])
+        key = str(r[3])
+        value = str(r[4])
+        exec("ecosystem[%i][%i][%i]['%s'] = %s" % (x, y, z, key, value))
+    World = dose_world.World(1, 1, 1)
+    World.ecosystem = ecosystem
+    return World
+    
+def db_reconstruct_organisms(cur, start_time, population_name, generation):
+    '''
+    Function to reconstruct a list of organisms (genetic.Organism objects) 
+    of a population within a simulation (as identified by the starting time 
+    of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population
+    @param generation_count: Current number of generations simulated.
+    @return: A list of Organisms (genetic.Organism objects)
+    '''
+    import genetic as g
+    start_time = str(start_time)
+    population_name = str(population_name)
+    generation = str(generation)
+    # query plan: SEARCH TABLE organisms USING INDEX 
+    #             organisms_index2 (generation=?)
+    cur.execute("select distinct org_name from organisms where \
+    start_time = '%s' and pop_name = '%s' and generation = '%s'" %
+    (start_time, population_name, generation))
+    names = [x[0] for x in cur.fetchall()]
+    agents = [0] * len(names)
+    for i in range(len(names)):
+        org_name = str(names[i])
+        org = g.Organism()
+        org.genome = []
+        org.status['identity'] = org_name
+        # query plan: SEARCH TABLE organisms USING INDEX 
+        #             organisms_index2 (generation=? AND org_name=?)
+        cur.execute("select key, value from organisms where \
+        generation = '%s' and org_name = '%s' and \
+        start_time = '%s' and pop_name = '%s'" %
+        (generation, org_name, start_time, population_name))
+        for r in cur.fetchall():
+            key = str(r[0])
+            value = str(r[1])
+            if key == 'alive':
+                exec("org.status['alive'] = %s" % str(value))
+            elif key == 'vitality':
+                org.status['vitality'] = float(value)
+            elif key == 'parents':
+                if value == '': value = '[]'
+                else: value = value.split('|')
+                exec("org.status['parents'] = %s" % str(value))
+            elif key == 'age':
+                org.status['age'] = float(value)
+            elif key == 'gender':
+                exec("org.status['gender'] = %s" % str(value)) 
+            elif key == 'lifespan':
+                org.status['lifespan'] = float(value)
+            elif key == 'fitness':
+                exec("f = '%s'" % str(value))
+                if type(f) == type(1) or type(f) == type(1.0):
+                    org.status['fitness'] = float(value)
+                else:
+                    exec("org.status['fitness'] = %s" % str(value))
+            elif key == 'blood':
+                if value == '': value = '[]'
+                else: value = value.split('|')
+                exec("org.status['blood'] = %s" % str(value))
+            elif key == 'deme':
+                org.status['deme'] = str(value)
+            elif key == 'location':
+                value = tuple(value.split('|'))
+                exec("org.status['blood'] = %s" % str(value))
+            elif key == 'death':
+                exec("org.status['death'] = %s" % str(value))
+            elif key.startswith('chromosome'):
+                chr_position = key.split('_')[1]
+                sequence = [str(x) for x in str(value)]
+                cur.execute("select value from parameters where \
+                    key='background_mutation' and start_time='%s'" % 
+                    start_time)
+                background_mutation = float(cur.fetchone()[0])
+                cur.execute("select value from parameters where \
+                    key='chromosome_bases' and start_time='%s'" % 
+                    start_time)
+                bases = str(cur.fetchone()[0]).split('|')
+                exec("chromosome_bases = %s" % bases)
+                chromosome = g.Chromosome(sequence, chromosome_bases, 
+                                          background_mutation)
+                org.genome.append(chromosome)
+            else:
+                exec("org.status['%s'] = %s" % (str(key), str(value)))
+        agents[i] = org
+    return agents
+    
+def db_reconstruct_population(cur, start_time, 
+                              population_name, generation):
+    '''
+    Function to reconstruct a population within a simulation (as identified 
+    by the starting time of the simulation) at a specific generation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population
+    @param generation_count: Current number of generations simulated.
+    @return: genetic.Population object
+    '''
+    import genetic
+    agents = db_reconstruct_organisms(cur, start_time, 
+                                      population_name, generation)
+    cur.execute("select value from parameters where \
+                key='goal' and start_time='%s'" % start_time)
+    g = cur.fetchone()[0]
+    try: goal = float(g)
+    except ValueError: exec("goal = %s" % str(g))
+    return genetic.Population(goal, 1e24, agents)
     

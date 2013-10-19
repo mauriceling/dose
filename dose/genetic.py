@@ -202,19 +202,16 @@ class Organism(object):
     @since: version 0.4
     """
     
-    genome = []
-    
-    def __init__(self, genome='default',
-                 mutation_type='point',
+    def __init__(self, genome='dummy', mutation_type='point',
                  additional_mutation_rate=0.01, gender=None):
         """
         Sets up a new organism with default status (age = 0, vitality = 100,
         lifespan = 100, fitness = 100, alive = True)
         
-        @param genome: list of chromosomes to inherit. Default = 'default', 
-            which will set up one default chromosome. It also allows a 
-            'dummy' chromosome which is basically a one-base chromosome - this 
-            is for applications which does not utilize the chromosome.
+        @param genome: list of chromosomes to inherit. Default = 'dummy'. 
+            This creates a 'dummy' chromosome which is basically a one-base 
+            chromosome - this is for applications which does not utilize 
+            the chromosome.
         @param mutation_type: type of mutation. Accepts 'point' (point 
             mutation), 'insert' (insert a base), 'delete' (delete a base), 
             'invert' (invert a stretch of the chromosome), 'duplicate' 
@@ -231,22 +228,23 @@ class Organism(object):
         """
         self.status = {'alive': True,            # is the organism alive?
                        'vitality': 100.0,        # % of vitality
+                       'parents': None,          # identity of parent(s)
                        'age': 0.0,               # age of the organism
+                       'gender': None,           # gender of organism
                        'lifespan': 100.0,        # maximum lifespan
                        'fitness': 100.0,         # % of fitness
                        'blood': None,            # interpreted chromosome
-                       'identity': '',           # name of the organism
-                       'deme': '',               # sub-population or race
+                       'identity': None,         # name of the organism
+                       'deme': None,             # sub-population or race
+                       'location': None,         # location of the organism
                        'death': None}
-        if genome == 'default': 
-            self.genome = [Chromosome()]
-        elif genome == 'dummy':
-            self.genome = [Chromosome([0])]
+        if genome == 'dummy':
+            self.genome = [Chromosome([0], [0])]
         else: 
             self.genome = genome
         self.mutation_type = mutation_type
         self.additional_mutation_rate = additional_mutation_rate
-        self.gender = gender
+        self.status['gender'] = gender
         
     def generate_name(self):
         name = ''.join([random.choice(('1', '2', '3', '4', '5', '6', '7',
