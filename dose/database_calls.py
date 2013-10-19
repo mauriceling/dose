@@ -159,6 +159,40 @@ def db_list_simulations(cur, table='parameters'):
     else:
         cur.execute("select distinct start_time from %s", table)
         return [x[0] for x in cur.fetchall()]
+    
+def db_list_generations(cur, start_time, table='organisms'):
+    '''
+    Functions to list all logged generations within a simulation, identified 
+    by starting time of the simulation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'organisms'.
+    @return: A list containing the results (generation counts).
+    '''
+    cur.execute("select distinct generation from %s where start_time='%s'" 
+                % (str(table), str(start_time)))
+    return [x[0] for x in cur.fetchall()]
+
+def db_list_datafields(cur, start_time, table='organisms'):
+    '''
+    Functions to list all logged data fields (types of data logged) within 
+    a simulation, identified by starting time of the simulation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'organisms'.
+    @return: A list containing the results (types of data logged).
+    '''
+    cur.execute("select distinct key from %s where start_time='%s'" 
+                % (str(table), str(start_time)))
+    return [x[0] for x in cur.fetchall()]
 
 def db_reconstruct_simulation_parameters(cur, start_time):
     '''
