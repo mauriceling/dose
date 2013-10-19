@@ -89,6 +89,9 @@ class dose_functions():
             - to manage mating scheme and progeny (offspring) generation 
             for the entire population
             - add or replace offsprings into the respective population(s)
+            - (optional) store identity of parent(s) as list; for example, 
+            [parentA identity, parentB identity], in offspring's 
+            status['parents'] for ancestral tracing.
         
         @param Populations: A dictionary containing one or more populations 
         where the value is a genetic.Population object.
@@ -375,7 +378,7 @@ def database_report_populations(con, cur, start_time,
             # log each item in Organism.status dictionary
             for key in [key for key in org.status.keys()
                                if key != 'identity']:
-                if key in ('blood', 'location'):
+                if key in ('blood', 'location', 'parents'):
                     try:
                         # TypeError will occur when genome/chromosomes are 
                         # not interpreted

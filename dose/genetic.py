@@ -228,6 +228,7 @@ class Organism(object):
         """
         self.status = {'alive': True,            # is the organism alive?
                        'vitality': 100.0,        # % of vitality
+                       'parents': None,          # identity of parent(s)
                        'age': 0.0,               # age of the organism
                        'gender': None,           # gender of organism
                        'lifespan': 100.0,        # maximum lifespan

@@ -355,6 +355,10 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
                 exec("org.status['alive'] = %s" % str(value))
             elif key == 'vitality':
                 org.status['vitality'] = float(value)
+            elif key == 'parents':
+                if value == '': value = '[]'
+                else: value = value.split('|')
+                exec("org.status['parents'] = %s" % str(value))
             elif key == 'age':
                 org.status['age'] = float(value)
             elif key == 'gender':
