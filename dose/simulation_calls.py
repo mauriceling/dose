@@ -3,70 +3,87 @@ File containing support functions for running a simulation.
 
 Date created: 10th October 2013
 '''
-import random, sys, inspect, os, cPickle
+import random, inspect, os, cPickle
 from datetime import datetime
 from time import time
 from copy import deepcopy
+from shutil import copyfile
 
 import dose_world
 import genetic
 import ragaraja, register_machine
 
-def prepare_revival(rev_parameters, simulation_functions):
-    sim_functions = simulation_functions()
-    # time_start format = <date>-<seconds since epoch>
-    # for example, 2013-10-11-138140985.77
+from database_calls import connect_database, db_log_simulation_parameters
+from database_calls import db_report
+
+def simulation_core(sim_functions, sim_parameters, Populations, World):
     time_start = '-'.join([str(datetime.utcnow()).split(' ')[0],
                            str(time())])
-    # Directory to store revived simulation results is in the format of
-    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
-    # eg. <CWD>/Simulations/06_revive_simulation_01_2013-10-13-1381676305.55
-    directory ='_'.join([rev_parameters["simulation_name"],time_start])
+    directory ='_'.join([sim_parameters["simulation_name"],time_start])
     directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
     directory = directory + os.sep
     if not os.path.exists(directory): os.makedirs(directory)
-    rev_parameters["directory"] = directory
-    rev_parameters["starting_time"] = time_start
-    World = excavate_world(rev_parameters['sim_folder'] + rev_parameters['eco_file'])
-    rev_parameters["world_z"] = len(World.ecosystem[0][0][0])
-    rev_parameters["world_y"] = len(World.ecosystem[0][0])
-    rev_parameters["world_x"] = len(World.ecosystem[0])
-    rev_parameters["generation_start"] = []
-    rev_parameters["max_generation"] = []
-    rev_parameters["population_size"] = []
-    Populations = {}
-    i = 0
-    for pop_name in rev_parameters['population_names']:
-        pop_file = rev_parameters['sim_folder'] + rev_parameters['pop_files'][i]
-        i = i + 1
-        Populations[pop_name] = revive_population(pop_file)
-        rev_parameters["generation_start"].append(Populations[pop_name].generation)
-        rev_parameters["max_generation"].append(Populations[pop_name].generation + rev_parameters["extend_gen"])
-        rev_parameters["population_size"].append(len(Populations[pop_name].agents))
-    return (rev_parameters, sim_functions, World, Populations)
-
-def prepare_simulation(sim_parameters, simulation_functions):
-    sim_functions = simulation_functions()
-    # time_start format = <date>-<seconds since epoch>
-    # for example, 2013-10-11-1381480985.77
-    time_start = '-'.join([str(datetime.utcnow()).split(' ')[0], 
-                           str(time())])
-    # Directory to store simulation results is in the format of
-    # <CWD>/Simulations/<simulation name>_<date>-<seconds since epoch>/
-    # eg. <CWD>/Simulations/01_basic_functions_one_cell_deployment_2013-10-11-1381480985.77/
-    directory = '_'.join([sim_parameters["simulation_name"], time_start])
-    directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
-    directory = directory + os.sep
-    if not os.path.exists(directory): os.makedirs(directory)
-    sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
-    sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
     sim_parameters["directory"] = directory
     sim_parameters["starting_time"] = time_start
-    World = dose_world.World(sim_parameters["world_x"],
-                             sim_parameters["world_y"],
-                             sim_parameters["world_z"])
-    Populations = spawn_populations(sim_parameters)
-    return (sim_parameters, sim_functions, World, Populations)
+    sim_functions = sim_functions()
+    if sim_parameters["ragaraja_version"] == 0:
+        ragaraja.activate_version(sim_parameters["ragaraja_version"],
+                                  sim_parameters["ragaraja_instructions"])
+    else:
+        ragaraja.activate_version(sim_parameters["ragaraja_version"])
+    if sim_parameters.has_key("database_file") and \
+        sim_parameters.has_key("database_logging_frequency"): 
+        (con, cur) = connect_database(None, sim_parameters)
+        (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
+    for pop_name in Populations:
+        if 'sim_folder' in sim_parameters or \
+            'database_source' in sim_parameters:
+            write_rev_parameters(sim_parameters, pop_name)
+            max = sim_parameters["rev_start"][0] + sim_parameters["extend_gen"]
+            generation_count = sim_parameters["rev_start"][0]
+        else:
+            write_parameters(sim_parameters, pop_name)
+            if sim_parameters["deployment_code"] == 0:
+                deploy_0(sim_parameters, Populations, pop_name, World)      
+            elif sim_parameters["deployment_code"] == 1:
+                deploy_1(sim_parameters, Populations, pop_name, World)  
+            elif sim_parameters["deployment_code"] == 2:
+                deploy_2(sim_parameters, Populations, pop_name, World)  
+            elif sim_parameters["deployment_code"] == 3:
+                deploy_3(sim_parameters, Populations, pop_name, World)  
+            elif sim_parameters["deployment_code"] == 4:
+                deploy_4(sim_parameters, Populations, pop_name, World)    
+            max = sim_parameters["maximum_generations"]
+            generation_count = 0
+    while generation_count < max:
+        generation_count = generation_count + 1
+        for pop_name in Populations:
+            sim_functions.ecoregulate(World)
+            eco_cell_iterator(World, sim_parameters, 
+                              sim_functions.update_ecology)
+            eco_cell_iterator(World, sim_parameters, 
+                              sim_functions.update_local)
+            if sim_parameters["interpret_chromosome"]:
+                interpret_chromosome(sim_parameters, Populations, 
+                                     pop_name, World)
+            report_generation(sim_parameters, Populations, pop_name, 
+                              sim_functions, generation_count)
+            sim_functions.organism_movement(Populations, pop_name, World)
+            sim_functions.organism_location(Populations, pop_name, World)
+            eco_cell_iterator(World, sim_parameters, sim_functions.report)
+            bury_world(sim_parameters, World, generation_count)
+            if sim_parameters.has_key("database_file") and \
+                sim_parameters.has_key("database_logging_frequency") and \
+                generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
+                (con, cur) = db_report(con, cur, sim_functions, 
+                                       sim_parameters["starting_time"],
+                                       Populations, World, generation_count)
+    for pop_name in Populations: close_results(sim_parameters, pop_name)
+    if sim_parameters.has_key("database_file") and \
+        sim_parameters.has_key("database_logging_frequency"): 
+        con.commit()
+        con.close()
+    copyfile(inspect.stack()[2][1], sim_parameters['directory'] + inspect.stack()[2][1])
 
 def coordinates(location):
     x = location[0]
@@ -275,19 +292,19 @@ def write_rev_parameters(rev_parameters, pop_name):
                                       rev_parameters["simulation_name"],
                                       pop_name)), 'a')
     f.write("""SIMULATION: %(simulation_name)s
-REVIVED FROM SIMULATION: %(sim_folder)s
+  
 ----------------------------------------------------------------------
 SIMULATION REVIVAL STARTED: %(starting_time)s
 
 population_names: %(population_names)s
 chromosome_bases: %(chromosome_bases)s
-generation_start: %(generation_start)s
+rev_start: %(rev_start)s
 extend_gen: %(extend_gen)s
-max_generation: %(max_generation)s
+rev_finish: %(rev_finish)s
+rev_pop_size: %(rev_pop_size)s
 background_mutation: %(background_mutation)s
 additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
-population_size: %(population_size)s
 max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s

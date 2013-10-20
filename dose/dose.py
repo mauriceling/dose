@@ -8,19 +8,15 @@ this file can be assessed at top level.
 Date created: 27th September 2013
 '''
 import sys, os, random, inspect
-from shutil import copyfile
 
 import ragaraja, register_machine
 import dose_world
 
-from simulation_calls import spawn_populations, eco_cell_iterator
-from simulation_calls import interpret_chromosome, step, report_generation
-from simulation_calls import bury_world, write_parameters, close_results
-from simulation_calls import prepare_simulation, prepare_revival, write_rev_parameters
-from simulation_calls import deploy_0, deploy_1, deploy_2, deploy_3, deploy_4
+from simulation_calls import spawn_populations, simulation_core
+from simulation_calls import excavate_world, revive_population
 
-from database_calls import connect_database, db_log_simulation_parameters
-from database_calls import db_report
+from database_calls import connect_database, db_reconstruct_simulation_parameters
+from database_calls import db_reconstruct_population, db_reconstruct_world
 
 class dose_functions():
     '''
@@ -543,54 +539,35 @@ def filter_status(status_key, condition, agents):
                    and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
-def revive_simulation(rev_parameters, simulation_functions):
-    (rev_parameters, sim_functions, 
-     World, Populations) = prepare_revival(rev_parameters, simulation_functions)
-    if rev_parameters["ragaraja_version"] == 0:
-        ragaraja.activate_version(rev_parameters["ragaraja_version"],
-                                  rev_parameters["ragaraja_instructions"])
-    else:
-        ragaraja.activate_version(rev_parameters["ragaraja_version"])
-    if rev_parameters.has_key("database_file") and \
-        rev_parameters.has_key("database_logging_frequency"): 
-        (con, cur) = connect_database(None, rev_parameters)
-        (con, cur) = db_log_simulation_parameters(con, cur, rev_parameters)
-    for pop_name in Populations:
-        write_rev_parameters(rev_parameters, pop_name)         
-    generation_count = 0
-    while generation_count < rev_parameters["extend_gen"]:
-        generation_count = generation_count + 1
-        for pop_name in Populations:
-            count = rev_parameters["generation_start"][rev_parameters["population_names"].index(pop_name)]
-            sim_functions.ecoregulate(World)
-            eco_cell_iterator(World, rev_parameters, 
-                              sim_functions.update_ecology)
-            eco_cell_iterator(World, rev_parameters, 
-                              sim_functions.update_local)
-            if rev_parameters["interpret_chromosome"]:
-                interpret_chromosome(rev_parameters, Populations, 
-                                     pop_name, World)
-            report_generation(rev_parameters, Populations, 
-                              pop_name, sim_functions, 
-                              count + generation_count)
-            sim_functions.organism_movement(Populations, pop_name, World)
-            sim_functions.organism_location(Populations, pop_name, World)
-            eco_cell_iterator(World, rev_parameters, sim_functions.report)
-            bury_world(rev_parameters, World, count + generation_count)
-            if rev_parameters.has_key("database_file") and \
-                rev_parameters.has_key("database_logging_frequency") and \
-                generation_count % int(rev_parameters["database_logging_frequency"]) == 0: 
-                (con, cur) = db_report(con, cur, sim_functions, 
-                                       rev_parameters["starting_time"],
-                                       Populations, World, generation_count)
-    for pop_name in Populations: close_results(rev_parameters, pop_name)
-    if rev_parameters.has_key("database_file") and \
-        rev_parameters.has_key("database_logging_frequency"): 
-        con.commit()
-        con.close()
-    copyfile(inspect.stack()[1][1], rev_parameters['directory'] + inspect.stack()[1][1])
+def revive_simulation(rev_parameters, sim_functions):
+    Populations = {}
+    if "sim_folder" in rev_parameters:
+        World = excavate_world(rev_parameters['sim_folder'] + rev_parameters['eco_file'])
+        rev_parameters["world_z"] = len(World.ecosystem[0][0][0])
+        rev_parameters["world_y"] = len(World.ecosystem[0][0])
+        rev_parameters["world_x"] = len(World.ecosystem[0])
+        for i in xrange(len(rev_parameters["pop_files"])):
+            pop_file = rev_parameters["sim_folder"] + rev_parameters["pop_files"][i]
+            Populations["revived_pop%02s" % (i + 1)] = revive_population(pop_file)
+        rev_parameters["rev_start"] = [Populations[pop_name].generation for pop_name in Populations]
+    elif "database_source" in rev_parameters:
+        dbpath = os.sep.join([os.getcwd(), 
+                              'Simulations', 
+                              rev_parameters["database_source"]])
+        (con, cur) = connect_database(dbpath, None)
+        temp_parameters = db_reconstruct_simulation_parameters(cur, rev_parameters["simulation_time"])
+        for key in temp_parameters:
+            if key not in rev_parameters:
+                rev_parameters[key] = temp_parameters[key]
+        World = db_reconstruct_world(cur, rev_parameters["simulation_time"], rev_parameters["rev_start"][0])
+        for pop_name in rev_parameters["population_names"]:
+            Populations[pop_name] = db_reconstruct_population(cur, rev_parameters["simulation_time"], 
+                              pop_name, rev_parameters["rev_start"][rev_parameters["population_names"].index(pop_name)])
+    rev_parameters["rev_finish"] = [(Populations[pop_name].generation + rev_parameters["extend_gen"]) for pop_name in Populations]
+    rev_parameters["rev_pop_size"] = [len(Populations[pop_name].agents) for pop_name in Populations]
+    simulation_core(sim_functions, rev_parameters, Populations, World)
 
-def simulate(sim_parameters, simulation_functions):
+def simulate(sim_parameters, sim_functions):
     '''
     Function called by simulation to run the actual simulation based on a 
     set of parameters and functions.
@@ -721,57 +698,10 @@ def simulate(sim_parameters, simulation_functions):
     @param simulation_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
-    (sim_parameters, sim_functions, 
-     World, Populations) = prepare_simulation(sim_parameters, 
-                                              simulation_functions)
-    if sim_parameters["ragaraja_version"] == 0:
-        ragaraja.activate_version(sim_parameters["ragaraja_version"],
-                                  sim_parameters["ragaraja_instructions"])
-    else:
-        ragaraja.activate_version(sim_parameters["ragaraja_version"])
-    if sim_parameters.has_key("database_file") and \
-        sim_parameters.has_key("database_logging_frequency"): 
-        (con, cur) = connect_database(None, sim_parameters)
-        (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
-    for pop_name in Populations:
-        write_parameters(sim_parameters, pop_name)
-        if sim_parameters["deployment_code"] == 0:
-            deploy_0(sim_parameters, Populations, pop_name, World)      
-        elif sim_parameters["deployment_code"] == 1:
-            deploy_1(sim_parameters, Populations, pop_name, World)  
-        elif sim_parameters["deployment_code"] == 2:
-            deploy_2(sim_parameters, Populations, pop_name, World)  
-        elif sim_parameters["deployment_code"] == 3:
-            deploy_3(sim_parameters, Populations, pop_name, World)  
-        elif sim_parameters["deployment_code"] == 4:
-            deploy_4(sim_parameters, Populations, pop_name, World)      
-    generation_count = 0
-    while generation_count < sim_parameters["maximum_generations"]:
-        generation_count = generation_count + 1
-        for pop_name in Populations:
-            sim_functions.ecoregulate(World)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_ecology)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_local)
-            if sim_parameters["interpret_chromosome"]:
-                interpret_chromosome(sim_parameters, Populations, 
-                                     pop_name, World)
-            report_generation(sim_parameters, Populations, pop_name, 
-                              sim_functions, generation_count)
-            sim_functions.organism_movement(Populations, pop_name, World)
-            sim_functions.organism_location(Populations, pop_name, World)
-            eco_cell_iterator(World, sim_parameters, sim_functions.report)
-            bury_world(sim_parameters, World, generation_count)
-            if sim_parameters.has_key("database_file") and \
-                sim_parameters.has_key("database_logging_frequency") and \
-                generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
-                (con, cur) = db_report(con, cur, sim_functions, 
-                                       sim_parameters["starting_time"],
-                                       Populations, World, generation_count)
-    for pop_name in Populations: close_results(sim_parameters, pop_name)
-    if sim_parameters.has_key("database_file") and \
-        sim_parameters.has_key("database_logging_frequency"): 
-        con.commit()
-        con.close()
-    copyfile(inspect.stack()[1][1], sim_parameters['directory'] + inspect.stack()[1][1])
+    sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
+    sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
+    World = dose_world.World(sim_parameters["world_x"],
+                             sim_parameters["world_y"],
+                             sim_parameters["world_z"])
+    Populations = spawn_populations(sim_parameters)
+    simulation_core(sim_functions, sim_parameters, Populations, World)
