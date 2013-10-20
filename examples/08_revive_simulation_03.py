@@ -1,7 +1,7 @@
 import run_examples_without_installation
 
-import dose
-import os
+import dose, genetic
+import os, random
 
 '''
 Needs pre-existing 03_no_migration_isolated_mating.py.
@@ -11,6 +11,7 @@ of the said simulation.
 
 rev_parameters = {"database_source" : "case_study_01.db",
                   "simulation_time": "2013-10-19-1382200534.1",
+                  "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
                   "rev_start" : [1000],
                   "extend_gen" : 200,
                   "simulation_name": "08_revive_simulation_03",
@@ -31,7 +32,7 @@ rev_parameters = {"database_source" : "case_study_01.db",
                   "ragaraja_instructions": ['000', '001', '010',
                                             '011', '100', '101'],
                   "eco_buried_frequency": 100,
-                  "database_file": "case_study_02.db",
+                  "database_file": "case_study_01.db",
                   "database_logging_frequency": 1
                   }
 
@@ -52,13 +53,13 @@ class simulation_functions(dose.dose_functions):
     def fitness(self, Populations, pop_name): pass
 
     def mutation_scheme(self, organism): 
-        organism.genome[0].rmutate(parameters["mutation_type"],
-                                   parameters["additional_mutation"])
+        organism.genome[0].rmutate(rev_parameters["mutation_type"],
+                                   rev_parameters["additional_mutation"])
 
     def prepopulation_control(self, Populations, pop_name): pass
 
     def mating(self, Populations, pop_name): 
-        for location in parameters["population_locations"][0]:
+        for location in rev_parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
             for x in xrange(len(group)/2):
                 parents = []
@@ -72,11 +73,11 @@ class simulation_functions(dose.dose_functions):
                                                                parents[1].genome[0], 
                                                                crossover_pt)
                 children = [genetic.Organism([new_chromo1],
-                                             parameters["mutation_type"],
-                                             parameters["additional_mutation"]),
+                                             rev_parameters["mutation_type"],
+                                             rev_parameters["additional_mutation"]),
                             genetic.Organism([new_chromo2],
-                                             parameters["mutation_type"],
-                                             parameters["additional_mutation"])]
+                                             rev_parameters["mutation_type"],
+                                             rev_parameters["additional_mutation"])]
                 for child in children:
                     child.status['location'] = location
                     child.generate_name()
