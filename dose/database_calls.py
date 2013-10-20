@@ -155,10 +155,214 @@ def db_list_simulations(cur, table='parameters'):
     if table == 'parameters':
         cur.execute("""select distinct start_time, simulation_name 
                     from parameters""")
-        return [[x[0], x[1]] for x in cur.fetchall()]
+        return [[str(x[0]), str(x[1])] for x in cur.fetchall()]
     else:
         cur.execute("select distinct start_time from %s", table)
-        return [x[0] for x in cur.fetchall()]
+        return [str(x[0]) for x in cur.fetchall()]
+    
+def db_list_generations(cur, start_time, table='organisms'):
+    '''
+    Function to list all logged generations within a simulation, identified 
+    by starting time of the simulation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'organisms'.
+    @return: A list containing the results (generation counts).
+    '''
+    # query plan: SCAN TABLE organisms USING COVERING INDEX organisms_index2
+    cur.execute("select distinct generation from %s where start_time='%s'" 
+                % (str(table), str(start_time)))
+    return [str(x[0]) for x in cur.fetchall()]
+
+def db_list_datafields(cur, start_time, table='organisms'):
+    '''
+    Function to list all logged data fields (types of data logged) within 
+    a simulation, identified by starting time of the simulation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param table: Database table name to list simulations. Allowable values 
+    are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+    value is 'organisms'.
+    @return: A list containing the results (types of data logged).
+    '''
+    cur.execute("select distinct key from %s where start_time='%s'" 
+                % (str(table), str(start_time)))
+    return [str(x[0]) for x in cur.fetchall()]
+
+def db_list_population_name(cur, start_time):
+    '''
+    Function to list all logged populations (as population names) within a 
+    simulation, identified by starting time of the simulation.
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @return: A list containing the results (types of data logged).
+    '''
+    # query plan: SCAN TABLE organisms USING COVERING INDEX organisms_index1
+    cur.execute("select distinct pop_name from organisms where \
+                start_time='%s'" % str(start_time))
+    return [str(x[0]) for x in cur.fetchall()]
+
+def db_get_ecosystem(cur, start_time, datafield='all', generation='all'):
+    '''
+    Analysis helper function to get a specific field of the ecosystem 
+    (World.ecosystem) or the entire ecosystem for one or more generations 
+    within a simulation (as identified by the starting time of the 
+    simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param datafield: The specific datafield in World.ecosystem to extract. 
+    Predefined datafields for ecosystem are 'local_input', 'local_output',
+    'temporary_input', 'temporary_output', and 'organisms'. Default = 'all', 
+    which returns the entire World.ecosystem(s) of the generation(s). Only 
+    one or all datafield(s) in World.ecosystem can be extracted at a time.
+    @type datafield: string
+    @param generation: Generation(s) to extract World.ecosystem. Default = 
+    'all', which extracts World.ecosystems for all logged generations within 
+    the specific simulation.
+    @type generation: list
+    @return: A dictionary of results - {<generation count>: <value>}. The 
+    value is the value of the specific datafield if a specific datafield 
+    is required (the data type of this value is dependent on that of the 
+    data type of World.ecosystem[datafield]) or the entire ecosystem as a 
+    dictionary. 
+    '''
+    if generation == 'all':
+        generation = db_list_generations(cur, start_time, 'world')
+    else:
+        generation = [str(x) for x in generation]
+    results = {}
+    for gen in generation:
+        results[gen] = {}
+        ecosystem = db_reconstruct_world(cur, start_time, gen).ecosystem
+        if datafield == 'all':
+            results[gen] = ecosystem
+        else:
+            for x in ecosystem.keys():
+                results[gen][x] = {}
+                for y in ecosystem[x].keys():
+                    results[gen][x][y] = {}
+                    for z in ecosystem[x][y].keys():
+                        results[gen][x][y][z] = ecosystem[x][y][z][datafield]
+    return results
+
+def db_get_organisms_status(cur, start_time, population_name, 
+                            datafield='all', generation='all'):
+    '''
+    Analysis helper function to get a specific field of the Organism.status 
+    dictionary or the entire Organism.status dictionary for one or more 
+    generations within a simulation (as identified by the starting time of 
+    the simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population.
+    @param datafield: The specific key in Organism.status dictionary to 
+    extract. Predefined keys for Organism.status dictionary are'age', 
+    'alive', 'blood', 'death', 'deme', 'fitness', 'gender', 'identity', 
+    'lifespan', 'location', 'parents', 'vitality'. Default = 'all', which 
+    returns the entire Organism.status dictionaries of the generation(s). 
+    Only one or all datafield(s) in Organism.status dictionary can be 
+    extracted at a time.
+    @type datafield: string
+    @param generation: Generation(s) to extract Organism.status dictionary. 
+    Default = 'all', which extracts Organism.status dictionary for all 
+    logged generations within the specific simulation.
+    @type generation: list
+    @return: A dictionary of dictionary of results - 
+    {<generation count>: {<Organism identity>: <value>}}. The value is the 
+    value of the specific datafield if a specific datafield is required 
+    (the data type of this value is dependent on that of the data type of 
+    Organism.status[datafield]) or the entire Organism.status as a dictionary. 
+    '''
+    if generation == 'all':
+        generation = db_list_generations(cur, start_time, 'organisms')
+    else:
+        generation = [str(x) for x in generation]
+    results = {}
+    for gen in generation:
+        results[gen] = {}
+        agents = db_reconstruct_organisms(cur, start_time, 
+                                          population_name, gen)
+        for org in agents:
+            identity = org.status['identity']
+            if datafield == 'all':
+                results[gen][identity] = org.status
+            else:
+                results[gen][identity] = org.status[datafield]
+    return results
+
+def db_get_organisms_genome(cur, start_time, 
+                            population_name, generation='all'):
+    '''
+    Analysis helper function to get entire genome of organisms for one or 
+    more generations within a simulation (as identified by the starting 
+    time of the simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population.
+    @param generation: Generation(s) to extract Organism.genome. 
+    Default = 'all', which extracts Organism.genome for all logged 
+    generations within the specific simulation.
+    @type generation: list
+    @return: A dictionary of dictionary of genome - 
+    {<generation count>: {<Organism identity>: <genome as list of chromosomes>}}.
+    '''
+    if generation == 'all':
+        generation = db_list_generations(cur, start_time, 'organisms')
+    else:
+        generation = [str(x) for x in generation]
+    results = {}
+    for gen in generation:
+        results[gen] = {}
+        agents = db_reconstruct_organisms(cur, start_time, 
+                                          population_name, gen)
+        for org in agents:
+            identity = org.status['identity']
+            results[gen][identity] = org.genome
+    return results
+
+def db_get_organisms_chromosome_sequences(cur, start_time, 
+                                          population_name, 
+                                          generation='all'):
+    '''
+    Analysis helper function to get chromosomal sequences of entire genome 
+    of organisms for one or more generations within a simulation (as 
+    identified by the starting time of the simulation).
+    
+    @param cur: Database cursor from connect_database() function.
+    @param start_time: Starting time of current simulation in the format 
+    of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
+    @param population_name: Name of the population.
+    @param generation: Generation(s) to extract Organism.genome. 
+    Default = 'all', which extracts Organism.genome for all logged 
+    generations within the specific simulation.
+    @type generation: list
+    @return: A dictionary of dictionary of chromosomal sequences - 
+    {<generation count>: {<Organism identity>: <list (all chromosomes) of 
+    list (individual chromosome) of chromosomal sequence>}}.
+    '''
+    genome_dict = db_get_organisms_genome(cur, start_time, 
+                                          population_name, generation)
+    results = {}
+    for gen in genome_dict.keys():
+        results[gen] = {}
+        for identity in genome_dict[gen].keys():
+            results[gen][identity] = [chromosome.sequence 
+                                      for chromosome in genome_dict[gen][identity]]
+    return results    
 
 def db_reconstruct_simulation_parameters(cur, start_time):
     '''
