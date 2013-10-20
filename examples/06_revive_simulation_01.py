@@ -6,7 +6,7 @@ import run_examples_without_installation
 import dose
 import os
 
-simulation_folder = '01_basic_functions_one_cell_deployment_2013-10-13-1381664013.83'
+simulation_folder = '01_basic_functions_one_cell_deployment_2013-10-19-1382199145.88'
 simulation_folder = os.sep.join([os.getcwd(), 'Simulations', simulation_folder]) + os.sep
 
 rev_parameters = {"sim_folder" : simulation_folder,
