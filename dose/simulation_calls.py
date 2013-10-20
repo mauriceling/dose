@@ -55,6 +55,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                 deploy_4(sim_parameters, Populations, pop_name, World)    
             max = sim_parameters["maximum_generations"]
             generation_count = 0
+        Populations[pop_name].generation = generation_count
     while generation_count < max:
         generation_count = generation_count + 1
         for pop_name in Populations:
