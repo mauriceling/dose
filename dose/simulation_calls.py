@@ -292,19 +292,19 @@ def write_rev_parameters(rev_parameters, pop_name):
                                       rev_parameters["simulation_name"],
                                       pop_name)), 'a')
     f.write("""SIMULATION: %(simulation_name)s
-REVIVED FROM SIMULATION: %(sim_folder)s
+  
 ----------------------------------------------------------------------
 SIMULATION REVIVAL STARTED: %(starting_time)s
 
 population_names: %(population_names)s
 chromosome_bases: %(chromosome_bases)s
-generation_start: %(generation_start)s
+rev_start: %(rev_start)s
 extend_gen: %(extend_gen)s
-max_generation: %(max_generation)s
+rev_finish: %(rev_finish)s
+rev_pop_size: %(rev_pop_size)s
 background_mutation: %(background_mutation)s
 additional_mutation: %(additional_mutation)s
 mutation_type: %(mutation_type)s
-population_size: %(population_size)s
 max_tape_length: %(max_tape_length)s
 clean_cell: %(clean_cell)s
 max_codon: %(max_codon)s
