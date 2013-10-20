@@ -95,6 +95,9 @@ __email__ = 'mauriceling@acm.org'
 import copads
 
 # Module imports (in ascending order of module names)
+import database_calls
+import dose
+import genetic
 import register_machine
 import ragaraja
 
