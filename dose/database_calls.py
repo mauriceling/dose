@@ -582,8 +582,7 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
             elif key == 'deme':
                 org.status['deme'] = str(value)
             elif key == 'location':
-                value = tuple(value.split('|'))
-                value = tuple([int(x) for x in value])
+                value = tuple([int(x) for x in value.split('|')])
                 exec("org.status['location'] = %s" % str(value))
             elif key == 'death':
                 exec("org.status['death'] = %s" % str(value))
