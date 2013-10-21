@@ -81,6 +81,8 @@ class simulation_functions(dose.dose_functions):
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"])]
                 for child in children:
+                    child.status['parents'] = [parents[0].status['identity'], 
+                                               parents[1].status['identity']]
                     child.status['location'] = location
                     child.generate_name()
                     child.status['deme'] = pop_name
@@ -95,7 +97,9 @@ class simulation_functions(dose.dose_functions):
         for organism in Populations[pop_name].agents:
             chromosome = ''.join(organism.genome[0].sequence)
             location = str(organism.status['location'])
-            report_list.append(chromosome + '  ' + location)
+            parents = str(organism.status['parents'])
+            report_list.append(chromosome + '  ' + parents)
+
         return '\n'.join(report_list)
 
     def database_report(self, con, cur, start_time, 

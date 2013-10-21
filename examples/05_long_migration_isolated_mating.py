@@ -96,6 +96,8 @@ class simulation_functions(dose.dose_functions):
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"])]
                 for child in children:
+                    child.status['parents'] = [parents[0].status['identity'], 
+                                               parents[1].status['identity']]
                     child.status['location'] = location
                     child.generate_name()
                     child.status['deme'] = pop_name
