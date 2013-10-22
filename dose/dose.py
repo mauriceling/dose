@@ -549,22 +549,29 @@ def revive_simulation(rev_parameters, sim_functions):
         for i in xrange(len(rev_parameters["pop_files"])):
             pop_file = rev_parameters["sim_folder"] + rev_parameters["pop_files"][i]
             Populations["revived_pop%02s" % (i + 1)] = revive_population(pop_file)
-        rev_parameters["rev_start"] = [Populations[pop_name].generation for pop_name in Populations]
+        rev_parameters["rev_start"] = [Populations[pop_name].generation 
+                                       for pop_name in Populations]
     elif "database_source" in rev_parameters:
         dbpath = os.sep.join([os.getcwd(), 
                               'Simulations', 
                               rev_parameters["database_source"]])
         (con, cur) = connect_database(dbpath, None)
-        temp_parameters = db_reconstruct_simulation_parameters(cur, rev_parameters["simulation_time"])
+        temp_parameters = db_reconstruct_simulation_parameters(cur, 
+                                    rev_parameters["simulation_time"])
         for key in temp_parameters:
             if key not in rev_parameters:
                 rev_parameters[key] = temp_parameters[key]
-        World = db_reconstruct_world(cur, rev_parameters["simulation_time"], rev_parameters["rev_start"][0])
+        World = db_reconstruct_world(cur, rev_parameters["simulation_time"], 
+                                     rev_parameters["rev_start"][0])
         for pop_name in rev_parameters["population_names"]:
-            Populations[pop_name] = db_reconstruct_population(cur, rev_parameters["simulation_time"], 
+            Populations[pop_name] = db_reconstruct_population(cur, 
+                              rev_parameters["simulation_time"], 
                               pop_name, rev_parameters["rev_start"][rev_parameters["population_names"].index(pop_name)])
-    rev_parameters["rev_finish"] = [(Populations[pop_name].generation + rev_parameters["extend_gen"]) for pop_name in Populations]
-    rev_parameters["rev_pop_size"] = [len(Populations[pop_name].agents) for pop_name in Populations]
+        con.close()
+    rev_parameters["rev_finish"] = [(Populations[pop_name].generation + rev_parameters["extend_gen"]) 
+                                    for pop_name in Populations]
+    rev_parameters["rev_pop_size"] = [len(Populations[pop_name].agents) 
+                                      for pop_name in Populations]
     simulation_core(sim_functions, rev_parameters, Populations, World)
 
 def simulate(sim_parameters, sim_functions):
@@ -705,3 +712,4 @@ def simulate(sim_parameters, sim_functions):
                              sim_parameters["world_z"])
     Populations = spawn_populations(sim_parameters)
     simulation_core(sim_functions, sim_parameters, Populations, World)
+    
