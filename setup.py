@@ -3,6 +3,11 @@ use_setuptools()
 
 from setuptools import setup, find_packages
 
+try:
+    import py2exe
+except ImportError:
+    pass
+
 setup(name='dose',
       version='0.1',
       packages=['dose', 
@@ -110,4 +115,5 @@ Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
                    'Topic :: Scientific/Engineering :: Bio-Informatics',
                    'Topic :: Software Development :: Libraries :: Python Modules'
                    ],
+      console=['dosecmd.py']
      )
