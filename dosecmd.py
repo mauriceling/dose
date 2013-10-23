@@ -10,10 +10,42 @@ import dose
 
 def quotation():
     quotations = [
+'''An expert is a person who has made all the mistakes that can be made in 
+a very narrow field.
+  -- Niels Bohr''',
 '''Touch a scientist and you touch a child.
   -- Ray Bradbury''',
 '''There are no shortcuts in evolution.
   -- Louis D. Brandeis''',
+'''If you imagine the 4,500-billion-odd years of Earth's history compressed 
+into a normal earthly day, then life begins very early, about 4 A.M., with 
+the rise of the first simple, single-celled organisms, but then advances no 
+further for the next sixteen hours. Not until almost 8:30 in the evening, 
+with the day five-sixths over, has Earth anything to show the universe but 
+a restless skin of microbes. Then, finally, the first sea plants appear, 
+followed twenty minutes later by the first jellyfish and the enigmatic 
+Ediacaran fauna first seen by Reginald Sprigg in Australia. At 9:04 P.M. 
+trilobites swim onto the scene, followed more or less immediately by the 
+shapely creatures of the Burgess Shale. Just before 10 P.M. plants begin to 
+pop up on the land. Soon after, with less than two hours left in the day, 
+the first land creatures follow.
+
+Thanks to ten minutes or so of balmy weather, by 10:24 the Earth is covered 
+in the great carboniferous forests whose residues give us all our coal, and 
+the first winged insects are evident. Dinosaurs plod onto the scene just 
+before 11 P.M. and hold sway for about three-quarters of an hour. At 
+twenty-one minutes to midnight they vanish and the age of mammals begins. 
+Humans emerge one minute and seventeen seconds before midnight. The whole 
+of our recorded history, on this scale, would be no more than a few seconds, 
+a single human lifetime barely an instant. Throughout this greatly speeded-up 
+day continents slide about and bang together at a clip that seems positively 
+reckless. Mountains rise and melt away, ocean basins come and go, ice sheets 
+advance and withdraw. And throughout the whole, about three times every minute, 
+somewhere on the planet there is a flash-bulb pop of light marking the impact 
+of a Manson-sized meteor or one even larger. It's a wonder that anything at 
+all can survive in such a pummeled and unsettled environment. In fact, not 
+many things do for long.
+  -- Bill Bryson''',
 '''A true scientist is working at the very limit of his own knowledge, 
 and therefore half of the time he is feeling incompetent. Our job is to feel 
 incompetent 50% of the time, by pushing the boundary. When we are feeling 
@@ -46,6 +78,8 @@ for they often endure long;
 but false views, if supported by some evidence, do little harm, 
 for every one takes a salutary pleasure in proving their falseness.
   -- Charles Darwin ''',
+'''Multiply, vary, let the strongest live and the weakest die.
+  -- Charles Darwin''',
 '''By all means let's be open-minded, 
 but not so open-minded that our brains drop out.
   -- Richard Dawkins''',
@@ -61,13 +95,29 @@ of organized complexity.
 '''Gravity is not a version of the truth. It is the truth. 
 Anyone who doubts it is invited to jump out a tenth-storey window.
   -- Richard Dawkins''',
+'''The chicken is only an egg's way for making another egg.
+  -- Richard Dawkins''',
+'''Evolution could so easily be disproved if just a single fossil turned up 
+in the wrong date order. Evolution has passed this test with flying colours.
+  -- Richard Dawkins''',
+'''Evolution is not a genetically controlled distortion of one adult form 
+into another; it is a genetically controlled alteration in a developmental 
+program.
+  -- Richard Dawkins''',
 '''Computer science is no more about computers than astronomy is about telescopes.
   -- Edsger Dijkstra''',
+'''To invent, you need a good imagination and a pile of junk.
+  -- Thomas Edison''',
 '''Only two things are infinite, the universe and human stupidity, 
 and I'm not sure about the former.
   -- Albert Einstein''',
 '''No amount of experimentation can ever prove me right; 
 a single experiment can prove me wrong.
+  -- Albert Einstein''',
+'''Never memorize something that you can look up.
+  -- Albert Einstein''',
+'''If we knew what it was we were doing, it would not be called research, 
+would it?
   -- Albert Einstein''',
 '''Men love to wonder, and that is the seed of science.
   -- Ralph Waldo Emerson''',
@@ -78,6 +128,8 @@ If the result is contrary to the hypothesis, then you've made a discovery.
 '''Physics is like sex. Sure, it may give some practical results, 
 but that's not why we do it.
   -- Richard Feynman''',
+'''The Bible shows the way to go to heaven, not the way the heavens go.
+  -- Galileo Galilei''',
 '''Chimps are very quick to have a sudden fight or aggressive episode, 
 but they're equally as good at reconciliation.
  -- Jane Goodall''',
@@ -92,6 +144,12 @@ not authority.
 of old knowledge. The modern university looks forward, and is a factory of 
 new knowledge.
   -- Thomas Huxley''',
+'''A straight line is not the shortest distance between two points.
+  - Madeleine L'Engle''',
+'''It is not always the magnitude of the differences observed between species 
+that must determine specific distinctions, but the constant preservation of 
+those differences in reproduction.
+  -- Jean-Baptiste Lamarck''',
 '''Science has proof without any certainty. 
 Creationists have certainty without any proof.
   -- Ashley Montague''',
@@ -103,7 +161,15 @@ than that connected with advances in science.
   -- Isaac Newton''',
 '''If I have seen further than others, 
 it is by standing upon the shoulders of giants.
-  -- Isaac Newton'''
+  -- Isaac Newton''',
+'''Science is built up of facts, as a house is built of stones; 
+but an accumulation of facts is no more a science than a heap of stones is a house.
+  -- Henri Poincare''',
+'''Science is not only compatible with spirituality; it is a profound source 
+of spirituality.
+  -- Carl Sagan''',
+'''We are all star stuff.
+  -- Carl Sagan''',
 '''If you cannot - in the long run - tell everyone what you have been doing, 
 your doing has been worthless.
   -- Erwin Schrodinger''']
