@@ -38,11 +38,9 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     for pop_name in Populations:
         if 'sim_folder' in sim_parameters or \
             'database_source' in sim_parameters:
-            write_rev_parameters(sim_parameters, pop_name)
             max = sim_parameters["rev_start"][0] + sim_parameters["extend_gen"]
             generation_count = sim_parameters["rev_start"][0]
         else:
-            write_parameters(sim_parameters, pop_name)
             if sim_parameters["deployment_code"] == 0:
                 deploy_0(sim_parameters, Populations, pop_name, World)      
             elif sim_parameters["deployment_code"] == 1:
@@ -55,6 +53,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                 deploy_4(sim_parameters, Populations, pop_name, World)    
             max = sim_parameters["maximum_generations"]
             generation_count = 0
+        write_parameters(sim_parameters, pop_name)
         Populations[pop_name].generation = generation_count
     while generation_count < max:
         generation_count = generation_count + 1
@@ -288,81 +287,25 @@ def revive_population(gap_file):
     f = open(gap_file, 'r')
     return cPickle.load(f)
 
-def write_rev_parameters(rev_parameters, pop_name):
-    f = open(('%s%s_%s.result.txt' % (rev_parameters["directory"],
-                                      rev_parameters["simulation_name"],
-                                      pop_name)), 'a')
-    f.write("""SIMULATION: %(simulation_name)s
-  
-----------------------------------------------------------------------
-SIMULATION REVIVAL STARTED: %(starting_time)s
-
-population_names: %(population_names)s
-chromosome_bases: %(chromosome_bases)s
-rev_start: %(rev_start)s
-extend_gen: %(extend_gen)s
-rev_finish: %(rev_finish)s
-rev_pop_size: %(rev_pop_size)s
-background_mutation: %(background_mutation)s
-additional_mutation: %(additional_mutation)s
-mutation_type: %(mutation_type)s
-max_tape_length: %(max_tape_length)s
-clean_cell: %(clean_cell)s
-max_codon: %(max_codon)s
-eco_cell_capacity: %(eco_cell_capacity)s
-world_x: %(world_x)s
-world_y: %(world_y)s
-world_z: %(world_z)s
-goal: %(goal)s
-fossilized_ratio: %(fossilized_ratio)s
-fossilized_frequency: %(fossilized_frequency)s
-print_frequency: %(print_frequency)s
-ragaraja_version: %(ragaraja_version)s
-eco_buried_frequency: %(eco_buried_frequency)s
-
-REPORT:
-----------------------------------------------------------------------
-""" % (rev_parameters))
-    f.close()
-
 def write_parameters(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
-                                      sim_parameters["simulation_name"], 
+                                      sim_parameters["simulation_name"],
                                       pop_name)), 'a')
-    f.write('''SIMULATION: %(simulation_name)s                     
-----------------------------------------------------------------------
-SIMULATION STARTED: %(starting_time)s
+    f.write("""SIMULATION: %s
 
-population_names: %(population_names)s
-population_locations: %(population_locations)s
-deployment_code: %(deployment_code)s
-chromosome_bases: %(chromosome_bases)s
-initial_chromosome: %(initial_chromosome)s
-background_mutation: %(background_mutation)s
-additional_mutation: %(additional_mutation)s
-mutation_type: %(mutation_type)s
-chromosome_size: %(chromosome_size)s
-genome_size: %(genome_size)s
-max_tape_length: %(max_tape_length)s
-clean_cell: %(clean_cell)s
-max_codon: %(max_codon)s
-population_size: %(population_size)s
-eco_cell_capacity: %(eco_cell_capacity)s
-world_x: %(world_x)s
-world_y: %(world_y)s
-world_z: %(world_z)s
-goal: &(goal)s
-maximum_generations: %(maximum_generations)s
-fossilized_ratio: %(fossilized_ratio)s
-fossilized_frequency: %(fossilized_frequency)s
-print_frequency: %(print_frequency)s
-ragaraja_version: %(ragaraja_version)s
-eco_buried_frequency: %(eco_buried_frequency)s
-
-REPORT:
 ----------------------------------------------------------------------
-''' % (sim_parameters))
-    f.close()
+""" % sim_parameters["simulation_name"])
+    if ('database_source' in sim_parameters) or \
+        ('sim_folder' in sim_parameters):
+        f.write("SIMULATION REVIVAL STARTED: %s\n\n" % sim_parameters["starting_time"])
+    else:
+        f.write("SIMULATION STARTED: %s\n\n" % sim_parameters["starting_time"])
+    for key in sim_parameters:
+        if key not in ('deployment_scheme', 'directory', 'sim_folder'):
+            f.write("%s : %s\n" % (key, sim_parameters[key]))
+    f.write("""\n\nREPORT
+----------------------------------------------------------------------
+""")
 
 def close_results(sim_parameters, pop_name):
     f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
