@@ -3,7 +3,7 @@ Standalone command line system for DOSE.
 
 Date created: 22nd October 2013
 '''
-import os, sys, copy, random, readline
+import os, sys, copy, random, readline, traceback
 from datetime import datetime
 
 import dose
@@ -116,7 +116,6 @@ class DOSECommandShell(object):
                 'credits',
                 'help', 
                 'license',
-                'quit',
                 'show',)
     
     def __init__(self):
@@ -186,7 +185,6 @@ Goodbye! Have a nice day and hope to see you again soon!
 
 Current time is %s''' % (quotation(), str(datetime.utcnow()))
         print
-        sys.exit()
     
     def help_quit(self):
         print '''
@@ -235,28 +233,38 @@ Description: Display internal variables
         if cmd == 'credits': self.do_credits(arg, count)
         if cmd == 'help': self.do_help(arg, count)
         if cmd == 'license': self.do_license(arg, count)
-        if cmd == 'quit': self.do_quit(arg, count)
         if cmd == 'show': self.do_show(arg, count)
         
     def cmdloop(self):
         statement = ''
         count = 1
         while True:
-            statement = raw_input("DOSE:%s > " % str(count))
-            statement = str(statement.strip())
-            statement = statement.lower()
-            self.history[str(count)] = statement
-            cmd = statement.split(' ')[0]
-            arg = ' '.join(statement.split(' ')[1:])
-            arg = arg.strip()
-            if cmd in self.commands:
-                self.command_handler(cmd, arg, count)
-            else:
-                error_message = cmd + ' is not a valid command.'
-                self.history[str(count)] = self.history[str(count)] + \
-                    ' | Error message: ' + error_message
-                print error_message
-            count = count + 1
+            try:
+                statement = raw_input("DOSE:%s > " % str(count))
+                statement = str(statement.strip())
+                statement = statement.lower()
+                self.history[str(count)] = statement
+                cmd = statement.split(' ')[0]
+                arg = ' '.join(statement.split(' ')[1:])
+                arg = arg.strip()
+                if cmd in self.commands:
+                    self.command_handler(cmd, arg, count)
+                elif cmd == 'quit':
+                    self.do_quit(arg, count)
+                    break
+                else:
+                    error_message = cmd + ' is not a valid command.'
+                    self.history[str(count)] = self.history[str(count)] + \
+                        ' | Error message: ' + error_message
+                    print error_message
+                count = count + 1
+            except:
+                error_message = list(self.formatExceptionInfo())
+                self.results[str(count)] = error_message
+                for line in error_message:
+                    if (type(line) == list):
+                        for l in line: print l
+                    print line
             
     def completer(self, text, state):
         options = [x for x in self.commands 
@@ -265,6 +273,22 @@ Description: Display internal variables
             return options[state]
         except IndexError:
             return None
+        
+    def formatExceptionInfo(self, maxTBlevel=10):
+        """
+        Method to gather information about an exception raised. It is used
+        to readout the exception messages and type of exception. This method
+        takes a parameter, maxTBlevel, which is set to 10, which defines the
+        maximum level of tracebacks to recall.
+        
+        This method is obtained from http://www.linuxjournal.com/
+        article.php?sid=5821"""
+        cla, exc, trbk = sys.exc_info()
+        excName = cla.__name__
+        try: excArgs = exc.__dict__["args"]
+        except KeyError: excArgs = "<no args>"
+        excTb = traceback.format_tb(trbk, maxTBlevel)
+        return (excName, excArgs, excTb)
 
             
 if __name__ == '__main__':
@@ -273,3 +297,4 @@ if __name__ == '__main__':
     readline.set_completer(shell.completer)     # enables autocompletion
     readline.parse_and_bind("tab: complete")
     shell.cmdloop()
+    sys.exit()
