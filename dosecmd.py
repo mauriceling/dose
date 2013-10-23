@@ -190,6 +190,9 @@ class DOSECommandShell(object):
         self.history = {}
         self.results = {}
         self.environment = {'cwd': os.getcwd(),
+                            'database_connector': None,
+                            'database_cursor': None,
+                            'database_file': '',
                             'starting_time': str(datetime.utcnow()),
                             'terminate_shell': 'quit'}
         
@@ -204,10 +207,47 @@ Type "help", "copyright", "credits" or "license" for more information.
 To exit this application, type "quit".
 ''' % (self.environment['starting_time'], quotation())
     
-    def do_connectdb(self, arg, count): pass
+    def do_connectdb(self, arg, count):
+        arg = [x.strip() for x in arg.split(' ')]
+        if arg == ['']: arg = []
+        if len(arg) != 2:
+            error_message = 'Error: 2 options needed; %s provided' % len(arg)
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
+            self.help_connectdb()
+            return
+        elif arg[0] == 'absolute':
+            self.environment['database_file'] = path
+            (con, cur) = dose.connect_database(path, None)
+            self.environment['database_connector'] = con
+            self.environment['database_cursor'] = cur
+        elif arg[0] == 'cwd':
+            path = os.sep.join([self.environment['cwd'], arg[1]])
+            self.environment['database_file'] = path
+            (con, cur) = dose.connect_database(path, None)
+            self.environment['database_connector'] = con
+            self.environment['database_cursor'] = cur
+        else:
+            txt = arg[0] + ' is not a valid option. Type help connectdb for more information'
+            self.results[count] = txt
+            print txt
+        
     def help_connectdb(self):
-        print
-        print
+        print'''
+Command: connectdb <options> <file name>
+    <options> = {absolute | cwd}
+    <file name> = File name for simulation logging database. If the database 
+                  file is not found, it will be created.
+Description: Establish connection to a simulation logging database.
+Pre-requisite(s): None
+
+<options> = absolute
+    Defines absolute file path for <file name> to simulation logging database.
+<options> = cwd
+    Defines relative file path for <file name> to simulation logging database.
+    <file name> will be prefixed with current working directory in the format
+    of <current working directory>/<file name>'''
         print
         
     def do_copyright(self, arg, count):
@@ -272,10 +312,13 @@ Pre-requisite(s): None'''
     
     def do_save(self, arg, count):
         if arg == '':
-            print 'Error: No options provided'
+            error_message = 'Error: No options provided'
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
             self.help_save()
             return
-        arg = arg.split(' ')
+        arg = [x.strip() for x in arg.split(' ')]
         if len(arg) < 2: 
             arg.append('saved.' + str(self.environment['starting_time']) + '.txt')
         outfile = open(os.sep.join([str(self.environment['cwd']), arg[1]]), 'a')
@@ -338,7 +381,10 @@ Pre-requisite(s): None
         
     def do_show(self, arg, count):
         if arg == '':
-            print 'Error: No options provided'
+            error_message = 'Error: No options provided'
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
             self.help_show()
             return
         elif arg == 'environment':
