@@ -116,6 +116,8 @@ class DOSECommandShell(object):
                 'credits',
                 'help', 
                 'license',
+                'quit',
+                'save',
                 'show',)
     
     def __init__(self):
@@ -155,15 +157,20 @@ Lead developer: Clarence Castillo'''
         print
     
     def do_help(self, arg, count):
-        if arg == '':
+        if arg == '' or arg == 'help':
             print
             print '''List of available commands:
 connectdb           copyright           credits          help    
-license             quit                show
+license             quit                save             show
 
 Type help <command> for more help (if any)'''
             print
+        elif arg == 'connectdb': self.help_connectdb()
+        elif arg == 'copyright': self.do_copyright(arg, count)
+        elif arg == 'credits': self.do_credits(arg, count)
+        elif arg == 'license': self.do_license(arg, count)
         elif arg == 'quit': self.help_quit()
+        elif arg == 'save': self.help_save()
         elif arg == 'show': self.help_show()
     
     def do_license(self, arg, count):
@@ -189,11 +196,49 @@ Current time is %s''' % (quotation(), str(datetime.utcnow()))
     def help_quit(self):
         print '''
 Command: quit
-Description: Terminate this application'''
+Description: Terminate this application
+Pre-requisite(s): None'''
         print
     
+    def do_save(self, arg, count):
+        if arg == '':
+            print 'Error: No options provided'
+            self.help_save()
+            return
+        arg = arg.split(' ')
+        if len(arg) < 2: 
+            arg.append('saved.' + str(self.environment['starting_time']) + '.txt')
+        outfile = open(os.sep.join([str(self.environment['cwd']), arg[1]]), 'a')
+        if arg[0] == 'history':
+            keys = self.history.keys()
+            keys.sort()
+            outfile.write('Date time stamp of current session: ' + \
+                         str(self.environment['starting_time']) + os.linesep)
+            for k in keys:
+                txt = ' | '.join([str(k), 'Command', str(self.history[k])])
+                outfile.write(txt + os.linesep)
+            outfile.write('===================================' + os.linesep)
+            outfile.close()
+        
+    def help_save(self):
+        print'''
+Command: save <options> <file name>
+    <options> = {history}
+    <file name> = File name for output. The file will be in current working
+                  directory
+Description: To save history or data into a text file
+Pre-requisite(s): None
+
+<options> = history
+    Saves history of the current session into <file name>'''
+        print
+        
     def do_show(self, arg, count):
-        if arg == 'environment':
+        if arg == '':
+            print 'Error: No options provided'
+            self.help_show()
+            return
+        elif arg == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
             print 'Environment variables:'
             for key in self.environment.keys():
@@ -215,6 +260,7 @@ Description: Terminate this application'''
 Command: show <options>
     <options> = {environment | history | history <item>}
 Description: Display internal variables
+Pre-requisite(s): None
 
 <options> = environment
     Display all environmental variables in DOSE command shell as one line 
@@ -229,11 +275,13 @@ Description: Display internal variables
             
     def command_handler(self, cmd, arg, count):
         if cmd == 'connectdb': self.do_connectdb(arg, count)
-        if cmd == 'copyright': self.do_copyright(arg, count)
-        if cmd == 'credits': self.do_credits(arg, count)
-        if cmd == 'help': self.do_help(arg, count)
-        if cmd == 'license': self.do_license(arg, count)
-        if cmd == 'show': self.do_show(arg, count)
+        elif cmd == 'copyright': self.do_copyright(arg, count)
+        elif cmd == 'credits': self.do_credits(arg, count)
+        elif cmd == 'help': self.do_help(arg, count)
+        elif cmd == 'license': self.do_license(arg, count)
+        elif cmd == 'quit': self.do_quit(arg, count)
+        elif cmd == 'save': self.do_save(arg, count)
+        elif cmd == 'show': self.do_show(arg, count)
         
     def cmdloop(self):
         statement = ''
@@ -249,14 +297,13 @@ Description: Display internal variables
                 arg = arg.strip()
                 if cmd in self.commands:
                     self.command_handler(cmd, arg, count)
-                elif cmd == 'quit':
-                    self.do_quit(arg, count)
-                    break
                 else:
                     error_message = cmd + ' is not a valid command.'
                     self.history[str(count)] = self.history[str(count)] + \
                         ' | Error message: ' + error_message
                     print error_message
+                if cmd == 'quit':
+                    break
                 count = count + 1
             except:
                 error_message = list(self.formatExceptionInfo())
@@ -269,10 +316,8 @@ Description: Display internal variables
     def completer(self, text, state):
         options = [x for x in self.commands 
                    if x.startswith(text)]
-        try:
-            return options[state]
-        except IndexError:
-            return None
+        try: return options[state]
+        except IndexError: return None
         
     def formatExceptionInfo(self, maxTBlevel=10):
         """
