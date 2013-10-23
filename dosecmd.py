@@ -172,6 +172,10 @@ Type help <command> for more help (if any)'''
         elif arg == 'quit': self.help_quit()
         elif arg == 'save': self.help_save()
         elif arg == 'show': self.help_show()
+        else:
+            txt = arg + ' is not a valid command; hence, no help is available.'
+            self.results[count] = txt
+            print txt
     
     def do_license(self, arg, count):
         print
@@ -210,27 +214,60 @@ Pre-requisite(s): None'''
             arg.append('saved.' + str(self.environment['starting_time']) + '.txt')
         outfile = open(os.sep.join([str(self.environment['cwd']), arg[1]]), 'a')
         if arg[0] == 'history':
-            keys = self.history.keys()
-            keys.sort()
             outfile.write('Date time stamp of current session: ' + \
                          str(self.environment['starting_time']) + os.linesep)
-            for k in keys:
-                txt = ' | '.join([str(k), 'Command', str(self.history[k])])
+            keys = [int(x) for x in self.history.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                txt = ' | '.join(['Command', k, str(self.history[k])])
                 outfile.write(txt + os.linesep)
             outfile.write('===================================' + os.linesep)
             outfile.close()
+        elif arg[0] == 'workspace':
+            outfile.write('Date time stamp of current session: ' + \
+                         str(self.environment['starting_time']) + os.linesep)
+            # writing out environment
+            for k in self.environment.keys():
+                txt = ['Environment', str(k), str(self.environment[k])]
+                txt = ' | '.join(txt)
+                outfile.write(txt + os.linesep)
+            # prepare to write out commands and data
+            historykeys = self.history.keys()
+            keys = [x for x in self.results.keys() 
+                    if x not in historykeys]
+            keys = keys + historykeys
+            keys = [int(x) for x in keys]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                # writing out commands
+                txt = ' | '.join(['Command', k, str(self.history[k])])
+                outfile.write(txt + os.linesep)
+                # writing out data (self.results) if any
+                try:
+                    txt = ' | '.join(['Data', str(k), str(self.results[k])])
+                    outfile.write(txt + os.linesep)
+                except: pass
+            outfile.write('===================================' + os.linesep)
+            outfile.close()
+        else:
+            txt = arg[0] + ' is not a valid option. Type help save for more information'
+            self.results[count] = txt
+            print txt
         
     def help_save(self):
         print'''
 Command: save <options> <file name>
-    <options> = {history}
+    <options> = {history | workspace}
     <file name> = File name for output. The file will be in current working
                   directory
 Description: To save history or data into a text file
 Pre-requisite(s): None
 
 <options> = history
-    Saves history of the current session into <file name>'''
+    Writes out history of the current session into <file name>
+<options> = workspace
+    Writes out the entire workspace (history, data, environment) of the 
+    current session into <file name>'''
         print
         
     def do_show(self, arg, count):
@@ -245,15 +282,29 @@ Pre-requisite(s): None
                 print key, '=', self.environment[key]
         elif arg == 'history':
             self.results[count] = copy.deepcopy(self.history)
-            keys = self.history.keys()
+            keys = [int(x) for x in self.history.keys()]
             keys.sort()
-            for k in keys:
+            for k in [str(x) for x in keys]:
                 print 'Count =', k, '| Command =', self.history[k]
         elif arg.startswith('history') and arg[-1] != 'y':
             arg = [str(x.strip()) for x in arg.split(' ')]
             if len(arg) > 1:
                 self.results[count] = self.history[str(arg[1])]
                 print 'Count =', arg[1], '| Command =', self.history[str(arg[1])]
+        elif arg == 'data':
+            keys = [int(x) for x in self.results.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print 'Count =', k, '| Data =', self.results[k]
+        elif arg.startswith('data') and arg[-1] != 'a':
+            arg = [str(x.strip()) for x in arg.split(' ')]
+            if len(arg) > 1:
+                self.results[count] = self.results[str(arg[1])]
+                print 'Count =', arg[1], '| Data =', self.results[str(arg[1])]
+        else:
+            txt = arg + ' is not a valid option. Type help show for more information'
+            self.results[count] = txt
+            print txt
                 
     def help_show(self):
         print '''
@@ -262,6 +313,11 @@ Command: show <options>
 Description: Display internal variables
 Pre-requisite(s): None
 
+<options> = data
+    Display all results/data in the current session, in the format of 
+    Command = <command number> | Data = <data/results in text format>
+<options> = data <item>
+    Display only specific result/data, where <item> is the command number
 <options> = environment
     Display all environmental variables in DOSE command shell as one line 
     per environmental variable.
@@ -274,6 +330,7 @@ Pre-requisite(s): None
         print
             
     def command_handler(self, cmd, arg, count):
+        count = str(count)
         if cmd == 'connectdb': self.do_connectdb(arg, count)
         elif cmd == 'copyright': self.do_copyright(arg, count)
         elif cmd == 'credits': self.do_credits(arg, count)
