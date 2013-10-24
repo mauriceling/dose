@@ -3,9 +3,23 @@ Standalone command line system for DOSE.
 
 Date created: 22nd October 2013
 '''
-import os, sys, copy, random, readline, traceback
+import os, sys, copy, random, traceback
 from datetime import datetime
 
+# attempt to import readline or pyreadline
+try:
+    import readline
+    readline_import = True
+    pyreadline_import = False
+except ImportError:
+    readline_import = False
+    try:
+        import pyreadline as readline
+        pyreadline_import = True
+    except ImportError:
+        readline_import = False
+        pyreadline_import = False
+    
 import dose
 
 def quotation():
@@ -40,10 +54,11 @@ of our recorded history, on this scale, would be no more than a few seconds,
 a single human lifetime barely an instant. Throughout this greatly speeded-up 
 day continents slide about and bang together at a clip that seems positively 
 reckless. Mountains rise and melt away, ocean basins come and go, ice sheets 
-advance and withdraw. And throughout the whole, about three times every minute, 
-somewhere on the planet there is a flash-bulb pop of light marking the impact 
-of a Manson-sized meteor or one even larger. It's a wonder that anything at 
-all can survive in such a pummeled and unsettled environment. In fact, not 
+advance and withdraw. And throughout the whole, about three times every 
+minute, somewhere on the planet there is a flash-bulb pop of light marking 
+the impact of a Manson-sized meteor or one even larger. It's a wonder that 
+anything at all can survive in such a pummeled and unsettled environment. 
+In fact, not 
 many things do for long.
   -- Bill Bryson''',
 '''A true scientist is working at the very limit of his own knowledge, 
@@ -193,6 +208,7 @@ class DOSECommandShell(object):
                             'database_connector': None,
                             'database_cursor': None,
                             'database_file': '',
+                            'readline_module': None,
                             'starting_time': str(datetime.utcnow()),
                             'terminate_shell': 'quit'}
         
@@ -508,7 +524,14 @@ Pre-requisite(s): None
 if __name__ == '__main__':
     shell = DOSECommandShell()
     shell.header()
-    readline.set_completer(shell.completer)     # enables autocompletion
-    readline.parse_and_bind("tab: complete")
+    if readline_import:
+        shell.environment['readline_module'] = 'readline'
+    elif pyreadline_import:
+        shell.environment['readline_module'] = 'pyreadline'
+    else:
+        shell.environment['readline_module'] = None
+    if readline_import or pyreadline_import:
+        readline.set_completer(shell.completer)   # enables autocompletion
+        readline.parse_and_bind("tab: complete")
     shell.cmdloop()
     sys.exit()
