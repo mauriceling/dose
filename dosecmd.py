@@ -170,7 +170,7 @@ Creationists have certainty without any proof.
   -- Ashley Montague''',
 '''Anyone who attempts to generate random numbers by deterministic means is, 
 of course, living in a state of sin.
-  -- John von Neumann'''
+  -- John von Neumann''',
 '''To me there has never been a higher source of earthly honor or distinction 
 than that connected with advances in science.
   -- Isaac Newton''',
@@ -204,13 +204,15 @@ class DOSECommandShell(object):
     def __init__(self):
         self.history = {}
         self.results = {}
-        self.environment = {'cwd': os.getcwd(),
+        self.environment = {'command_count': 0,
+                            'cwd': os.getcwd(),
                             'database_connector': None,
                             'database_cursor': None,
-                            'database_file': '',
+                            'database_file': None,
+                            'last_command_time': None,
                             'readline_module': None,
                             'starting_time': str(datetime.utcnow()),
-                            'terminate_shell': 'quit'}
+                           }
         
     def header(self):
         print '''
@@ -481,6 +483,8 @@ Pre-requisite(s): None
                 arg = ' '.join(statement.split(' ')[1:])
                 arg = arg.strip()
                 if cmd in self.commands:
+                    self.environment['last_command_time'] = str(datetime.utcnow())
+                    self.environment['command_count'] = count
                     self.command_handler(cmd, arg, count)
                 else:
                     error_message = cmd + ' is not a valid command.'
