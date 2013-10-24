@@ -3,9 +3,23 @@ Standalone command line system for DOSE.
 
 Date created: 22nd October 2013
 '''
-import os, sys, copy, random, readline, traceback
+import os, sys, copy, random, traceback
 from datetime import datetime
 
+# attempt to import readline or pyreadline
+try:
+    import readline
+    readline_import = True
+    pyreadline_import = False
+except ImportError:
+    readline_import = False
+    try:
+        import pyreadline as readline
+        pyreadline_import = True
+    except ImportError:
+        readline_import = False
+        pyreadline_import = False
+    
 import dose
 
 def quotation():
@@ -40,10 +54,11 @@ of our recorded history, on this scale, would be no more than a few seconds,
 a single human lifetime barely an instant. Throughout this greatly speeded-up 
 day continents slide about and bang together at a clip that seems positively 
 reckless. Mountains rise and melt away, ocean basins come and go, ice sheets 
-advance and withdraw. And throughout the whole, about three times every minute, 
-somewhere on the planet there is a flash-bulb pop of light marking the impact 
-of a Manson-sized meteor or one even larger. It's a wonder that anything at 
-all can survive in such a pummeled and unsettled environment. In fact, not 
+advance and withdraw. And throughout the whole, about three times every 
+minute, somewhere on the planet there is a flash-bulb pop of light marking 
+the impact of a Manson-sized meteor or one even larger. It's a wonder that 
+anything at all can survive in such a pummeled and unsettled environment. 
+In fact, not 
 many things do for long.
   -- Bill Bryson''',
 '''A true scientist is working at the very limit of his own knowledge, 
@@ -155,7 +170,7 @@ Creationists have certainty without any proof.
   -- Ashley Montague''',
 '''Anyone who attempts to generate random numbers by deterministic means is, 
 of course, living in a state of sin.
-  -- John von Neumann'''
+  -- John von Neumann''',
 '''To me there has never been a higher source of earthly honor or distinction 
 than that connected with advances in science.
   -- Isaac Newton''',
@@ -189,12 +204,15 @@ class DOSECommandShell(object):
     def __init__(self):
         self.history = {}
         self.results = {}
-        self.environment = {'cwd': os.getcwd(),
+        self.environment = {'command_count': 0,
+                            'cwd': os.getcwd(),
                             'database_connector': None,
                             'database_cursor': None,
-                            'database_file': '',
+                            'database_file': None,
+                            'last_command_time': None,
+                            'readline_module': None,
                             'starting_time': str(datetime.utcnow()),
-                            'terminate_shell': 'quit'}
+                           }
         
     def header(self):
         print '''
@@ -208,6 +226,20 @@ To exit this application, type "quit".
 ''' % (self.environment['starting_time'], quotation())
     
     def do_connectdb(self, arg, count):
+        '''
+Command: connectdb <options> <file name>
+    <options> = {absolute | cwd}
+    <file name> = File name for simulation logging database. If the database 
+                  file is not found, it will be created.
+Description: Establish connection to a simulation logging database.
+Pre-requisite(s): None
+
+<options> = absolute
+    Defines absolute file path for <file name> to simulation logging database.
+<options> = cwd
+    Defines relative file path for <file name> to simulation logging database.
+    <file name> will be prefixed with current working directory in the format
+    of <current working directory>/<file name>'''
         arg = [x.strip() for x in arg.split(' ')]
         if arg == ['']: arg = []
         if len(arg) != 2:
@@ -233,26 +265,9 @@ To exit this application, type "quit".
             self.results[count] = txt
             print txt
         
-    def help_connectdb(self):
-        print'''
-Command: connectdb <options> <file name>
-    <options> = {absolute | cwd}
-    <file name> = File name for simulation logging database. If the database 
-                  file is not found, it will be created.
-Description: Establish connection to a simulation logging database.
-Pre-requisite(s): None
-
-<options> = absolute
-    Defines absolute file path for <file name> to simulation logging database.
-<options> = cwd
-    Defines relative file path for <file name> to simulation logging database.
-    <file name> will be prefixed with current working directory in the format
-    of <current working directory>/<file name>'''
-        print
-        
     def do_copyright(self, arg, count):
-        print 
-        print "Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)"
+        print
+        print 'Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)'
         print
     
     def do_credits(self, arg, count):
@@ -263,21 +278,20 @@ Lead developer: Clarence Castillo'''
         print
     
     def do_help(self, arg, count):
-        if arg == '' or arg == 'help':
-            print
-            print '''List of available commands:
+        '''
+List of available commands:
 connectdb           copyright           credits          help    
 license             quit                save             show
 
 Type help <command> for more help (if any)'''
-            print
-        elif arg == 'connectdb': self.help_connectdb()
+        if arg == '' or arg == 'help': print self.do_help.__doc__
+        elif arg == 'connectdb': print self.do_connectdb.__doc__
         elif arg == 'copyright': self.do_copyright(arg, count)
         elif arg == 'credits': self.do_credits(arg, count)
         elif arg == 'license': self.do_license(arg, count)
-        elif arg == 'quit': self.help_quit()
-        elif arg == 'save': self.help_save()
-        elif arg == 'show': self.help_show()
+        elif arg == 'quit': print self.do_quit.__doc__
+        elif arg == 'save': print self.do_save.__doc__
+        elif arg == 'show': print self.do_show.__doc__
         else:
             txt = arg + ' is not a valid command; hence, no help is available.'
             self.results[count] = txt
@@ -286,13 +300,16 @@ Type help <command> for more help (if any)'''
     def do_license(self, arg, count):
         print
         print '''
-Unless otherwise specified, all files in dose/copads folder will be licensed 
-under Python Software Foundation License version 2.
-All other files, including DOSE, will be GNU General Public License version 3.
-        '''
+DOSE License: Unless otherwise specified, all files in dose/copads folder 
+will be licensed under Python Software Foundation License version 2.
+All other files, including DOSE, will be GNU General Public License version 3.'''
         print
     
     def do_quit(self, arg, count):
+        '''
+Command: quit
+Description: Terminate this application
+Pre-requisite(s): None'''
         print
         print '''Are you going off?? -:(
 Please contact Maurice Ling (mauriceling@acm.org) if you need any help.
@@ -303,14 +320,21 @@ Goodbye! Have a nice day and hope to see you again soon!
 Current time is %s''' % (quotation(), str(datetime.utcnow()))
         print
     
-    def help_quit(self):
-        print '''
-Command: quit
-Description: Terminate this application
-Pre-requisite(s): None'''
-        print
     
     def do_save(self, arg, count):
+        '''
+Command: save <options> <file name>
+    <options> = {history | workspace}
+    <file name> = File name for output. The file will be in current working
+                  directory
+Description: To save history or data into a text file
+Pre-requisite(s): None
+
+<options> = history
+    Writes out history of the current session into <file name>
+<options> = workspace
+    Writes out the entire workspace (history, data, environment) of the 
+    current session into <file name>'''
         if arg == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
@@ -363,23 +387,27 @@ Pre-requisite(s): None'''
             self.results[count] = txt
             print txt
         
-    def help_save(self):
-        print'''
-Command: save <options> <file name>
-    <options> = {history | workspace}
-    <file name> = File name for output. The file will be in current working
-                  directory
-Description: To save history or data into a text file
+    def do_show(self, arg, count):
+        '''
+Command: show <options>
+    <options> = {environment | history | history <item>}
+Description: Display internal variables
 Pre-requisite(s): None
 
+<options> = data
+    Display all results/data in the current session, in the format of 
+    Command = <command number> | Data = <data/results in text format>
+<options> = data <item>
+    Display only specific result/data, where <item> is the command number
+<options> = environment
+    Display all environmental variables in DOSE command shell as one line 
+    per environmental variable.
 <options> = history
-    Writes out history of the current session into <file name>
-<options> = workspace
-    Writes out the entire workspace (history, data, environment) of the 
-    current session into <file name>'''
-        print
-        
-    def do_show(self, arg, count):
+    Display all history in the current session, in the format of 
+    Command = <command number> | Command = <command string>
+<options> = history <item>
+    Display only specific historical command, where <item> is the command 
+    number'''
         if arg == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
@@ -417,29 +445,6 @@ Pre-requisite(s): None
             txt = arg + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
             print txt
-                
-    def help_show(self):
-        print '''
-Command: show <options>
-    <options> = {environment | history | history <item>}
-Description: Display internal variables
-Pre-requisite(s): None
-
-<options> = data
-    Display all results/data in the current session, in the format of 
-    Command = <command number> | Data = <data/results in text format>
-<options> = data <item>
-    Display only specific result/data, where <item> is the command number
-<options> = environment
-    Display all environmental variables in DOSE command shell as one line 
-    per environmental variable.
-<options> = history
-    Display all history in the current session, in the format of 
-    Command = <command number> | Command = <command string>
-<options> = history <item>
-    Display only specific historical command, where <item> is the command 
-    number'''
-        print
             
     def command_handler(self, cmd, arg, count):
         count = str(count)
@@ -465,6 +470,8 @@ Pre-requisite(s): None
                 arg = ' '.join(statement.split(' ')[1:])
                 arg = arg.strip()
                 if cmd in self.commands:
+                    self.environment['last_command_time'] = str(datetime.utcnow())
+                    self.environment['command_count'] = count
                     self.command_handler(cmd, arg, count)
                 else:
                     error_message = cmd + ' is not a valid command.'
@@ -508,7 +515,14 @@ Pre-requisite(s): None
 if __name__ == '__main__':
     shell = DOSECommandShell()
     shell.header()
-    readline.set_completer(shell.completer)     # enables autocompletion
-    readline.parse_and_bind("tab: complete")
+    if readline_import:
+        shell.environment['readline_module'] = 'readline'
+    elif pyreadline_import:
+        shell.environment['readline_module'] = 'pyreadline'
+    else:
+        shell.environment['readline_module'] = None
+    if readline_import or pyreadline_import:
+        readline.set_completer(shell.completer)   # enables autocompletion
+        readline.parse_and_bind("tab: complete")
     shell.cmdloop()
     sys.exit()
