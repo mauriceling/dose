@@ -198,6 +198,7 @@ class DOSECommandShell(object):
                 'help', 
                 'license',
                 'quit',
+                'py',
                 'save',
                 'show',)
     
@@ -281,7 +282,8 @@ Lead developer: Clarence Castillo'''
         '''
 List of available commands:
 connectdb           copyright           credits          help    
-license             quit                save             show
+license             py                  quit             save
+show
 
 Type help <command> for more help (if any)'''
         if arg == '' or arg == 'help': print self.do_help.__doc__
@@ -290,6 +292,7 @@ Type help <command> for more help (if any)'''
         elif arg == 'credits': self.do_credits(arg, count)
         elif arg == 'license': self.do_license(arg, count)
         elif arg == 'quit': print self.do_quit.__doc__
+        elif arg == 'py': print self.do_py.__doc__
         elif arg == 'save': print self.do_save.__doc__
         elif arg == 'show': print self.do_show.__doc__
         else:
@@ -305,6 +308,15 @@ will be licensed under Python Software Foundation License version 2.
 All other files, including DOSE, will be GNU General Public License version 3.'''
         print
     
+    def do_py(self, arg, count):
+        '''
+Command: py <python statement>
+    <python statement> = any fully formed and complete Python statement
+Description: Execute an arbitrary Python statement
+Pre-requisite(s): None
+        '''
+        exec(arg)
+        
     def do_quit(self, arg, count):
         '''
 Command: quit
@@ -453,6 +465,7 @@ Pre-requisite(s): None
         elif cmd == 'credits': self.do_credits(arg, count)
         elif cmd == 'help': self.do_help(arg, count)
         elif cmd == 'license': self.do_license(arg, count)
+        elif cmd == 'py': self.do_py(arg, count)
         elif cmd == 'quit': self.do_quit(arg, count)
         elif cmd == 'save': self.do_save(arg, count)
         elif cmd == 'show': self.do_show(arg, count)
