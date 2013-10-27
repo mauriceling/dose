@@ -197,6 +197,7 @@ class DOSECommandShell(object):
                 'credits',
                 'help', 
                 'license',
+                'list',
                 'quit',
                 'py',
                 'save',
@@ -282,8 +283,8 @@ Lead developer: Clarence Castillo'''
         '''
 List of available commands:
 connectdb           copyright           credits          help    
-license             py                  quit             save
-show
+license             list                py               quit
+save                show
 
 Type help <command> for more help (if any)'''
         if arg == '' or arg == 'help': print self.do_help.__doc__
@@ -291,6 +292,7 @@ Type help <command> for more help (if any)'''
         elif arg == 'copyright': self.do_copyright(arg, count)
         elif arg == 'credits': self.do_credits(arg, count)
         elif arg == 'license': self.do_license(arg, count)
+        elif arg == 'list': self.do_list(arg, count)
         elif arg == 'quit': print self.do_quit.__doc__
         elif arg == 'py': print self.do_py.__doc__
         elif arg == 'save': print self.do_save.__doc__
@@ -308,11 +310,33 @@ will be licensed under Python Software Foundation License version 2.
 All other files, including DOSE, will be GNU General Public License version 3.'''
         print
     
+    def do_list(self, arg, count):
+        '''
+Command: list <options>
+    <options> = {simulations}
+Description: Display information about simulations logged in the simulation 
+logging database.
+Pre-requisite(s): Requires connection to a simulation logging database 
+(using connectdb command)
+
+<options> = simulations
+    List all simulations in the simulation logging database, in the format 
+    of [<starting time of simulation>, <simulation name>]
+        '''
+        cur = self.environment['database_cursor']
+        if arg == '': print self.do_list.__doc__
+        elif arg == 'simulations': 
+            results = dose.db_list_simulations(cur)
+            self.results[count] = results
+            for r in results: print r
+        
     def do_py(self, arg, count):
         '''
 Command: py <python statement>
-    <python statement> = any fully formed and complete Python statement
-Description: Execute an arbitrary Python statement
+    <python statement> = any fully formed and complete Python statement in 
+                         a single line (not for multi-line statement, such 
+                         as loop)
+Description: Execute an arbitrary single-lined Python statement
 Pre-requisite(s): None
         '''
         exec(arg)
@@ -465,6 +489,7 @@ Pre-requisite(s): None
         elif cmd == 'credits': self.do_credits(arg, count)
         elif cmd == 'help': self.do_help(arg, count)
         elif cmd == 'license': self.do_license(arg, count)
+        elif cmd == 'list': self.do_list(arg, count)
         elif cmd == 'py': self.do_py(arg, count)
         elif cmd == 'quit': self.do_quit(arg, count)
         elif cmd == 'save': self.do_save(arg, count)
