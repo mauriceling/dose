@@ -238,7 +238,7 @@ Pre-requisite(s): None
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_connectdb()
+            print self.do_connectdb.__doc__
             return
         elif option == 'absolute':
             self.environment['database_file'] = param
@@ -303,35 +303,75 @@ All other files, including DOSE, will be GNU General Public License version 3.''
     def do_list(self, option, param, count):
         '''
 Command: list <options>
-    <options> = {generations | simulations}
+    <options> = {generations | popname | simulations}
 Description: Display information about simulations logged in the simulation 
     logging database.
 Pre-requisite(s): Requires connection to a simulation logging database 
 (using connectdb command)
 
-<options> = generations <start_time>
+<options> = datafields <start_time> <table>
+    List all logged datafields of a simulation (identified by start_time) 
+    from one of the 4 tables (parameters, organisms, world, and miscellaneous) 
+    in the simulation logging database. If <table> is not given, generations 
+    will be listed from organisms table.
+<options> = generations <start_time> <table>
     List all logged generations of a simulation (identified by start_time) 
-    in the simulation logging database
+    from one of the 3 tables (organisms, world, and miscellaneous) in the 
+    simulation logging database. If <table> is not given, generations will 
+    be listed from organisms table.
 <options> = simulations
     List all simulations in the simulation logging database, in the format 
     of [<starting time of simulation>, <simulation name>]
+<options> = popname
+    List all logged population names of a simulation (identified by 
+    start_time) in the simulation logging database.
         '''
         cur = self.environment['database_cursor']
+        param = [x.strip() for x in param.split(' ')]
+        if len(param) == 1: table = 'organisms'
+        else: table = param[1]
+        if cur == None:
+            error_message = 'Error: no database had been connected'
         if option == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_show()
+            print self.do_list.__doc__
             return
-        elif option == 'generations': 
-            results = dose.db_list_generations(cur, param)
+        elif option == 'datafields':
+            print '''Searching for data fields logged in simulation
+    start time = %s of 
+    simulation logging database file = %s
+    table = %s''' % (param[0], self.environment['database_file'], table)
+            results = dose.db_list_datafields(cur, param[0], table)
+            self.results[count] = results
+            for r in results: print r
+        elif option == 'generations':
+            print '''Searching for generations logged in simulation
+    start time = %s of 
+    simulation logging database file = %s
+    table = %s''' % (param[0], self.environment['database_file'], table)
+            results = dose.db_list_generations(cur, param[0], table)
+            self.results[count] = results
+            for r in results: print r
+        elif option == 'popname': 
+            print '''Searching for population names logged in simulation
+    start time = %s of 
+    simulation logging database file = %s''' % (param[0], self.environment['database_file'])
+            results = dose.db_list_population_name(cur, param[0])
             self.results[count] = results
             for r in results: print r
         elif option == 'simulations': 
+            print '''Searching for simulations logged in simulation logging 
+database file = %s''' % (self.environment['database_file'])
             results = dose.db_list_simulations(cur)
             self.results[count] = results
             for r in results: print r
+        else:
+            txt = option + ' is not a valid option. Type help list for more information'
+            self.results[count] = txt
+            print txt
             
     def do_py(self, option, param, count):
         '''
@@ -403,7 +443,7 @@ Pre-requisite(s): None
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_save()
+            print self.do_save.__doc__
             return
         if param == '': 
             param = 'saved.' + str(self.environment['starting_time']) + '.txt'
@@ -475,7 +515,7 @@ Pre-requisite(s): None
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_show()
+            print self.do_show.__doc__
             return
         elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
@@ -535,6 +575,9 @@ Pre-requisite(s): None
                 elif len(statement) == 2:
                     option = statement[1]
                     param = ''
+                elif len(statement) == 3:
+                    option = statement[1]
+                    param = statement[2]
                 else:
                     option = statement[1]
                     param = ' '.join(statement[2:])
