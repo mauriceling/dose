@@ -492,7 +492,8 @@ Pre-requisite(s): None
     def do_show(self, option, param, count):
         '''
 Command: show <options>
-    <options> = {environment | history | history <item>}
+    <options> = {data | data <item> | environment | history | history <item> |
+                 memory data | memory userdata | userdata | userdata <key>}
 Description: Display internal variables
 Pre-requisite(s): None
 
@@ -511,11 +512,16 @@ Pre-requisite(s): None
 <options> = history <item>
     Display only specific historical command, where <item> is the command 
     number
+<options> = memory data
+    Display memory size of each data element of result/data (self.results).
+<options> = memory userdata
+    Display memory size of each data element of user-specific data 
+    (self.userdata).
 <options> = userdata
     Display all user-defined data (self.userdata) in the current session, 
     in the format of Key = <dictionary key> | Data = <data/results in text 
     format>
-<options> = data <key>
+<options> = userdata <key>
     Display only specific user-defined data (self.userdata), where <key> 
     is the dictionary key'''
         if option == '':
@@ -555,6 +561,18 @@ Pre-requisite(s): None
         elif option == 'userdata' and param != '':
             self.results[count] = self.userdata[str(param)]
             print 'Key =', param, '| Data =', self.userdata[str(param)]
+        elif option == 'memory' and param == 'data':
+            keys = [int(x) for x in self.results.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print 'Data (self.results) memory usage (Count = %s): %s bytes' % (k, 
+                                                      sys.getsizeof(self.results[k]))
+        elif option == 'memory' and param == 'userdata':
+            keys = [int(x) for x in self.userdata.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print '''User-defined data (self.userdata) memory usage \
+(Count = %s): %s bytes''' % (k, sys.getsizeof(self.userdata[k]))
         else:
             txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
