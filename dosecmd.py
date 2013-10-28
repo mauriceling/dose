@@ -497,19 +497,27 @@ Description: Display internal variables
 Pre-requisite(s): None
 
 <options> = data
-    Display all results/data in the current session, in the format of 
-    Command = <command number> | Data = <data/results in text format>
+    Display all results/data (self.results) in the current session, in the 
+    format of Count = <command number> | Data = <data/results in text format>
 <options> = data <item>
-    Display only specific result/data, where <item> is the command number
+    Display only specific result/data (self.results), where <item> is the 
+    command number
 <options> = environment
     Display all environmental variables in DOSE command shell as one line 
     per environmental variable.
 <options> = history
     Display all history in the current session, in the format of 
-    Command = <command number> | Command = <command string>
+    Count = <command number> | Command = <command string>
 <options> = history <item>
     Display only specific historical command, where <item> is the command 
-    number'''
+    number
+<options> = userdata
+    Display all user-defined data (self.userdata) in the current session, 
+    in the format of Key = <dictionary key> | Data = <data/results in text 
+    format>
+<options> = data <key>
+    Display only specific user-defined data (self.userdata), where <key> 
+    is the dictionary key'''
         if option == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
@@ -539,6 +547,14 @@ Pre-requisite(s): None
         elif option == 'data' and param != '':
             self.results[count] = self.results[str(param)]
             print 'Count =', param, '| Data =', self.results[str(param)]
+        elif option == 'userdata' and param == '':
+            keys = [int(x) for x in self.userdata.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print 'Key =', k, '| Data =', self.userdata[k]
+        elif option == 'userdata' and param != '':
+            self.results[count] = self.userdata[str(param)]
+            print 'Key =', param, '| Data =', self.userdata[str(param)]
         else:
             txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
@@ -581,8 +597,6 @@ Pre-requisite(s): None
                 else:
                     option = statement[1]
                     param = ' '.join(statement[2:])
-                #arg = ' '.join(statement.split(' ')[1:])
-                #arg = arg.strip()
                 if cmd in self.commands:
                     self.environment['last_command_time'] = str(datetime.utcnow())
                     self.environment['command_count'] = count
