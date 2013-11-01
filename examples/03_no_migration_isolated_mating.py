@@ -1,3 +1,17 @@
+'''
+Example 03: Examining the effects of no migration on genetic distance 
+differences from an initially identical population (development of sub-
+populations or demes which may lead to speciation)
+
+In this simulation,
+    - 1 populations of 1250 organisms
+    - each organism will have 1 chromosome of only 2 bases (1 and 0)
+    - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
+    - 20% background point mutation on chromosome of 50 bases
+    - no organism movement throughout the simulation
+    - no Ragaraja interpretation of genome
+    - 1000 generations to be simulated
+'''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
 import run_examples_without_installation
