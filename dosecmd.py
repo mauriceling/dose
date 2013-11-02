@@ -270,6 +270,23 @@ Lead developer: Clarence Castillo'''
         print
     
     def do_flush(self, option, param, count):
+        '''
+Command: flush <options>
+<options> = {data | data <item> | userdata | userdata <key>}
+Description: Deletes / clears internal variables
+Pre-requisite(s): None
+
+<options> = data
+    Delete all results/data (self.results) in the current session
+<options> = data <item>
+    Delete only specific result/data (self.results), where <item> is the 
+    command number
+<options> = userdata
+    Delete all user-defined data (self.userdata) in the current session
+<options> = userdata <key>
+    Delete only specific user-defined data (self.userdata), where <key> 
+    is the dictionary key
+        '''
         if option == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
@@ -281,15 +298,15 @@ Lead developer: Clarence Castillo'''
             self.results = {}
             print 'All data cleared (from self.results)'
         elif option == 'data' and param != '':
-            if self.results.pop(count, None) != None:
+            if self.results.pop(str(param), None) != None:
                 print 'Data (self.results) cleared from Key = ', str(param)
             else:
-                print 'Key = ', str(param), ' does not exist in self.results'
+                print 'Item = ', str(param), ' does not exist in self.results'
         elif option == 'userdata' and param == '':
             self.userdata = {}
             print 'All user-defined data cleared (from self.userdata)'
         elif option == 'userdata' and param != '':
-            if self.userdata.pop(count, None) != None:
+            if self.userdata.pop(str(param), None) != None:
                 print 'User-defined data (self.userdata) cleared from Key = ', str(param)
             else:
                 print 'Key = ', str(param), ' does not exist in \
