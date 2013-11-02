@@ -1,3 +1,15 @@
+'''
+Example 01: The most basic simulation (using default simulation functions)
+
+In this simulation,
+    - 1 population of 100 organisms
+    - each organism will have 1 chromosome of only 2 bases (1 and 0)
+    - entire population will be deployed in one eco-cell (0, 0, 0)
+    - 10% background point mutation on chromosome of 30 bases
+    - no organism movement throughout the simulation
+    - Ragaraja interpretation of genome (with new blood option)
+    - 100 generations to be simulated
+'''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
 import run_examples_without_installation

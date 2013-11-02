@@ -195,15 +195,20 @@ class DOSECommandShell(object):
     commands = ('connectdb',
                 'copyright', 
                 'credits',
+                'flush',
                 'help', 
                 'license',
+                'list',
                 'quit',
+                'py',
+                'pyshell',
                 'save',
                 'show',)
     
     def __init__(self):
         self.history = {}
         self.results = {}
+        self.userdata = {}
         self.environment = {'command_count': 0,
                             'cwd': os.getcwd(),
                             'database_connector': None,
@@ -213,19 +218,8 @@ class DOSECommandShell(object):
                             'readline_module': None,
                             'starting_time': str(datetime.utcnow()),
                            }
-        
-    def header(self):
-        print '''
-Digital Organisms Simulation Environment (DOSE), version 0.1
-Current time is %s
-
-%s
-
-Type "help", "copyright", "credits" or "license" for more information.
-To exit this application, type "quit".
-''' % (self.environment['starting_time'], quotation())
     
-    def do_connectdb(self, arg, count):
+    def do_connectdb(self, option, param, count):
         '''
 Command: connectdb <options> <file name>
     <options> = {absolute | cwd}
@@ -240,72 +234,211 @@ Pre-requisite(s): None
     Defines relative file path for <file name> to simulation logging database.
     <file name> will be prefixed with current working directory in the format
     of <current working directory>/<file name>'''
-        arg = [x.strip() for x in arg.split(' ')]
-        if arg == ['']: arg = []
-        if len(arg) != 2:
+        if param == '':
             error_message = 'Error: 2 options needed; %s provided' % len(arg)
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_connectdb()
+            print self.do_connectdb.__doc__
             return
-        elif arg[0] == 'absolute':
-            self.environment['database_file'] = path
-            (con, cur) = dose.connect_database(path, None)
+        elif option == 'absolute':
+            self.environment['database_file'] = param
+            (con, cur) = dose.connect_database(param, None)
             self.environment['database_connector'] = con
             self.environment['database_cursor'] = cur
-        elif arg[0] == 'cwd':
-            path = os.sep.join([self.environment['cwd'], arg[1]])
+        elif option == 'cwd':
+            path = os.sep.join([self.environment['cwd'], param])
             self.environment['database_file'] = path
             (con, cur) = dose.connect_database(path, None)
             self.environment['database_connector'] = con
             self.environment['database_cursor'] = cur
         else:
-            txt = arg[0] + ' is not a valid option. Type help connectdb for more information'
+            txt = option + ' is not a valid option. Type help connectdb for more information'
             self.results[count] = txt
             print txt
-        
-    def do_copyright(self, arg, count):
+
+    def do_copyright(self, option, param, count):
         print
         print 'Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)'
         print
     
-    def do_credits(self, arg, count):
+    def do_credits(self, option, param, count):
         print
         print '''DOSE Project Team
 Project architect: Maurice HT Ling (mauriceling@acm.org)
 Lead developer: Clarence Castillo'''
         print
     
-    def do_help(self, arg, count):
+    def do_flush(self, option, param, count):
+        if option == '':
+            error_message = 'Error: No options provided'
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
+            print self.do_flush.__doc__
+            return
+        elif option == 'data' and param == '':
+            self.results = {}
+            print 'All data cleared (from self.results)'
+        elif option == 'data' and param != '':
+            if self.results.pop(count, None) != None:
+                print 'Data (self.results) cleared from Key = ', str(param)
+            else:
+                print 'Key = ', str(param), ' does not exist in self.results'
+        elif option == 'userdata' and param == '':
+            self.userdata = {}
+            print 'All user-defined data cleared (from self.userdata)'
+        elif option == 'userdata' and param != '':
+            if self.userdata.pop(count, None) != None:
+                print 'User-defined data (self.userdata) cleared from Key = ', str(param)
+            else:
+                print 'Key = ', str(param), ' does not exist in \
+user-defined data (self.userdata)'
+
+    
+    def do_help(self, option, param, count):
         '''
 List of available commands:
-connectdb           copyright           credits          help    
-license             quit                save             show
+connectdb           copyright           credits          flush
+help                license             list             py  
+pyshell             quit                save             show
 
 Type help <command> for more help (if any)'''
-        if arg == '' or arg == 'help': print self.do_help.__doc__
-        elif arg == 'connectdb': print self.do_connectdb.__doc__
-        elif arg == 'copyright': self.do_copyright(arg, count)
-        elif arg == 'credits': self.do_credits(arg, count)
-        elif arg == 'license': self.do_license(arg, count)
-        elif arg == 'quit': print self.do_quit.__doc__
-        elif arg == 'save': print self.do_save.__doc__
-        elif arg == 'show': print self.do_show.__doc__
+        if option == '' or option == 'help': print self.do_help.__doc__
+        elif option == 'connectdb': print self.do_connectdb.__doc__
+        elif option == 'copyright': self.do_copyright(option, param, count)
+        elif option == 'credits': self.do_credits(option, param, count)
+        elif option == 'flush': self.do_flush.__doc__
+        elif option == 'license': self.do_license(option, param, count)
+        elif option == 'list': print self.do_list.__doc__
+        elif option == 'quit': print self.do_quit.__doc__
+        elif option == 'py': print self.do_py.__doc__
+        elif option == 'pyshell': print self.do_pyshell.__doc__
+        elif option == 'save': print self.do_save.__doc__
+        elif option == 'show': print self.do_show.__doc__
         else:
-            txt = arg + ' is not a valid command; hence, no help is available.'
+            txt = option + ' is not a valid command; hence, no help is available.'
             self.results[count] = txt
             print txt
     
-    def do_license(self, arg, count):
+    def do_license(self, option, param, count):
         print
         print '''
 DOSE License: Unless otherwise specified, all files in dose/copads folder 
 will be licensed under Python Software Foundation License version 2.
 All other files, including DOSE, will be GNU General Public License version 3.'''
         print
-    
-    def do_quit(self, arg, count):
+        
+    def do_list(self, option, param, count):
+        '''
+Command: list <options>
+    <options> = {generations | popname | simulations}
+Description: Display information about simulations logged in the simulation 
+    logging database.
+Pre-requisite(s): Requires connection to a simulation logging database 
+(using connectdb command)
+
+<options> = datafields <start_time> <table>
+    List all logged datafields of a simulation (identified by start_time) 
+    from one of the 4 tables (parameters, organisms, world, and miscellaneous) 
+    in the simulation logging database. If <table> is not given, generations 
+    will be listed from organisms table.
+<options> = generations <start_time> <table>
+    List all logged generations of a simulation (identified by start_time) 
+    from one of the 3 tables (organisms, world, and miscellaneous) in the 
+    simulation logging database. If <table> is not given, generations will 
+    be listed from organisms table.
+<options> = simulations
+    List all simulations in the simulation logging database, in the format 
+    of [<starting time of simulation>, <simulation name>]
+<options> = popname
+    List all logged population names of a simulation (identified by 
+    start_time) in the simulation logging database.
+        '''
+        cur = self.environment['database_cursor']
+        param = [x.strip() for x in param.split(' ')]
+        if len(param) == 1: table = 'organisms'
+        else: table = param[1]
+        if cur == None:
+            error_message = 'Error: no database had been connected'
+        if option == '':
+            error_message = 'Error: No options provided'
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
+            print self.do_list.__doc__
+            return
+        elif option == 'datafields':
+            print '''Searching for data fields logged in simulation
+    start time = %s of 
+    simulation logging database file = %s
+    table = %s''' % (param[0], self.environment['database_file'], table)
+            results = dose.db_list_datafields(cur, param[0], table)
+            self.results[count] = results
+            for r in results: print r
+        elif option == 'generations':
+            print '''Searching for generations logged in simulation
+    start time = %s of 
+    simulation logging database file = %s
+    table = %s''' % (param[0], self.environment['database_file'], table)
+            results = dose.db_list_generations(cur, param[0], table)
+            self.results[count] = results
+            for r in results: print r
+        elif option == 'popname': 
+            print '''Searching for population names logged in simulation
+    start time = %s of 
+    simulation logging database file = %s''' % (param[0], self.environment['database_file'])
+            results = dose.db_list_population_name(cur, param[0])
+            self.results[count] = results
+            for r in results: print r
+        elif option == 'simulations': 
+            print '''Searching for simulations logged in simulation logging 
+database file = %s''' % (self.environment['database_file'])
+            results = dose.db_list_simulations(cur)
+            self.results[count] = results
+            for r in results: print r
+        else:
+            txt = option + ' is not a valid option. Type help list for more information'
+            self.results[count] = txt
+            print txt
+            
+    def do_py(self, option, param, count):
+        '''
+Command: py <python statement>
+    <python statement> = any fully formed and complete Python statement in 
+                         a single line (not for multi-line statement, such 
+                         as loop)
+Description: Execute an arbitrary single-lined Python statement
+Pre-requisite(s): None
+        '''
+        exec(arg)
+        
+    def do_pyshell(self, option, param, count):
+        '''
+Command: pyshell
+Description: Launch a full Python interactive interpreter and exposes 
+    current DOSE command shell as 'self' object. The 3 main dictionaries in 
+    current DOSE command shell are exposed at top level - 
+    (1) environment (from self.environment - a dictionary that holds all 
+    environmental variables), 
+    (2) results (from self.results - a dictionary that results from each 
+    command in the current session if any), and 
+    (3) userdata (from self.userdata - a dictionary that holds any user 
+    defined data). 
+    This command provides full functionality to the user, which is similar 
+    to using DOSE as a library. Hence, please read DOSE command shell 
+    documentation and use with care.
+    To exit from the interactive interpreter, use Crtl-D.
+Pre-requisite(s): None
+        '''
+        exec('''import code; \
+                import dose; \
+                environment = self.environment; \
+                userdata = self.userdata;\
+                results = self.results;\
+                code.interact(local=vars())''')
+        
+    def do_quit(self, option, param, count):
         '''
 Command: quit
 Description: Terminate this application
@@ -319,9 +452,8 @@ Goodbye! Have a nice day and hope to see you again soon!
 
 Current time is %s''' % (quotation(), str(datetime.utcnow()))
         print
-    
-    
-    def do_save(self, arg, count):
+        
+    def do_save(self, option, param, count):
         '''
 Command: save <options> <file name>
     <options> = {history | workspace}
@@ -335,18 +467,17 @@ Pre-requisite(s): None
 <options> = workspace
     Writes out the entire workspace (history, data, environment) of the 
     current session into <file name>'''
-        if arg == '':
+        if option == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_save()
+            print self.do_save.__doc__
             return
-        arg = [x.strip() for x in arg.split(' ')]
-        if len(arg) < 2: 
-            arg.append('saved.' + str(self.environment['starting_time']) + '.txt')
-        outfile = open(os.sep.join([str(self.environment['cwd']), arg[1]]), 'a')
-        if arg[0] == 'history':
+        if param == '': 
+            param = 'saved.' + str(self.environment['starting_time']) + '.txt'
+        outfile = open(os.sep.join([str(self.environment['cwd']), param]), 'a')
+        if option == 'history':
             outfile.write('Date time stamp of current session: ' + \
                          str(self.environment['starting_time']) + os.linesep)
             keys = [int(x) for x in self.history.keys()]
@@ -356,7 +487,7 @@ Pre-requisite(s): None
                 outfile.write(txt + os.linesep)
             outfile.write('===================================' + os.linesep)
             outfile.close()
-        elif arg[0] == 'workspace':
+        elif option == 'workspace':
             outfile.write('Date time stamp of current session: ' + \
                          str(self.environment['starting_time']) + os.linesep)
             # writing out environment
@@ -383,80 +514,114 @@ Pre-requisite(s): None
             outfile.write('===================================' + os.linesep)
             outfile.close()
         else:
-            txt = arg[0] + ' is not a valid option. Type help save for more information'
+            txt = option + ' is not a valid option. Type help save for more information'
             self.results[count] = txt
             print txt
-        
-    def do_show(self, arg, count):
+            
+    def do_show(self, option, param, count):
         '''
 Command: show <options>
-    <options> = {environment | history | history <item>}
+    <options> = {data | data <item> | environment | history | history <item> |
+                 memory data | memory userdata | userdata | userdata <key>}
 Description: Display internal variables
 Pre-requisite(s): None
 
 <options> = data
-    Display all results/data in the current session, in the format of 
-    Command = <command number> | Data = <data/results in text format>
+    Display all results/data (self.results) in the current session, in the 
+    format of Count = <command number> | Data = <data/results in text format>
 <options> = data <item>
-    Display only specific result/data, where <item> is the command number
+    Display only specific result/data (self.results), where <item> is the 
+    command number
 <options> = environment
     Display all environmental variables in DOSE command shell as one line 
     per environmental variable.
 <options> = history
     Display all history in the current session, in the format of 
-    Command = <command number> | Command = <command string>
+    Count = <command number> | Command = <command string>
 <options> = history <item>
     Display only specific historical command, where <item> is the command 
-    number'''
-        if arg == '':
+    number
+<options> = memory data
+    Display memory size of each data element of result/data (self.results).
+<options> = memory userdata
+    Display memory size of each data element of user-specific data 
+    (self.userdata).
+<options> = userdata
+    Display all user-defined data (self.userdata) in the current session, 
+    in the format of Key = <dictionary key> | Data = <data/results in text 
+    format>
+<options> = userdata <key>
+    Display only specific user-defined data (self.userdata), where <key> 
+    is the dictionary key'''
+        if option == '':
             error_message = 'Error: No options provided'
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
             print error_message
-            self.help_show()
+            print self.do_show.__doc__
             return
-        elif arg == 'environment':
+        elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
             print 'Environment variables:'
             for key in self.environment.keys():
                 print key, '=', self.environment[key]
-        elif arg == 'history':
+        elif option == 'history' and param == '':
             self.results[count] = copy.deepcopy(self.history)
             keys = [int(x) for x in self.history.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print 'Count =', k, '| Command =', self.history[k]
-        elif arg.startswith('history') and arg[-1] != 'y':
-            arg = [str(x.strip()) for x in arg.split(' ')]
-            if len(arg) > 1:
-                self.results[count] = self.history[str(arg[1])]
-                print 'Count =', arg[1], '| Command =', self.history[str(arg[1])]
-        elif arg == 'data':
+        elif option == 'history' and param != '':
+            self.results[count] = self.history[str(param)]
+            print 'Count =', param, '| Command =', self.history[str(param)]
+        elif option == 'data' and param == '':
             keys = [int(x) for x in self.results.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print 'Count =', k, '| Data =', self.results[k]
-        elif arg.startswith('data') and arg[-1] != 'a':
-            arg = [str(x.strip()) for x in arg.split(' ')]
-            if len(arg) > 1:
-                self.results[count] = self.results[str(arg[1])]
-                print 'Count =', arg[1], '| Data =', self.results[str(arg[1])]
+        elif option == 'data' and param != '':
+            self.results[count] = self.results[str(param)]
+            print 'Count =', param, '| Data =', self.results[str(param)]
+        elif option == 'userdata' and param == '':
+            keys = [int(x) for x in self.userdata.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print 'Key =', k, '| Data =', self.userdata[k]
+        elif option == 'userdata' and param != '':
+            self.results[count] = self.userdata[str(param)]
+            print 'Key =', param, '| Data =', self.userdata[str(param)]
+        elif option == 'memory' and param == 'data':
+            keys = [int(x) for x in self.results.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print 'Data (self.results) memory usage (Count = %s): %s bytes' % (k, 
+                                                      sys.getsizeof(self.results[k]))
+        elif option == 'memory' and param == 'userdata':
+            keys = [int(x) for x in self.userdata.keys()]
+            keys.sort()
+            for k in [str(x) for x in keys]:
+                print '''User-defined data (self.userdata) memory usage \
+(Count = %s): %s bytes''' % (k, sys.getsizeof(self.userdata[k]))
         else:
-            txt = arg + ' is not a valid option. Type help show for more information'
+            txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
             print txt
             
-    def command_handler(self, cmd, arg, count):
+    def command_handler(self, cmd, option, param, count):
         count = str(count)
-        if cmd == 'connectdb': self.do_connectdb(arg, count)
-        elif cmd == 'copyright': self.do_copyright(arg, count)
-        elif cmd == 'credits': self.do_credits(arg, count)
-        elif cmd == 'help': self.do_help(arg, count)
-        elif cmd == 'license': self.do_license(arg, count)
-        elif cmd == 'quit': self.do_quit(arg, count)
-        elif cmd == 'save': self.do_save(arg, count)
-        elif cmd == 'show': self.do_show(arg, count)
-        
+        if cmd == 'connectdb': self.do_connectdb(option, param, count)
+        elif cmd == 'copyright': self.do_copyright(option, param, count)
+        elif cmd == 'credits': self.do_credits(option, param, count)
+        elif cmd == 'help': self.do_help(option, param, count)
+        elif cmd == 'flush': self.do_flush(option, param, count)
+        elif cmd == 'license': self.do_license(option, param, count)
+        elif cmd == 'list': self.do_list(option, param, count)
+        elif cmd == 'py': self.do_py(option, param, count)
+        elif cmd == 'pyshell': self.do_pyshell(option, param, count)
+        elif cmd == 'quit': self.do_quit(option, param, count)
+        elif cmd == 'save': self.do_save(option, param, count)
+        elif cmd == 'show': self.do_show(option, param, count)
+    
     def cmdloop(self):
         statement = ''
         count = 1
@@ -466,13 +631,24 @@ Pre-requisite(s): None
                 statement = str(statement.strip())
                 statement = statement.lower()
                 self.history[str(count)] = statement
-                cmd = statement.split(' ')[0]
-                arg = ' '.join(statement.split(' ')[1:])
-                arg = arg.strip()
+                statement = [x.strip() for x in statement.split(' ')]
+                cmd = statement[0]
+                if len(statement) == 1: 
+                    option = ''
+                    param = ''
+                elif len(statement) == 2:
+                    option = statement[1]
+                    param = ''
+                elif len(statement) == 3:
+                    option = statement[1]
+                    param = statement[2]
+                else:
+                    option = statement[1]
+                    param = ' '.join(statement[2:])
                 if cmd in self.commands:
                     self.environment['last_command_time'] = str(datetime.utcnow())
                     self.environment['command_count'] = count
-                    self.command_handler(cmd, arg, count)
+                    self.command_handler(cmd, option, param, count)
                 else:
                     error_message = cmd + ' is not a valid command.'
                     self.history[str(count)] = self.history[str(count)] + \
@@ -488,13 +664,24 @@ Pre-requisite(s): None
                     if (type(line) == list):
                         for l in line: print l
                     print line
-            
+                
     def completer(self, text, state):
         options = [x for x in self.commands 
                    if x.startswith(text)]
         try: return options[state]
         except IndexError: return None
-        
+    
+    def header(self):
+        print '''
+Digital Organisms Simulation Environment (DOSE), version 0.1
+Current time is %s
+
+%s
+
+Type "help", "copyright", "credits" or "license" for more information.
+To exit this application, type "quit".
+''' % (self.environment['starting_time'], quotation())
+    
     def formatExceptionInfo(self, maxTBlevel=10):
         """
         Method to gather information about an exception raised. It is used

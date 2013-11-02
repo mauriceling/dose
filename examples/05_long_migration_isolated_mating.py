@@ -1,3 +1,29 @@
+'''
+Example 05: Extending from Example 03 (as baseline) and Example 04 (short 
+distance migration) to examine the effects of long distance migration 
+(across one or more eco-cells)  on genetic distance differences from an 
+initially identical population (development of sub-populations or demes 
+which may lead to speciation)
+
+In this simulation,
+    - 1 populations of 1250 organisms
+    - each organism will have 1 chromosome of only 2 bases (1 and 0)
+    - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
+    - 20% background point mutation on chromosome of 50 bases
+    - 10% organism movement per eco-cell per generation throughout the 
+    simulation
+    - the same organism may move twice due to sequential evaluation of the 
+    eco-cells but the probability of such event will be 10% x 10% = 1%; 
+    similarly, 3 or more movement by the same organism may happen with 
+    reducing probabilities
+    - the destination eco-cell for movement is random; thus, from 25 
+    possible eco-cells, there is a probability of 4% chance of relocating 
+    back to the same (original) eco-cell, 16% chance of relocating to one 
+    of the 4-neighbour eco-cells and 32% chance of relocating to one of the 
+    8-neighbour eco-cells
+    - no Ragaraja interpretation of genome
+    - 1000 generations to be simulated
+'''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
 import run_examples_without_installation
@@ -46,7 +72,7 @@ class simulation_functions(dose.dose_functions):
     def organism_location(self, Populations, pop_name, World): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            for i in xrange(int(round((len(group) * .1)))):
+            for i in xrange(int(round((len(group) * 0.1)))):
                 (x,y,z) = helper.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
