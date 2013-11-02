@@ -195,6 +195,7 @@ class DOSECommandShell(object):
     commands = ('connectdb',
                 'copyright', 
                 'credits',
+                'flush',
                 'help', 
                 'license',
                 'list',
@@ -268,19 +269,47 @@ Project architect: Maurice HT Ling (mauriceling@acm.org)
 Lead developer: Clarence Castillo'''
         print
     
+    def do_flush(self, option, param, count):
+        if option == '':
+            error_message = 'Error: No options provided'
+            self.history[str(count)] = self.history[str(count)] + \
+                                       ' | ' + error_message
+            print error_message
+            print self.do_flush.__doc__
+            return
+        elif option == 'data' and param == '':
+            self.results = {}
+            print 'All data cleared (from self.results)'
+        elif option == 'data' and param != '':
+            if self.results.pop(count, None) != None:
+                print 'Data (self.results) cleared from Key = ', str(param)
+            else:
+                print 'Key = ', str(param), ' does not exist in self.results'
+        elif option == 'userdata' and param == '':
+            self.userdata = {}
+            print 'All user-defined data cleared (from self.userdata)'
+        elif option == 'userdata' and param != '':
+            if self.userdata.pop(count, None) != None:
+                print 'User-defined data (self.userdata) cleared from Key = ', str(param)
+            else:
+                print 'Key = ', str(param), ' does not exist in \
+user-defined data (self.userdata)'
+
+    
     def do_help(self, option, param, count):
         '''
 List of available commands:
-connectdb           copyright           credits          help    
-license             list                py               pyshell
-quit                save                show
+connectdb           copyright           credits          flush
+help                license             list             py  
+pyshell             quit                save             show
 
 Type help <command> for more help (if any)'''
         if option == '' or option == 'help': print self.do_help.__doc__
         elif option == 'connectdb': print self.do_connectdb.__doc__
-        elif option == 'copyright': self.do_copyright(arg, count)
-        elif option == 'credits': self.do_credits(arg, count)
-        elif option == 'license': self.do_license(arg, count)
+        elif option == 'copyright': self.do_copyright(option, param, count)
+        elif option == 'credits': self.do_credits(option, param, count)
+        elif option == 'flush': self.do_flush.__doc__
+        elif option == 'license': self.do_license(option, param, count)
         elif option == 'list': print self.do_list.__doc__
         elif option == 'quit': print self.do_quit.__doc__
         elif option == 'py': print self.do_py.__doc__
@@ -584,6 +613,7 @@ Pre-requisite(s): None
         elif cmd == 'copyright': self.do_copyright(option, param, count)
         elif cmd == 'credits': self.do_credits(option, param, count)
         elif cmd == 'help': self.do_help(option, param, count)
+        elif cmd == 'flush': self.do_flush(option, param, count)
         elif cmd == 'license': self.do_license(option, param, count)
         elif cmd == 'list': self.do_list(option, param, count)
         elif cmd == 'py': self.do_py(option, param, count)
