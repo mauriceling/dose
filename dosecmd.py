@@ -287,13 +287,8 @@ Pre-requisite(s): None
     Delete only specific user-defined data (self.userdata), where <key> 
     is the dictionary key
         '''
-        if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_flush.__doc__
-            return
+        if option == '': 
+            self.no_options_error_message(self.do_flush, count)
         elif option == 'data' and param == '':
             self.results = {}
             print 'All data cleared (from self.results)'
@@ -311,8 +306,7 @@ Pre-requisite(s): None
             else:
                 print 'Key = ', str(param), ' does not exist in \
 user-defined data (self.userdata)'
-
-    
+        
     def do_help(self, option, param, count):
         '''
 List of available commands:
@@ -379,12 +373,7 @@ Pre-requisite(s): Requires connection to a simulation logging database
         if cur == None:
             error_message = 'Error: no database had been connected'
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_list.__doc__
-            return
+            self.no_options_error_message(self.do_list, count)
         elif option == 'datafields':
             print '''Searching for data fields logged in simulation
     start time = %s of 
@@ -485,12 +474,7 @@ Pre-requisite(s): None
     Writes out the entire workspace (history, data, environment) of the 
     current session into <file name>'''
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_save.__doc__
-            return
+            self.no_options_error_message(self.do_save, count)
         if param == '': 
             param = 'saved.' + str(self.environment['starting_time']) + '.txt'
         outfile = open(os.sep.join([str(self.environment['cwd']), param]), 'a')
@@ -571,12 +555,7 @@ Pre-requisite(s): None
     Display only specific user-defined data (self.userdata), where <key> 
     is the dictionary key'''
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_show.__doc__
-            return
+            self.no_options_error_message(self.do_show, count)
         elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
             print 'Environment variables:'
@@ -623,7 +602,14 @@ Pre-requisite(s): None
             txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
             print txt
-            
+    
+    def no_options_error_message(self, function, count):
+        error_message = 'Error: No options provided'
+        self.history[str(count)] = self.history[str(count)] + \
+                                   ' | ' + error_message
+        print error_message
+        print function.__doc__
+                
     def command_handler(self, cmd, option, param, count):
         count = str(count)
         if cmd == 'connectdb': self.do_connectdb(option, param, count)
