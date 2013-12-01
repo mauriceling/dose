@@ -3,3 +3,6 @@
 *.pyc
 examples/Simulations
 examples/*.db
+*.csv
+*.pyproj
+*.suo
