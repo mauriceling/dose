@@ -47,7 +47,7 @@ parameters = {
               "ragaraja_version": 0,
               "ragaraja_instructions": ['000', '001', '010', 
                                         '011', '100', '101'],
-              "eco_buried_frequency": 1000,
+              "eco_buried_frequency": 1250,
               "database_file": "case_study_01.db",
               "database_logging_frequency": 1
              }
@@ -109,10 +109,10 @@ class simulation_functions(dose.dose_functions):
     def population_report(self, Populations, pop_name):
         report_list = []
         for organism in Populations[pop_name].agents:
+            identity = str(organism.status['identity'])
             chromosome = ''.join(organism.genome[0].sequence)
-            location = str(organism.status['location'])
             parents = str(organism.status['parents'])
-            report_list.append(chromosome + '  ' + parents)
+            report_list.append(identity + '  ' + chromosome + '  ' + parents)
 
         return '\n'.join(report_list)
 
