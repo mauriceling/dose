@@ -20,3 +20,6 @@ def standard_deviation(data):
     for genetic_distance in data:
         summation += (genetic_distance - data_average) ** 2
     return math.sqrt(summation/(len(data) - 1))
+
+def average(data):
+    return float(sum(data))/len(data)
