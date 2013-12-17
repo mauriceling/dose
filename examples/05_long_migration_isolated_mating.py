@@ -38,7 +38,7 @@ parameters = {
               "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
-              "background_mutation": 0.2,
+              "background_mutation": 0.1,
               "additional_mutation": 0,
               "mutation_type": 'point',
               "chromosome_size": 50,
@@ -60,8 +60,8 @@ parameters = {
               "ragaraja_version": 0,
               "ragaraja_instructions": ['000', '001', '010', 
                                         '011', '100', '101'],
-              "eco_buried_frequency": 1000,
-              "database_file": "case_study_01.db",
+              "eco_buried_frequency": 1250,
+              "database_file": "case_study_01_sim05.db",
               "database_logging_frequency": 1
              }
 
@@ -136,9 +136,8 @@ class simulation_functions(dose.dose_functions):
     def population_report(self, Populations, pop_name):
         report_list = []
         for organism in Populations[pop_name].agents:
-            chromosome = ''.join(organism.genome[0].sequence)
-            location = str(organism.status['location'])
-            report_list.append(chromosome + '  ' + location)
+            identity = str(organism.status['identity'])
+            report_list.append(identity)
         return '\n'.join(report_list)
 
     def database_report(self, con, cur, start_time, 

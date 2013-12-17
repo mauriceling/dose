@@ -1,8 +1,9 @@
 '''
-Example 04: Extending from Example 03 (as baseline) to examine the effects 
-of short migration (adjacent cell migration)  on genetic distance 
-differences from an initially identical population (development of sub-
-populations or demes which may lead to speciation)
+Example 05: Extending from Example 03 (as baseline) and Example 04 (short 
+distance migration) to examine the effects of long distance migration 
+(across one or more eco-cells)  on genetic distance differences from an 
+initially identical population (development of sub-populations or demes 
+which may lead to speciation)
 
 In this simulation,
     - 1 populations of 1250 organisms
@@ -15,6 +16,11 @@ In this simulation,
     eco-cells but the probability of such event will be 10% x 10% = 1%; 
     similarly, 3 or more movement by the same organism may happen with 
     reducing probabilities
+    - the destination eco-cell for movement is random; thus, from 25 
+    possible eco-cells, there is a probability of 4% chance of relocating 
+    back to the same (original) eco-cell, 16% chance of relocating to one 
+    of the 4-neighbour eco-cells and 32% chance of relocating to one of the 
+    8-neighbour eco-cells
     - no Ragaraja interpretation of genome
     - 1000 generations to be simulated
 '''
@@ -27,15 +33,15 @@ import dose, genetic, random
 import simulation_calls as helper
 
 parameters = {
-              "simulation_name": "04_adjacent_migration_isolated_mating",
+              "simulation_name": "10_long_migration_isolated_mating",
               "population_names": ['pop_01'],
               "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
-              "background_mutation": 0.1,
+              "background_mutation": 0.002,
               "additional_mutation": 0,
               "mutation_type": 'point',
-              "chromosome_size": 50,
+              "chromosome_size": 5000,
               "genome_size": 1,
               "max_tape_length": 50,
               "clean_cell": True,
@@ -55,28 +61,29 @@ parameters = {
               "ragaraja_instructions": ['000', '001', '010', 
                                         '011', '100', '101'],
               "eco_buried_frequency": 1250,
-              "database_file": "case_study_01.db",
+              "database_file": "sim10_long_migration.db",
               "database_logging_frequency": 1
              }
 
 class simulation_functions(dose.dose_functions):
 
-    def organism_movement(self, Populations, pop_name, World):
+    def organism_movement(self, Populations, pop_name, World): pass
+
+    def organism_location(self, Populations, pop_name, World): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            adj_cells = helper.adjacent_cells(parameters, location)
             for i in xrange(int(round((len(group) * 0.1)))):
                 (x,y,z) = helper.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
                 while immigrant not in group:
                     immigrant = random.choice(Populations[pop_name].agents)
-                new_location = random.choice(adj_cells)
+                new_location = random.choice(parameters["population_locations"][0])
+                while new_location == location:
+                    new_location = random.choice(parameters["population_locations"][0])
                 immigrant.status['location'] = new_location
                 (x,y,z) = helper.coordinates(new_location)
                 World.ecosystem[x][y][z]['organisms'] += 1
-
-    def organism_location(self, Populations, pop_name, World): pass
 
     def ecoregulate(self, World): pass
 
