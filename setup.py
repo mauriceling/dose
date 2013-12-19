@@ -10,6 +10,7 @@ except ImportError:
 
 setup(name='digital organism simulation environment',
       version='1.0.0',
+      download_url='https://github.com/mauriceling/dose/releases',
       packages=['dose', 
                 'dose.copads'],
       description='Digital Organisms Simulation Environment',
@@ -94,6 +95,8 @@ Environment (DOSE) can be build.
 License: Unless otherwise specified, all files in dose/copads folder will 
 be licensed under Python Software Foundation License version 2; all other 
 files will be GNU General Public License version 3.
+
+Documentation can be found at http://maurice.vodien.com/project-dose
 
 Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
 ''',
