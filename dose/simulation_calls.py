@@ -1,5 +1,6 @@
 '''
-File containing support functions for running a simulation.
+File containing support functions for running a simulation. The functions 
+in this file is not for public use.
 
 Date created: 10th October 2013
 '''

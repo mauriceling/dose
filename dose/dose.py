@@ -702,7 +702,7 @@ def simulate(sim_parameters, sim_functions):
         simulation parameters dictionary equals to 0.
     
     @param sim_parameters: Dictionary of simulation parameters
-    @param simulation_functions: A class inherited from dose.dose_functions
+    @param sim_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
     sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
