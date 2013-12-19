@@ -9,18 +9,3 @@ epydoc --verbose \
        --show-frames \
        --navlink=https://github.com/mauriceling/dose \
        dose
-       
-epydoc --verbose \
-       --pdf \
-       --output=pdf \
-       --name="Digital Organisms Simulation Environment (DOSE)" \
-       --url=https://github.com/mauriceling/dose \
-       --show-imports \
-       --show-private \
-       --show-sourcecode \
-       --show-frames \
-       --navlink=https://github.com/mauriceling/dose \
-       dose
-       
-mv pdf/api.pdf DOSE_API_Documentation.pdf
-rm -rf pdf
