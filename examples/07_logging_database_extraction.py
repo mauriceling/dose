@@ -1,3 +1,6 @@
+'''
+Example 07: Extracting data from simulation logging database
+'''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
 import run_examples_without_installation

@@ -1,3 +1,14 @@
+'''
+Example 08 - Reviving a simulation (Example 03) from simulation logging
+database and run the simulation for another 200 generations.
+
+Example 03 ran the simulation for 1000 generations and logged the events 
+into case_study_01.db file. This example revived the logged simulation 
+from case_study_01.db file using the simulation start time as identifier 
+(2013-10-19-1382200534.1) and run the simulation from generation 1001 to 
+1200. The events of generation 1001 to 1200 are logged in case_study_01.db 
+file.
+'''
 import run_examples_without_installation
 
 import dose, genetic

@@ -1,14 +1,17 @@
 '''
-Example 04: Extending from Example 03 (as baseline) to examine the effects 
-of short migration (adjacent cell migration)  on genetic distance 
+Example 10b: Extending from Example 10a (as baseline) to examine the 
+effects of short migration (adjacent cell migration)  on genetic distance 
 differences from an initially identical population (development of sub-
 populations or demes which may lead to speciation)
+
+This example is identical to Example 09b, except background mutation rate 
+is changed from 0.1% in Example 09b to 0.2% in this example.
 
 In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 0.2% background point mutation on chromosome of 50 bases
     - 10% organism movement per eco-cell per generation throughout the 
     simulation
     - the same organism may move twice due to sequential evaluation of the 
