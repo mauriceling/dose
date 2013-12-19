@@ -3,6 +3,8 @@ epydoc --verbose \
        --output=module-documentation \
        --name="Digital Organisms Simulation Environment (DOSE)" \
        --url=https://github.com/mauriceling/dose \
+       --exclude=dose_e* \
+       --exclude=dose_parameters.py \
        --show-imports \
        --show-private \
        --show-sourcecode \
