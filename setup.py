@@ -8,8 +8,8 @@ try:
 except ImportError:
     pass
 
-setup(name='dose',
-      version='0.1',
+setup(name='digital organism simulation environment',
+      version='1.0.0',
       packages=['dose', 
                 'dose.copads'],
       description='Digital Organisms Simulation Environment',
@@ -101,7 +101,7 @@ Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
       author_email='mauriceling@acm.org',
       url='https://github.com/mauriceling/dose',
       license='GNU General Public License version 3',
-      platform='OS independent',
+      platforms=['Operating System :: OS Independent'],
       classifiers=['Development Status :: 3 - Alpha',
                    'Intended Audience :: Developers',
                    'Intended Audience :: Education',
@@ -115,5 +115,5 @@ Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
                    'Topic :: Scientific/Engineering :: Bio-Informatics',
                    'Topic :: Software Development :: Libraries :: Python Modules'
                    ],
-      console=['dosecmd.py']
+      #console=['dosecmd.py']
      )
