@@ -13,7 +13,7 @@ setup(name='digital organism simulation environment',
       download_url='https://github.com/mauriceling/dose/releases',
       packages=['dose', 
                 'dose.copads'],
-      description='Digital Organisms Simulation Environment',
+      description='Digital Organism Simulation Environment',
       long_description='''
 Digital Organism Simulation Environment (DOSE)
 
