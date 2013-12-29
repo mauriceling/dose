@@ -46,8 +46,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print '\nPreparing population: ' + pop_name + ' for simulation...'
         if 'sim_folder' in sim_parameters or \
             'database_source' in sim_parameters:
-            max = sim_parameters["rev_start"][0] + sim_parameters["extend_gen"]
             print 'Calculating final generation count...'
+            max = sim_parameters["rev_start"][sim_parameters["population_names"].index(pop_name)] + sim_parameters["extend_gen"]
             print 'Updating generation count from previous simulation...'
             generation_count = sim_parameters["rev_start"][0]
         else:
