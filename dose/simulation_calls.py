@@ -19,44 +19,65 @@ from database_calls import db_report
 def simulation_core(sim_functions, sim_parameters, Populations, World):
     time_start = '-'.join([str(datetime.utcnow()).split(' ')[0],
                            str(time())])
+    print 'Creating simulation file directories...'
     directory ='_'.join([sim_parameters["simulation_name"],time_start])
     directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
     directory = directory + os.sep
     if not os.path.exists(directory): os.makedirs(directory)
+    print 'Adding simulation directory to simulation parameters...'
     sim_parameters["directory"] = directory
+    print 'Adding starting time to simulation parameters...'
     sim_parameters["starting_time"] = time_start
     sim_functions = sim_functions()
     if sim_parameters["ragaraja_version"] == 0:
+        print 'Activating ragaraja version: 0...'
         ragaraja.activate_version(sim_parameters["ragaraja_version"],
                                   sim_parameters["ragaraja_instructions"])
     else:
+        print 'Activating ragaraja version: ' + str(sim_parameters["ragaraja_version"]) + '...'
         ragaraja.activate_version(sim_parameters["ragaraja_version"])
     if sim_parameters.has_key("database_file") and \
         sim_parameters.has_key("database_logging_frequency"): 
+        print 'Connecting to database file: ' + sim_parameters["database_file"] + '...'
         (con, cur) = connect_database(None, sim_parameters)
+        print 'Logging simulation parameters to database file...'
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
     for pop_name in Populations:
+        print '\nPreparing population: ' + pop_name + ' for simulation...'
         if 'sim_folder' in sim_parameters or \
             'database_source' in sim_parameters:
             max = sim_parameters["rev_start"][0] + sim_parameters["extend_gen"]
+            print 'Calculating final generation count...'
+            print 'Updating generation count from previous simulation...'
             generation_count = sim_parameters["rev_start"][0]
         else:
+            print 'Deploying population in World entity...'
             if sim_parameters["deployment_code"] == 0:
+                print 'Executing user defined deployment scheme...'
                 deploy_0(sim_parameters, Populations, pop_name, World)      
             elif sim_parameters["deployment_code"] == 1:
+                print 'Executing deployment code 1: Single eco-cell deployment...'
                 deploy_1(sim_parameters, Populations, pop_name, World)  
             elif sim_parameters["deployment_code"] == 2:
+                print 'Executing deployment code 2: Random eco-cell deployment...'
                 deploy_2(sim_parameters, Populations, pop_name, World)  
             elif sim_parameters["deployment_code"] == 3:
+                print 'Executing deployment code 3: Even eco-cell deployment...'
                 deploy_3(sim_parameters, Populations, pop_name, World)  
             elif sim_parameters["deployment_code"] == 4:
-                deploy_4(sim_parameters, Populations, pop_name, World)    
+                print 'Executing deployment code 4: Centralized eco-cell deployment...'
+                deploy_4(sim_parameters, Populations, pop_name, World)
+            print 'Adding maximum generations to simulation parameters...'
             max = sim_parameters["maximum_generations"]
             generation_count = 0
+        print 'Writing simulation parameters into txt file report...'
         write_parameters(sim_parameters, pop_name)
+        print 'Updating generation count...'
         Populations[pop_name].generation = generation_count
+    print '\nSimulation preparation complete...'
     while generation_count < max:
         generation_count = generation_count + 1
+        print 'Generation ' + str(generation_count) + ' complete...\r',
         for pop_name in Populations:
             sim_functions.ecoregulate(World)
             eco_cell_iterator(World, sim_parameters, 
@@ -78,12 +99,17 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                 (con, cur) = db_report(con, cur, sim_functions, 
                                        sim_parameters["starting_time"],
                                        Populations, World, generation_count)
+    print '\nClosing simulation results...'
     for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
-        sim_parameters.has_key("database_logging_frequency"): 
+        sim_parameters.has_key("database_logging_frequency"):
+        print 'Commiting logged data into database file...' 
         con.commit()
+        print 'Terminating database connection...' 
         con.close()
+    print 'Copying simulation file script to simulation results directory...'
     copyfile(inspect.stack()[2][1], sim_parameters['directory'] + inspect.stack()[2][1])
+    print '\nSimulation ended...'
 
 def coordinates(location):
     x = location[0]
@@ -123,8 +149,11 @@ def adjacent_cells(sim_parameters, location):
 
 def spawn_populations(sim_parameters):
     temp_Populations = {}
+    print ' - Accessing population names...'
     for pop_name in sim_parameters["population_names"]:
+        print ' - Constructing population: ' + pop_name + '...'
         temp_Populations[pop_name] = genetic.population_constructor(sim_parameters)
+        print ' - Updating organism identity and deme status...'
         for individual in temp_Populations[pop_name].agents:
             individual.generate_name()
             individual.status['deme'] = pop_name
@@ -245,7 +274,6 @@ def report_generation(sim_parameters, Populations, pop_name, sim_functions, gene
                              sim_parameters["simulation_name"], pop_name)
         freeze_population(file, sim_parameters["fossilized_ratio"], Populations, pop_name)
     if generation_count % int(sim_parameters["print_frequency"]) == 0:
-        print '\nGENERATION: %s \n%s' % (str(generation_count), str(report))
         f = open(('%s%s_%s.result.txt' % (sim_parameters["directory"],
                                           sim_parameters["simulation_name"], 
                                           pop_name)), 'a')
