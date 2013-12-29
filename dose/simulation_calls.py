@@ -78,27 +78,26 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     while generation_count < max:
         generation_count = generation_count + 1
         print 'Generation ' + str(generation_count) + ' complete...\r',
+        sim_functions.ecoregulate(World)
+        eco_cell_iterator(World, sim_parameters,
+                          sim_functions.update_ecology)
+        eco_cell_iterator(World, sim_parameters,
+                          sim_functions.update_local)
+        eco_cell_iterator(World, sim_parameters, sim_functions.report)
+        bury_world(sim_parameters, World, generation_count)
         for pop_name in Populations:
-            sim_functions.ecoregulate(World)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_ecology)
-            eco_cell_iterator(World, sim_parameters, 
-                              sim_functions.update_local)
             if sim_parameters["interpret_chromosome"]:
-                interpret_chromosome(sim_parameters, Populations, 
-                                     pop_name, World)
+                interpret_chromosome(sim_parameters, Populations, pop_name, World)
             report_generation(sim_parameters, Populations, pop_name, 
                               sim_functions, generation_count)
             sim_functions.organism_movement(Populations, pop_name, World)
             sim_functions.organism_location(Populations, pop_name, World)
-            eco_cell_iterator(World, sim_parameters, sim_functions.report)
-            bury_world(sim_parameters, World, generation_count)
-            if sim_parameters.has_key("database_file") and \
-                sim_parameters.has_key("database_logging_frequency") and \
-                generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
-                (con, cur) = db_report(con, cur, sim_functions, 
-                                       sim_parameters["starting_time"],
-                                       Populations, World, generation_count)
+        if sim_parameters.has_key("database_file") and \
+            sim_parameters.has_key("database_logging_frequency") and \
+            generation_count % int(sim_parameters["database_logging_frequency"]) == 0: 
+            (con, cur) = db_report(con, cur, sim_functions,
+                                   sim_parameters["starting_time"],
+                                   Populations, World, generation_count)
     print '\nClosing simulation results...'
     for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
