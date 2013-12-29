@@ -259,12 +259,14 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
 def step(Populations, pop_name, sim_functions):
     if Populations[pop_name].generation > 0:
         sim_functions.prepopulation_control(Populations, pop_name)
-    sim_functions.mating(Populations, pop_name)
-    sim_functions.postpopulation_control(Populations, pop_name)
     for organism in Populations[pop_name].agents:
         sim_functions.mutation_scheme(organism)
+    sim_functions.fitness(Populations, pop_name)
+    sim_functions.mating(Populations, pop_name)
+    sim_functions.postpopulation_control(Populations, pop_name)
     sim_functions.generation_events(Populations, pop_name)
     Populations[pop_name].generation = Populations[pop_name].generation + 1
+    sim_functions.fitness(Populations, pop_name)
     return sim_functions.population_report(Populations, pop_name)
 
 def report_generation(sim_parameters, Populations, pop_name, sim_functions, generation_count):
