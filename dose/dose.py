@@ -720,8 +720,9 @@ def simulate(sim_parameters, sim_functions):
     @param sim_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
-    print 'Adding initial chromosome to simulation parameters...'
-    sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
+    if not sim_parameters.has_key("initial_chromosome"):
+        print 'Adding initial chromosome to simulation parameters...'
+        sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
     print 'Adding deployment scheme to simulation parameters...'
     sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
     print 'Constructing World entity...'
