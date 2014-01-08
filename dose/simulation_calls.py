@@ -77,7 +77,6 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     print '\nSimulation preparation complete...'
     while generation_count < max:
         generation_count = generation_count + 1
-        print 'Generation ' + str(generation_count) + ' complete...\r',
         sim_functions.ecoregulate(World)
         eco_cell_iterator(World, sim_parameters,
                           sim_functions.update_ecology)
@@ -98,6 +97,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
             (con, cur) = db_report(con, cur, sim_functions,
                                    sim_parameters["starting_time"],
                                    Populations, World, generation_count)
+        print 'Generation ' + str(generation_count) + ' complete...\r',
     print '\nClosing simulation results...'
     for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \
