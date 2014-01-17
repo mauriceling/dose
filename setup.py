@@ -9,7 +9,7 @@ except ImportError:
     pass
 
 setup(name='digital organism simulation environment',
-      version='1.0.0',
+      version='1.0.1',
       download_url='https://github.com/mauriceling/dose/releases',
       packages=['dose', 
                 'dose.copads'],
