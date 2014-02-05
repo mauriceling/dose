@@ -1,3 +1,8 @@
+'''
+This file contains inserts the path for DOSE into system path to
+allow for any examples importing this file to execute without 
+needing DOSE to be installed into into Python site-packages.
+'''
 import sys
 import os
 
