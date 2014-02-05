@@ -361,7 +361,7 @@ def db_get_organisms_chromosome_sequences(cur, start_time,
         results[gen] = {}
         for identity in genome_dict[gen].keys():
             results[gen][identity] = [chromosome.sequence 
-                                      for chromosome in genome_dict[gen][identity]]
+                            for chromosome in genome_dict[gen][identity]]
     return results    
 
 def db_reconstruct_simulation_parameters(cur, start_time):

@@ -25,7 +25,10 @@ import dose, genetic, random
 parameters = {
               "simulation_name": "09_no_migration_isolated_mating",
               "population_names": ['pop_01'],
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "population_locations": [[(x,y,z) 
+                                        for x in xrange(5) 
+                                            for y in xrange(5) 
+                                                for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.001,

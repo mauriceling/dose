@@ -22,7 +22,10 @@ of the said simulation.
 
 rev_parameters = {"database_source" : "case_study_01.db",
                   "simulation_time": "2013-10-19-1382200534.1",
-                  "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+                  "population_locations": [[(x,y,z) 
+                                            for x in xrange(5) 
+                                                for y in xrange(5) 
+                                                    for z in xrange(1)]],
                   "rev_start" : [1000],
                   "extend_gen" : 200,
                   "simulation_name": "08_revive_simulation_03",
