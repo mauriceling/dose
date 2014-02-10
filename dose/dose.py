@@ -552,7 +552,7 @@ def revive_simulation(rev_parameters, sim_functions):
         for i in xrange(len(rev_parameters["pop_files"])):
             print '\nReviving population file: ' + rev_parameters["pop_files"][i] + '...'
             pop_file = rev_parameters["sim_folder"] + rev_parameters["pop_files"][i]
-            Populations["revived_pop%02s" % (i + 1)] = revive_population(pop_file)
+            Populations[rev_parameters["population_names"][i]] = revive_population(pop_file)
         print '\nUpdating revival generation start in simulation parameters...'
         rev_parameters["rev_start"] = [Populations[pop_name].generation 
                                        for pop_name in Populations]
