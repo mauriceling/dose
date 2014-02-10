@@ -9,11 +9,11 @@ except ImportError:
     pass
 
 setup(name='digital organism simulation environment',
-      version='1.0.1',
+      version='1.0.2',
       download_url='https://github.com/mauriceling/dose/releases',
       packages=['dose', 
                 'dose.copads'],
-      description='Digital Organism Simulation Environment',
+      description='Digital Organism Simulation Environment (DOSE)',
       long_description='''
 Digital Organism Simulation Environment (DOSE)
 
@@ -61,7 +61,7 @@ files will be GNU General Public License version 3.
 
 Documentation can be found at http://maurice.vodien.com/project-dose
 
-Copyright 2010-2013, Maurice HT Ling (on behalf of all authors).
+Copyright 2010-2014, Maurice HT Ling (on behalf of all authors).
 ''',
       author='Maurice HT Ling',
       author_email='mauriceling@acm.org',
