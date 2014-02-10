@@ -6,3 +6,6 @@ examples/*.db
 *.csv
 *.pyproj
 *.suo
+*.xlsx
+*.gap
+*.eco
