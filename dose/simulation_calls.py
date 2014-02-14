@@ -23,18 +23,18 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     Sequential ecological cell DOSE simulator.
     
     Performs the following operations:
-    - Creating simulation file directory for results text file, population 
-    freeze, and world burial storage
-    - Generate a simulation start time to identify the current simulation
-    - Define active Ragaraja instructions
-    - Connecting to logging database (if needed)
-    - Writing simulation parameters into results text file
-    - Initialize World and Population
-    - Deploy population(s) onto the world
-    - Run the simulation and recording the results
-    - Writing final results into results text file
-    - Close logging database (if used)
-    - Copy simulation script into simulation file directory
+        - Creating simulation file directory for results text file, population 
+        freeze, and world burial storage
+        - Generate a simulation start time to identify the current simulation
+        - Define active Ragaraja instructions
+        - Connecting to logging database (if needed)
+        - Writing simulation parameters into results text file
+        - Initialize World and Population
+        - Deploy population(s) onto the world
+        - Run the simulation and recording the results
+        - Writing final results into results text file
+        - Close logging database (if used)
+        - Copy simulation script into simulation file directory
     
     @param sim_functions: implemented simulation functions (see 
     dose.dose_functions)
@@ -418,14 +418,14 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
 def step(Populations, pop_name, sim_functions):
     '''
     Performs a generational step for a population
-    - Prepopulation control
-    - Mutations
-    - Before mating fitness measurement
-    - Mating
-    - Postpopulation control
-    - Generational events
-    - After mating fitness measurement
-    - Generate a textual report for the current generation
+        - Prepopulation control
+        - Mutations
+        - Before mating fitness measurement
+        - Mating
+        - Postpopulation control
+        - Generational events
+        - After mating fitness measurement
+        - Generate a textual report for the current generation
     
     @param Populations: dictionary of population objects
     @param pop_name: population name
