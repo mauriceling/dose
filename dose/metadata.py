@@ -15,7 +15,7 @@ project_website = 'https://github.com/mauriceling/dose'
 documentation_website = 'http://maurice.vodien.com/project-dose'
 short_license = 'GNU General Public License version 3'
 long_license = '''
-Unless otherwise specified, dose.coapds package will be licensed 
+Unless otherwise specified, dose.copads package will be licensed 
 under Python Software Foundation License version 2; all other files will 
 be licensed GNU General Public License version 3.'''
 platforms = ['Operating System :: OS Independent']
