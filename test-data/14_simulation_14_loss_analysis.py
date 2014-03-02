@@ -8,8 +8,8 @@ sys.path.append(cwd)
 import analytics
 import database_calls
 
-database_filename = "T3_11x0_revival.db"
-outputfile = 'T3_11x0_revival_analysis.csv'
+database_filename = "T3_11x0_loss_4.db"
+outputfile = 'T3_11x0_loss_4.csv'
 print 'Opening outputfile: ' + outputfile + '...'
 outputfile = open(outputfile, 'w')
 print 'Assembling database file directory...'
@@ -38,15 +38,17 @@ header = ['Generation'] + header + ['Average', 'Standard Error']
 outputfile.write(','.join(header) + '\n')
 
 print 'Starting main analysis...\n'
-for generation in range(201, 5201):
-    fitness_list = get_fitness_by_generation(starting_time, 'pop_01', generation)
-    result = [str(generation)]
-    for fitness in fitness_list:
-        result.append(str(fitness))
-    result.append(str(analytics.average(fitness_list)))
-    result.append(str(analytics.standard_deviation(fitness_list)))
-    outputfile.write(','.join(result) + '\n')
-    print 'Generation ' + str(generation) + ' analysis complete...',
-    print '\r',
+generation_list = range(15801, 20801, 100)
+generation_list = generation_list + [20800]
+for generation in generation_list:
+	fitness_list = get_fitness_by_generation(starting_time, 'pop_01', generation)
+	result = [str(generation)]
+	for fitness in fitness_list:
+		result.append(str(fitness))
+	result.append(str(analytics.average(fitness_list)))
+	result.append(str(analytics.standard_deviation(fitness_list)))
+	outputfile.write(','.join(result) + '\n')
+	print 'Generation ' + str(generation) + ' analysis complete...',
+	print '\r',
 
 print '\nAnalysis complete!'
