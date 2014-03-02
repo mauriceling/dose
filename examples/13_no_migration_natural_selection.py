@@ -12,7 +12,6 @@ In this simulation,
     - no organism movement throughout the simulation
     - no Ragaraja interpretation of genome
     - 300 generations to be simulated
-    - Fitness score goal of 50
 '''
 
 # needed to run this example without prior
