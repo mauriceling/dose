@@ -2,12 +2,14 @@
 Example 14: Continuation of examining the effects of natural selection on a 
 population's genetic pool by implementing a fitness scheme that counts
 a specific sequence within the chromosome along with a goal to be reached 
-from an evenly deployed population.
+from an evenly deployed population. In this simulation, loss of fitness is
+observed by implementing a random selection scheme to the population.
 
 In this simulation,
     - revival of 1 population of 100 organisms
     - unchanged simulation parameters
     - 5000 generations to be simulated
+	- random organism killing in pospopulation_control
 '''
 
 # needed to run this example without prior
@@ -19,12 +21,12 @@ import dose, genetic, random
 from collections import Counter
 from copy import deepcopy
 
-parameters = {"database_source" : "T3_11x0.db",
-              "simulation_time": "2014-01-30-1391088343.11",
+parameters = {"database_source" : "T1_11x0.db",
+              "simulation_time": "2014-01-30-1391087406.92",
               "rev_start" : [200],
               "extend_gen" : 5000,
-              "simulation_name": "T3_11x0_revival",
-              "database_file": "T3_11x0_revival.db",
+              "simulation_name": "T1_11x0_revival",
+              "database_file": "T1_11x0_revival.db",
               "database_logging_frequency": 1,
               }
 
