@@ -45,6 +45,11 @@ class Analysis(object):
         world_z = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_z']
         return [(x,y,z) for x in xrange(world_x) for y in xrange(world_y) for z in xrange(world_z)]
 
+    def get_fitness_range_by_percentage(self, percentage):
+        print 'Getting fitness range...'
+        fitness_goal = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['goal']
+        return xrange(int(fitness_goal * percentage), fitness_goal + 1)
+
     def get_individual_status_list_by_generation(self, status, generation):
         status_dict = database_calls.db_get_organisms_status(self.cur, self.starting_time, self.population_name, status, [generation])
         status_list = status_dict[generation].values()
