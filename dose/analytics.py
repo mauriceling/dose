@@ -22,7 +22,7 @@ def average(data):
 class Analysis(object):
 
     def __init__(self, db_source, population_name, starting_time = 'default'):
-        print '[INITIALIZING ANALYSIS]'
+        print '\n[INITIALIZING ANALYSIS]'
         self.db_source = db_source
         self.population_name = population_name
         print 'Assembling database file directory...'
@@ -76,20 +76,20 @@ class Analysis(object):
         if aggregate_functions != None:
             header = header + [key for key in aggregate_functions.keys()]
         outputfile.write(','.join(header) + '\n')
-        print 'Starting main analysis...\n'
+        print 'Starting main analysis...'
         if generations == 'all':
             generation_list = database_calls.db_list_generations(self.cur, self.starting_time)
         else:
             generation_list = generations
         for generation in generation_list:
+            print 'Analyzing generation ' + str(generation) + '...',
+            print '\r',
             status_list = [status_analysis(stat) for stat in self.get_individual_status_list_by_generation(status, generation)]
             status_row = [str(generation)] + [str(stat_result) for stat_result in status_list]
             if aggregate_functions != None:
                 for key in aggregate_functions.keys():
                     status_row.append(str(aggregate_functions[key](status_list)))
             outputfile.write(','.join(status_row) + '\n')
-            print 'Generation ' + str(generation) + ' analysis complete...',
-            print '\r',
         print '\nIndividual [' + status + '] analysis complete!'
     
     def analyze_status_group_count_by_generation(self, csv_output, status, stats, aggregate_functions = None, generations = 'all'):
@@ -108,16 +108,16 @@ class Analysis(object):
         else:
             header = ['Generation'] + header + [key for key in aggregate_functions.keys()]
         outputfile.write(','.join(header) + '\n')
-        print 'Starting main analysis...\n'
+        print 'Starting main analysis...'
         for generation in generation_list:
+            print 'Analyzing generation ' + str(generation) + '...',
+            print '\r',
             status_list = self.get_individual_status_list_by_generation(status, generation)
             status_row = [str(generation)] + [str(status_list.count(target_stat)) for target_stat in stats]
             if aggregate_functions != None:
                 for key in aggregate_functions.keys():
                     status_row.append(str(aggregate_functions[key]([status_list.count(target_stat) for target_stat in stats])))
             outputfile.write(','.join(status_row) + '\n')    
-            print 'Generation ' + str(generation) + ' analysis complete...',
-            print '\r',
         print '\nGrouped [' + status + '] count analysis complete!'
 
     def analyze_individual_genomes_by_generation(self, csv_output, genome_analysis, aggregate_functions = None, generations = 'all'):
@@ -131,20 +131,20 @@ class Analysis(object):
         if aggregate_functions != None:
             header = header + [key for key in aggregate_functions.keys()]
         outputfile.write(','.join(header) + '\n')
-        print 'Starting main analysis...\n'
+        print 'Starting main analysis...'
         if generations == 'all':
             generation_list = database_calls.db_list_generations(self.cur, self.starting_time)
         else:
             generation_list = generations
         for generation in generation_list:
+            print 'Analyzing generation ' + str(generation) + '...',
+            print '\r',
             genome_list = [genome_analysis(genome) for genome in self.get_individual_genome_list_by_generation(generation)]
             status_row = [str(generation)] + [str(genome_result) for genome_result in genome_list]
             if aggregate_functions != None:
                 for key in aggregate_functions.keys():
                     status_row.append(str(aggregate_functions[key](genome_list)))
             outputfile.write(','.join(status_row) + '\n')
-            print 'Generation ' + str(generation) + ' analysis complete...',
-            print '\r',
         print '\nIndividual genome analysis complete!'
 
     def analyze_status_group_genome_by_generation(self, csv_output, genome_analysis, status, stats, aggregate_functions = None, generations = 'all'):
@@ -163,14 +163,14 @@ class Analysis(object):
         else:
             header = ['Generation'] + header + [key for key in aggregate_functions.keys()]
         outputfile.write(','.join(header) + '\n')
-        print 'Starting main analysis...\n'
+        print 'Starting main analysis...'
         for generation in generation_list:
+            print 'Analyzing generation ' + str(generation) + '...',
+            print '\r',
             analyzed_genome_list = [genome_analysis(self.get_status_group_genome_by_generation(status, target_status, generation)) for target_status in stats]
             status_row = [str(generation)] + [str(status_result) for status_result in analyzed_genome_list]
             if aggregate_functions != None:
                 for key in aggregate_functions.keys():
                     status_row.append(str(aggregate_functions[key](analyzed_genome_list)))
             outputfile.write(','.join(status_row) + '\n')    
-            print 'Generation ' + str(generation) + ' analysis complete...',
-            print '\r',
         print '\nGrouped [' + status + '] genome analysis complete!'
