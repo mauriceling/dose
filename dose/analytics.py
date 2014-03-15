@@ -61,11 +61,8 @@ class Analysis(object):
         return genome_list
 
     def get_status_group_genome_by_generation(self, status, target_status, generation):
-        genome_list = []
         organisms = database_calls.db_reconstruct_organisms(self.cur, self.starting_time, self.population_name, generation)
-        for organism in organisms:
-            if organism.status[status] == target_status:
-                genome_list.append(organism.genome)
+        genome_list = [organism.genome for organism in organisms if organism.status[status] == target_status]
         return genome_list
 
     def analyze_individual_status_by_generation(self, csv_output, status, status_analysis, aggregate_functions = None, generations = 'all'):
