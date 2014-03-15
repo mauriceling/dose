@@ -41,8 +41,8 @@ class Analysis(object):
     def get_locations_list(self):
         print 'Getting locations list...'
         world_x = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_x']
-        world_y = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_x']
-        world_z = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_x']
+        world_y = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_y']
+        world_z = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_z']
         return [(x,y,z) for x in xrange(world_x) for y in xrange(world_y) for z in xrange(world_z)]
 
     def get_individual_status_list_by_generation(self, status, generation):
