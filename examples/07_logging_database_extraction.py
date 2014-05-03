@@ -1,9 +1,11 @@
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
 # Example codes starts from here
-import database_calls as d
+import dose.database_calls as d
 
 print "Connecting to logging database"
 (con, cur) = d.connect_database('Simulations/case_study_01.db')

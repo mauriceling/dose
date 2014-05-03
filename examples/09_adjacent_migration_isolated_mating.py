@@ -20,11 +20,12 @@ In this simulation,
 '''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
 # Example codes starts from here
-import dose, genetic, random
-import simulation_calls as helper
+import dose, random
 
 parameters = {
               "simulation_name": "09_adjacent_migration_isolated_mating",
@@ -64,16 +65,16 @@ class simulation_functions(dose.dose_functions):
     def organism_movement(self, Populations, pop_name, World):
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            adj_cells = helper.adjacent_cells(parameters, location)
+            adj_cells = dose.simulation_calls.adjacent_cells(parameters, location)
             for i in xrange(int(round((len(group) * 0.1)))):
-                (x,y,z) = helper.coordinates(location)
+                (x,y,z) = dose.simulation_calls.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
                 while immigrant not in group:
                     immigrant = random.choice(Populations[pop_name].agents)
                 new_location = random.choice(adj_cells)
                 immigrant.status['location'] = new_location
-                (x,y,z) = helper.coordinates(new_location)
+                (x,y,z) = dose.simulation_calls.coordinates(new_location)
                 World.ecosystem[x][y][z]['organisms'] += 1
 
     def organism_location(self, Populations, pop_name, World): pass
@@ -105,13 +106,13 @@ class simulation_functions(dose.dose_functions):
                         parents[i] = random.choice(Populations[pop_name].agents)
                     Populations[pop_name].agents.remove(parents[i])
                 crossover_pt = random.randint(0, len(parents[0].genome[0].sequence))
-                (new_chromo1, new_chromo2) = genetic.crossover(parents[0].genome[0], 
+                (new_chromo1, new_chromo2) = dose.genetic.crossover(parents[0].genome[0], 
                                                                parents[1].genome[0], 
                                                                crossover_pt)
-                children = [genetic.Organism([new_chromo1],
+                children = [dose.genetic.Organism([new_chromo1],
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"]),
-                            genetic.Organism([new_chromo2],
+                            dose.genetic.Organism([new_chromo2],
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"])]
                 for child in children:

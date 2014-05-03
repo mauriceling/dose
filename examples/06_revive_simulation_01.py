@@ -1,6 +1,8 @@
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
 # Example codes starts from here
 import dose

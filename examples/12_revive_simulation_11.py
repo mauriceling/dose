@@ -1,6 +1,8 @@
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
-import dose, genetic
+import dose
 import os, random
 from collections import Counter
 
@@ -94,10 +96,10 @@ class simulation_functions(dose.dose_functions):
                 parents.append(alpha_organism)
                 parents.append(random.choice(group))
                 crossover_pt = random.randint(0, len(parents[0].genome[0].sequence))
-                (new_chromo1, new_chromo2) = genetic.crossover(parents[0].genome[0], 
+                (new_chromo1, new_chromo2) = dose.genetic.crossover(parents[0].genome[0], 
                                                                parents[1].genome[0], 
                                                                crossover_pt)
-                child = genetic.Organism([new_chromo1],
+                child = dose.genetic.Organism([new_chromo1],
                                          parameters["mutation_type"],
                                          parameters["additional_mutation"])
                 child.status['parents'] = [parents[0].status['identity'],
