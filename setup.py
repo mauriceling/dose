@@ -9,7 +9,7 @@ except ImportError:
     pass
 
 setup(name='dose',
-      version='0.1',
+      version='1.0.2',
       packages=['dose', 
                 'dose.copads'],
       description='Digital Organisms Simulation Environment',
