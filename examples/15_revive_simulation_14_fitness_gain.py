@@ -21,12 +21,8 @@ import dose, genetic, random
 from collections import Counter
 from copy import deepcopy
 
-parameters = {"database_source" : "T3_11x0_loss_4.db",
-              "simulation_time": "2014-02-26-1393415066.21",
-              "rev_start" : [20800],
+parameters = {"rev_start" : [15600],
               "extend_gen" : 200,
-              "simulation_name": "T3_11x0_gain_5",
-              "database_file": "T3_11x0_gain_5.db",
               "database_logging_frequency": 1,
               }
 
@@ -76,18 +72,45 @@ class simulation_functions(dose.dose_functions):
             Populations[pop_name].agents.append(organism)
 
     def postpopulation_control(self, Populations, pop_name):
+		#FPS
+		
         group = deepcopy(Populations[pop_name].agents)
         fitness_dict = {}
         for organism in group:
-            fitness_dict[organism.status['identity']] = int(organism.status['fitness'])
-        sorted_fitness = sorted(fitness_dict.items(), key=lambda x: x[1])
-        for index_pair in sorted_fitness:
-            if len(Populations[pop_name].agents) == len(group)/2: break
-            for organism in Populations[pop_name].agents:
-                if organism.status['identity'] == index_pair[0]:
-                    Populations[pop_name].agents.remove(organism)
-                    break;
-
+            fitness_dict[organism.status['identity']] = float(organism.status['fitness'])
+        sorted_fitness = sorted(list(fitness_dict.items()), key=lambda x: x[1])
+        sorted_fitness = [list(item) for item in sorted_fitness]
+        total_fitness = sum(fitness_dict.values())
+        cumulated_fitness = 0
+        for i in range(len(sorted_fitness)):
+            sorted_fitness[i][1] = cumulated_fitness + (sorted_fitness[i][1] / total_fitness)
+            cumulated_fitness = cumulated_fitness + (sorted_fitness[i][1] / total_fitness)
+        filter_list = []
+        while len(filter_list) != 100:
+            random_val = random.uniform(min([fitness[1] for fitness in sorted_fitness]), 
+                                        sum([fitness[1] for fitness in sorted_fitness]))
+            for fitness_list in sorted_fitness:
+                if fitness_list[1] > random_val and fitness_list[0] not in filter_list:
+                    filter_list.append(fitness_list[0])
+                    break
+        new_population = [organism for organism in Populations[pop_name].agents if organism.status['identity'] in filter_list]
+        Populations[pop_name].agents = new_population
+		
+		#TS
+	'''
+		group = deepcopy(Populations[pop_name].agents)
+		fitness_dict = {}
+		for organism in group:
+			fitness_dict[organism.status['identity']] = int(organism.status['fitness'])
+		sorted_fitness = sorted(fitness_dict.items(), key=lambda x: x[1])
+		for index_pair in sorted_fitness:
+			if len(Populations[pop_name].agents) == len(group)/2: break
+			for organism in Populations[pop_name].agents:
+				if organism.status['identity'] == index_pair[0]:
+					Populations[pop_name].agents.remove(organism)
+					break;
+		'''
+		
     def generation_events(self, Populations, pop_name): pass
 
     def population_report(self, Populations, pop_name):
@@ -111,4 +134,9 @@ class simulation_functions(dose.dose_functions):
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
-dose.revive_simulation(parameters, simulation_functions)
+for trial in xrange(1, 6):
+	parameters["simulation_time"] = "default"
+	parameters["simulation_name"] = "T" + str(trial) + "_FPS_11x0_gain4"
+	parameters["database_source"] = "T" + str(trial) + "_FPS_11x0_loss3.db"
+	parameters["database_file"] = "T" + str(trial) + "_FPS_11x0_gain4.db"
+	dose.revive_simulation(parameters, simulation_functions)
