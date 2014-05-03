@@ -16,7 +16,7 @@ from simulation_calls import spawn_populations, simulation_core
 from simulation_calls import excavate_world, revive_population
 
 from database_calls import connect_database, db_reconstruct_simulation_parameters
-from database_calls import db_reconstruct_population, db_reconstruct_world
+from database_calls import db_reconstruct_population, db_reconstruct_world, db_list_simulations
 
 class dose_functions():
     '''
@@ -564,6 +564,9 @@ def revive_simulation(rev_parameters, sim_functions):
                               rev_parameters["database_source"]])
         print 'Connecting to database file: ' + rev_parameters["database_source"] + '...'
         (con, cur) = connect_database(dbpath, None)
+        if rev_parameters["simulation_time"] == 'default':
+            print 'Acquiring simulation starting time...'
+            rev_parameters["simulation_time"] = db_list_simulations(cur)[0][0]
         print 'Reconstructing old simulation parameters...'
         temp_parameters = db_reconstruct_simulation_parameters(cur, 
                                     rev_parameters["simulation_time"])
