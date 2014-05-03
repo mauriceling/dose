@@ -22,7 +22,7 @@ from collections import Counter
 from copy import deepcopy
 
 parameters = {"database_source" : "T1_11x0.db",
-              "simulation_time": "2014-01-30-1391087406.92",
+              "simulation_time": "default",
               "rev_start" : [200],
               "extend_gen" : 5000,
               "simulation_name": "T1_11x0_revival",
@@ -103,4 +103,9 @@ class simulation_functions(dose.dose_functions):
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
-dose.revive_simulation(parameters, simulation_functions)
+for trial in range(13, 26):
+    parameters["simulation_name"] = "T" + str(trial) + "_ts_7x0_loss1"
+    parameters["database_source"] = "T" + str(trial) + "_ts_7x0_gain1.db"
+    parameters["database_file"] = "T" + str(trial) + "_ts_7x0_loss1.db"
+    dose.revive_simulation(parameters, simulation_functions)
+    parameters["simulation_time"] = "default"
