@@ -45,14 +45,14 @@ parameters = {
               "world_y": 1,
               "world_z": 1,
               "goal": 50,
-              "maximum_generations": 300,
+              "maximum_generations": 200,
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 50,
               "print_frequency": 1,
               "ragaraja_version": 0,
               "ragaraja_instructions": ['000', '001', '010', 
                                         '011', '100', '101'],
-              "eco_buried_frequency": 300,
+              "eco_buried_frequency": 200,
               "database_file": "sim13_no_migration.db",
               "database_logging_frequency": 1
              }
@@ -86,8 +86,8 @@ class simulation_functions(dose.dose_functions):
             for sequence in xrange(len(zero_count)):
                 if len(final_fitness) == 10: break
                 seq_score = sorted(zero_count, reverse = True)[sequence]
-                if seq_score > 5:
-                    seq_score = 5
+                if seq_score > (parameters["goal"]/10):
+                    seq_score = (parameters["goal"]/10)
                 final_fitness.append(seq_score)
             organism.status['fitness'] = sum(final_fitness)
 
@@ -139,4 +139,10 @@ class simulation_functions(dose.dose_functions):
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
-dose.simulate(parameters, simulation_functions)
+for trial in range(23, 26):
+    for goal in [50, 70, 90, 110]:
+        zero_base = goal/10
+        parameters["goal"] = goal
+        parameters["simulation_name"] = "T" + str(trial) + "_ts_" + str(zero_base) + "x0_gain1"
+        parameters["database_file"] = "T" + str(trial) + "_ts_" + str(zero_base) + "x0_gain1.db"
+        dose.simulate(parameters, simulation_functions)
