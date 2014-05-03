@@ -540,6 +540,7 @@ def filter_status(status_key, condition, agents):
     return extract
 
 def revive_simulation(rev_parameters, sim_functions):
+    print '\n[' + rev_parameters["simulation_name"].upper() + ' REVIVAL SIMULATION]'
     Populations = {}
     if "sim_folder" in rev_parameters:
         print 'Accessing simulation files directory...' 
@@ -720,6 +721,7 @@ def simulate(sim_parameters, sim_functions):
     @param simulation_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
+    print '\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]'
     if not sim_parameters.has_key("initial_chromosome"):
         print 'Adding initial chromosome to simulation parameters...'
         sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
