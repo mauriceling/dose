@@ -1,15 +1,18 @@
 '''
-Example 05: Extending from Example 03 (as baseline) and Example 04 (short 
+Example 10c: Extending from Example 10a (as baseline) and Example 10b (short 
 distance migration) to examine the effects of long distance migration 
 (across one or more eco-cells)  on genetic distance differences from an 
 initially identical population (development of sub-populations or demes 
 which may lead to speciation)
 
+This example is identical to Example 09c, except background mutation rate 
+is changed from 0.1% in Example 09c to 0.2% in this example.
+
 In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 0.2% background point mutation on chromosome of 50 bases
     - 10% organism movement per eco-cell per generation throughout the 
     simulation
     - the same organism may move twice due to sequential evaluation of the 

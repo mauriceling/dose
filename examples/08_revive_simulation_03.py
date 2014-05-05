@@ -1,3 +1,15 @@
+'''
+Example 08 - Reviving a simulation (Example 03) from simulation logging
+database and run the simulation for another 200 generations.
+
+Example 03 ran the simulation for 1000 generations and logged the events 
+into case_study_01.db file. This example revived the logged simulation 
+from case_study_01.db file using the simulation start time as identifier 
+(2013-10-19-1382200534.1) and run the simulation from generation 1001 to 
+1200. The events of generation 1001 to 1200 are logged in case_study_01.db 
+file.
+'''
+
 try: 
 	import run_examples_without_installation
 except ImportError: pass
@@ -13,7 +25,10 @@ of the said simulation.
 
 rev_parameters = {"database_source" : "case_study_01.db",
                   "simulation_time": "2013-10-19-1382200534.1",
-                  "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+                  "population_locations": [[(x,y,z) 
+                                            for x in xrange(5) 
+                                                for y in xrange(5) 
+                                                    for z in xrange(1)]],
                   "rev_start" : [1000],
                   "extend_gen" : 200,
                   "simulation_name": "08_revive_simulation_03",

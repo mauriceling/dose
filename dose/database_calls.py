@@ -362,7 +362,7 @@ def db_get_organisms_chromosome_sequences(cur, start_time,
         results[gen] = {}
         for identity in genome_dict[gen].keys():
             results[gen][identity] = [chromosome.sequence 
-                                      for chromosome in genome_dict[gen][identity]]
+                            for chromosome in genome_dict[gen][identity]]
     return results    
 
 def db_reconstruct_simulation_parameters(cur, start_time):
@@ -478,7 +478,7 @@ def db_reconstruct_world(cur, start_time, generation):
     @param cur: Database cursor from connect_database() function.
     @param start_time: Starting time of current simulation in the format 
     of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
-    @param generation_count: Current number of generations simulated.
+    @param generation: Current number of generations simulated.
     @return: dose_world.World object
     '''
     import dose_world
@@ -528,7 +528,7 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
     @param start_time: Starting time of current simulation in the format 
     of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
     @param population_name: Name of the population
-    @param generation_count: Current number of generations simulated.
+    @param generation: Current number of generations simulated.
     @return: A list of Organisms (genetic.Organism objects)
     '''
     import genetic as g
@@ -617,7 +617,7 @@ def db_reconstruct_population(cur, start_time,
     @param start_time: Starting time of current simulation in the format 
     of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
     @param population_name: Name of the population
-    @param generation_count: Current number of generations simulated.
+    @param generation: Current number of generations simulated.
     @return: genetic.Population object
     '''
     import genetic

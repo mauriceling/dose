@@ -1,14 +1,17 @@
 '''
-Example 04: Extending from Example 03 (as baseline) to examine the effects 
+Example 09b: Extending from Example 09a (as baseline) to examine the effects 
 of short migration (adjacent cell migration)  on genetic distance 
 differences from an initially identical population (development of sub-
 populations or demes which may lead to speciation)
+
+This example is identical to Example 04, except background mutation rate is 
+changed from 10% in Example 03 to 0.1% in this example.
 
 In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 0.1% background point mutation on chromosome of 50 bases
     - 10% organism movement per eco-cell per generation throughout the 
     simulation
     - the same organism may move twice due to sequential evaluation of the 
@@ -30,7 +33,10 @@ import dose, random
 parameters = {
               "simulation_name": "09_adjacent_migration_isolated_mating",
               "population_names": ['pop_01'],
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "population_locations": [[(x,y,z) 
+                                        for x in xrange(5) 
+                                            for y in xrange(5) 
+                                                for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.001,

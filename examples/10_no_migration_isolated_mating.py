@@ -1,13 +1,16 @@
 '''
-Example 03: Examining the effects of no migration on genetic distance 
+Example 10a: Examining the effects of no migration on genetic distance 
 differences from an initially identical population (development of sub-
 populations or demes which may lead to speciation)
+
+This example is identical to Example 09a, except background mutation rate 
+is changed from 0.1% in Example 09a to 0.2% in this example.
 
 In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 0.2% background point mutation on chromosome of 50 bases
     - no organism movement throughout the simulation
     - no Ragaraja interpretation of genome
     - 1000 generations to be simulated

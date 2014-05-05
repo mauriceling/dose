@@ -7,7 +7,7 @@ In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 10% background point mutation on chromosome of 50 bases
     - no organism movement throughout the simulation
     - no Ragaraja interpretation of genome
     - 1000 generations to be simulated

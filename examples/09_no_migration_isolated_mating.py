@@ -1,13 +1,16 @@
 '''
-Example 03: Examining the effects of no migration on genetic distance 
+Example 09a: Examining the effects of no migration on genetic distance 
 differences from an initially identical population (development of sub-
 populations or demes which may lead to speciation)
+
+This example is identical to Example 03, except background mutation rate is 
+changed from 10% in Example 03 to 0.1% in this example.
 
 In this simulation,
     - 1 populations of 1250 organisms
     - each organism will have 1 chromosome of only 2 bases (1 and 0)
     - Evenly deployed across 25 eco-cells (50 organism per eco-cell)
-    - 20% background point mutation on chromosome of 50 bases
+    - 0.1% background point mutation on chromosome of 50 bases
     - no organism movement throughout the simulation
     - no Ragaraja interpretation of genome
     - 1000 generations to be simulated
@@ -24,7 +27,10 @@ import dose, random
 parameters = {
               "simulation_name": "09_no_migration_isolated_mating",
               "population_names": ['pop_01'],
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "population_locations": [[(x,y,z) 
+                                        for x in xrange(5) 
+                                            for y in xrange(5) 
+                                                for z in xrange(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.001,

@@ -49,15 +49,16 @@ class Chromosome(object):
         @param type: type of mutation. Accepts 'point' (point mutation), 
             'insert' (insert a base), 'delete' (delete a base), 'invert'
             (invert a stretch of the chromosome), 'duplicate' (duplicate a
-            stretch of the chromosome), 'translocate' (translocate a stretch of
-            chromosome to another random position). Default = point.
+            stretch of the chromosome), 'translocate' (translocate a 
+            stretch of chromosome to another random position). 
+            Default = point.
         @param rate: probability of mutation per base above background
             mutation rate. Default = 0.01 (1%). No mutation event will ever 
             happen if (rate + background_mutation) is less than zero.
         @param start: starting base on the sequence for mutation.
             Default = 0, start of the genome.
-        @param end: last base on the sequence for mutation. Default = -1, end of
-            the genome.
+        @param end: last base on the sequence for mutation. Default = -1, 
+            end of the genome.
             
         @since: version 0.4
         """
@@ -125,8 +126,8 @@ class Chromosome(object):
         @param type: type of mutation. Accepts 'point' (point mutation), 
             'insert' (insert a base), 'delete' (delete a base), 'invert'
             (invert a stretch of the chromosome), 'duplicate' (duplicate a
-            stretch of the chromosome), 'translocate' (translocate a stretch of
-            chromosome to another random position). Default = point.
+            stretch of the chromosome), 'translocate' (translocate a stretch 
+            of chromosome to another random position). Default = point.
         @param start: starting base on the chromosome for mutation.
             Default = 0, start of the genome.
         @param end: last base on the chromosome for mutation. Default = 0.
@@ -170,13 +171,13 @@ class Chromosome(object):
         
 class Organism(object):
     """
-    An organism represented by a list of chromosomes and a status table. This 
-    class should almost never be instantiated on its own but acts as an ancestor
-    class as some functions need to be over-ridden in the inherited class for 
-    the desired use. 
+    An organism represented by a list of chromosomes and a status table. 
+    This class should almost never be instantiated on its own but acts as 
+    an ancestor class as some functions need to be over-ridden in the 
+    inherited class for the desired use. 
     
-    Each organism is identifiable by a randomly generated 32-character 'name' as
-    Organism.identity.
+    Each organism is identifiable by a randomly generated 32-character 
+    'name' as Organism.identity.
     
     Methods to be over-ridden in the inherited class or substituted are
         - fitness
@@ -189,6 +190,14 @@ class Organism(object):
         4. lifespan - pre-defined maximum lifespan to be set based on scenario. 
         5. fitness - how fit the organism is? Set to maximum fitness.
         6. death - reason of death (as death code).
+        7. parents - identity of parents.
+        8. gender - gender of organism. 
+        9. blood - result of genomic interpretation or expression by 
+        Rajaraga interpreter.
+        10. identity - 32-character randomly generated name.
+        11. deme - defined as a sub-population or local population.
+        12. location - location of the organism within the ecosystem.
+
     
     List of defined death codes
         1. death01 - zero vitality
@@ -215,14 +224,15 @@ class Organism(object):
         @param mutation_type: type of mutation. Accepts 'point' (point 
             mutation), 'insert' (insert a base), 'delete' (delete a base), 
             'invert' (invert a stretch of the chromosome), 'duplicate' 
-            (duplicate a stretch of the chromosome), 'translocate' (translocate 
-            a stretch of chromosome to another random position). 
+            (duplicate a stretch of the chromosome), 'translocate' 
+            (translocate a stretch of chromosome to another random position). 
             Default = point.
-        @param additional_mutation_rate: probability of mutation per base above 
-            background mutation rate. Default = 0.01 (1%). No mutation event 
-            will ever happen if (rate + background_mutation) is less than zero.
-        @param gender: establishes the gender of the organism which may be used
-            for mating routines.
+        @param additional_mutation_rate: probability of mutation per base 
+            above background mutation rate. Default = 0.01 (1%). No mutation 
+            event will ever happen if (rate + background_mutation) is less 
+            than zero.
+        @param gender: establishes the gender of the organism which may be 
+            used for mating routines.
             
         @since: version 0.4
         """
@@ -265,11 +275,11 @@ class Organism(object):
         """
         Function to calculate the fitness of the current organism. 
         B{This function MUST be over-ridden by the inherited class or 
-        substituted as fitness function is highly dependent on utility.} The 
-        only requirement is that a fitness score must be returned.
+        substituted as fitness function is highly dependent on utility.} 
+        The only requirement is that a fitness score must be returned.
         
-        Here, the sample implementation calculates fitness as proportion of the
-        genome with '1's.
+        Here, the sample implementation calculates fitness as proportion of 
+        the genome with '1's.
         
         @return: fitness score or fitness list
         
@@ -283,9 +293,10 @@ class Organism(object):
     
     def mutation_scheme(self, type=None, rate=None):
         """
-        Function to trigger mutation events in each chromosome. B{This function
-        may be over-ridden by the inherited class or substituted to cater for 
-        specific mutation schemes but not an absolute requirement to do so.}
+        Function to trigger mutation events in each chromosome. B{This 
+        function may be over-ridden by the inherited class or substituted 
+        to cater for specific mutation schemes but not an absolute 
+        requirement to do so.}
         
         Both type and rate must be defined at the same time, otherwise the 
         initiated mutation_type and additional_mutation_rate will be used.
@@ -293,8 +304,8 @@ class Organism(object):
         @param type: type of mutation. Accepts 'point' (point mutation), 
             'insert' (insert a base), 'delete' (delete a base), 'invert' 
             (invert a stretch of the chromosome), 'duplicate' (duplicate a 
-            stretch of the chromosome), 'translocate' (translocate a stretch of 
-            chromosome to another random position). Default = None.
+            stretch of the chromosome), 'translocate' (translocate a stretch 
+            of chromosome to another random position). Default = None.
         @param rate: probability of mutation per base above background mutation 
             rate. Default = None. No mutation event will ever happen if 
             (rate + background_mutation) is less than zero.
@@ -310,8 +321,8 @@ class Organism(object):
         
     def setStatus(self, variable, value):
         """
-        Sets new status or change status of the organism. However, the following
-        status change will result in death of the organism
+        Sets new status or change status of the organism. However, the 
+        following status change will result in death of the organism
             1. 'alive' to False
             2. 'vitality' to or below zero
             3. 'age' to or above lifespan
@@ -417,15 +428,15 @@ class Population(object):
         each generation (For example, to simulate pre-puberty death). B{This 
         function may be over-ridden by the inherited class or substituted to 
         cater for specific events.} Although this is not an absolute 
-        requirement, it is extremely encouraged to prevent exhaustion of memory 
-        space. Without population control, it will seems like a reproducing 
-        immortal population.
+        requirement, it is extremely encouraged to prevent exhaustion of 
+        memory space. Without population control, it will seems like a 
+        reproducing immortal population.
         
         Here, the sample implementation eliminates the bottom half of the 
         population based on fitness score unless the number of organisms is
-        less than 20. This is to prevent extinction. However, if the number of
-        organisms is more than 2000 (more than 100x initial population size, 
-        a random selection of 2000 will be used for the next generation.
+        less than 20. This is to prevent extinction. However, if the number 
+        of organisms is more than 2000 (more than 100x initial population 
+        size, a random selection of 2000 will be used for the next generation.
         
         @since: version 0.4
         """
@@ -475,9 +486,9 @@ class Population(object):
         each generation(For example, to simulate old-age death). B{This 
         function may be over-ridden by the inherited class or substituted to 
         cater for specific events.} Although this is not an absolute 
-        requirement, it is extremely encouraged to prevent exhaustion of memory 
-        space. Without population control, it will seems like a reproducing 
-        immortal population.
+        requirement, it is extremely encouraged to prevent exhaustion of 
+        memory space. Without population control, it will seems like a 
+        reproducing immortal population.
         
         @since: version 0.4
         """
@@ -508,7 +519,8 @@ class Population(object):
         
         @since: version 0.4
         """
-        sfitness = [self.agents[x].fitness() for x in xrange(len(self.agents))]
+        sfitness = [self.agents[x].fitness() 
+                    for x in xrange(len(self.agents))]
         afitness = sum(sfitness) / float(len(self.agents))
         return {'generation': self.generation,
                 'average fitness': afitness,
@@ -548,10 +560,10 @@ class Population(object):
         
     def freeze(self, prefix='pop', proportion=0.01):
         """
-        Preserves part or the entire population. If the population size or the
-        preserved proportion is below 100, the entire population will be 
-        preserved. The preserved sample will be written into a file with name in
-        the following format - <prefix><generation count>_<sample size>.gap
+        Preserves part or the entire population. If the population size or 
+        the preserved proportion is below 100, the entire population will be 
+        preserved. The preserved sample will be written into a file with name
+        in the following format - <prefix><generation count>_<sample size>.gap
         
         @param prefix: prefix of file name. Default = 'pop'.
         @param proportion: proportion of population to be preserved.
@@ -655,7 +667,8 @@ population_data = \
 
 def population_constructor(data=population_data):
     """
-    Function to construct a population based on a dictionary of population data.
+    Function to construct a population based on a dictionary of population 
+    data.
     
     Population data contains the following keys:
         - 'chromosome_bases' = List of allowable bases. 
@@ -671,27 +684,27 @@ def population_constructor(data=population_data):
         - 'fitness_function' = Fitness evaluation function. Accepts 'default' 
             or a function. Please refer to Organism. Default = 'default'.
         - 'mutation_scheme' = Function simulating the mutation scheme of an 
-            organism. Accepts 'default' or a function. Please refer to Organism. 
-            Default = 'default'.
+            organism. Accepts 'default' or a function. Please refer to 
+            Organism. Default = 'default'.
         - 'additional_mutation' = Mutation rate on top of background 
             mutation rate. Default = 0.01 (1%).
         - 'mutation_type' = Type of default mutation. Default = 'point'.
         - 'goal' = Goal of the population, as evaluated by fitness function.
             Default = 4.
-        - 'maximum_generations' = Number of generations to simulate. Accepts an 
-            integer or 'infinite'. Default = 'infinite'.
+        - 'maximum_generations' = Number of generations to simulate. Accepts 
+            an integer or 'infinite'. Default = 'infinite'.
         - 'prepopulation_control' = Function simulating pre-mating population 
             control. Please refer to Population. Default = 'default'.
-        - 'mating' = Function simulating mating procedure (mate selection and 
-            act of mating control. Please refer to Population. 
+        - 'mating' = Function simulating mating procedure (mate selection 
+            and act of mating control. Please refer to Population. 
             Default = 'default'.
         - 'postpopulation_control' = Function simulating post-mating population 
             control. Please refer to Population. Default = 'default'.
         - 'generation_events' = Function simulating other possible (usually 
             rare or random) events in the generation. Please refer to 
             Population. Default = 'default'.
-        - 'population_report' = Function to generate the status report of the generation.
-            Please refer to Population. Default = 'default'.
+        - 'population_report' = Function to generate the status report of 
+            the generation. Please refer to Population. Default = 'default'.
         
     @param data: population data
     @type data: dictionary

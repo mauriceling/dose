@@ -510,8 +510,8 @@ def filter_vitality(minimum, maximum, agents):
     @return: List of Organism objects
     '''
     extract = [individual for individual in agents
-               if float(individual.status['vitality']) > (float(minimum) - 0.01) \
-               and float(individual.status['vitality']) < float(maximum) + 0.01]
+            if float(individual.status['vitality']) > (float(minimum) - 0.01) \
+            and float(individual.status['vitality']) < float(maximum) + 0.01]
     return extract
 
 def filter_status(status_key, condition, agents):
@@ -535,8 +535,8 @@ def filter_status(status_key, condition, agents):
                    if individual.status[status_key] == condition]
     else: 
         extract = [individual for individual in agents
-                   if float(individual.status[status_key]) > float(condition[0]) - 0.01 \
-                   and float(individual.status[status_key]) < float(condition[1]) + 0.01]
+        if float(individual.status[status_key]) > float(condition[0]) - 0.01 \
+        and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
 def revive_simulation(rev_parameters, sim_functions):
@@ -545,15 +545,19 @@ def revive_simulation(rev_parameters, sim_functions):
     if "sim_folder" in rev_parameters:
         print 'Accessing simulation files directory...' 
         print 'Excavating World entity: ' + rev_parameters['eco_file'] + '...'
-        World = excavate_world(rev_parameters['sim_folder'] + rev_parameters['eco_file'])
+        World = excavate_world(rev_parameters['sim_folder'] + \
+                               rev_parameters['eco_file'])
         print 'Updating parameters with World dimensions...'
         rev_parameters["world_z"] = len(World.ecosystem[0][0][0])
         rev_parameters["world_y"] = len(World.ecosystem[0][0])
         rev_parameters["world_x"] = len(World.ecosystem[0])
         for i in xrange(len(rev_parameters["pop_files"])):
-            print '\nReviving population file: ' + rev_parameters["pop_files"][i] + '...'
-            pop_file = rev_parameters["sim_folder"] + rev_parameters["pop_files"][i]
-            Populations[rev_parameters["population_names"][i]] = revive_population(pop_file)
+            print '\nReviving population file: ' + \
+                rev_parameters["pop_files"][i] + '...'
+            pop_file = rev_parameters["sim_folder"] + \
+                rev_parameters["pop_files"][i]
+            Populations[rev_parameters["population_names"][i]] = \
+                revive_population(pop_file)
         print '\nUpdating revival generation start in simulation parameters...'
         rev_parameters["rev_start"] = [Populations[pop_name].generation 
                                        for pop_name in Populations]
@@ -562,7 +566,8 @@ def revive_simulation(rev_parameters, sim_functions):
         dbpath = os.sep.join([os.getcwd(), 
                               'Simulations', 
                               rev_parameters["database_source"]])
-        print 'Connecting to database file: ' + rev_parameters["database_source"] + '...'
+        print 'Connecting to database file: ' + \
+            rev_parameters["database_source"] + '...'
         (con, cur) = connect_database(dbpath, None)
         if rev_parameters["simulation_time"] == 'default':
             print 'Acquiring simulation starting time...'
@@ -581,12 +586,13 @@ def revive_simulation(rev_parameters, sim_functions):
         for pop_name in rev_parameters["population_names"]:
             print 'Reconstructing population: ' + pop_name + '...'
             Populations[pop_name] = db_reconstruct_population(cur, 
-                              rev_parameters["simulation_time"], 
-                              pop_name, rev_parameters["rev_start"][rev_parameters["population_names"].index(pop_name)])
+                              rev_parameters["simulation_time"], pop_name, 
+            rev_parameters["rev_start"][rev_parameters["population_names"].index(pop_name)])
         print 'Terminating database connection...'
         con.close()
     print 'Updating last generation revival and population size simulation parameters...'
-    rev_parameters["rev_finish"] = [(Populations[pop_name].generation + rev_parameters["extend_gen"]) 
+    rev_parameters["rev_finish"] = [(Populations[pop_name].generation + \
+                                     rev_parameters["extend_gen"]) 
                                     for pop_name in Populations]
     rev_parameters["rev_pop_size"] = [len(Populations[pop_name].agents) 
                                       for pop_name in Populations]
@@ -613,7 +619,8 @@ def simulate(sim_parameters, sim_functions):
         (oganisms are randomly deployed across a list of population locations 
         given for the population), 4 (organisms are dispersed from a specific 
         location where the defined location will have the maximum allocation 
-        before dispersal happens). (see simulation_calls.deployment for more details)
+        before dispersal happens). (see simulation_calls.deployment for more 
+        details)
         - chromosome_bases: List containing allowable bases in the 
         chromosome.
         - background_mutation: Defines background mutation rate where 0.01 
@@ -721,13 +728,14 @@ def simulate(sim_parameters, sim_functions):
         simulation parameters dictionary equals to 0.
     
     @param sim_parameters: Dictionary of simulation parameters
-    @param simulation_functions: A class inherited from dose.dose_functions
+    @param sim_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
     print '\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]'
     if not sim_parameters.has_key("initial_chromosome"):
         print 'Adding initial chromosome to simulation parameters...'
-        sim_parameters["initial_chromosome"] = ['0'] * sim_parameters["chromosome_size"]
+        sim_parameters["initial_chromosome"] = ['0'] * \
+                                        sim_parameters["chromosome_size"]
     print 'Adding deployment scheme to simulation parameters...'
     sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
     print 'Constructing World entity...'

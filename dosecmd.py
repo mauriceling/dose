@@ -270,32 +270,43 @@ Lead developer: Clarence Castillo'''
         print
     
     def do_flush(self, option, param, count):
-        if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_flush.__doc__
-            return
+        '''
+Command: flush <options>
+<options> = {data | data <item> | userdata | userdata <key>}
+Description: Deletes / clears internal variables
+Pre-requisite(s): None
+
+<options> = data
+    Delete all results/data (self.results) in the current session
+<options> = data <item>
+    Delete only specific result/data (self.results), where <item> is the 
+    command number
+<options> = userdata
+    Delete all user-defined data (self.userdata) in the current session
+<options> = userdata <key>
+    Delete only specific user-defined data (self.userdata), where <key> 
+    is the dictionary key
+        '''
+        if option == '': 
+            self.no_options_error_message(self.do_flush, count)
         elif option == 'data' and param == '':
             self.results = {}
             print 'All data cleared (from self.results)'
         elif option == 'data' and param != '':
-            if self.results.pop(count, None) != None:
+            if self.results.pop(str(param), None) != None:
                 print 'Data (self.results) cleared from Key = ', str(param)
             else:
-                print 'Key = ', str(param), ' does not exist in self.results'
+                print 'Item = ', str(param), ' does not exist in self.results'
         elif option == 'userdata' and param == '':
             self.userdata = {}
             print 'All user-defined data cleared (from self.userdata)'
         elif option == 'userdata' and param != '':
-            if self.userdata.pop(count, None) != None:
+            if self.userdata.pop(str(param), None) != None:
                 print 'User-defined data (self.userdata) cleared from Key = ', str(param)
             else:
                 print 'Key = ', str(param), ' does not exist in \
 user-defined data (self.userdata)'
-
-    
+        
     def do_help(self, option, param, count):
         '''
 List of available commands:
@@ -362,12 +373,7 @@ Pre-requisite(s): Requires connection to a simulation logging database
         if cur == None:
             error_message = 'Error: no database had been connected'
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_list.__doc__
-            return
+            self.no_options_error_message(self.do_list, count)
         elif option == 'datafields':
             print '''Searching for data fields logged in simulation
     start time = %s of 
@@ -468,12 +474,7 @@ Pre-requisite(s): None
     Writes out the entire workspace (history, data, environment) of the 
     current session into <file name>'''
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_save.__doc__
-            return
+            self.no_options_error_message(self.do_save, count)
         if param == '': 
             param = 'saved.' + str(self.environment['starting_time']) + '.txt'
         outfile = open(os.sep.join([str(self.environment['cwd']), param]), 'a')
@@ -554,12 +555,7 @@ Pre-requisite(s): None
     Display only specific user-defined data (self.userdata), where <key> 
     is the dictionary key'''
         if option == '':
-            error_message = 'Error: No options provided'
-            self.history[str(count)] = self.history[str(count)] + \
-                                       ' | ' + error_message
-            print error_message
-            print self.do_show.__doc__
-            return
+            self.no_options_error_message(self.do_show, count)
         elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
             print 'Environment variables:'
@@ -606,7 +602,14 @@ Pre-requisite(s): None
             txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
             print txt
-            
+    
+    def no_options_error_message(self, function, count):
+        error_message = 'Error: No options provided'
+        self.history[str(count)] = self.history[str(count)] + \
+                                   ' | ' + error_message
+        print error_message
+        print function.__doc__
+                
     def command_handler(self, cmd, option, param, count):
         count = str(count)
         if cmd == 'connectdb': self.do_connectdb(option, param, count)
