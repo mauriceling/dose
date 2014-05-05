@@ -1,62 +1,32 @@
 '''
-Example 13: Examining the effects of natural selection on a 
+Example 15: Continuation of examining the effects of natural selection on a 
 population's genetic pool by implementing a fitness scheme that counts
 a specific sequence within the chromosome along with a goal to be reached 
-from an evenly deployed population.
+from an evenly deployed population. In this simulation, regain of lost fitness
+is observed by reimplementing the initial post-population control scheme from
+simulation 13.
 
 In this simulation,
-    - 1 population of 100 organisms
-    - each organism will have 1 chromosome of only 2 bases (1 and 0)
-    - Deployed on just one eco-cell
-    - 1% background point mutation on chromosome of 50 bases
-    - no organism movement throughout the simulation
-    - no Ragaraja interpretation of genome
-    - 300 generations to be simulated
-    - Fitness score goal of 50
+    - revival of 1 population of 100 organisms
+    - unchanged simulation parameters
+    - 200 generations to be simulated
 '''
 
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
 # Example codes starts from here
-import dose, genetic, random
+import dose, random
 from collections import Counter
 from copy import deepcopy
 
-parameters = {
-              "simulation_name": "example_13",
-              "population_names": ['pop_01'],
-              "population_locations": [[(0,0,0)]],
-              "initial_chromosome": ['1','0'] * 250,
-              "deployment_code": 1,
-              "chromosome_bases": ['0','1'],
-              "background_mutation": 0.01,
-              "additional_mutation": 0.00,
-              "mutation_type": 'point',
-              "chromosome_size": 500,
-              "genome_size": 1,
-              "max_tape_length": 50,
-              "clean_cell": True,
-              "interpret_chromosome": False,
-              "max_codon": 2000,
-              "population_size": 100,
-              "eco_cell_capacity": 0,
-              "world_x": 1,
-              "world_y": 1,
-              "world_z": 1,
-              "goal": 50,
-              "maximum_generations": 300,
-              "fossilized_ratio": 0.01,
-              "fossilized_frequency": 50,
-              "print_frequency": 1,
-              "ragaraja_version": 0,
-              "ragaraja_instructions": ['000', '001', '010', 
-                                        '011', '100', '101'],
-              "eco_buried_frequency": 300,
-              "database_file": "sim13_no_migration.db",
-              "database_logging_frequency": 1
-             }
+parameters = {"rev_start" : [15600],
+              "extend_gen" : 200,
+              "database_logging_frequency": 1,
+              }
 
 class simulation_functions(dose.dose_functions):
 
@@ -83,12 +53,11 @@ class simulation_functions(dose.dose_functions):
                     while int(chromosome[next_index + base_index]) == 0:
                         next_index += 1
                         if (next_index + base_index) == parameters["chromosome_size"]: break
-                    zero_count.append(next_index - 1)
+                    zero_count.append(next_index)
             for sequence in xrange(len(zero_count)):
                 if len(final_fitness) == 10: break
                 seq_score = sorted(zero_count, reverse = True)[sequence]
-                if seq_score > 5:
-                    seq_score = 5
+                if seq_score > int(parameters["goal"]/10): seq_score = int(parameters["goal"]/10)
                 final_fitness.append(seq_score)
             organism.status['fitness'] = sum(final_fitness)
 
@@ -105,18 +74,45 @@ class simulation_functions(dose.dose_functions):
             Populations[pop_name].agents.append(organism)
 
     def postpopulation_control(self, Populations, pop_name):
+		#FPS
+		
         group = deepcopy(Populations[pop_name].agents)
         fitness_dict = {}
         for organism in group:
-            fitness_dict[organism.status['identity']] = int(organism.status['fitness'])
-        sorted_fitness = sorted(fitness_dict.items(), key=lambda x: x[1])
-        for index_pair in sorted_fitness:
-            if len(Populations[pop_name].agents) == len(group)/2: break
-            for organism in Populations[pop_name].agents:
-                if organism.status['identity'] == index_pair[0]:
-                    Populations[pop_name].agents.remove(organism)
-                    break;
-
+            fitness_dict[organism.status['identity']] = float(organism.status['fitness'])
+        sorted_fitness = sorted(list(fitness_dict.items()), key=lambda x: x[1])
+        sorted_fitness = [list(item) for item in sorted_fitness]
+        total_fitness = sum(fitness_dict.values())
+        cumulated_fitness = 0
+        for i in range(len(sorted_fitness)):
+            sorted_fitness[i][1] = cumulated_fitness + (sorted_fitness[i][1] / total_fitness)
+            cumulated_fitness = cumulated_fitness + (sorted_fitness[i][1] / total_fitness)
+        filter_list = []
+        while len(filter_list) != 100:
+            random_val = random.uniform(min([fitness[1] for fitness in sorted_fitness]), 
+                                        sum([fitness[1] for fitness in sorted_fitness]))
+            for fitness_list in sorted_fitness:
+                if fitness_list[1] > random_val and fitness_list[0] not in filter_list:
+                    filter_list.append(fitness_list[0])
+                    break
+        new_population = [organism for organism in Populations[pop_name].agents if organism.status['identity'] in filter_list]
+        Populations[pop_name].agents = new_population
+		
+		#TS
+	'''
+		group = deepcopy(Populations[pop_name].agents)
+		fitness_dict = {}
+		for organism in group:
+			fitness_dict[organism.status['identity']] = int(organism.status['fitness'])
+		sorted_fitness = sorted(fitness_dict.items(), key=lambda x: x[1])
+		for index_pair in sorted_fitness:
+			if len(Populations[pop_name].agents) == len(group)/2: break
+			for organism in Populations[pop_name].agents:
+				if organism.status['identity'] == index_pair[0]:
+					Populations[pop_name].agents.remove(organism)
+					break;
+		'''
+		
     def generation_events(self, Populations, pop_name): pass
 
     def population_report(self, Populations, pop_name):
@@ -140,4 +136,9 @@ class simulation_functions(dose.dose_functions):
 
     def deployment_scheme(self, Populations, pop_name, World): pass
 
-dose.simulate(parameters, simulation_functions)
+for trial in xrange(1, 6):
+	parameters["simulation_time"] = "default"
+	parameters["simulation_name"] = "T" + str(trial) + "_FPS_11x0_gain4"
+	parameters["database_source"] = "T" + str(trial) + "_FPS_11x0_loss3.db"
+	parameters["database_file"] = "T" + str(trial) + "_FPS_11x0_gain4.db"
+	dose.revive_simulation(parameters, simulation_functions)

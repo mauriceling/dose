@@ -16,7 +16,7 @@ from simulation_calls import spawn_populations, simulation_core
 from simulation_calls import excavate_world, revive_population
 
 from database_calls import connect_database, db_reconstruct_simulation_parameters
-from database_calls import db_reconstruct_population, db_reconstruct_world
+from database_calls import db_reconstruct_population, db_reconstruct_world, db_list_simulations
 
 class dose_functions():
     '''
@@ -540,6 +540,7 @@ def filter_status(status_key, condition, agents):
     return extract
 
 def revive_simulation(rev_parameters, sim_functions):
+    print '\n[' + rev_parameters["simulation_name"].upper() + ' REVIVAL SIMULATION]'
     Populations = {}
     if "sim_folder" in rev_parameters:
         print 'Accessing simulation files directory...' 
@@ -568,6 +569,9 @@ def revive_simulation(rev_parameters, sim_functions):
         print 'Connecting to database file: ' + \
             rev_parameters["database_source"] + '...'
         (con, cur) = connect_database(dbpath, None)
+        if rev_parameters["simulation_time"] == 'default':
+            print 'Acquiring simulation starting time...'
+            rev_parameters["simulation_time"] = db_list_simulations(cur)[0][0]
         print 'Reconstructing old simulation parameters...'
         temp_parameters = db_reconstruct_simulation_parameters(cur, 
                                     rev_parameters["simulation_time"])
@@ -727,6 +731,7 @@ def simulate(sim_parameters, sim_functions):
     @param sim_functions: A class inherited from dose.dose_functions
     class to implement all the needed simulation functions.
     '''
+    print '\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]'
     if not sim_parameters.has_key("initial_chromosome"):
         print 'Adding initial chromosome to simulation parameters...'
         sim_parameters["initial_chromosome"] = ['0'] * \

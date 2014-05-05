@@ -9,9 +9,12 @@ from case_study_01.db file using the simulation start time as identifier
 1200. The events of generation 1001 to 1200 are logged in case_study_01.db 
 file.
 '''
-import run_examples_without_installation
 
-import dose, genetic
+try: 
+	import run_examples_without_installation
+except ImportError: pass
+
+import dose
 import os, random
 
 '''
@@ -83,13 +86,13 @@ class simulation_functions(dose.dose_functions):
                         parents[i] = random.choice(Populations[pop_name].agents)
                     Populations[pop_name].agents.remove(parents[i])
                 crossover_pt = random.randint(0, len(parents[0].genome[0].sequence))
-                (new_chromo1, new_chromo2) = genetic.crossover(parents[0].genome[0], 
+                (new_chromo1, new_chromo2) = dose.genetic.crossover(parents[0].genome[0], 
                                                                parents[1].genome[0], 
                                                                crossover_pt)
-                children = [genetic.Organism([new_chromo1],
+                children = [dose.genetic.Organism([new_chromo1],
                                              rev_parameters["mutation_type"],
                                              rev_parameters["additional_mutation"]),
-                            genetic.Organism([new_chromo2],
+                            dose.genetic.Organism([new_chromo2],
                                              rev_parameters["mutation_type"],
                                              rev_parameters["additional_mutation"])]
                 for child in children:

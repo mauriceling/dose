@@ -176,7 +176,8 @@ def db_list_generations(cur, start_time, table='organisms'):
     # query plan: SCAN TABLE organisms USING COVERING INDEX organisms_index2
     cur.execute("select distinct generation from %s where start_time='%s'" 
                 % (str(table), str(start_time)))
-    return [str(x[0]) for x in cur.fetchall()]
+    generations = sorted([int(str(x[0])) for x in cur.fetchall()])
+    return [str(gen) for gen in generations]
 
 def db_list_datafields(cur, start_time, table='organisms'):
     '''

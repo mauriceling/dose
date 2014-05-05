@@ -9,3 +9,8 @@ examples/*.db
 *.xlsx
 *.gap
 *.eco
+build/
+dist/
+dose.egg-info/
+*.gz
+*.egg

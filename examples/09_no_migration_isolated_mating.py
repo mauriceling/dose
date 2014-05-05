@@ -17,10 +17,12 @@ In this simulation,
 '''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
-import run_examples_without_installation
+try: 
+	import run_examples_without_installation
+except ImportError: pass
 
 # Example codes starts from here
-import dose, genetic, random
+import dose, random
 
 parameters = {
               "simulation_name": "09_no_migration_isolated_mating",
@@ -91,13 +93,13 @@ class simulation_functions(dose.dose_functions):
                         parents[i] = random.choice(Populations[pop_name].agents)
                     Populations[pop_name].agents.remove(parents[i])
                 crossover_pt = random.randint(0, len(parents[0].genome[0].sequence))
-                (new_chromo1, new_chromo2) = genetic.crossover(parents[0].genome[0], 
+                (new_chromo1, new_chromo2) = dose.genetic.crossover(parents[0].genome[0], 
                                                                parents[1].genome[0], 
                                                                crossover_pt)
-                children = [genetic.Organism([new_chromo1],
+                children = [dose.genetic.Organism([new_chromo1],
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"]),
-                            genetic.Organism([new_chromo2],
+                            dose.genetic.Organism([new_chromo2],
                                              parameters["mutation_type"],
                                              parameters["additional_mutation"])]
                 for child in children:
@@ -117,7 +119,6 @@ class simulation_functions(dose.dose_functions):
         for organism in Populations[pop_name].agents:
             identity = str(organism.status['identity'])
             report_list.append(identity)
-
         return '\n'.join(report_list)
 
     def database_report(self, con, cur, start_time, 
