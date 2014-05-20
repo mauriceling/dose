@@ -6,7 +6,7 @@ Date created: 14th February 2014
 
 pypi_name = 'digital organism simulation environment'
 description = 'Digital Organism Simulation Environment (DOSE)'
-version = '1.0.2'
+version = '1.0.3'
 maintainer = 'Maurice HT Ling'
 email = 'mauriceling@acm.org'
 download_url = 'https://github.com/mauriceling/dose/releases'
