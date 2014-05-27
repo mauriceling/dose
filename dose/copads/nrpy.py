@@ -180,7 +180,7 @@ def bessj(n, x):
                 jsum = 1-jsum
                 if j == n: ans = bjp
             sum = 2.0*sum-bj
-            print sum, ans
+            print(sum, ans)
             ans = ans/sum
         if x < 0.0 and (n % 2) == 1: ans = -ans
         return ans

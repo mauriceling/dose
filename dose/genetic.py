@@ -774,7 +774,7 @@ def population_simulate(population,
                            for key in report.keys()]
             result.writelines('|'.join(reportitems))
         if population.generation % int(printfreq) == 0:
-            print '|'.join(reportitems)
+            print('|'.join(reportitems))
         result.writelines(os.linesep)
         if population.generation % int(freezefreq) == 0:
             population.freeze(freezefile, freezeproportion)

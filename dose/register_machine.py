@@ -59,8 +59,8 @@ def interpret(source, functions,
                                                    inputdata, output,
                                                    source, spointer)
         except KeyError:
-            print ' '.join(['Unknown function: ', cmd,
-                            'at source position', str(spointer)])
+            print(' '.join(['Unknown function: ', cmd,
+                            'at source position', str(spointer)]))
         if apointer > size - 1:
             apointer = apointer - size
         if apointer < 0:
