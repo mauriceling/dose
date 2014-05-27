@@ -238,8 +238,8 @@ Pre-requisite(s): None
             error_message = 'Error: 2 options needed; %s provided' % len(arg)
             self.history[str(count)] = self.history[str(count)] + \
                                        ' | ' + error_message
-            print error_message
-            print self.do_connectdb.__doc__
+            print(error_message)
+            print(self.do_connectdb.__doc__)
             return
         elif option == 'absolute':
             self.environment['database_file'] = param
@@ -255,19 +255,19 @@ Pre-requisite(s): None
         else:
             txt = option + ' is not a valid option. Type help connectdb for more information'
             self.results[count] = txt
-            print txt
+            print(txt)
 
     def do_copyright(self, option, param, count):
-        print
-        print 'Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)'
-        print
+        print()
+        print('Copyright 2010-2013, Maurice HT Ling (on behalf of all authors)')
+        print()
     
     def do_credits(self, option, param, count):
-        print
-        print '''DOSE Project Team
+        print()
+        print('''DOSE Project Team
 Project architect: Maurice HT Ling (mauriceling@acm.org)
-Lead developer: Clarence Castillo'''
-        print
+Lead developer: Clarence Castillo''')
+        print()
     
     def do_flush(self, option, param, count):
         '''
@@ -291,21 +291,21 @@ Pre-requisite(s): None
             self.no_options_error_message(self.do_flush, count)
         elif option == 'data' and param == '':
             self.results = {}
-            print 'All data cleared (from self.results)'
+            print('All data cleared (from self.results)')
         elif option == 'data' and param != '':
             if self.results.pop(str(param), None) != None:
-                print 'Data (self.results) cleared from Key = ', str(param)
+                print('Data (self.results) cleared from Key = ', str(param))
             else:
-                print 'Item = ', str(param), ' does not exist in self.results'
+                print('Item = ', str(param), ' does not exist in self.results')
         elif option == 'userdata' and param == '':
             self.userdata = {}
-            print 'All user-defined data cleared (from self.userdata)'
+            print('All user-defined data cleared (from self.userdata)')
         elif option == 'userdata' and param != '':
             if self.userdata.pop(str(param), None) != None:
-                print 'User-defined data (self.userdata) cleared from Key = ', str(param)
+                print('User-defined data (self.userdata) cleared from Key = ', str(param))
             else:
-                print 'Key = ', str(param), ' does not exist in \
-user-defined data (self.userdata)'
+                print('Key = ', str(param), ' does not exist in \
+user-defined data (self.userdata)')
         
     def do_help(self, option, param, count):
         '''
@@ -315,30 +315,30 @@ help                license             list             py
 pyshell             quit                save             show
 
 Type help <command> for more help (if any)'''
-        if option == '' or option == 'help': print self.do_help.__doc__
-        elif option == 'connectdb': print self.do_connectdb.__doc__
+        if option == '' or option == 'help': print(self.do_help.__doc__)
+        elif option == 'connectdb': print(self.do_connectdb.__doc__)
         elif option == 'copyright': self.do_copyright(option, param, count)
         elif option == 'credits': self.do_credits(option, param, count)
         elif option == 'flush': self.do_flush.__doc__
         elif option == 'license': self.do_license(option, param, count)
-        elif option == 'list': print self.do_list.__doc__
-        elif option == 'quit': print self.do_quit.__doc__
-        elif option == 'py': print self.do_py.__doc__
-        elif option == 'pyshell': print self.do_pyshell.__doc__
-        elif option == 'save': print self.do_save.__doc__
-        elif option == 'show': print self.do_show.__doc__
+        elif option == 'list': print(self.do_list.__doc__)
+        elif option == 'quit': print(self.do_quit.__doc__)
+        elif option == 'py': print(self.do_py.__doc__)
+        elif option == 'pyshell': print(self.do_pyshell.__doc__)
+        elif option == 'save': print(self.do_save.__doc__)
+        elif option == 'show': print(self.do_show.__doc__)
         else:
             txt = option + ' is not a valid command; hence, no help is available.'
             self.results[count] = txt
-            print txt
+            print(txt)
     
     def do_license(self, option, param, count):
-        print
-        print '''
+        print()
+        print('''
 DOSE License: Unless otherwise specified, all files in dose/copads folder 
 will be licensed under Python Software Foundation License version 2.
-All other files, including DOSE, will be GNU General Public License version 3.'''
-        print
+All other files, including DOSE, will be GNU General Public License version 3.''')
+        print()
         
     def do_list(self, option, param, count):
         '''
@@ -375,38 +375,38 @@ Pre-requisite(s): Requires connection to a simulation logging database
         if option == '':
             self.no_options_error_message(self.do_list, count)
         elif option == 'datafields':
-            print '''Searching for data fields logged in simulation
+            print('''Searching for data fields logged in simulation
     start time = %s of 
     simulation logging database file = %s
-    table = %s''' % (param[0], self.environment['database_file'], table)
+    table = %s''' % (param[0], self.environment['database_file'], table))
             results = dose.db_list_datafields(cur, param[0], table)
             self.results[count] = results
-            for r in results: print r
+            for r in results: print(r)
         elif option == 'generations':
-            print '''Searching for generations logged in simulation
+            print('''Searching for generations logged in simulation
     start time = %s of 
     simulation logging database file = %s
-    table = %s''' % (param[0], self.environment['database_file'], table)
+    table = %s''' % (param[0], self.environment['database_file'], table))
             results = dose.db_list_generations(cur, param[0], table)
             self.results[count] = results
-            for r in results: print r
+            for r in results: print(r)
         elif option == 'popname': 
-            print '''Searching for population names logged in simulation
+            print('''Searching for population names logged in simulation
     start time = %s of 
-    simulation logging database file = %s''' % (param[0], self.environment['database_file'])
+    simulation logging database file = %s''' % (param[0], self.environment['database_file']))
             results = dose.db_list_population_name(cur, param[0])
             self.results[count] = results
-            for r in results: print r
+            for r in results: print(r)
         elif option == 'simulations': 
-            print '''Searching for simulations logged in simulation logging 
-database file = %s''' % (self.environment['database_file'])
+            print('''Searching for simulations logged in simulation logging 
+database file = %s''' % (self.environment['database_file']))
             results = dose.db_list_simulations(cur)
             self.results[count] = results
-            for r in results: print r
+            for r in results: print(r)
         else:
             txt = option + ' is not a valid option. Type help list for more information'
             self.results[count] = txt
-            print txt
+            print(txt)
             
     def do_py(self, option, param, count):
         '''
@@ -449,15 +449,15 @@ Pre-requisite(s): None
 Command: quit
 Description: Terminate this application
 Pre-requisite(s): None'''
-        print
-        print '''Are you going off?? -:(
+        print()
+        print('''Are you going off?? -:(
 Please contact Maurice Ling (mauriceling@acm.org) if you need any help.
 Goodbye! Have a nice day and hope to see you again soon!
 
 %s
 
-Current time is %s''' % (quotation(), str(datetime.utcnow()))
-        print
+Current time is %s''' % (quotation(), str(datetime.utcnow())))
+        print()
         
     def do_save(self, option, param, count):
         '''
@@ -517,7 +517,7 @@ Pre-requisite(s): None
         else:
             txt = option + ' is not a valid option. Type help save for more information'
             self.results[count] = txt
-            print txt
+            print(txt)
             
     def do_show(self, option, param, count):
         '''
@@ -558,57 +558,57 @@ Pre-requisite(s): None
             self.no_options_error_message(self.do_show, count)
         elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
-            print 'Environment variables:'
+            print('Environment variables:')
             for key in self.environment.keys():
-                print key, '=', self.environment[key]
+                print(key, '=', self.environment[key])
         elif option == 'history' and param == '':
             self.results[count] = copy.deepcopy(self.history)
             keys = [int(x) for x in self.history.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
-                print 'Count =', k, '| Command =', self.history[k]
+                print('Count =', k, '| Command =', self.history[k])
         elif option == 'history' and param != '':
             self.results[count] = self.history[str(param)]
-            print 'Count =', param, '| Command =', self.history[str(param)]
+            print('Count =', param, '| Command =', self.history[str(param)])
         elif option == 'data' and param == '':
             keys = [int(x) for x in self.results.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
-                print 'Count =', k, '| Data =', self.results[k]
+                print('Count =', k, '| Data =', self.results[k])
         elif option == 'data' and param != '':
             self.results[count] = self.results[str(param)]
-            print 'Count =', param, '| Data =', self.results[str(param)]
+            print('Count =', param, '| Data =', self.results[str(param)])
         elif option == 'userdata' and param == '':
             keys = [int(x) for x in self.userdata.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
-                print 'Key =', k, '| Data =', self.userdata[k]
+                print('Key =', k, '| Data =', self.userdata[k])
         elif option == 'userdata' and param != '':
             self.results[count] = self.userdata[str(param)]
-            print 'Key =', param, '| Data =', self.userdata[str(param)]
+            print('Key =', param, '| Data =', self.userdata[str(param)])
         elif option == 'memory' and param == 'data':
             keys = [int(x) for x in self.results.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
-                print 'Data (self.results) memory usage (Count = %s): %s bytes' % (k, 
-                                                      sys.getsizeof(self.results[k]))
+                print('Data (self.results) memory usage (Count = %s): %s bytes' % (k, 
+                                                      sys.getsizeof(self.results[k])))
         elif option == 'memory' and param == 'userdata':
             keys = [int(x) for x in self.userdata.keys()]
             keys.sort()
             for k in [str(x) for x in keys]:
-                print '''User-defined data (self.userdata) memory usage \
-(Count = %s): %s bytes''' % (k, sys.getsizeof(self.userdata[k]))
+                print('''User-defined data (self.userdata) memory usage \
+(Count = %s): %s bytes''' % (k, sys.getsizeof(self.userdata[k])))
         else:
             txt = option + ' is not a valid option. Type help show for more information'
             self.results[count] = txt
-            print txt
+            print(txt)
     
     def no_options_error_message(self, function, count):
         error_message = 'Error: No options provided'
         self.history[str(count)] = self.history[str(count)] + \
                                    ' | ' + error_message
-        print error_message
-        print function.__doc__
+        print(error_message)
+        print(function.__doc__)
                 
     def command_handler(self, cmd, option, param, count):
         count = str(count)
@@ -656,7 +656,7 @@ Pre-requisite(s): None
                     error_message = cmd + ' is not a valid command.'
                     self.history[str(count)] = self.history[str(count)] + \
                         ' | Error message: ' + error_message
-                    print error_message
+                    print(error_message)
                 if cmd == 'quit':
                     break
                 count = count + 1
@@ -665,8 +665,8 @@ Pre-requisite(s): None
                 self.results[str(count)] = error_message
                 for line in error_message:
                     if (type(line) == list):
-                        for l in line: print l
-                    print line
+                        for l in line: print(l)
+                    print(line)
                 
     def completer(self, text, state):
         options = [x for x in self.commands 
@@ -675,7 +675,7 @@ Pre-requisite(s): None
         except IndexError: return None
     
     def header(self):
-        print '''
+        print('''
 Digital Organisms Simulation Environment (DOSE), version 0.1
 Current time is %s
 
@@ -683,7 +683,7 @@ Current time is %s
 
 Type "help", "copyright", "credits" or "license" for more information.
 To exit this application, type "quit".
-''' % (self.environment['starting_time'], quotation())
+''' % (self.environment['starting_time'], quotation()))
     
     def formatExceptionInfo(self, maxTBlevel=10):
         """

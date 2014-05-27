@@ -1,5 +1,5 @@
 import sys, os, random
-print 'Adding dose to working directory...'
+print('Adding dose to working directory...')
 cwd = os.getcwd().split(os.sep)
 cwd[-1] = 'dose'
 cwd = os.sep.join(cwd)
@@ -10,19 +10,19 @@ import database_calls
 
 database_filename = "case_study_00.db"
 outputfile = 'sim00_within_cell_analysis.csv'
-print 'Opening outputfile: ' + outputfile + '...'
+print('Opening outputfile: ' + outputfile + '...')
 outputfile = open(outputfile, 'w')
-print 'Assembling database file directory...'
+print('Assembling database file directory...')
 dbpath = os.getcwd().split(os.sep)
 dbpath[-1] = 'examples'
 dbpath = os.sep.join(dbpath)
 dbpath = os.sep.join([dbpath, 'Simulations', database_filename])
-print 'Connecting to database file: ' + database_filename + '...'
+print('Connecting to database file: ' + database_filename + '...')
 (con, cur) = database_calls.connect_database(dbpath, None)
-print 'Acquiring simulation starting time...'
+print('Acquiring simulation starting time...')
 starting_time = database_calls.db_list_simulations(cur)[0][0]
 
-print 'Constructing locations list...'
+print('Constructing locations list...')
 locations = []
 for x in xrange(5):
     for y in xrange(5):
@@ -38,18 +38,18 @@ def get_chromosomes_by_location(starting_time, pop_name, generation):
                 organism_chromosomes[location].append(organism.genome[0].sequence)
     return organism_chromosomes
 
-print 'Writing outputfile header...'
+print('Writing outputfile header...')
 header = [str(locations[i]).replace(", ","-") for i in xrange(len(locations))]
 header = ['Generation'] + header
 outputfile.write(','.join(header) + '\n')
 
-print 'Starting main analysis...\n'
+print('Starting main analysis...\n')
 for generation in range(1, 1001):
-    print '\rInitializing generation ' + str(generation) + '...',
+    print('\rInitializing generation ' + str(generation) + '...', end=' ')
     chromo_db = get_chromosomes_by_location(starting_time, 'pop_01', generation)
     result = [str(generation)]
     for location in locations:
-        print '\rAnalyzing location: ' + str(location) + '...',
+        print('\rAnalyzing location: ' + str(location) + '...', end=' ')
         genetic_distance_list = []
         for chromosome in chromo_db[location]:
             random_chromosome = random.choice(chromo_db[location])
@@ -57,6 +57,6 @@ for generation in range(1, 1001):
         average_distance = float(sum(genetic_distance_list))/len(genetic_distance_list)
         result.append(str(average_distance))
     outputfile.write(','.join(result) + '\n')
-    print '\rGeneration ' + str(generation) + ' analysis complete...',
+    print('\rGeneration ' + str(generation) + ' analysis complete...', end=' ')
 
-print '\nAnalysis complete!'
+print('\nAnalysis complete!')

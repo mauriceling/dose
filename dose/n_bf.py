@@ -162,5 +162,5 @@ nBF = {'A': increment,
        }
 
 if __name__ == '__main__':
-    print r.interpret('AAAAGGTTTCAAA', nBF)
-    print r.interpret('AAAAGGTTTCAAARRYYSKVDVDBBHVNVH', nBF)
+    print(r.interpret('AAAAGGTTTCAAA', nBF))
+    print(r.interpret('AAAAGGTTTCAAARRYYSKVDVDBBHVNVH', nBF))

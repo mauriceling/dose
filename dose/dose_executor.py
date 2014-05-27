@@ -169,7 +169,7 @@ def simulate(entity_module):
                 ffile = fossil_files[name] + '_'
                 populations[name].freeze(ffile, fossilized_ratio)
             if generation_count % int(print_frequency) == 0:
-                print str(generation_count), str(report)
+                print(str(generation_count), str(report))
                 f = open(result_files[name] + '.result.txt', 'a')
                 dtstamp = str(datetime.utcnow())
                 f.write('\t'.join([dtstamp, str(generation_count),
@@ -199,7 +199,7 @@ def simulate(entity_module):
             
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print '''
+        print('''
         Default DOSE simulation runner in manuscript [1]
         Date created: 13th September 2012
         Licence: Python Software Foundation License version 2 
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         
         Usage: python run_dose.py <DOSE entities> <DOSE parameters>
         Example: python run_dose.py dose_entities_TPP_7_5 dose_parameters
-        '''
+        ''')
     else:
         entity_module = sys.argv[1]
         exec('from %s import *' % sys.argv[2])

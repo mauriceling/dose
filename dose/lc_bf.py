@@ -125,9 +125,9 @@ LCBF = {'+': increment,
         }
 
 if __name__ == '__main__':
-    print r.interpret('++++++++++[>+++++<.-]', LCBF)
-    print r.interpret('++[>+++++<.-]>>>+++.', LCBF)
-    print r.interpret('++>+++++<.-]>>>+++.', LCBF)
-    print r.interpret('++>[+++++<.->>>+++.', LCBF)
-    print r.interpret('+++++[>++++[>+++.<-].<-]', LCBF)
-    print r.interpret('>>>>>>++', LCBF, 1, [], None, 5)
+    print(r.interpret('++++++++++[>+++++<.-]', LCBF))
+    print(r.interpret('++[>+++++<.-]>>>+++.', LCBF))
+    print(r.interpret('++>+++++<.-]>>>+++.', LCBF))
+    print(r.interpret('++>[+++++<.->>>+++.', LCBF))
+    print(r.interpret('+++++[>++++[>+++.<-].<-]', LCBF))
+    print(r.interpret('>>>>>>++', LCBF, 1, [], None, 5))
