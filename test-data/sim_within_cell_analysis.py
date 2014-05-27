@@ -45,11 +45,11 @@ outputfile.write(','.join(header) + '\n')
 
 print('Starting main analysis...\n')
 for generation in range(1, 1001):
-    print('\rInitializing generation ' + str(generation) + '...', end=' ')
+    print('\rInitializing generation ' + str(generation) + '...')
     chromo_db = get_chromosomes_by_location(starting_time, 'pop_01', generation)
     result = [str(generation)]
     for location in locations:
-        print('\rAnalyzing location: ' + str(location) + '...', end=' ')
+        print('\rAnalyzing location: ' + str(location) + '...')
         genetic_distance_list = []
         for chromosome in chromo_db[location]:
             random_chromosome = random.choice(chromo_db[location])
@@ -57,6 +57,6 @@ for generation in range(1, 1001):
         average_distance = float(sum(genetic_distance_list))/len(genetic_distance_list)
         result.append(str(average_distance))
     outputfile.write(','.join(result) + '\n')
-    print('\rGeneration ' + str(generation) + ' analysis complete...', end=' ')
+    print('\rGeneration ' + str(generation) + ' analysis complete...')
 
 print('\nAnalysis complete!')

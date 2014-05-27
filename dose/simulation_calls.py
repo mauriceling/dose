@@ -128,7 +128,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                 (con, cur) = db_report(con, cur, sim_functions,
                                    sim_parameters["starting_time"],
                                    Populations, World, generation_count)
-        print('Generation ' + str(generation_count) + ' complete...\r', end=' ')
+        print('Generation ' + str(generation_count) + ' complete...')
     print('\nClosing simulation results...')
     for pop_name in Populations: close_results(sim_parameters, pop_name)
     if sim_parameters.has_key("database_file") and \

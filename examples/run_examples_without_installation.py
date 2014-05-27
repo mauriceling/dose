@@ -11,3 +11,5 @@ cwd[-1] = 'dose'
 cwd = os.sep.join(cwd)
 
 sys.path.append(cwd)
+
+import dose

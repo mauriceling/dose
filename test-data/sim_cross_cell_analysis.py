@@ -49,14 +49,14 @@ def get_chromosomes_by_location(starting_time, pop_name, generation):
 
 print('Starting main analysis...\n')
 for generation in [1, 100, 200, 300, 400,500, 600, 700, 800, 900, 1000]:
-    print('\rInitializing generation ' + str(generation) + '...', end=' ')
+    print('\rInitializing generation ' + str(generation) + '...')
     chromo_db = get_chromosomes_by_location(starting_time, 'pop_01', generation)
     results = [str(generation)]
     for location1 in locations:
         for location2 in locations:
             location_results = []
             if location1 != location2:
-                print('\rAnalyzing ' + str(location1) + ' and ' + str(location2) + '...', end=' ')
+                print('\rAnalyzing ' + str(location1) + ' and ' + str(location2) + '...')
                 for organism1 in chromo_db[location1]:
                     organism_results = []
                     for organism2 in chromo_db[location2]:
@@ -64,6 +64,6 @@ for generation in [1, 100, 200, 300, 400,500, 600, 700, 800, 900, 1000]:
                     location_results.append(analytics.average(organism_results))
                 results.append(str(analytics.average(location_results)))
     outputfile.write(','.join(results) + '\n')
-    print('\rGeneration ' + str(generation) + ' analysis complete...', end=' ')
+    print('\rGeneration ' + str(generation) + ' analysis complete...')
 
 print('Simulation Anaysis Complete!')
