@@ -25,7 +25,9 @@ def connect_database(dbpath, sim_parameters=None):
     be used when sim_parameters == None.
     @param sim_parameters: Dictionary of simulation parameters. Default is 
     None.
-    @return: (con, cur) where con = connector and cur = cursor. 
+    @return: (con, cur) where 
+        - con = connector
+        - cur = cursor
     '''
     if sim_parameters:
         dbpath = os.sep.join([os.getcwd(), 
@@ -87,7 +89,9 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     @param con: Database connector from connect_database() function. 
     @param cur: Database cursor from connect_database() function.
     @param sim_parameters: Dictionary of parameters used in simulation.
-    @return: (con, cur) where con = connector and cur = cursor. 
+    @return: (con, cur) where 
+        - con = connector
+        - cur = cursor
     '''
     start_time = sim_parameters["starting_time"]
     simulation_name = sim_parameters["simulation_name"]
@@ -128,7 +132,9 @@ def db_report(con, cur, sim_functions, start_time,
     where the value is a genetic.Population object.
     @param World: dose_world.World object.
     @param generation_count: Current number of generations simulated.
-    @return: (con, cur) where con = connector and cur = cursor. 
+    @return: (con, cur) where 
+        - con = connector
+        - cur = cursor 
     '''
     sim_functions.database_report(con, cur, start_time,
                                   Populations, World, generation_count)
@@ -144,10 +150,11 @@ def db_list_simulations(cur, table='parameters'):
     @param table: Database table name to list simulations. Allowable values 
     are 'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
     value is 'parameters'.
-    @return: A list containing the results. If table = 'parameters', the 
-    returned list will be a list of list (consisting of [starting time of 
-    simulation, simulation name]). If table is not 'parameters', the 
-    returned list will be a list of starting time of simulation.
+    @return: A list containing the results. 
+        - If table = 'parameters', the returned list will be a list of list 
+        (consisting of [starting time of simulation, simulation name]). 
+        - If table is not 'parameters', the returned list will be a list of 
+        starting time of simulation.
     '''
     if table not in ('parameters', 'organisms',
                      'world', 'miscellaneous'):
@@ -373,16 +380,36 @@ def db_reconstruct_simulation_parameters(cur, start_time):
     @param cur: Database cursor from connect_database() function.
     @param start_time: Starting time of current simulation in the format 
     of <date>-<seconds since epoch>; for example, 2013-10-11-1381480985.77.
-    @return: Simulation parameters dictionary containing the following 
-    keys - 'simulation_name', 'population_names', 'population_locations', 
-    'deployment_code', 'chromosome_bases', 'background_mutation',
-    'additional_mutation', 'mutation_type', 'chromosome_size', 
-    'genome_size', 'max_tape_length', 'clean_cell', 'interpret_chromosome', 
-    'max_codon', 'population_size', 'eco_cell_capacity', 'world_x', 
-    'world_y', 'world_z', 'goal', 'maximum_generations', 'fossilized_ratio',
-    'fossilized_frequency', 'print_frequency', 'ragaraja_version', 
-    'ragaraja_instructions', 'eco_buried_frequency', 'database_file',
-    'database_logging_frequency'.
+    @return: Simulation parameters dictionary containing the following keys: 
+        - simulation_name
+        - population_names
+        - population_locations
+        - deployment_code
+        - chromosome_bases
+        - background_mutation
+        - additional_mutation
+        - mutation_type
+        - chromosome_size
+        - genome_size
+        - max_tape_length
+        - clean_cell
+        - interpret_chromosome
+        - max_codon
+        - population_size
+        - eco_cell_capacity
+        - world_x
+        - world_y
+        - world_z
+        - goal
+        - maximum_generations
+        - fossilized_ratio
+        - fossilized_frequency
+        - print_frequency
+        - ragaraja_version
+        - ragaraja_instructions
+        - eco_buried_frequency
+        - database_file
+        - database_logging_frequency
     '''
     parameters = {}
     for key in ('simulation_name', 'population_names', 
