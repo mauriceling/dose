@@ -733,7 +733,7 @@ def simulate(sim_parameters, sim_functions):
     class to implement all the needed simulation functions.
     '''
     print('\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]')
-    if not sim_parameters.has_key("initial_chromosome"):
+    if "initial_chromosome" not in sim_parameters:
         print('Adding initial chromosome to simulation parameters...')
         sim_parameters["initial_chromosome"] = ['0'] * \
                                         sim_parameters["chromosome_size"]

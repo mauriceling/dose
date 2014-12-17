@@ -129,7 +129,7 @@ def itemindex(l):
     """
     dict = {}
     for i in range(len(l)):
-        if not dict.has_key(l[i]):
+        if l[i] not in dict:
             dict[l[i]] = i
     return dict
 
