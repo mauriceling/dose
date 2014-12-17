@@ -369,11 +369,11 @@ def database_report_populations(con, cur, start_time,
     @return: None
     '''
     generation = str(generation_count)
-    for pop_name in Populations.keys():
+    for pop_name in list(Populations.keys()):
         for org in Populations[pop_name].agents:
             org_name = str(org.status['identity'])
             # log each item in Organism.status dictionary
-            for key in [key for key in org.status.keys()
+            for key in [key for key in list(org.status.keys())
                                if key != 'identity']:
                 if key in ('blood', 'location', 'parents'):
                     try:
@@ -424,7 +424,7 @@ def database_report_world(con, cur, start_time, World, generation_count):
                         for z in range(len(ecosystem[x][y]))]
     for cell in location:
         eco_cell = ecosystem[cell[0]][cell[1]][cell[2]]
-        for key in eco_cell.keys():
+        for key in list(eco_cell.keys()):
             value = str(eco_cell[key])
             cur.execute('insert into world values (?,?,?,?,?,?,?)', 
                         (str(start_time), 
@@ -733,7 +733,7 @@ def simulate(sim_parameters, sim_functions):
     class to implement all the needed simulation functions.
     '''
     print('\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]')
-    if not sim_parameters.has_key("initial_chromosome"):
+    if "initial_chromosome" not in sim_parameters:
         print('Adding initial chromosome to simulation parameters...')
         sim_parameters["initial_chromosome"] = ['0'] * \
                                         sim_parameters["chromosome_size"]

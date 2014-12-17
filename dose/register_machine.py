@@ -45,7 +45,7 @@ def interpret(source, functions,
     if len(source) % function_size != 0:
         source = source + '!'*(function_size - \
                                len(source) % function_size)
-	tokens = functions.keys()
+	tokens = list(functions.keys())
 	source = ''.join([x for x in source if x in tokens])
     instruction_count = 0
     while spointer < len(source):

@@ -62,8 +62,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print('Activating ragaraja version: ' + \
             str(sim_parameters["ragaraja_version"]) + '...')
         ragaraja.activate_version(sim_parameters["ragaraja_version"])
-    if sim_parameters.has_key("database_file") and \
-        sim_parameters.has_key("database_logging_frequency"): 
+    if "database_file" in sim_parameters and \
+        "database_logging_frequency" in sim_parameters: 
         print('Connecting to database file: ' + \
             sim_parameters["database_file"] + '...')
         (con, cur) = connect_database(None, sim_parameters)
@@ -121,8 +121,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                               sim_functions, generation_count)
             sim_functions.organism_movement(Populations, pop_name, World)
             sim_functions.organism_location(Populations, pop_name, World)
-        if sim_parameters.has_key("database_file") and \
-            sim_parameters.has_key("database_logging_frequency") and \
+        if "database_file" in sim_parameters and \
+            "database_logging_frequency" in sim_parameters and \
             generation_count % \
             int(sim_parameters["database_logging_frequency"]) == 0: 
                 (con, cur) = db_report(con, cur, sim_functions,
@@ -131,8 +131,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print('Generation ' + str(generation_count) + ' complete...')
     print('\nClosing simulation results...')
     for pop_name in Populations: close_results(sim_parameters, pop_name)
-    if sim_parameters.has_key("database_file") and \
-        sim_parameters.has_key("database_logging_frequency"):
+    if "database_file" in sim_parameters and \
+        "database_logging_frequency" in sim_parameters:
         print('Committing logged data into database file...') 
         con.commit()
         print('Terminating database connection...') 
@@ -405,7 +405,7 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
                                            inputdata, array,
                                            sim_parameters["max_tape_length"], 
 									       sim_parameters["max_codon"])
-            except Exception, e: 
+            except Exception as e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
                     str(chromosome_count), str(e)])
                 Populations[pop_name].agents[i]. \
