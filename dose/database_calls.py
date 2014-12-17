@@ -95,7 +95,7 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     '''
     start_time = sim_parameters["starting_time"]
     simulation_name = sim_parameters["simulation_name"]
-    for key in [k for k in sim_parameters.keys() 
+    for key in [k for k in list(sim_parameters.keys()) 
                 if k not in ("simulation_name", "starting_time")]:
 		value = sim_parameters[key]
 		if key in ("population_names", "chromosome_bases", 
@@ -255,11 +255,11 @@ def db_get_ecosystem(cur, start_time, datafield='all', generation='all'):
         if datafield == 'all':
             results[gen] = ecosystem
         else:
-            for x in ecosystem.keys():
+            for x in list(ecosystem.keys()):
                 results[gen][x] = {}
-                for y in ecosystem[x].keys():
+                for y in list(ecosystem[x].keys()):
                     results[gen][x][y] = {}
-                    for z in ecosystem[x][y].keys():
+                    for z in list(ecosystem[x][y].keys()):
                         results[gen][x][y][z] = ecosystem[x][y][z][datafield]
     return results
 
@@ -365,9 +365,9 @@ def db_get_organisms_chromosome_sequences(cur, start_time,
     genome_dict = db_get_organisms_genome(cur, start_time, 
                                           population_name, generation)
     results = {}
-    for gen in genome_dict.keys():
+    for gen in list(genome_dict.keys()):
         results[gen] = {}
-        for identity in genome_dict[gen].keys():
+        for identity in list(genome_dict[gen].keys()):
             results[gen][identity] = [chromosome.sequence 
                             for chromosome in genome_dict[gen][identity]]
     return results    

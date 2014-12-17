@@ -481,7 +481,7 @@ Pre-requisite(s): None
         if option == 'history':
             outfile.write('Date time stamp of current session: ' + \
                          str(self.environment['starting_time']) + os.linesep)
-            keys = [int(x) for x in self.history.keys()]
+            keys = [int(x) for x in list(self.history.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 txt = ' | '.join(['Command', k, str(self.history[k])])
@@ -492,13 +492,13 @@ Pre-requisite(s): None
             outfile.write('Date time stamp of current session: ' + \
                          str(self.environment['starting_time']) + os.linesep)
             # writing out environment
-            for k in self.environment.keys():
+            for k in list(self.environment.keys()):
                 txt = ['Environment', str(k), str(self.environment[k])]
                 txt = ' | '.join(txt)
                 outfile.write(txt + os.linesep)
             # prepare to write out commands and data
-            historykeys = self.history.keys()
-            keys = [x for x in self.results.keys() 
+            historykeys = list(self.history.keys())
+            keys = [x for x in list(self.results.keys()) 
                     if x not in historykeys]
             keys = keys + historykeys
             keys = [int(x) for x in keys]
@@ -559,11 +559,11 @@ Pre-requisite(s): None
         elif option == 'environment':
             self.results[count] = copy.deepcopy(self.environment)
             print('Environment variables:')
-            for key in self.environment.keys():
+            for key in list(self.environment.keys()):
                 print(key, '=', self.environment[key])
         elif option == 'history' and param == '':
             self.results[count] = copy.deepcopy(self.history)
-            keys = [int(x) for x in self.history.keys()]
+            keys = [int(x) for x in list(self.history.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print('Count =', k, '| Command =', self.history[k])
@@ -571,7 +571,7 @@ Pre-requisite(s): None
             self.results[count] = self.history[str(param)]
             print('Count =', param, '| Command =', self.history[str(param)])
         elif option == 'data' and param == '':
-            keys = [int(x) for x in self.results.keys()]
+            keys = [int(x) for x in list(self.results.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print('Count =', k, '| Data =', self.results[k])
@@ -579,7 +579,7 @@ Pre-requisite(s): None
             self.results[count] = self.results[str(param)]
             print('Count =', param, '| Data =', self.results[str(param)])
         elif option == 'userdata' and param == '':
-            keys = [int(x) for x in self.userdata.keys()]
+            keys = [int(x) for x in list(self.userdata.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print('Key =', k, '| Data =', self.userdata[k])
@@ -587,13 +587,13 @@ Pre-requisite(s): None
             self.results[count] = self.userdata[str(param)]
             print('Key =', param, '| Data =', self.userdata[str(param)])
         elif option == 'memory' and param == 'data':
-            keys = [int(x) for x in self.results.keys()]
+            keys = [int(x) for x in list(self.results.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print('Data (self.results) memory usage (Count = %s): %s bytes' % (k, 
                                                       sys.getsizeof(self.results[k])))
         elif option == 'memory' and param == 'userdata':
-            keys = [int(x) for x in self.userdata.keys()]
+            keys = [int(x) for x in list(self.userdata.keys())]
             keys.sort()
             for k in [str(x) for x in keys]:
                 print('''User-defined data (self.userdata) memory usage \

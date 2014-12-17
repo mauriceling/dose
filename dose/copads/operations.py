@@ -77,7 +77,7 @@ def items(l):
     Adapted from BioPython.
     """
     try:
-        return asdict(l).keys()
+        return list(asdict(l).keys())
     except TypeError, x:
         if str(x).find("unhashable") == -1:
             raise
@@ -115,7 +115,7 @@ def contents(items):
     counts = count(items)
     l = float(len(items))
     contents = {}
-    for i, c in counts.items():
+    for i, c in list(counts.items()):
         contents[i] = c / l
     return contents
 
