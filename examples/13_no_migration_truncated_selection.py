@@ -110,7 +110,7 @@ class simulation_functions(dose.dose_functions):
         fitness_dict = {}
         for organism in group:
             fitness_dict[organism.status['identity']] = int(organism.status['fitness'])
-        sorted_fitness = sorted(fitness_dict.items(), key=lambda x: x[1])
+        sorted_fitness = sorted(list(fitness_dict.items()), key=lambda x: x[1])
         for index_pair in sorted_fitness:
             if len(Populations[pop_name].agents) == len(group)/2: break
             for organism in Populations[pop_name].agents:

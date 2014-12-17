@@ -2359,7 +2359,7 @@ def activate_version(version=1, instructions=None):
     if version == 1: instructions = ragaraja_v1
     if version == 2: instructions = ragaraja_v2
     if version == 99: instructions = tested_ragaraja_instructions
-    for key in ragaraja.keys():
+    for key in list(ragaraja.keys()):
         if key not in instructions:
             ragaraja[key] = not_used
     return instructions

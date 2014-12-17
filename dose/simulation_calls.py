@@ -405,7 +405,7 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
                                            inputdata, array,
                                            sim_parameters["max_tape_length"], 
 									       sim_parameters["max_codon"])
-            except Exception, e: 
+            except Exception as e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
                     str(chromosome_count), str(e)])
                 Populations[pop_name].agents[i]. \

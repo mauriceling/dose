@@ -764,14 +764,14 @@ def population_simulate(population,
     if resultfile != 'None': result = open(resultfile, 'w')
     report = population.generation_step()
     reportitems = ['|'.join([str(key), str(report[key])])
-                    for key in report.keys()]
+                    for key in list(report.keys())]
     result.writelines('|'.join(reportitems))
     result.writelines(os.linesep)
     while population.generation < population.maxgenerations:
         if resultfile != 'None': 
             report = population.generation_step()
             reportitems = ['|'.join([str(key), str(report[key])])
-                           for key in report.keys()]
+                           for key in list(report.keys())]
             result.writelines('|'.join(reportitems))
         if population.generation % int(printfreq) == 0:
             print('|'.join(reportitems))
