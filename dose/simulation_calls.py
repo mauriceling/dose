@@ -403,8 +403,8 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
                                            inputdata, array,
-                                           sim_parameters["max_tape_length"], 
-									       sim_parameters["max_codon"])
+                                           sim_parameters["max_tape_length"],
+                                           sim_parameters["max_codon"])
             except Exception as e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
                     str(chromosome_count), str(e)])

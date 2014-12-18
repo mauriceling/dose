@@ -4,21 +4,21 @@ Date created: 15th August 2012
 
 LCBF uses all 8 operations in standard Brainfuck with the 
 following differences:
-	1. The tape or array is circular (a ring list) instead of 
-	linear. When the pointer is at the "end" of the tape, an 
-	increment (">") will move the tape to the start. Similarly, 
-	when the pointer is decremented at the "beginning" of the 
-	tape, the pointer goes to the end.
-	2. Operations after a start loop operator ("[") will only be 
-	executed provided the loop(s) are properly closed. If the 
-	loops are open, the program will terminate.
-	3. However, it is possible to have an end loop operator ("]") 
-	without a preceding start loop operator ("["). In this case, 
-	the end loop operator ("]") will be ignored and execution continues.
-	4. Unclosed or unopened loops may result in non-deterministic 
-	behaviour.
-	5. All inputs are pre-defined at the start of the program.
-	
+    1. The tape or array is circular (a ring list) instead of 
+    linear. When the pointer is at the "end" of the tape, an 
+    increment (">") will move the tape to the start. Similarly, 
+    when the pointer is decremented at the "beginning" of the 
+    tape, the pointer goes to the end.
+    2. Operations after a start loop operator ("[") will only be 
+    executed provided the loop(s) are properly closed. If the 
+    loops are open, the program will terminate.
+    3. However, it is possible to have an end loop operator ("]") 
+    without a preceding start loop operator ("["). In this case, 
+    the end loop operator ("]") will be ignored and execution continues.
+    4. Unclosed or unopened loops may result in non-deterministic 
+    behaviour.
+    5. All inputs are pre-defined at the start of the program.
+    
 @see: http://esolangs.org/wiki/Loose_Circular_Brainfuck_(LCBF)
 '''
 
