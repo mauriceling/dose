@@ -188,23 +188,23 @@ def adjacent_cells(sim_parameters, location):
     world_size = [sim_parameters["world_x"],
                   sim_parameters["world_y"],
                   sim_parameters["world_z"]]
-    for i in xrange(3):
+    for i in range(3):
         new_location = [spot for spot in location]
         new_location[0] += 1
         temp_cells.append(new_location)
         new_location = [spot for spot in location]
         new_location[0] -= 1
         temp_cells.append(new_location)    
-    for i in xrange(2):
+    for i in range(2):
         new_location = [spot for spot in location]
         new_location[1] -= 1
         temp_cells.append(new_location) 
-    for i in xrange(0,4,3):
+    for i in range(0,4,3):
         temp_cells[i][1] += 1
         temp_cells[i+1][1] -= 1
     temp_cells[-1][1] += 2
-    for i in xrange(8):
-        for x in xrange(2):
+    for i in range(8):
+        for x in range(2):
             if temp_cells[i][x] >= world_size[x] or temp_cells[i][x] < 0:
                 if temp_cells[i] not in trashbin:
                     trashbin.append(temp_cells[i])
@@ -335,7 +335,7 @@ def deploy_3(sim_parameters, Populations, pop_name, World):
     locations = [location 
         for location in sim_parameters["population_locations"][position]]
     iterator = 0
-    for i in xrange(sim_parameters["population_size"]):
+    for i in range(sim_parameters["population_size"]):
         individual = Populations[pop_name].agents[i]
         location = locations[iterator]
         (x,y,z) = coordinates(location)
@@ -368,11 +368,11 @@ def deploy_4(sim_parameters, Populations, pop_name, World):
     locations = [location 
         for location in sim_parameters["population_locations"][position]]
     adj_cells = adjacent_cells(sim_parameters, locations[0])
-    for group in xrange((sim_parameters["population_size"] / \
+    for group in range((sim_parameters["population_size"] / \
                          sim_parameters["eco_cell_capacity"]) + 1):
         start = sim_parameters["eco_cell_capacity"] * group
         end = start + sim_parameters["eco_cell_capacity"]
-        for x in xrange(start,end):
+        for x in range(start,end):
             if x == sim_parameters["population_size"]: break
             individual = Populations[pop_name].agents[x]
             if x > (sim_parameters["eco_cell_capacity"] - 1):
@@ -537,7 +537,7 @@ def freeze_population(file, proportion, Populations, pop_name):
         sample = deepcopy(Populations[pop_name])
     else:
         new_agents = [agents[random.randint(0, len(agents) - 1)]
-                      for x in xrange(int(len(agents) * proportion))]
+                      for x in range(int(len(agents) * proportion))]
         sample = deepcopy(Populations[pop_name])
         sample.agents = new_agents
     name = ''.join([file, 'pop', str(Populations[pop_name].generation), 

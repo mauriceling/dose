@@ -7,7 +7,7 @@ import analytics
 
 def analyze_fitness(fitness): return fitness
 
-for trial in xrange(1, 26):
+for trial in range(1, 26):
 	analysis_name = "T" + str(trial) + "_FPS_11x0_gain4"
 	sim13_analysis = analytics.Analysis(analysis_name + ".db", 
 										"pop_01", starting_time = 'default')

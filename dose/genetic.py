@@ -449,7 +449,7 @@ class Population(object):
         if len(temp) > 2001:
             size = len(temp)
             self.agents = [temp[random.randint(0, size - 1)] 
-                           for x in xrange(2000)]
+                           for x in range(2000)]
         if len(temp) > 21: 
             self.agents = temp
     
@@ -471,7 +471,7 @@ class Population(object):
         """
         size = len(self.agents)
         temp = []
-        for x in xrange(size):
+        for x in range(size):
             organism1 = self.agents[random.randint(0, size - 1)]
             organism2 = self.agents[random.randint(0, size - 1)]
             crossover_pt = random.randint(0, len(organism1.genome[0].sequence))
@@ -520,7 +520,7 @@ class Population(object):
         @since: version 0.4
         """
         sfitness = [self.agents[x].fitness() 
-                    for x in xrange(len(self.agents))]
+                    for x in range(len(self.agents))]
         afitness = sum(sfitness) / float(len(self.agents))
         return {'generation': self.generation,
                 'average fitness': afitness,
@@ -585,7 +585,7 @@ class Population(object):
         else:
             size = len(self.agents)
             sample = [self.agents[random.randint(0, size - 1)]
-                      for x in xrange(int(len(self.agents) * proportion))]
+                      for x in range(int(len(self.agents) * proportion))]
         name = ''.join([prefix, str(self.generation), '_', 
                         str(len(sample)), '.gap'])
         f = open(name, 'wb')

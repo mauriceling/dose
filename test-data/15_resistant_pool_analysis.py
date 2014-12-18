@@ -6,8 +6,8 @@ sys.path.append(cwd)
 
 import analytics
 
-for sequence in xrange(5, 12):
-    for trial in xrange(1, 4):
+for sequence in range(5, 12):
+    for trial in range(1, 4):
         analysis_name = "T" + str(trial) + "_" + str(sequence) + "x0_resistant_pool"
         resistant_pa = analytics.Analysis(analysis_name + ".db", "pop_01",
                                           starting_time = 'default')
