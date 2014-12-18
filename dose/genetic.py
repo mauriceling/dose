@@ -571,7 +571,14 @@ class Population(object):
             
         @since: version 0.4
         """
-        import cPickle
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
+
         if proportion > 1.0: proportion = 1.0
         if len(self.agents) < 101 or len(self.agents) * proportion < 101:
             sample = self.agents
@@ -581,8 +588,8 @@ class Population(object):
                       for x in xrange(int(len(self.agents) * proportion))]
         name = ''.join([prefix, str(self.generation), '_', 
                         str(len(sample)), '.gap'])
-        f = open(name, 'w')
-        cPickle.dump(sample, f)
+        f = open(name, 'wb')
+        pickle.dump(sample, f)
         f.close()
         
     def revive(self, filename, type='replace'):
@@ -597,11 +604,17 @@ class Population(object):
             
         @since: version 0.4
         """
-        import cPickle
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
         if type == 'replace':
-            self.agents = cPickle.load(open(filename, 'r'))
+            self.agents = pickle.load(open(filename, 'rb'))
         if type == 'add':
-            self.agents = self.agents + cPickle.load(open(filename, 'r'))
+            self.agents = self.agents + pickle.load(open(filename, 'rb'))
 
 def crossover(chromosome1, chromosome2, position):
     """
