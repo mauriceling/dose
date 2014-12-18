@@ -79,7 +79,7 @@ class simulation_functions(dose.dose_functions):
     def mating(self, Populations, pop_name): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            for x in range(len(group)/2):
+            for x in range(len(group)//2):
                 parents = []
                 for i in range(2):
                     parents.append(random.choice(Populations[pop_name].agents))

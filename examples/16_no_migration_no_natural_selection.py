@@ -107,7 +107,7 @@ class simulation_functions(dose.dose_functions):
 
     def postpopulation_control(self, Populations, pop_name):
         group = deepcopy(Populations[pop_name].agents)
-        for i in range(len(group)/2):
+        for i in range(len(group)//2):
             Populations[pop_name].agents.remove(random.choice(Populations[pop_name].agents))
 
     def generation_events(self, Populations, pop_name): pass
