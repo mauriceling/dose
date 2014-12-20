@@ -449,7 +449,7 @@ class Population(object):
         if len(temp) > 2001:
             size = len(temp)
             self.agents = [temp[random.randint(0, size - 1)] 
-                           for x in xrange(2000)]
+                           for x in range(2000)]
         if len(temp) > 21: 
             self.agents = temp
     
@@ -471,7 +471,7 @@ class Population(object):
         """
         size = len(self.agents)
         temp = []
-        for x in xrange(size):
+        for x in range(size):
             organism1 = self.agents[random.randint(0, size - 1)]
             organism2 = self.agents[random.randint(0, size - 1)]
             crossover_pt = random.randint(0, len(organism1.genome[0].sequence))
@@ -520,7 +520,7 @@ class Population(object):
         @since: version 0.4
         """
         sfitness = [self.agents[x].fitness() 
-                    for x in xrange(len(self.agents))]
+                    for x in range(len(self.agents))]
         afitness = sum(sfitness) / float(len(self.agents))
         return {'generation': self.generation,
                 'average fitness': afitness,
@@ -571,18 +571,25 @@ class Population(object):
             
         @since: version 0.4
         """
-        import cPickle
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
+
         if proportion > 1.0: proportion = 1.0
         if len(self.agents) < 101 or len(self.agents) * proportion < 101:
             sample = self.agents
         else:
             size = len(self.agents)
             sample = [self.agents[random.randint(0, size - 1)]
-                      for x in xrange(int(len(self.agents) * proportion))]
+                      for x in range(int(len(self.agents) * proportion))]
         name = ''.join([prefix, str(self.generation), '_', 
                         str(len(sample)), '.gap'])
-        f = open(name, 'w')
-        cPickle.dump(sample, f)
+        f = open(name, 'wb')
+        pickle.dump(sample, f)
         f.close()
         
     def revive(self, filename, type='replace'):
@@ -597,11 +604,17 @@ class Population(object):
             
         @since: version 0.4
         """
-        import cPickle
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
         if type == 'replace':
-            self.agents = cPickle.load(open(filename, 'r'))
+            self.agents = pickle.load(open(filename, 'rb'))
         if type == 'add':
-            self.agents = self.agents + cPickle.load(open(filename, 'r'))
+            self.agents = self.agents + pickle.load(open(filename, 'rb'))
 
 def crossover(chromosome1, chromosome2, position):
     """

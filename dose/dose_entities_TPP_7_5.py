@@ -34,7 +34,7 @@ class Population(g.Population):
     
     def __init__(self, pop_size=population_size, 
                  max_gen=maximum_generations):
-        self.agents = [Organism() for x in xrange(pop_size)]
+        self.agents = [Organism() for x in range(pop_size)]
         self.generation = 0
         self.maximum_generations = max_gen
     def prepopulation_control(self): pass

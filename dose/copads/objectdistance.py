@@ -52,9 +52,9 @@ def compare(original, test, absent, type='Set'):
                 none = none + 1
             elif original[i] == test[i]: 
                 both = both + 1
-            elif original[i] <> absent and test[i] == absent:
+            elif original[i] != absent and test[i] == absent:
                 original_only = original_only + 1
-            elif original[i] == absent and test[i] <> absent: 
+            elif original[i] == absent and test[i] != absent: 
                 test_only = test_only + 1
             else: pass
         return (original_only, test_only, both, none)
@@ -100,7 +100,7 @@ def Sokal_Michener(original, test, absent=0, type='Set'):
     @status: Tested function
     @since: version 0.1
     """
-    if len(original) <> len(test): 
+    if len(original) != len(test): 
         raise DistanceInputSizeError("Size (length) of inputs must be \
                 equal for Sokal & Michener's distance")
     (original, test, both, none) = compare(original, test, absent, type)
@@ -728,12 +728,12 @@ def Hamming(original, test):
     @status: Tested function
     @since: version 0.1
     """
-    if len(original) <> len(test): 
+    if len(original) != len(test): 
         raise DistanceInputSizeError("Size (length) of inputs must be \
             equal for Hamming's distance")
     mismatch = 0
     for index in range(len(original)):
-        if original[index] <> test[index]: mismatch = mismatch + 1
+        if original[index] != test[index]: mismatch = mismatch + 1
     return mismatch
             
 def Euclidean(original, test):

@@ -97,22 +97,22 @@ def db_log_simulation_parameters(con, cur, sim_parameters):
     simulation_name = sim_parameters["simulation_name"]
     for key in [k for k in list(sim_parameters.keys()) 
                 if k not in ("simulation_name", "starting_time")]:
-		value = sim_parameters[key]
-		if key in ("population_names", "chromosome_bases", 
+        value = sim_parameters[key]
+        if key in ("population_names", "chromosome_bases", 
                    "ragaraja_instructions"):
-			value = '|'.join([str(x) for x in value])
-			cur.execute('''insert into parameters values (?,?,?,?)''', 
-						(str(start_time), str(simulation_name), 
-						 str(key), value))
-		elif key in ("initial_chromosome"):
-			value = ''.join(value)
-			cur.execute('''insert into parameters values (?,?,?,?)''', 
-						(str(start_time), str(simulation_name), 
-						 str(key), value))
-		else:
-			cur.execute('''insert into parameters values (?,?,?,?)''', 
-						(str(start_time), str(simulation_name), 
-						 str(key), str(value)))
+            value = '|'.join([str(x) for x in value])
+            cur.execute('''insert into parameters values (?,?,?,?)''', 
+                         (str(start_time), str(simulation_name), 
+                          str(key), value))
+        elif key in ("initial_chromosome"):
+            value = ''.join(value)
+            cur.execute('''insert into parameters values (?,?,?,?)''', 
+                        (str(start_time), str(simulation_name), 
+                         str(key), value))
+        else:
+            cur.execute('''insert into parameters values (?,?,?,?)''', 
+                        (str(start_time), str(simulation_name), 
+                         str(key), str(value)))
     con.commit()
     return (con, cur)
 

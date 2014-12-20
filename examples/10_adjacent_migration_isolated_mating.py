@@ -33,7 +33,7 @@ import dose, random
 parameters = {
               "simulation_name": "10_adjacent_migration_isolated_mating",
               "population_names": ['pop_01'],
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "population_locations": [[(x,y,z) for x in range(5) for y in range(5) for z in range(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.002,
@@ -69,7 +69,7 @@ class simulation_functions(dose.dose_functions):
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
             adj_cells = dose.simulation_calls.adjacent_cells(parameters, location)
-            for i in xrange(int(round((len(group) * 0.1)))):
+            for i in range(int(round((len(group) * 0.1)))):
                 (x,y,z) = dose.simulation_calls.coordinates(location)
                 World.ecosystem[x][y][z]['organisms'] -= 1
                 immigrant = random.choice(Populations[pop_name].agents)
@@ -101,9 +101,9 @@ class simulation_functions(dose.dose_functions):
     def mating(self, Populations, pop_name): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            for x in xrange(len(group)/2):
+            for x in range(len(group)//2):
                 parents = []
-                for i in xrange(2):
+                for i in range(2):
                     parents.append(random.choice(Populations[pop_name].agents))
                     while parents[i] not in group:
                         parents[i] = random.choice(Populations[pop_name].agents)

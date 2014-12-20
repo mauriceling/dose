@@ -73,9 +73,17 @@ class World(object):
         
         @param filename: file name of preserved ecosystem.
         '''
-        import cPickle
-        f = open(filename, 'w')
-        cPickle.dump(self.ecosystem, f)
+        
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
+        
+        f = open(filename, 'wb')
+        pickle.dump(self.ecosystem, f)
         f.close()
         
     def eco_excavate(self, filename):
@@ -84,8 +92,15 @@ class World(object):
         
         @param filename: file name of preserved ecosystem.
         '''
-        import cPickle
-        self.ecosystem = cPickle.load(open(filename, 'r'))
+        # In Python 3, cPickle is no longer needed: Py3 looks for
+        # an optimized version, and if it founds none, will load the
+        # pure python implementation of pickle. 
+        try:
+            import cPickle as pickle
+        except ImportError:
+            import pickle
+
+        self.ecosystem = pickle.load(open(filename, 'rb'))
         
     def ecoregulate(self):
         '''

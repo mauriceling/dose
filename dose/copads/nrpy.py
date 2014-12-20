@@ -176,7 +176,7 @@ def bessj(n, x):
                     bjp = bjp*bigni
                     ans = ans*bigni
                     sum = sum*bigni
-                if jsum <> 0: sum = sum + bj
+                if jsum != 0: sum = sum + bj
                 jsum = 1-jsum
                 if j == n: ans = bjp
             sum = 2.0*sum-bj
@@ -786,7 +786,7 @@ def moment(data):
     adev = adev/len(data)
     svar = svar/(len(data) - 1)
     sdev = math.sqrt(svar)
-    if svar <> 0.0:
+    if svar != 0.0:
         skew = skew/(len(data)*sdev*sdev*sdev)
         kurt = (kurt/(len(data)*svar*svar)) - 3.0
     return (ave, adev, sdev, var, skew, kurt)

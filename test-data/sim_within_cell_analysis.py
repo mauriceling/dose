@@ -24,8 +24,8 @@ starting_time = database_calls.db_list_simulations(cur)[0][0]
 
 print('Constructing locations list...')
 locations = []
-for x in xrange(5):
-    for y in xrange(5):
+for x in range(5):
+    for y in range(5):
             locations.append((x,y,0));
 
 def get_chromosomes_by_location(starting_time, pop_name, generation):
@@ -39,7 +39,7 @@ def get_chromosomes_by_location(starting_time, pop_name, generation):
     return organism_chromosomes
 
 print('Writing outputfile header...')
-header = [str(locations[i]).replace(", ","-") for i in xrange(len(locations))]
+header = [str(locations[i]).replace(", ","-") for i in range(len(locations))]
 header = ['Generation'] + header
 outputfile.write(','.join(header) + '\n')
 

@@ -64,12 +64,12 @@ class Analysis(object):
         world_x = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_x']
         world_y = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_y']
         world_z = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['world_z']
-        return [(x,y,z) for x in xrange(world_x) for y in xrange(world_y) for z in xrange(world_z)]
+        return [(x,y,z) for x in range(world_x) for y in range(world_y) for z in range(world_z)]
 
     def get_fitness_range_by_percentage(self, percentage):
         print('Getting fitness range...')
         fitness_goal = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['goal']
-        return xrange(int(fitness_goal * percentage), int(fitness_goal + 1))
+        return range(int(fitness_goal * percentage), int(fitness_goal + 1))
 
     def get_individual_status_list_by_generation(self, status, generation):
         status_dict = database_calls.db_get_organisms_status(self.cur, self.starting_time, self.population_name, status, [generation])
@@ -93,7 +93,7 @@ class Analysis(object):
         print('Getting population size...')
         pop_size = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['population_size']
         print('Writing outputfile header...')
-        header = ['Generation'] + [str(i) for i in xrange(1, pop_size + 1)]
+        header = ['Generation'] + [str(i) for i in range(1, pop_size + 1)]
         if aggregate_functions != None:
             header = header + [key for key in list(aggregate_functions.keys())]
         outputfile.write(','.join(header) + '\n')
@@ -148,7 +148,7 @@ class Analysis(object):
         print('Getting population size...')
         pop_size = database_calls.db_reconstruct_simulation_parameters(self.cur, self.starting_time)['population_size']
         print('Writing outputfile header...')
-        header = ['Generation'] + [str(i) for i in xrange(1, pop_size + 1)]
+        header = ['Generation'] + [str(i) for i in range(1, pop_size + 1)]
         if aggregate_functions != None:
             header = header + [key for key in list(aggregate_functions.keys())]
         outputfile.write(','.join(header) + '\n')
