@@ -552,7 +552,7 @@ def revive_simulation(rev_parameters, sim_functions):
         rev_parameters["world_z"] = len(World.ecosystem[0][0][0])
         rev_parameters["world_y"] = len(World.ecosystem[0][0])
         rev_parameters["world_x"] = len(World.ecosystem[0])
-        for i in xrange(len(rev_parameters["pop_files"])):
+        for i in range(len(rev_parameters["pop_files"])):
             print('\nReviving population file: ' + \
                 rev_parameters["pop_files"][i] + '...')
             pop_file = rev_parameters["sim_folder"] + \

@@ -28,9 +28,9 @@ parameters = {
               "simulation_name": "09_no_migration_isolated_mating",
               "population_names": ['pop_01'],
               "population_locations": [[(x,y,z) 
-                                        for x in xrange(5) 
-                                            for y in xrange(5) 
-                                                for z in xrange(1)]],
+                                        for x in range(5) 
+                                            for y in range(5) 
+                                                for z in range(1)]],
               "deployment_code": 3,
               "chromosome_bases": ['0','1'],
               "background_mutation": 0.001,
@@ -85,9 +85,9 @@ class simulation_functions(dose.dose_functions):
     def mating(self, Populations, pop_name): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            for x in xrange(len(group)/2):
+            for x in range(len(group)//2):
                 parents = []
-                for i in xrange(2):
+                for i in range(2):
                     parents.append(random.choice(Populations[pop_name].agents))
                     while parents[i] not in group:
                         parents[i] = random.choice(Populations[pop_name].agents)

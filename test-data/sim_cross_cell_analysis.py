@@ -24,8 +24,8 @@ starting_time = database_calls.db_list_simulations(cur)[0][0]
 
 print('Constructing locations list...')
 locations = []
-for x in xrange(5):
-    for y in xrange(5):
+for x in range(5):
+    for y in range(5):
             locations.append((x,y,0));
 
 print('Writing outputfile header...')

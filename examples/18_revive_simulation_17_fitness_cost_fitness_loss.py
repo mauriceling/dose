@@ -43,14 +43,14 @@ class simulation_functions(dose.dose_functions):
             #Fitness Score
             final_fitness = []
             zero_count = []
-            for base_index in xrange(parameters["chromosome_size"] - 1):
+            for base_index in range(parameters["chromosome_size"] - 1):
                 if int(chromosome[base_index]) == 0 and int(chromosome[base_index - 1]) != 0:
                     next_index = 1
                     while int(chromosome[next_index + base_index]) == 0:
                         next_index += 1
                         if (next_index + base_index) == parameters["chromosome_size"]: break
                     zero_count.append(next_index)
-            for sequence in xrange(len(zero_count)):
+            for sequence in range(len(zero_count)):
                 if len(final_fitness) == 10: break
                 seq_score = sorted(zero_count, reverse = True)[sequence]
                 if seq_score > int(parameters["goal"]/10): seq_score = int(parameters["goal"]/10)

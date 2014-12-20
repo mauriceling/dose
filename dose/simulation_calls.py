@@ -5,11 +5,20 @@ functions.
 
 Date created: 10th October 2013
 '''
-import random, inspect, os, cPickle
+import random, inspect, os
+import os.path
 from datetime import datetime
 from time import time
 from copy import deepcopy
 from shutil import copyfile
+
+# In Python 3, cPickle is no longer needed: Py3 looks for
+# an optimized version, and if it founds none, will load the
+# pure python implementation of pickle. 
+try:
+    import cPickle as pickle
+except ImportError:
+    import pickle
 
 import dose_world
 import genetic
@@ -138,8 +147,18 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print('Terminating database connection...') 
         con.close()
     print('Copying simulation file script to simulation results directory...')
+
+    #DV on my system, the inspect.stack()[2][1] value returns the full
+    #   path to the file ('/home/douwe/scr/.../scriptname.py'). 
+    #   The end result is an error for the original code, below, as the 
+    #   copyfile command is pointed to a wrong location: the directory
+    #   is added twice. This might be Py3, or Windows functionality.
+    #   With using the os.path module, this should give an OS-independent
+    #   way of extracting the basename and linking to the directory.
+    sim_script_basename = os.path.basename(inspect.stack()[2][1])
     copyfile(inspect.stack()[2][1], 
-             sim_parameters['directory'] + inspect.stack()[2][1])
+#DV_original#             sim_parameters['directory'] + inspect.stack()[2][1])
+             os.path.join(sim_parameters['directory'], sim_script_basename))
     print('\nSimulation ended...')
 
 def coordinates(location):
@@ -169,23 +188,23 @@ def adjacent_cells(sim_parameters, location):
     world_size = [sim_parameters["world_x"],
                   sim_parameters["world_y"],
                   sim_parameters["world_z"]]
-    for i in xrange(3):
+    for i in range(3):
         new_location = [spot for spot in location]
         new_location[0] += 1
         temp_cells.append(new_location)
         new_location = [spot for spot in location]
         new_location[0] -= 1
         temp_cells.append(new_location)    
-    for i in xrange(2):
+    for i in range(2):
         new_location = [spot for spot in location]
         new_location[1] -= 1
         temp_cells.append(new_location) 
-    for i in xrange(0,4,3):
+    for i in range(0,4,3):
         temp_cells[i][1] += 1
         temp_cells[i+1][1] -= 1
     temp_cells[-1][1] += 2
-    for i in xrange(8):
-        for x in xrange(2):
+    for i in range(8):
+        for x in range(2):
             if temp_cells[i][x] >= world_size[x] or temp_cells[i][x] < 0:
                 if temp_cells[i] not in trashbin:
                     trashbin.append(temp_cells[i])
@@ -316,7 +335,7 @@ def deploy_3(sim_parameters, Populations, pop_name, World):
     locations = [location 
         for location in sim_parameters["population_locations"][position]]
     iterator = 0
-    for i in xrange(sim_parameters["population_size"]):
+    for i in range(sim_parameters["population_size"]):
         individual = Populations[pop_name].agents[i]
         location = locations[iterator]
         (x,y,z) = coordinates(location)
@@ -349,11 +368,11 @@ def deploy_4(sim_parameters, Populations, pop_name, World):
     locations = [location 
         for location in sim_parameters["population_locations"][position]]
     adj_cells = adjacent_cells(sim_parameters, locations[0])
-    for group in xrange((sim_parameters["population_size"] / \
+    for group in range((sim_parameters["population_size"] / \
                          sim_parameters["eco_cell_capacity"]) + 1):
         start = sim_parameters["eco_cell_capacity"] * group
         end = start + sim_parameters["eco_cell_capacity"]
-        for x in xrange(start,end):
+        for x in range(start,end):
             if x == sim_parameters["population_size"]: break
             individual = Populations[pop_name].agents[x]
             if x > (sim_parameters["eco_cell_capacity"] - 1):
@@ -403,8 +422,8 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
                                            inputdata, array,
-                                           sim_parameters["max_tape_length"], 
-									       sim_parameters["max_codon"])
+                                           sim_parameters["max_tape_length"],
+                                           sim_parameters["max_codon"])
             except Exception as e: 
                 error_msg = '|'.join(['Error at Chromosome_' + \
                     str(chromosome_count), str(e)])
@@ -487,8 +506,8 @@ def bury_world(sim_parameters, World, generation_count):
        filename = '%s%s_gen%s.eco' % (sim_parameters["directory"], 
                                       sim_parameters["simulation_name"], 
                                       str(generation_count))
-       f = open(filename, 'w')
-       cPickle.dump(World, f)
+       f = open(filename, 'wb')
+       pickle.dump(World, f)
        f.close()
 
 def excavate_world(eco_file):
@@ -498,8 +517,8 @@ def excavate_world(eco_file):
     @param eco_file: buried world file generated by bury_world function.
     @return: excavated dose_world.World object
     '''
-    f = open(eco_file, 'r')
-    return cPickle.load(f)
+    f = open(eco_file, 'rb')
+    return pickle.load(f)
 
 def freeze_population(file, proportion, Populations, pop_name):
     '''
@@ -518,13 +537,13 @@ def freeze_population(file, proportion, Populations, pop_name):
         sample = deepcopy(Populations[pop_name])
     else:
         new_agents = [agents[random.randint(0, len(agents) - 1)]
-                      for x in xrange(int(len(agents) * proportion))]
+                      for x in range(int(len(agents) * proportion))]
         sample = deepcopy(Populations[pop_name])
         sample.agents = new_agents
     name = ''.join([file, 'pop', str(Populations[pop_name].generation), 
                     '_', str(len(sample.agents)), '.gap'])
-    f = open(name, 'w')
-    cPickle.dump(sample, f)
+    f = open(name, 'wb')
+    pickle.dump(sample, f)
     f.close()
 
 def revive_population(gap_file):
@@ -535,8 +554,8 @@ def revive_population(gap_file):
     function.
     @return: revived population object
     '''
-    f = open(gap_file, 'r')
-    return cPickle.load(f)
+    f = open(gap_file, 'rb')
+    return pickle.load(f)
 
 def write_parameters(sim_parameters, pop_name):
     '''

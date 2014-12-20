@@ -14,7 +14,7 @@ of the said simulation.
 
 parameters = {"database_source" : "sim11_no_migration.db",
               "simulation_time": "2013-12-28-1388224007.12",
-              "population_locations": [[(x,y,z) for x in xrange(5) for y in xrange(5) for z in xrange(1)]],
+              "population_locations": [[(x,y,z) for x in range(5) for y in range(5) for z in range(1)]],
               "rev_start" : [80],
               "extend_gen" : 220,
               "simulation_name": "12_revive_simulation_11",
@@ -76,7 +76,7 @@ class simulation_functions(dose.dose_functions):
                         abs(parameters["goal"] - alpha_organism_fitness):
                         alpha_organism_fitness = int(organism.status['fitness'])
                 for organism in group:
-                    if organism.status['fitness'] not in xrange(alpha_organism_fitness - 2,
+                    if organism.status['fitness'] not in range(alpha_organism_fitness - 2,
                                                                 alpha_organism_fitness + 2):
                         Populations[pop_name].agents.remove(organism)
             else:
@@ -86,7 +86,7 @@ class simulation_functions(dose.dose_functions):
     def mating(self, Populations, pop_name): 
         for location in parameters["population_locations"][0]:
             group = dose.filter_location(location, Populations[pop_name].agents)
-            for x in xrange(parameters["eco_cell_capacity"] - len(group)):
+            for x in range(parameters["eco_cell_capacity"] - len(group)):
                 parents = []
                 alpha_organism = group[0]
                 for organism in group:
@@ -120,7 +120,7 @@ class simulation_functions(dose.dose_functions):
                         abs(parameters["goal"] - omega_organism_fitness):
                         omega_organism_fitness = int(organism.status['fitness'])
                 for organism in group:
-                    if organism.status['fitness'] in xrange(omega_organism_fitness - 2,
+                    if organism.status['fitness'] in range(omega_organism_fitness - 2,
                                                             omega_organism_fitness + 2):
                         Populations[pop_name].agents.remove(organism)
 
