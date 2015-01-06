@@ -7,8 +7,8 @@ import sys
 import os
 
 cwd = os.getcwd().split(os.sep)
-cwd[-1] = 'dose'
-cwd = os.sep.join(cwd)
+#cwd[-1] = 'dose'
+cwd = os.sep.join(cwd[:-1])
 
 sys.path.append(cwd)
 
