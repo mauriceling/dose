@@ -204,5 +204,105 @@ class lindenmayer(object):
                                                      data_string)
         return data_string
 
+    def turtle_generate(self, data_string, filename, 
+                        start=(0, 0), mapping={}):
+        '''
+        Method for naive code generation to visualize the data or symbol 
+        string using Turtle graphics. This method generates the Python 
+        codes for Turtle graphics using the TK Turtle graphics module, 
+        and prints out the resulting Python code as a file.
         
-    
+        This method does not use any loops to reduce repetitive Turtle 
+        commands; hence, the resulting code file can be huge.
+        
+        A mapping dictionary is used to convert the symbol string into 
+        Turtle commands. The following Turtle commands are defined: 
+        forward, backward, right (turn), left (turn), and home. The 
+        default mapping is given as
+        
+        >>> mapping = {'set_angle': 90,
+        >>>            'random_angle': 0,
+        >>>            'set_distance': 1,
+        >>>            'random_distance': 0,
+        >>>            'F': 'forward',
+        >>>            'B': 'backward',
+        >>>            'R': 'right',
+        >>>            'L': 'left',
+        >>>            'H': 'home'}
+        
+        which can be read as 
+            - a left or right turn is set at 90 degrees (set_angle).
+            - random angles of turn can be set using 'random_angle', where
+            the actual angle will be from the set_angle to set_angle + 
+            random_angle (by uniform distribution). For example, if 
+            random_angle is 10 degrees, it means that the actual angle 
+            at each turn will be uniformly distributed from 90 to 100 
+            degrees.
+            - each forward or backward move is set at 1 (set_distance).
+            - random distance of each move can be set using 'random_
+            distance', following the same logic as 'random_angle'.
+            - 'F', 'B', 'R', 'L', and 'H' represents the Turtle commands 
+            of forward, backward, right turn, left turn, and home 
+            respectively. Home is defined as the start coordinate.
+            
+        @param data_string: data or symbol string to be processed
+        @type data_string: string
+        @param filename: file name to write out the Turtle commands
+        @type filename: string
+        @param start: starting or home coordinate. Default = (0, 0) which 
+        is the centre of the TK window
+        @type start: tuple
+        @param mapping: map to convert the symbol string into Turtle 
+        commands. Please see explanation above.
+        @type mapping: dictionary
+        @return: Python script file of Turtle commands
+        '''
+        if len(mapping) == 0:
+            mapping = {'set_angle': 90,
+                       'random_angle': 0,
+                       'set_distance': 1,
+                       'random_distance': 0,
+                       'F': 'forward',
+                       'B': 'backward',
+                       'R': 'right',
+                       'L': 'left',
+                       'H': 'home'}
+        if 'random_angle' not in mapping: mapping['random_rangle'] = 0
+        f = open(filename, 'w')
+        f.write("''' \n")
+        f.write('Turtle Graphics Generation from Lindenmayer System \n')
+        f.write('in COPADS (http://github.com/copads/copads) \n\n')
+        f.write('Code string = %s \n' % (data_string))
+        f.write('Code mapping = %s \n' % (mapping))
+        f.write("''' \n\n")
+        f.write('import turtle \n\n')
+        f.write('t = turtle.Turtle() \n')
+        f.write('t.speed(0) \n\n')
+        f.write('t.penup() \n')
+        f.write('t.setposition(%s, %s) \n' % start)
+        f.write('t.pendown() \n\n')
+        data_string = [cmd for cmd in data_string if cmd in mapping]
+        for cmd in data_string:
+            if mapping[cmd] == 'forward': 
+                distance = mapping['set_distance'] + \
+                           random.random()*mapping['random_distance']
+                f.write('t.forward(%s) \n' % (distance))
+            if mapping[cmd] == 'backward': 
+                distance = mapping['set_distance'] + \
+                           random.random()*mapping['random_distance']
+                f.write('t.backward(%s) \n' % (distance))
+            if mapping[cmd] == 'home': 
+                f.write('t.penup() \n')
+                f.write('t.setposition(%s, %s) \n' % start)
+                f.write('t.pendown() \n')
+            if mapping[cmd] == 'right':
+                angle = mapping['set_angle'] + \
+                        random.random()*mapping['random_angle']
+                f.write('t.right(%s) \n' % str(angle))
+            if mapping[cmd] == 'left':
+                angle = mapping['set_angle'] + \
+                        random.random()*mapping['random_angle']
+                f.write('t.left(%s) \n' % str(angle))
+        f.write('\n')
+        f.write('turtle.done() \n')
+        f.close()
