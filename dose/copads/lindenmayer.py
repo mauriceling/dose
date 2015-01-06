@@ -23,68 +23,83 @@ class lindenmayer(object):
     is read as "whenever 'A' is found, it is replaced/rewritten as 'BAC'". 
     For example, if the starting axiom is "A", then the following will happen
     
-    Generation 0: A
-    Generation 1: BAC
-    Generation 2: BBACC
-    Generation 3: BBBACCC
-    Generation 4: BBBBACCCC
-    and so on.
+        - Generation 0: A
+        - Generation 1: BAC
+        - Generation 2: BBACC
+        - Generation 3: BBBACCC
+        - Generation 4: BBBBACCCC
+        - and so on.
     
     In this case, the predicate 'A -> BAC' can be written as in 4 different 
-    ways - ['A', 'BAC'], ['A', 'BAC', 1], ['A', 'BAC', 1, 'replacement'], 
-    or ['A', 'BAC', 1, 'replacement', 1].
+    ways - C{['A', 'BAC']}, C{['A', 'BAC', 1]}, C{['A', 'BAC', 1, 
+    'replacement']}, or C{['A', 'BAC', 1, 'replacement', 1]}.
     
-    When a list of 2-elements is given (e.g., ['A', 'BAC']), it is taken to 
-    be replacement rule with the highest priority; that is, priority of 1. 
-    Hence, ['A', 'BAC'], ['A', 'BAC', 1], and ['A', 'BAC', 1, 'replacement'] 
-    are the same. 
+    When a list of 2-elements is given (e.g., C{['A', 'BAC']}), it is taken 
+    to be replacement rule with the highest priority; that is, priority of 1. 
+    Hence, C{['A', 'BAC']}, C{['A', 'BAC', 1]}, C{['A', 'BAC', 1, 
+    'replacement']}, and C{['A', 'BAC', 1, 'replacement', 1]} are the same. 
     
     This also means that production rules can have different priorities. For 
-    example, given [['A', 'BAC', 1], ['B', 'BC', 2]], rule ['A', 'BAC', 1] 
-    will be executed before ['B', 'BC', 2] in the following manner
+    example, given C{[['A', 'BAC', 1], ['B', 'BC', 2]]}, rule C{['A', 'BAC', 
+    1]} will be executed before C{['B', 'BC', 2]} in the following manner
     
-    Generation 0: A
-    Generation 1: BCAC      # A -> BAC, BAC -> BCAC
-    Generation 2: BCCBCACC
-    Generation 3: BCCCBCCBCACCC
-    and so on as all production rules in ascending order of priorities (with 
-    '1' being the highest priority) will be executed in parallel on the 
-    resulting axiom at that current point in time.
+        - Generation 0: A
+        - Generation 1: BCAC      # A -> BAC, BAC -> BCAC
+        - Generation 2: BCCBCACC
+        - Generation 3: BCCCBCCBCACCC
+        - and so on as all production rules in ascending order of priorities 
+        (with '1' being the highest priority) will be executed in parallel on 
+        the resulting axiom at that current point in time.
     
-    However, if given [['A', 'BAC', 1], ['B', 'BC', 1]], then
+    However, if given C{[['A', 'BAC', 1], ['B', 'BC', 1]]}, then
     
-    Generation 0: A
-    Generation 1: BAC
-    Generation 2: BCBACC
-    Generation 3: BCCBCBACCC
-    Generation 4: BCCCBCCBCBACCCC
-    and so on.
+        - Generation 0: A
+        - Generation 1: BAC
+        - Generation 2: BCBACC
+        - Generation 3: BCCBCBACCC
+        - Generation 4: BCCCBCCBCBACCCC
+        - and so on.
     
     The second form of production rule is probabilistic, also known as 
     stochastic grammars. Probabilistic rule will take the format of 
-    [<domain>, <range>, <priority>, 'probability', <probability>]. For 
-    example, ['A', 'BAC', 1, 'probability', 0.5] means that 'A' will 
-    only be rewritten into 'BAC' 50% of the time. 'A' will be left 
+    C{[<domain>, <range>, <priority>, 'probability', <probability>]}. 
+    For example, C{['A', 'BAC', 1, 'probability', 0.5]} means that 'A' 
+    will only be rewritten into 'BAC' 50% of the time. 'A' will be left 
     unchanged 50% of the time. The same priority principle applies. 
-    Hence, ['A', 'BAC', 1, 'probability', 1] is in effect the same as 
-    ['A', 'BAC', 1, 'replacement'].
+    Hence, C{['A', 'BAC', 1, 'probability', 1]} is in effect the same as 
+    C{['A', 'BAC', 1, 'replacement']}.
     
     The thirs form of production rule is function rule, which takes the 
-    form of [<domain>, <function>, <priority>, 'function']. For 
-    example, ['A', axiom_func, 1, 'function'] means that when 'A' is 
+    form of C{[<domain>, <function>, <priority>, 'function']}. For 
+    example, C{['A', axiom_func, 1, 'function']} means that when 'A' is 
     encounted in the axiom, the command string up to that point in time 
     will be used as parameter for axion_func function, such as
     
-    Generation 0: A
-    Generation 1: dependent on the return value of axiom_func('A')
-    and so on.
+        - Generation 0: A
+        - Generation 1: dependent on the return value of axiom_func('A')
+        and so on.
+    
+    For example, given an axiom of 'ACCCABABDD', and C{['AB', replaceFunction, 
+    1, 'function']} as production rule where replaceFunction is defined as 
+    
+    >>> def replaceFunction(self, dstring, position):
+    >>>    if dstring[position+3] == 'O': return 'BAAB'
+    >>>    elif dstring[position-1] == 'O': return 'AABB'
+    >>>    else: return 'OOAB'
+    
+        - Generation 0: ACCCABABDD
+        - Generation 1: ACCCOOABOOABDD
+        - Generation 2: ACCCOOBAABOOAABBDD
+        - Generation 3: ACCCOOBABAABOOAABBDD
+        - Generation 4: ACCCOOBABABAABOOAABBDD
+        - Generation 5: ACCCOOBABABABAABOOAABBDD
     
     In summary, the following rule formats are allowed:
-        - [<domain>, <range>]
-        - [<domain>, <range>, <priority>]
-        - [<domain>, <range>, <priority>, 'replacement']
-        - [<domain>, <range>, <priority>, 'probability', <probability>]
-        - [<domain>, <function>, <priority>, 'function']
+        - C{[<domain>, <range>]}
+        - C{[<domain>, <range>, <priority>]}
+        - C{[<domain>, <range>, <priority>, 'replacement']}
+        - C{[<domain>, <range>, <priority>, 'probability', <probability>]}
+        - C{[<domain>, <function>, <priority>, 'function']}
     '''
     def __init__(self, command_length=1, rules=[]):
         '''
@@ -151,6 +166,7 @@ class lindenmayer(object):
         @type priority: integer
         @param data_string: data or symbol string to be processed
         @type data_string: string
+        @return: rewritten data_string
         '''
         rules = [x for x in self.rules if x[2] == int(priority)]
         ndata = ''
@@ -181,6 +197,7 @@ class lindenmayer(object):
         
         @param data_string: data or symbol string to be processed
         @type data_string: string
+        @return: rewritten data_string
         '''
         for priority in list(range(1, self.priority_levels+1)):
             data_string = self._apply_priority_rules(priority, 
