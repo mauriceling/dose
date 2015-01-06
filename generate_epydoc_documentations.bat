@@ -1,0 +1,1 @@
+python C:\Python27\Scripts\epydoc --verbose --html --output=module-documentation --name="Digital Organisms Simulation Environment (DOSE)" --url=https://github.com/mauriceling/dose  --exclude=dose_e* --exclude=dose_parameters.py --show-imports --show-private --show-sourcecode --show-frames --navlink=https://github.com/mauriceling/dose dose

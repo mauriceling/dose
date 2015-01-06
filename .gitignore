@@ -14,3 +14,4 @@ dist/
 dose.egg-info/
 *.gz
 *.egg
+module-documentation/
