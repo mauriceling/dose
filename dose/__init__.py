@@ -21,6 +21,7 @@ import register_machine
 import ragaraja
 
 # Class imports (in ascending order of module names, then class names)
+from copads.lindenmayer import lindenmayer
 from dose import dose_functions
 from dose_world import World
 from genetic import Chromosome
