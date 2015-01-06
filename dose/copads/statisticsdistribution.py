@@ -355,6 +355,11 @@ class CauchyDistribution(Distribution):
     """
     Class for Cauchy Distribution.
     
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
+    
     @status: Tested method
     @since: version 0.4
     """
@@ -433,6 +438,11 @@ class CosineDistribution(Distribution):
     """
     Cosine distribution is sometimes used as a simple approximation to 
     Normal distribution.
+    
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
     
     @status: Tested method
     @since: version 0.4
@@ -528,6 +538,11 @@ class ExponentialDistribution(Distribution):
     Exponential distribution is the continuous version of Geometric 
     distribution. It is also a special case of Gamma distribution where 
     shape = 1
+    
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
     
     @status: Tested method
     @since: version 0.4
@@ -873,6 +888,11 @@ class HypergeometricDistribution(Distribution):
     """
     Class for Hypergeometric distribution
     
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
+    
     @status: Tested method
     @since: version 0.4
     """
@@ -987,6 +1007,11 @@ class HypergeometricDistribution(Distribution):
 class LogarithmicDistribution(Distribution):
     """
     Class for Logarithmic Distribution.
+    
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
     
     @status: Tested method
     @since: version 0.4
@@ -1204,6 +1229,11 @@ class SemicircularDistribution(Distribution):
     """
     Class for Semicircular Distribution.
     
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
+    
     @status: Tested method
     @since: version 0.4
     """
@@ -1405,6 +1435,11 @@ class TDistribution(Distribution):
 class TriangularDistribution(Distribution):
     """
     Class for Triangular Distribution.
+    
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
     
     @status: Tested method
     @since: version 0.4
@@ -1637,6 +1672,11 @@ class UniformDistribution(Distribution):
 class WeiBullDistribution(Distribution):
     """
     Class for Weibull distribution.
+    
+    @see: Chen, KFQ, Ling, MHT. 2013. COPADS III (Compendium of 
+    Distributions II): Cauchy, Cosine, Exponential, Hypergeometric, 
+    Logarithmic, Semicircular, Triangular, and Weibull. The Python 
+    Papers Source Codes 5: 2.
     
     @status: Tested method
     @since: version 0.4
