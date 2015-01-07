@@ -228,6 +228,7 @@ class lindenmayer(object):
         >>>            'random_distance': 0,
         >>>            'set_heading': 0,
         >>>            'set_colour': 'black',
+        >>>            'background_colour': 'ivory',
         >>>            'F': 'forward',
         >>>            'B': 'backward',
         >>>            'R': 'right',
@@ -261,6 +262,8 @@ class lindenmayer(object):
             colours can be set and any un-used symbols (other than 'F', 'B', 
             'R', 'L', 'H', 'U', and 'D') can be used to set pen colours 
             (please see http://wiki.tcl.tk/37701 for available colours).
+            - canvas background colour can be set using background_colour. 
+            B{This will be set to ivory if not given.}
             - 'F', 'B', 'R', 'L', 'H', 'U', and 'D' represents the Turtle 
             commands of forward, backward, right turn, left turn, home, 
             pen up, and pen down respectively. Home is defined as the start 
@@ -292,6 +295,7 @@ class lindenmayer(object):
                        'random_distance': 0,
                        'set_heading': 0,
                        'set_colour': 'black',
+                       'background_colour': 'ivory',
                        'F': 'forward',
                        'B': 'backward',
                        'R': 'right',
@@ -304,6 +308,7 @@ class lindenmayer(object):
         if 'random_distance' not in mapping: mapping['random_distance'] = 0
         if 'set_heading' not in mapping: mapping['set_heading'] = 0
         if 'set_colour' not in mapping: mapping['set_colour'] = 'black'
+        if 'background_colour' not in mapping: mapping['background_colour'] = 'ivory'
         if filename != None:
             f = open(filename, 'w')
             f.write("''' \n")
@@ -314,6 +319,8 @@ class lindenmayer(object):
             f.write("''' \n\n")
             f.write('import turtle \n\n')
             f.write('t = turtle.Turtle() \n')
+            f.write('t.setundobuffer(1) \n')
+            f.write("turtle.bgcolor('%s') \n" % mapping['background_colour'])
             f.write('t.speed(0) \n\n')
             f.write('t.setheading(%s) \n' % float(mapping['set_heading']))
             f.write('t.penup() \n')
@@ -322,6 +329,8 @@ class lindenmayer(object):
             f.write('t.pendown() \n\n')
         exec('import turtle')
         exec('t = turtle.Turtle()')
+        exec('t.setundobuffer(1)')
+        exec("turtle.bgcolor('%s')" % mapping['background_colour'])
         exec('t.speed(0)')
         exec('t.setheading(%s)' % float(mapping['set_heading']))
         exec('t.penup()')
@@ -381,8 +390,12 @@ class lindenmayer(object):
             if mapping[cmd] in constants.TKColours:
                 f.write("t.pencolor('%s') \n" % mapping[cmd])
                 exec("t.pencolor('%s')" % mapping[cmd])
+        exec('t.penup()')
+        exec('t.setposition(-1000, -1000)')
         exec('turtle.done()')
         if filename != None:
             f.write('\n')
+            f.write('t.penup() \n')
+            f.write('t.setposition(-1000, -1000) \n')
             f.write('turtle.done() \n')
             f.close()

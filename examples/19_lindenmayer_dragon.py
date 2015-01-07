@@ -19,6 +19,7 @@ mapping = {'set_angle': 90,
            'random_angle': 0,
            'set_distance': 5,
            'random_distance': 0,
+           'background_colour': 'wheat1',
            'F': 'forward',
            'R': 'right',
            'L': 'left'}
