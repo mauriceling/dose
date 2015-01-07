@@ -309,12 +309,14 @@ class lindenmayer(object):
         if 'set_heading' not in mapping: mapping['set_heading'] = 0
         if 'set_colour' not in mapping: mapping['set_colour'] = 'black'
         if 'background_colour' not in mapping: mapping['background_colour'] = 'ivory'
+        data_string = [cmd for cmd in data_string if cmd in mapping]
         if filename != None:
             f = open(filename, 'w')
             f.write("''' \n")
             f.write('Turtle Graphics Generation from Lindenmayer System \n')
             f.write('in COPADS (http://github.com/copads/copads) \n\n')
             f.write('Code string = %s \n' % (data_string))
+            f.write('Code length = %s \n' % str(len(data_string)))
             f.write('Code mapping = %s \n' % (mapping))
             f.write("''' \n\n")
             f.write('import turtle \n\n')
@@ -337,8 +339,11 @@ class lindenmayer(object):
         exec('t.setposition(%s, %s)' % start)
         exec("t.pencolor('%s')" % mapping['set_colour'])
         exec('t.pendown()')
-        data_string = [cmd for cmd in data_string if cmd in mapping]
+        count = 0
         for cmd in data_string:
+            count = count + 1
+            if count % 1000 == 0:
+                print('%s instructions processed ...' % str(count))
             if mapping[cmd] == 'push':
                 status = [t.position(), t.heading()]
                 stack.append(status)
@@ -393,6 +398,7 @@ class lindenmayer(object):
         exec('t.penup()')
         exec('t.setposition(-1000, -1000)')
         exec('turtle.done()')
+        print('%s instructions processed. Drawing completed.' % str(count))
         if filename != None:
             f.write('\n')
             f.write('t.penup() \n')
