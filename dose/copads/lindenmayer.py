@@ -84,7 +84,7 @@ class lindenmayer(object):
     For example, given an axiom of 'ACCCABABDD', and C{['AB', replaceFunction, 
     1, 'function']} as production rule where replaceFunction is defined as 
     
-    >>> def replaceFunction(self, dstring, position):
+    >>> def replaceFunction(dstring, position):
     >>>    if dstring[position+3] == 'O': return 'BAAB'
     >>>    elif dstring[position-1] == 'O': return 'AABB'
     >>>    else: return 'OOAB'
@@ -95,6 +95,12 @@ class lindenmayer(object):
         - Generation 3: ACCCOOBABAABOOAABBDD
         - Generation 4: ACCCOOBABABAABOOAABBDD
         - Generation 5: ACCCOOBABABABAABOOAABBDD
+    
+    The function for every function rule has to take 2 variables as parameter 
+    list - (dstring, position) where dstring is the symbol/data string and 
+    position is the current position on the symbol/data string. This also 
+    means that should there be a case whereby the function does not return 
+    a symbol, it is possible for the symbol string to shorten over generations.
     
     In summary, the following rule formats are allowed:
         - C{[<domain>, <range>]}
@@ -312,15 +318,15 @@ class lindenmayer(object):
         if 'set_heading' not in mapping: mapping['set_heading'] = 0
         if 'set_colour' not in mapping: mapping['set_colour'] = 'black'
         if 'background_colour' not in mapping: mapping['background_colour'] = 'ivory'
-        data_string = [cmd for cmd in data_string if cmd in mapping]
+        data_string = ''.join([cmd for cmd in data_string if cmd in mapping])
         if scriptfile != None:
             f = open(scriptfile, 'w')
             f.write("''' \n")
             f.write('Turtle Graphics Generation from Lindenmayer System \n')
             f.write('in COPADS (http://github.com/copads/copads) \n\n')
             f.write('Code length = %s \n' % str(len(data_string)))
-            f.write('Code string = %s \n' % ''.join(data_string))
-            f.write('Code mapping = %s \n' % (mapping))
+            f.write('Code string = %s \n' % data_string)
+            f.write('Code mapping = %s \n' % mapping)
             f.write("''' \n\n")
             f.write('import turtle \n\n')
             f.write('t = turtle.Turtle() \n')
