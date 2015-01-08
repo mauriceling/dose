@@ -16,6 +16,7 @@ rules = [['X', '0FL[2[X]R3X]R1F[3RFX]LX'],
 start_position = (0, -200)
 iterations = 6
 turtle_file = '19_lindenmayer_plant_turtle.py'
+image_file = '19_lindenmayer_plant_turtle.svg'
 mapping = {'set_angle': 25,
            'random_angle': 0,
            'set_distance': 2.5,
@@ -40,4 +41,5 @@ while count < iterations + 1:
     axiom = lindenmayer.apply_rules(axiom)
     print('Generation %s: Axiom length = %s' % (str(count), str(len(axiom))))
     count = count + 1                   
-lindenmayer.turtle_generate(axiom, turtle_file, start_position, mapping)
+lindenmayer.turtle_generate(axiom, turtle_file, image_file, 
+                            start_position, mapping)
