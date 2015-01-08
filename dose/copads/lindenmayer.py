@@ -206,8 +206,8 @@ class lindenmayer(object):
                                                      data_string)
         return data_string
 
-    def turtle_generate(self, data_string, filename=None, 
-                        start=(0, 0), mapping={}):
+    def turtle_generate(self, data_string, scriptfile=None, 
+                        imagefile=None, start=(0, 0), mapping={}):
         '''
         Method for naive code generation to visualize the data or symbol 
         string using Turtle graphics. This method generates the Python 
@@ -277,9 +277,12 @@ class lindenmayer(object):
         
         @param data_string: data or symbol string to be processed
         @type data_string: string
-        @param filename: file name to write out the Turtle commands. 
+        @param scriptfile: file name to write out the Turtle commands. 
         Default = None, no file will be written
-        @type filename: string
+        @type scriptfile: string
+        @param imagefile: SVG file name to write out Turtle graphics. 
+        Default = None, no file will be written
+        @type imagefile: string
         @param start: starting or home coordinate. Default = (0, 0) which 
         is the centre of the TK window
         @type start: tuple
@@ -310,13 +313,13 @@ class lindenmayer(object):
         if 'set_colour' not in mapping: mapping['set_colour'] = 'black'
         if 'background_colour' not in mapping: mapping['background_colour'] = 'ivory'
         data_string = [cmd for cmd in data_string if cmd in mapping]
-        if filename != None:
-            f = open(filename, 'w')
+        if scriptfile != None:
+            f = open(scriptfile, 'w')
             f.write("''' \n")
             f.write('Turtle Graphics Generation from Lindenmayer System \n')
             f.write('in COPADS (http://github.com/copads/copads) \n\n')
-            f.write('Code string = %s \n' % (data_string))
             f.write('Code length = %s \n' % str(len(data_string)))
+            f.write('Code string = %s \n' % ''.join(data_string))
             f.write('Code mapping = %s \n' % (mapping))
             f.write("''' \n\n")
             f.write('import turtle \n\n')
@@ -350,7 +353,7 @@ class lindenmayer(object):
             if mapping[cmd] == 'pop':
                 try:
                     status = stack.pop()
-                    if filename != None:
+                    if scriptfile != None:
                         f.write('t.penup() \n')
                         f.write('t.setposition(%s, %s) \n' % status[0])
                         f.write('t.setheading(%s) \n' % status[1])
@@ -363,17 +366,17 @@ class lindenmayer(object):
             if mapping[cmd] == 'forward': 
                 distance = mapping['set_distance'] + \
                            random.random()*mapping['random_distance']
-                if filename != None: 
+                if scriptfile != None: 
                     f.write('t.forward(%s) \n' % (distance))
                 exec('t.forward(%s)' % (distance))
             if mapping[cmd] == 'backward': 
                 distance = mapping['set_distance'] + \
                            random.random()*mapping['random_distance']
-                if filename != None: 
+                if scriptfile != None: 
                     f.write('t.backward(%s) \n' % (distance))
                 exec('t.backward(%s)' % (distance))
             if mapping[cmd] == 'home': 
-                if filename != None:
+                if scriptfile != None:
                     f.write('t.penup() \n')
                     f.write('t.setposition(%s, %s) \n' % start)
                     f.write('t.pendown()')
@@ -383,25 +386,33 @@ class lindenmayer(object):
             if mapping[cmd] == 'right':
                 angle = mapping['set_angle'] + \
                         random.random()*mapping['random_angle']
-                if filename != None:
+                if scriptfile != None:
                     f.write('t.right(%s) \n' % str(angle))
                 exec('t.right(%s)' % str(angle))
             if mapping[cmd] == 'left':
                 angle = mapping['set_angle'] + \
                         random.random()*mapping['random_angle']
-                if filename != None:
+                if scriptfile != None:
                     f.write('t.left(%s) \n' % str(angle))
                 exec('t.left(%s)' % str(angle))
             if mapping[cmd] in constants.TKColours:
                 f.write("t.pencolor('%s') \n" % mapping[cmd])
                 exec("t.pencolor('%s')" % mapping[cmd])
         exec('t.penup()')
-        exec('t.setposition(-1000, -1000)')
+        exec('t.hideturtle()')
+        if imagefile != None:
+            exec('import canvasvg')
+            exec("canvasvg.saveall('%s', t.getscreen()._canvas)" % imagefile)
+            f.write('\n')
+            f.write('try: \n')
+            f.write('    import canvasvg \n')
+            f.write("    canvasvg.saveall('%s', t.getscreen()._canvas) \n" % imagefile)
+            f.write('except ImportError: pass \n')
         exec('turtle.done()')
         print('%s instructions processed. Drawing completed.' % str(count))
-        if filename != None:
+        if scriptfile != None:
             f.write('\n')
             f.write('t.penup() \n')
-            f.write('t.setposition(-1000, -1000) \n')
+            f.write('t.hideturtle() \n')
             f.write('turtle.done() \n')
             f.close()
