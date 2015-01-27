@@ -71,7 +71,7 @@ class lindenmayer(object):
     Hence, C{['A', 'BAC', 1, 'probability', 1]} is in effect the same as 
     C{['A', 'BAC', 1, 'replacement']}.
     
-    The thirs form of production rule is function rule, which takes the 
+    The third form of production rule is function rule, which takes the 
     form of C{[<domain>, <function>, <priority>, 'function']}. For 
     example, C{['A', axiom_func, 1, 'function']} means that when 'A' is 
     encounted in the axiom, the command string up to that point in time 
