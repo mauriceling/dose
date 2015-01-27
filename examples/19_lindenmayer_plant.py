@@ -35,11 +35,6 @@ mapping = {'set_angle': 25,
            
 lindenmayer = dose.lindenmayer(1)
 lindenmayer.add_rules(rules)
-
-count = 1
-while count < iterations + 1:
-    axiom = lindenmayer.apply_rules(axiom)
-    print('Generation %s: Axiom length = %s' % (str(count), str(len(axiom))))
-    count = count + 1                   
-lindenmayer.turtle_generate(axiom, turtle_file, image_file, 
+lindenmayer.generate(axiom, iterations)                 
+lindenmayer.turtle_generate(turtle_file, image_file, 
                             start_position, mapping)
