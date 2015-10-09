@@ -20,12 +20,15 @@ import genetic
 import register_machine
 import ragaraja
 
-# Class imports (in ascending order of module names, then class names)
+# COPADS Class imports (in ascending order of module names, then class names)
+from copads.lindenmayer import lindenmayer
+
+# DOSE Class imports (in ascending order of module names, then class names)
 from dose import dose_functions
 from dose_world import World
 from genetic import Chromosome
 from genetic import Organism
-from genetic import Population
+from genetic import Population 
 
 # Function imports (in ascending order of module names, then function names)
 from database_calls import connect_database
