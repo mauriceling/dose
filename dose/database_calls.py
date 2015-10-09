@@ -3,7 +3,7 @@ File containing support functions for database logging of simulations.
 
 Date created: 10th October 2013
 '''
-import os, copy
+import os, copy, ast
 import sqlite3 as s
 
 def connect_database(dbpath, sim_parameters=None):
@@ -434,15 +434,13 @@ def db_reconstruct_simulation_parameters(cur, start_time):
                  start_time = '%s'" % start_time)
     for r in cur.fetchall():
         if str(r[0]) == 'population_names':
-            value = str(r[1]).split('|')
-            exec("parameters['population_names'] = %s" % str(value))
+            parameters['population_names'] = str(r[1]).split('|')
         elif str(r[0]) == 'population_locations':
-            exec("parameters['population_locations'] = %s" % str(r[1]))
+            parameters['population_locations'] = r[1]
         elif str(r[0]) == 'deployment_code':
             parameters['deployment_code'] = int(r[1])
         elif str(r[0]) == 'chromosome_bases':
-            value = str(r[1]).split('|')
-            exec("parameters['chromosome_bases'] = %s" % str(value))
+            parameters['chromosome_bases'] = str(r[1]).split('|')
         elif str(r[0]) == 'background_mutation':
             parameters['background_mutation'] = float(r[1])
         elif str(r[0]) == 'additional_mutation':
@@ -456,9 +454,9 @@ def db_reconstruct_simulation_parameters(cur, start_time):
         elif str(r[0]) == 'max_tape_length':
             parameters['max_tape_length'] = int(r[1])
         elif str(r[0]) == 'clean_cell':
-            exec("parameters['clean_cell'] = %s" % str(r[1]))
+            parameters['clean_cell'] = r[1]
         elif str(r[0]) == 'interpret_chromosome':
-            exec("parameters['interpret_chromosome'] = %s" % str(r[1]))
+            parameters['interpret_chromosome'] = r[1]
         elif str(r[0]) == 'max_codon':
             parameters['max_codon'] = int(r[1])
         elif str(r[0]) == 'population_size':
@@ -473,7 +471,7 @@ def db_reconstruct_simulation_parameters(cur, start_time):
             parameters['world_z'] = int(r[1])
         elif str(r[0]) == 'goal':
             try: parameters['goal'] = float(r[1])
-            except ValueError: exec("parameters['goal'] = %s" % str(r[1]))
+            except: parameters['goal'] = r[1]
         elif str(r[0]) == 'maximum_generations':
             parameters['maximum_generations'] = int(r[1])
         elif str(r[0]) == 'fossilized_ratio':
@@ -487,8 +485,7 @@ def db_reconstruct_simulation_parameters(cur, start_time):
             if version == '0.1': parameters['ragaraja_version'] = 0.1
             else: parameters['ragaraja_version'] = int(r[1])
         elif str(r[0]) == 'ragaraja_instructions':
-            value = str(r[1]).split('|')
-            exec("parameters['ragaraja_instructions'] = %s" % str(value))
+            parameters['ragaraja_instructions'] = str(r[1]).split('|')
         elif str(r[0]) == 'eco_buried_frequency':
             parameters['eco_buried_frequency'] = int(r[1])
         elif str(r[0]) == 'database_file':
@@ -540,7 +537,7 @@ def db_reconstruct_world(cur, start_time, generation):
         z = int(r[2])
         key = str(r[3])
         value = str(r[4])
-        exec("ecosystem[%i][%i][%i]['%s'] = %s" % (x, y, z, key, value))
+        ecosystem[x][y][z][key] = value
     World = dose_world.World(1, 1, 1)
     World.ecosystem = ecosystem
     return World
@@ -584,36 +581,33 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
             key = str(r[0])
             value = str(r[1])
             if key == 'alive':
-                exec("org.status['alive'] = %s" % str(value))
+                org.status['alive'] = value
             elif key == 'vitality':
                 org.status['vitality'] = float(value)
             elif key == 'parents':
                 if value == '': value = '[]'
                 else: value = value.split('|')
-                exec("org.status['parents'] = %s" % str(value))
+                org.status['parents'] = value
             elif key == 'age':
                 org.status['age'] = float(value)
             elif key == 'gender':
-                exec("org.status['gender'] = %s" % str(value)) 
+                org.status['gender'] = value
             elif key == 'lifespan':
                 org.status['lifespan'] = float(value)
             elif key == 'fitness':
-                exec("f = '%s'" % str(value))
-                if type(f) == type(1) or type(f) == type(1.0):
-                    org.status['fitness'] = float(value)
-                else:
-                    exec("org.status['fitness'] = %s" % str(value))
+                try: org.status['fitness'] = ast.literal_eval(value)
+                except: org.status['fitness'] = value
             elif key == 'blood':
                 if value == '': value = '[]'
                 else: value = value.split('|')
-                exec("org.status['blood'] = %s" % str(value))
+                org.status['blood'] = value
             elif key == 'deme':
                 org.status['deme'] = str(value)
             elif key == 'location':
                 value = tuple([int(x) for x in value.split('|')])
-                exec("org.status['location'] = %s" % str(value))
+                org.status['location'] = value
             elif key == 'death':
-                exec("org.status['death'] = %s" % str(value))
+                org.status['death'] = value
             elif key.startswith('chromosome'):
                 chr_position = key.split('_')[1]
                 sequence = [str(x) for x in str(value)]
@@ -625,12 +619,13 @@ def db_reconstruct_organisms(cur, start_time, population_name, generation):
                     key='chromosome_bases' and start_time='%s'" % 
                     start_time)
                 bases = str(cur.fetchone()[0]).split('|')
-                exec("chromosome_bases = %s" % bases)
+                chromosome_bases = bases
                 chromosome = g.Chromosome(sequence, chromosome_bases, 
                                           background_mutation)
                 org.genome.append(chromosome)
             else:
-                exec("org.status['%s'] = %s" % (str(key), str(value)))
+                try: org.status[key] = ast.literal_eval(value)
+                except: org.status[key] = value
         agents[i] = org
     return agents
     
@@ -653,7 +648,8 @@ def db_reconstruct_population(cur, start_time,
     cur.execute("select value from parameters where \
                 key='goal' and start_time='%s'" % start_time)
     g = cur.fetchone()[0]
+
     try: goal = float(g)
-    except ValueError: exec("goal = %s" % str(g))
+    except: goal = str(g)
     return genetic.Population(goal, 1e24, agents)
     
