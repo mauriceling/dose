@@ -10,6 +10,7 @@ cwd = os.getcwd().split(os.sep)
 #cwd[-1] = 'dose'
 cwd = os.sep.join(cwd[:-1])
 
-sys.path.append(cwd)
+if cwd not in sys.path:
+    sys.path.append(cwd)
 
 import dose
