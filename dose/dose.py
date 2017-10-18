@@ -9,15 +9,15 @@ Date created: 27th September 2013
 '''
 import sys, os, random, inspect
 
-import ragaraja, register_machine
-import dose_world
-import genetic, simulation_calls
+from . import ragaraja, register_machine
+from . import dose_world
+from . import genetic, simulation_calls
 
-from simulation_calls import spawn_populations, simulation_core
-from simulation_calls import excavate_world, revive_population
+from .simulation_calls import spawn_populations, simulation_core
+from .simulation_calls import excavate_world, revive_population
 
-from database_calls import connect_database, db_reconstruct_simulation_parameters
-from database_calls import db_reconstruct_population, db_reconstruct_world, db_list_simulations
+from .database_calls import connect_database, db_reconstruct_simulation_parameters
+from .database_calls import db_reconstruct_population, db_reconstruct_world, db_list_simulations
 
 class dose_functions():
     '''

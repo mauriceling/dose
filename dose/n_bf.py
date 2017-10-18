@@ -23,8 +23,8 @@ the end.
 '''
 
 import random
-import register_machine as r
-from lc_bf import increment, decrement, forward, backward, call_out
+from . import register_machine as r
+from .lc_bf import increment, decrement, forward, backward, call_out
 
 def random_op(array, apointer, inputdata, output, source, spointer):
     '''

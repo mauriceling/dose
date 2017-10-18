@@ -20,12 +20,12 @@ try:
 except ImportError:
     import pickle
 
-import dose_world
-import genetic
-import ragaraja, register_machine
+from . import dose_world
+from . import genetic
+from . import ragaraja, register_machine
 
-from database_calls import connect_database, db_log_simulation_parameters
-from database_calls import db_report
+from .database_calls import connect_database, db_log_simulation_parameters
+from .database_calls import db_report
 
 def simulation_core(sim_functions, sim_parameters, Populations, World):
     '''
