@@ -1,0 +1,3153 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.ragaraja</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        Module&nbsp;ragaraja
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.ragaraja-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module ragaraja</h1><p class="nomargin-top"><span class="codelink"><a href="dose.ragaraja-pysrc.html">source&nbsp;code</a></span></p>
+<p>Ragaraja Interpreter Date created: 16th August 2012</p>
+  <p>Ragaraja is a derivative and massive extension of Brainfuck. This work
+  is influenced by a large number of Brainfuck derivatives, other esoteric 
+  programming languages, and even assembly languages. Probably the most 
+  critical difference between Ragaraja and other Brainfuck derivatives is 
+  the large number of commands / instructions - 1000 possible commands / 
+  instructions, inspired by Nandi (follower of Lord Shiva) who was supposed
+  to be the first author of Kama Sutra and wrote it in 1000 chapters.</p>
+  <p>Etymology: Ragaraja is the name of a Mahayana Buddhist deity from 
+  Esoteric traditions. The Chinese calls him Ai Ran Ming Wang. Ragaraja is 
+  one of the Wisdom Kings and represents the state at which sexual 
+  excitement or agitation can be channeled towards enlightenment and 
+  passionate love can become compassion for all living things. Hence, I 
+  name this compilation / derivative / extension of Brainfuck in 1000 
+  commands / instructions / opcode to signify the epitome, a channeling of 
+  raw urge to the love and compassion for and towards every being. May 
+  really be viewed as Brainfuck attaining enlightenment or Nirvana. Whoever
+  that can remember all 1000 commands and use it, really deserves an 
+  award.</p>
+  <p>The interpreter environment consists of the following elements:</p>
+  <ol start="1">
+    <li>
+      Array/Tape: A circular tape initialized with 30 thousand cells each 
+      with zero. This can be visualized as a 30,000 cell register machine. 
+      The number of cells can increase or decrease during runtime.
+    </li>
+    <li>
+      Source: The program
+    </li>
+    <li>
+      Input List: A list of data given to the execution environment at 
+      initialization.
+    </li>
+    <li>
+      Output List: A list of output from the execution. This may also be 
+      used as a secondary tape.
+    </li>
+  </ol>
+  <p>When the program terminates, all 4 elements are returned, and the 
+  interpreter terminates itself.</p>
+
+<hr />
+<div class="fields">      <p><strong>See Also:</strong>
+        http://esolangs.org/wiki/Ragaraja
+      </p>
+</div><!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="instruction_padding"></a><span class="summary-sig-name">instruction_padding</span>(<span class="summary-sig-arg">inst</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#instruction_padding">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#loop_start" class="summary-sig-name">loop_start</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Start loop.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#loop_start">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#loop_end" class="summary-sig-name">loop_end</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      End loop.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#loop_end">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#tape_move" class="summary-sig-name">tape_move</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Moving tape pointer for more than one increment or decrement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_move">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#accumulations" class="summary-sig-name">accumulations</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Accumulate the tape cell by more than one increment or decrement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#accumulations">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#nBF_random_op" class="summary-sig-name">nBF_random_op</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      NucleotideBF (nBF) random operations - to simulate ambiguous DNA 
+      bases.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#nBF_random_op">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#tape_size" class="summary-sig-name">tape_size</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Change the length of the tape during runtime.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_size">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#source_move" class="summary-sig-name">source_move</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Moving the source without execution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#source_move">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#set_tape_value" class="summary-sig-name">set_tape_value</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Set values into tape cell by over-writing the original value.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#set_tape_value">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#mathematics" class="summary-sig-name">mathematics</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Performs mathematical and arithmetical operations.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#mathematics">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#output_IO" class="summary-sig-name">output_IO</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Using output list as output storage or secondary tape, write and 
+      accept values from output list.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#output_IO">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#logic" class="summary-sig-name">logic</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Logical operations</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#logic">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#flipping" class="summary-sig-name">flipping</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Flipping of execution elements.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#flipping">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#input_IO" class="summary-sig-name">input_IO</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Write to and accept values from input list.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#input_IO">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#tape_manipulate" class="summary-sig-name">tape_manipulate</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Manipulating the tape.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_manipulate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#register_IO" class="summary-sig-name">register_IO</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Read from and write to register from tape cell.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#register_IO">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#jump_identifier" class="summary-sig-name">jump_identifier</a>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Defines jump location within the source tape.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#jump_identifier">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="not_used"></a><span class="summary-sig-name">not_used</span>(<span class="summary-sig-arg">array</span>,
+        <span class="summary-sig-arg">apointer</span>,
+        <span class="summary-sig-arg">inputdata</span>,
+        <span class="summary-sig-arg">output</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">spointer</span>)</span><br />
+      Default do-nothing handler for not implemented instructions.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#not_used">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#source_filter" class="summary-sig-name">source_filter</a>(<span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">sfilter</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">007</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">008</code><code class="variable-quote">'</code><code class="variable-ellipsis">...</code></span>)</span><br />
+      Checks a Ragaraja source code string and removes any instructions are
+      not found in the filter</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#source_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#nBF_to_Ragaraja" class="summary-sig-name">nBF_to_Ragaraja</a>(<span class="summary-sig-arg">source</span>)</span><br />
+      Converts NucleotideBF (nBF) source code to Ragaraja source code</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#nBF_to_Ragaraja">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.ragaraja-module.html#activate_version" class="summary-sig-name">activate_version</a>(<span class="summary-sig-arg">version</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">instructions</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Function to set instructions for usage, based on version numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.ragaraja-pysrc.html#activate_version">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#register" class="summary-name">register</a> = <code title="[0,
+ 0,
+ 0,
+ 0,
+ 0,
+ 0,
+ 0,
+ 0,
+..."><code class="variable-group">[</code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">, </code>0<code class="variable-op">,</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#ragaraja" class="summary-name">ragaraja</a> = <code title="{'000': forward, '001': tape_move, '002': tape_move, '003': tape_move,\
+ '004': backward, '005': tape_move, '006': tape_move, '007': tape_move\
+, '008': increment, '009': accumulations, '010': accumulations, '011':\
+ decrement, '012': accumulations, '013': accumulations, '014': loop_st\
+art, '015': loop_end, '016': tape_size, '017': tape_size, '018': tape_\
+size, '019': tape_size, '020': call_out, '021': output_IO, '022': outp\
+ut_IO, '023': source_move, '024': source_move, '025': source_move, '02\
+6': source_move, '027': source_move, '028': source_move, '029': not_us\
+...">{'000': forward, '001': tape_move, '002': tape_move<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#ragaraja_v1" class="summary-name">ragaraja_v1</a> = <code title="['000',
+ '001',
+ '002',
+ '003',
+ '004',
+ '005',
+ '006',
+ '007',
+..."><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#ragaraja_v2" class="summary-name">ragaraja_v2</a> = <code title="['000',
+ '001',
+ '002',
+ '003',
+ '004',
+ '005',
+ '006',
+ '007',
+..."><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#tested_ragaraja_instructions" class="summary-name">tested_ragaraja_instructions</a> = <code title="['000',
+ '001',
+ '002',
+ '003',
+ '004',
+ '005',
+ '006',
+ '007',
+..."><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">0</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.ragaraja-module.html#nBF_instructions" class="summary-name">nBF_instructions</a> = <code title="['000',
+ '004',
+ '008',
+ '011',
+ '020',
+ '050',
+ '051',
+ '052',
+..."><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">008</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">011</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">020</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">050</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dose'"><code class="variable-quote">'</code><code class="variable-string">dose</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="random">random</span>,
+  <span title="math">math</span>,
+  <span title="dose.dose.copads.samplestatistics.SingleSample">SingleSample</span>,
+  <span title="dose.dose.lc_bf.increment">increment</span>,
+  <span title="dose.dose.lc_bf.decrement">decrement</span>,
+  <span title="dose.dose.lc_bf.forward">forward</span>,
+  <span title="dose.dose.lc_bf.backward">backward</span>,
+  <span title="dose.dose.lc_bf.call_out">call_out</span>,
+  <span title="dose.dose.lc_bf.accept_predefined">accept_predefined</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="loop_start"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loop_start</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#loop_start">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Start loop. Will only enter loop if current cell is more than 
+  &quot;0&quot;. If current cell is &quot;0&quot; or less, it will go to 
+  the end of the loop (command 015). if the loop is not closed, it will go 
+  to the end of the source.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="loop_end"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loop_end</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#loop_end">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>End loop. However, it is possible to have an end loop operator 
+  (command 015) without a preceding start loop operator (command 014). In 
+  this case, the end loop operator (command 015) will be ignored and 
+  execution continues.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="tape_move"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tape_move</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_move">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Moving tape pointer for more than one increment or decrement.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      001: Move forward by 5 cells on tape. Equivalent to 5 times of 
+      &quot;000&quot;.
+    </li>
+    <li>
+      002: Move forward by 10 cells on tape. Equivalent to 10 times of 
+      &quot;000&quot;.
+    </li>
+    <li>
+      003: Move forward by NxN cells on tape where N is the value of the 
+      current cell. If N is a decimal, it will move forward by the floor of
+      NxN. For example, if N is 4.2, this operation will tape pointer 
+      forward by 17 cells. As NxN is always a positive number, it does not 
+      matter if the value of the current cell is positive or negative.
+    </li>
+    <li>
+      005: Move backward by 5 cells on tape. Equivalent to 5 times of 
+      &quot;004&quot;.
+    </li>
+    <li>
+      006: Move backward by 10 cells on tape. Equivalent to 10 times of 
+      &quot;004&quot;.
+    </li>
+    <li>
+      007: Move backward by NxN cells on tape where N is the value of the 
+      current cell. If N is a decimal, it will move backward by the floor 
+      of NxN. For example, if N is 4.2, this operation will tape pointer 
+      backward by 17 cells. As NxN is always a positive number, it does not
+      matter if the value of the current cell is positive or negative.
+    </li>
+    <li>
+      043: Move the tape cell pointer to the first cell.
+    </li>
+    <li>
+      044: Move the tape cell pointer to the last cell.
+    </li>
+    <li>
+      045: Move the tape cell pointer to the location determined by the 
+      last value of the output list. If the last value of the output list 
+      is more than the length of the tape, it will take the modulus of the 
+      length of the tape. For example, the last value of the output list is
+      5, the tape cell pointer will point to the 5th cell on the tape.
+    </li>
+    <li>
+      061: Move forward by the number of cells signified by the current 
+      cell.
+    </li>
+    <li>
+      062: Move backward by the number of cells signified by the current 
+      cell.
+    </li>
+    <li>
+      140: Move tape pointer to the centre of the tape. If the tape has odd
+      number cells, it will move to the lower cell. For example, this 
+      instruction will move the tape pointer to the 500th cell of a 
+      1000-cell tape, or 142nd of a 285-cell tape.
+    </li>
+    <li>
+      141: Move tape pointer to 1/4 the of the tape. If the tape has odd 
+      number cells, it will move to the lower cell. For example, this 
+      instruction will move the tape pointer to the 250th cell of a 
+      1000-cell tape, or 71st of a 285-cell tape.
+    </li>
+    <li>
+      142: Move tape pointer to 3/4 the of the tape. If the tape has odd 
+      number cells, it will move to the lower cell. For example, this 
+      instruction will move the tape pointer to the 750th cell of a 
+      1000-cell tape, or 213rd of a 285-cell tape.
+    </li>
+    <li>
+      143: Move tape pointer to the position as the integer value in the 
+      current cell. If the value of the cell is larger than the length of 
+      the tape, it will move to the modulus of the integer value in the 
+      current cell.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="accumulations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">accumulations</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#accumulations">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Accumulate the tape cell by more than one increment or decrement.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      009: Increase value of cell by 5. Equivalent to 5 times of 
+      &quot;008&quot;.
+    </li>
+    <li>
+      010: Increase value of cell by 10. Equivalent to 10 times of 
+      &quot;008&quot;.
+    </li>
+    <li>
+      012: Decrease value of cell by 5. Equivalent to 5 times of 
+      &quot;011&quot;.
+    </li>
+    <li>
+      013: Decrease value of cell by 10. Equivalent to 10 times of 
+      &quot;011&quot;.
+    </li>
+    <li>
+      032: Double current tape cell value.
+    </li>
+    <li>
+      033: Half current tape cell value.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="nBF_random_op"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nBF_random_op</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#nBF_random_op">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>NucleotideBF (nBF) random operations - to simulate ambiguous DNA 
+  bases.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      050: Randomly execute &quot;008&quot; (increment by 1) or 
+      &quot;000&quot; (move forward by 1). Equivalent to &quot;R&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      051: Randomly execute &quot;011&quot; (decrement by 1) or 
+      &quot;004&quot; (move backward by 1). Equivalent to &quot;Y&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      052: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;004&quot; (move backward by 1). Equivalent to &quot;S&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      053: Randomly execute &quot;008&quot; (increment by 1) or 
+      &quot;011&quot; (decrement by 1). Equivalent to &quot;W&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      054: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;011&quot; (decrement by 1). Equivalent to &quot;K&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      055: Randomly execute &quot;004&quot; (move backward by 1) or 
+      &quot;008&quot; (increment by 1). Equivalent to &quot;M&quot; in 
+      NucleotideBF (nBF).
+    </li>
+    <li>
+      056: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;004&quot; (move backward by 1) or &quot;011&quot; (decrement by
+      1). Equivalent to &quot;B&quot; in NucleotideBF (nBF).
+    </li>
+    <li>
+      057: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;008&quot; (increment by 1) or &quot;011&quot; (decrement by 1).
+      Equivalent to &quot;D&quot; in NucleotideBF (nBF).
+    </li>
+    <li>
+      058: Randomly execute &quot;004&quot; (move backward by 1) or 
+      &quot;008&quot; (Increment by 1) or &quot;011&quot; (decrement by 1).
+      Equivalent to &quot;H&quot; in NucleotideBF (nBF).
+    </li>
+    <li>
+      059: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;004&quot; (move backward by 1) or &quot;008&quot; (increment by
+      1). Equivalent to &quot;V&quot; in NucleotideBF (nBF).
+    </li>
+    <li>
+      060: Randomly execute &quot;000&quot; (move forward by 1) or 
+      &quot;004&quot; (move backward by 1) or &quot;008&quot; (increment by
+      1) or &quot;011&quot; (decrement by 1). Equivalent to &quot;N&quot; 
+      in NucleotideBF (nBF)
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="tape_size"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tape_size</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_size">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Change the length of the tape during runtime.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      016: Add one cell to the end of the tape.
+    </li>
+    <li>
+      017: Add 10 cells to the end of the tape.
+    </li>
+    <li>
+      018: Remove one cell from the end of the tape. If original tape 
+      pointer is at the last cell before removal operation, the tape 
+      pointer will point to the last cell after removal.
+    </li>
+    <li>
+      019: Remove 10 cells from the end of the tape. If original tape 
+      pointer is at the last cell before removal operation, the tape 
+      pointer will point to the last cell after removal.
+    </li>
+    <li>
+      034: Insert a cell after the current tape cell. For example, if 
+      current tape cell is 35, a cell initialized to zero will be added as 
+      cell 36. As a result, the tape is 1 cell longer.
+    </li>
+    <li>
+      035: Delete the current cell. As a result, the tape is 1 cell 
+      shorter.
+    </li>
+    <li>
+      036: Delete the current and append to the end of the output list. As 
+      a result, the tape is 1 cell shorter.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="source_move"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">source_move</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#source_move">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Moving the source without execution.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      023: Move source pointer forward by one instruction without execution
+      if the source pointer does not point beyond the length of the source 
+      after the move, otherwise, does not move the source pointer.
+    </li>
+    <li>
+      024: Move source pointer forward by 5 instruction without execution 
+      if the source pointer does not point beyond the length of the source 
+      after the move, otherwise, does not move the source pointer.
+    </li>
+    <li>
+      025: Move source pointer forward by 10 instruction without execution 
+      if the source pointer does not point beyond the length of the source 
+      after the move, otherwise, does not move the source pointer.
+    </li>
+    <li>
+      026: Move source pointer backward by one instruction without 
+      execution if the source pointer does not point beyond the length of 
+      the source after the move, otherwise, does not move the source 
+      pointer.
+    </li>
+    <li>
+      027: Move source pointer backward by 5 instruction without execution 
+      if the source pointer does not point beyond the length of the source 
+      after the move, otherwise, does not move the source pointer.
+    </li>
+    <li>
+      028: Move source pointer backward by 10 instruction without execution
+      if the source pointer does not point beyond the length of the source 
+      after the move, otherwise, does not move the source pointer.
+    </li>
+    <li>
+      082: Skip next instruction if current cell is &quot;0&quot;. 
+      Equivalent to &quot;/&quot; in Minimal. However, this operation will 
+      only execute if there is at least 1 more instruction from the current
+      instruction.
+    </li>
+    <li>
+      083: Skip the number of instructions equivalent to the absolute 
+      integer value of the current cell if the source pointer does not 
+      point beyond the length of the source after the move, otherwise, does
+      not move the source pointer. For example, if current cell is 
+      &quot;5.6&quot; or &quot;5&quot;, the next 5 instructions will be 
+      skipped.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_tape_value"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_tape_value</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#set_tape_value">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set values into tape cell by over-writing the original value.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      084: Set current tape cell to &quot;0&quot;.
+    </li>
+    <li>
+      085: Set current tape cell to &quot;-1&quot;.
+    </li>
+    <li>
+      086: Set current tape cell to &quot;1&quot;.
+    </li>
+    <li>
+      097: Set the value of the current cell to pi (3.14159265358979323846)
+    </li>
+    <li>
+      098: Set the value of the current cell to e (2.718281828459045)
+    </li>
+    <li>
+      187: Set all the cell values in the cells after the current cell to 
+      &quot;0&quot; (current cell is not affected).
+    </li>
+    <li>
+      188: Set all the cell values in the cells before the current cell to 
+      &quot;0&quot; (current cell is not affected).
+    </li>
+    <li>
+      189: Set all values in tape to &quot;0&quot;.
+    </li>
+    <li>
+      190: Set all the cell values in the tape to the value of current 
+      cell.
+    </li>
+    <li>
+      191: Set all the cell values in the tape to the tape position of 
+      current cell.
+    </li>
+    <li>
+      192: Set all the cell values in the cells after the current cell to 
+      the value of current cell.
+    </li>
+    <li>
+      193: Set all the cell values in the cells before the current cell to 
+      the value of current cell.
+    </li>
+    <li>
+      194: Set all the cell values in the cells after the current cell to 
+      the tape position of current cell.
+    </li>
+    <li>
+      195: Set all the cell values in the cells before the current cell to 
+      the tape position of current cell.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="mathematics"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mathematics</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#mathematics">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs mathematical and arithmetical operations.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      065: Add the value of the current cell (n) and (n+1)th cell, and 
+      store the value in the current cell. Array[n] = Array[n] + Array[n+1]
+    </li>
+    <li>
+      066: Add the value of the current cell (n) and first of the input 
+      list, and store the value in the current cell.
+    </li>
+    <li>
+      067: Add the value of the current cell (n) and last of the input 
+      list, and store the value in the current cell.
+    </li>
+    <li>
+      068: Subtract the value of the current cell (n) from (n+1)th cell, 
+      and store the value in the current cell. Array[n] = Array[n+1] - 
+      Array[n]
+    </li>
+    <li>
+      069: Subtract the value of the current cell (n) from the first of the
+      input list, and store the value in the current cell. Array[n] = 
+      InputList[0] - Array[n]
+    </li>
+    <li>
+      070: Subtract the value of the current cell (n) from the last of the 
+      input list, and store the value in the current cell. Array[n] = 
+      InputList[-1] - Array[n]
+    </li>
+    <li>
+      071: Multiply the value of the current cell (n) and (n+1)th cell, and
+      store the value in the current cell. Array[n] = Array[n+1] * Array[n]
+    </li>
+    <li>
+      072: Multiply the value of the current cell (n) and first of the 
+      input list, and store the value in the current cell.
+    </li>
+    <li>
+      073: Multiply the value of the current cell (n) and last of the input
+      list, and store the value in the current cell.
+    </li>
+    <li>
+      074: Divide the value of the current cell (n) from (n+1)th cell, and 
+      store the value in the current cell. Array[n] = Array[n+1] / Array[n]
+    </li>
+    <li>
+      075: Divide the value of the current cell (n) from the first of the 
+      input list, and store the value in the current cell. Array[n] = 
+      InputList[0] / Array[n]
+    </li>
+    <li>
+      076: Divide the value of the current cell (n) from the last of the 
+      input list, and store the value in the current cell. Array[n] = 
+      InputList[-1] - Array[n]
+    </li>
+    <li>
+      077: Modulus (remainder after division) the value of the current cell
+      (n) from (n+1)th cell, and store the value in the current cell. 
+      Array[n] = Array[n+1] % Array[n]
+    </li>
+    <li>
+      078: Modulus (remainder after division) the value of the current cell
+      (n) from the first of the input list, and store the value in the 
+      current cell. Array[n] = InputList[0] % Array[n]
+    </li>
+    <li>
+      079: Modulus (remainder after division) the value of the current cell
+      (n) from the last of the input list, and store the value in the 
+      current cell. Array[n] = InputList[-1] % Array[n]
+    </li>
+    <li>
+      080: Floor the value of the current cell. For example, if the value 
+      of the current cell is 6.7, it will becomes 6.
+    </li>
+    <li>
+      087: Negate the value of the current cell. Positive value will be 
+      negative. Negative value will be positive. Equivalent to 
+      &quot;_&quot; in L00P
+    </li>
+    <li>
+      088: Calculate the sine of the value of the current cell (measured in
+      radians) and replace. Equivalent to &quot;s&quot; in Grin. Array[n] =
+      sine(Array[n])
+    </li>
+    <li>
+      089: Calculate the cosine of the value of the current cell (measured 
+      in radians) and replace. Equivalent to &quot;c&quot; in Grin. 
+      Array[n] = cosine(Array[n])
+    </li>
+    <li>
+      090: Calculate the tangent of the value of the current cell (measured
+      in radians) and replace. Equivalent to &quot;t&quot; in Grin. 
+      Array[n] = tangent(Array[n])
+    </li>
+    <li>
+      091: Calculate the arc sine of the value of the current cell 
+      (measured in radians) and replace. Equivalent to &quot;S&quot; in 
+      Grin. Array[n] = arcsine(Array[n])
+    </li>
+    <li>
+      092: Calculate the arc cosine of the value of the current cell 
+      (measured in radians) and replace. Equivalent to &quot;C&quot; in 
+      Grin. Array[n] = arccosine(Array[n])
+    </li>
+    <li>
+      093: Calculate the arc tangent of the value of the current cell 
+      (measured in radians) and replace. Equivalent to &quot;T&quot; in 
+      Grin. Array[n] = arctangent(Array[n])
+    </li>
+    <li>
+      094: Calculate the reciprocal of the value of the current cell 
+      (measured in radians) and replace. Equivalent to &quot;1&quot; in 
+      Grin. Array[n] = 1/Array[n]
+    </li>
+    <li>
+      095: Calculate the square root of the value of the current cell 
+      (measured in radians) and replace. Equivalent to &quot;q&quot; in 
+      Grin. Array[n] = sqrt(Array[n])
+    </li>
+    <li>
+      096: Calculate the natural logarithm of the value of the current cell
+      (measured in radians) and replace. Equivalent to &quot;l&quot; in 
+      Grin. Array[n] = ln(Array[n])
+    </li>
+    <li>
+      099: Calculate the hyperbolic sine of the value of the current cell 
+      (measured in radians) and replace. Array[n] = sinh(Array[n])
+    </li>
+    <li>
+      100: Calculate the hyperbolic cosine of the value of the current cell
+      (measured in radians) and replace. Array[n] = cosh(Array[n])
+    </li>
+    <li>
+      101: Calculate the hyperbolic tangent of the value of the current 
+      cell (measured in radians) and replace. Array[n] = tanh(Array[n])
+    </li>
+    <li>
+      102: Calculate the hyperbolic arc sine of the value of the current 
+      cell (measured in radians) and replace. Array[n] = arcsinh(Array[n])
+    </li>
+    <li>
+      103: Calculate the hyperbolic arc cosine of the value of the current 
+      cell (measured in radians) and replace. Array[n] = arccosh(Array[n])
+    </li>
+    <li>
+      104: Calculate the hyperbolic arc tangent of the value of the current
+      cell (measured in radians) and replace. Array[n] = arctanh(Array[n])
+    </li>
+    <li>
+      105: Convert the value of the current cell (measured in radians) to 
+      degrees and replace.
+    </li>
+    <li>
+      106: Convert the value of the current cell (measured in degrees) to 
+      radians and replace.
+    </li>
+    <li>
+      107: Raise the value of the current cell (n) to e, and store the 
+      value in the current cell. Array[n] = Array[n]^e
+    </li>
+    <li>
+      108: Raise e to the value of the current cell (n), and store the 
+      value in the current cell. Array[n] = e^Array[n]
+    </li>
+    <li>
+      109: Raise 10 to the value of the current cell (n), and store the 
+      value in the current cell. Array[n] = 10^Array[n]
+    </li>
+    <li>
+      110: Raise the value of the current cell (n) to the value of (n+1)th 
+      cell, and store the value in the current cell. Array[n] = 
+      Array[n]^Array[n+1]
+    </li>
+    <li>
+      111: Calculate the n-th root of the value of the current cell (n) 
+      where n is the value of (n+1)th cell, and store the value in the 
+      current cell. Array[n] = Array[n]^(1/Array[n+1])
+    </li>
+    <li>
+      112: Calculate the error function of the value of the current cell 
+      and replace. Array[n] = erf(Array[n])
+    </li>
+    <li>
+      113: Calculate the complementary error function of the value of the 
+      current cell and replace. Array[n] = erfc(Array[n])
+    </li>
+    <li>
+      114: Calculate the factorial of the integer value of the current cell
+      (if the integer value is positive) and replace. Array[n] = 
+      factorial(Array[n])
+    </li>
+    <li>
+      115: Calculate the factorial of the absolute integer value of the 
+      current cell and replace. Array[n] = factorial(abs(Array[n]))
+    </li>
+    <li>
+      116: Calculate the Euclidean distance (hypotenuse) value of the 
+      current cell (n) to the value of (n+1)th cell, and store the value in
+      the current cell. Array[n] = sqrt(Array[n]*Array[n] + 
+      Array[n+1]*Array[n+1])
+    </li>
+    <li>
+      117: Calculate the logarithm value of the current cell (n) to the 
+      base of the value of (n+1)th cell, and store the value in the current
+      cell. Array[n] = log(Array[n], base=Array[n+1])
+    </li>
+    <li>
+      144: Divide current cell value by 10.
+    </li>
+    <li>
+      145: Multiply current cell value by 10.
+    </li>
+    <li>
+      146: Add all cell values from (n+1)th cell to the end of the tape and
+      store result in current cell (n). Array[n] = sum(Array[n+1:])
+    </li>
+    <li>
+      147: Add all cell values from n-th cell to the end of the tape and 
+      store result in current cell (n). Array[n] = sum(Array[n:])
+    </li>
+    <li>
+      148: Add all cell values from first cell to the cell before n-th cell
+      and store result in current cell (n). Array[n] = sum(Array[0:n])
+    </li>
+    <li>
+      149: Add all cell values from first cell to n-th cell (inclusive) and
+      store result in current cell (n). Array[n] = sum(Array[0:n+1])
+    </li>
+    <li>
+      150: Add all cell values in the tape and store result in current cell
+      (n). Array[n] = sum(Array[:])
+    </li>
+    <li>
+      151: Average all cell values from (n+1)th cell to the end of the tape
+      and store result in current cell (n). Array[n] = average(Array[n+1:])
+    </li>
+    <li>
+      152: Average all cell values from n-th cell to the end of the tape 
+      and store result in current cell (n). Array[n] = average(Array[n:])
+    </li>
+    <li>
+      153: Average all cell values from first cell to the cell before n-th 
+      cell and store result in current cell (n). Array[n] = 
+      average(Array[0:n])
+    </li>
+    <li>
+      154: Average all cell values from first cell to n-th cell (inclusive)
+      and store result in current cell (n). Array[n] = 
+      average(Array[0:n+1])
+    </li>
+    <li>
+      155: Half every cell value in tape.
+    </li>
+    <li>
+      156: Double every cell value in tape.
+    </li>
+    <li>
+      157: Divide every cell value in tape by 10.
+    </li>
+    <li>
+      158: Multiply every cell value in tape by 10.
+    </li>
+    <li>
+      159: Divide every cell value in tape by 100.
+    </li>
+    <li>
+      160: Multiply every cell value in tape by 100.
+    </li>
+    <li>
+      165: Multiply every cell value in tape by -1.
+    </li>
+    <li>
+      166: Square all the cell values in the cells after the current cell 
+      (current cell value is not affected).
+    </li>
+    <li>
+      167: Square all the cell values in the cells before the current cell 
+      (current cell value is not affected).
+    </li>
+    <li>
+      168: Square every cell value in tape.
+    </li>
+    <li>
+      169: Square root every cell value in tape.
+    </li>
+    <li>
+      170: Square root all the cell values in the cells after the current 
+      cell (current cell value is not affected).
+    </li>
+    <li>
+      171: Square root all the cell values in the cells before the current 
+      cell (current cell value is not affected).
+    </li>
+    <li>
+      196: Set the value of the current cell to the standard deviation of 
+      the values in the tape.
+    </li>
+    <li>
+      197: Set the value of the current cell to the geometric mean of the 
+      values in the tape.
+    </li>
+    <li>
+      198: Set the value of the current cell to the harmonic mean of the 
+      values in the tape.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="output_IO"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">output_IO</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#output_IO">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Using output list as output storage or secondary tape, write and 
+  accept values from output list.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      021: Output current tape cell location and append to the end of the 
+      output list.
+    </li>
+    <li>
+      022: Output current source location and append to the end of the 
+      output list.
+    </li>
+    <li>
+      037: Replace the current tape cell value with the last value of the 
+      output list, and delete the last value from the output list.
+    </li>
+    <li>
+      038: Replace the current tape cell value with the last value of the 
+      output list, without deleting the last value from the output list.
+    </li>
+    <li>
+      039: Replace the current tape cell value with the first value of the 
+      output list, and delete the first value from the output list.
+    </li>
+    <li>
+      040: Replace the current tape cell value with the first value of the 
+      output list, without deleting the first value from the output list.
+    </li>
+    <li>
+      041: Remove first value from the output list.
+    </li>
+    <li>
+      042: Remove last value from the output list.
+    </li>
+    <li>
+      172: Append all the cell values in the cells after the current cell 
+      to the end of output list (current cell is not appended to output 
+      list).
+    </li>
+    <li>
+      173: Append all the cell values in the cells after the current cell 
+      to the end of output list (current cell is not appended to output 
+      list), then set the values of all the cells after the current cell to
+      &quot;0&quot; (current cell value is not affected).
+    </li>
+    <li>
+      174: Append all the cell values in the cells to the end of output 
+      list.
+    </li>
+    <li>
+      175: Append all the cell values in the cells to the end of output 
+      list and set the tape to &quot;0&quot;.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="logic"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">logic</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#logic">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Logical operations</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      120: AND operator: Given positive numbers (&gt;0) as True and zero or
+      negative numbers (&lt;=0) as False, store Array[current] AND 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True.
+    </li>
+    <li>
+      121: OR operator: Given positive numbers (&gt;0) as True and zero or 
+      negative numbers (&lt;=0) as False, store Array[current] OR 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True.
+    </li>
+    <li>
+      122: NOT operator: Given positive numbers (&gt;0) as True and zero or
+      negative numbers (&lt;=0) as False, store NOT Array[current] in the 
+      current cell (Array[current]) where &quot;0&quot; is False and 
+      &quot;1&quot; is True.
+    </li>
+    <li>
+      123: LESS-THAN operator: Store Array[current] &lt; Array[current+1] 
+      in the current cell (Array[current]) where &quot;0&quot; is False and
+      &quot;1&quot; is True.
+    </li>
+    <li>
+      124: MORE-THAN operator: Store Array[current] &gt; Array[current+1] 
+      in the current cell (Array[current]) where &quot;0&quot; is False and
+      &quot;1&quot; is True.
+    </li>
+    <li>
+      125: EQUAL operator: Store Array[current] = Array[current+1] in the 
+      current cell (Array[current]) where &quot;0&quot; is False and 
+      &quot;1&quot; is True.
+    </li>
+    <li>
+      126: NOT-EQUAL operator: Store Array[current] != Array[current+1] in 
+      the current cell (Array[current]) where &quot;0&quot; is False and 
+      &quot;1&quot; is True.
+    </li>
+    <li>
+      127: LESS-THAN-OR-EQUAL operator: Store Array[current] &lt;= 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True.
+    </li>
+    <li>
+      128: MORE-THAN-OR-EQUAL operator: Store Array[current] =&gt; 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True.
+    </li>
+    <li>
+      129: NAND operator: Given positive numbers (&gt;0) as True and zero 
+      or negative numbers (&lt;=0) as False, store Array[current] NAND 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True. Array[current] NAND
+      Array[current+1] is equivalent to NOT (Array[current] AND 
+      Array[current+1])
+    </li>
+    <li>
+      130: NOR operator: Given positive numbers (&gt;0) as True and zero or
+      negative numbers (&lt;=0) as False, store Array[current] NOR 
+      Array[current+1] in the current cell (Array[current]) where 
+      &quot;0&quot; is False and &quot;1&quot; is True. Array[current] NOR 
+      Array[current+1] is equivalent to NOT (Array[current] OR 
+      Array[current+1])
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="flipping"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">flipping</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#flipping">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Flipping of execution elements.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      046: Flip the tape. The original first cell becomes the last cell but
+      the tape pointer does not flip in location.
+    </li>
+    <li>
+      047: Flip the output list.
+    </li>
+    <li>
+      048: Flip the instruction list (source) but the source pointer does 
+      not flip in location.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="input_IO"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">input_IO</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#input_IO">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Write to and accept values from input list.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      064: Writes the first value of the input list into the current cell 
+      and without removing the value from the input list. If input list is 
+      empty, &quot;0&quot; will be written.
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="tape_manipulate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tape_manipulate</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#tape_manipulate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Manipulating the tape.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      081: Swap the value of the current cell (n) and (n+1)th cell.
+    </li>
+    <li>
+      133: Flip the tape from the cell after the current cell to the end of
+      the tape (temporarily breaking the circularity of the tape).
+    </li>
+    <li>
+      161: Cut the tape before the current cell (n) and append it to the 
+      end of the tape and set tape pointer to 0. 
+      &lt;---A---&gt;n&lt;---B---&gt; ==&gt; 
+      n&lt;---B---&gt;&lt;---A---&gt;
+    </li>
+    <li>
+      162: Cut the tape after the current cell (n) and append it to the 
+      start of the tape and set tape pointer to the last cell. 
+      &lt;---A---&gt;n&lt;---B---&gt; ==&gt; 
+      &lt;---B---&gt;&lt;---A---&gt;n
+    </li>
+    <li>
+      163: Cut out the current cell and append it to the front of the tape 
+      and set tape pointer to 0. &lt;---A---&gt;n&lt;---B---&gt; ==&gt; 
+      n&lt;---A---&gt;&lt;---B---&gt;
+    </li>
+    <li>
+      164: Cut out the current cell and append it to the end of the tape 
+      and set tape pointer to the last cell. 
+      &lt;---A---&gt;n&lt;---B---&gt; ==&gt; 
+      &lt;---A---&gt;&lt;---B---&gt;n
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="register_IO"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">register_IO</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#register_IO">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read from and write to register from tape cell.</p>
+  <p>Instructions handled:</p>
+  <ul>
+    <li>
+      201: Store value of current tape cell to register #1
+    </li>
+    <li>
+      202: Store value of current tape cell to register #2
+    </li>
+    <li>
+      203: Store value of current tape cell to register #3
+    </li>
+    <li>
+      204: Store value of current tape cell to register #4
+    </li>
+    <li>
+      205: Store value of current tape cell to register #5
+    </li>
+    <li>
+      206: Store value of current tape cell to register #6
+    </li>
+    <li>
+      207: Store value of current tape cell to register #7
+    </li>
+    <li>
+      208: Store value of current tape cell to register #8
+    </li>
+    <li>
+      209: Store value of current tape cell to register #9
+    </li>
+    <li>
+      210: Store value of current tape cell to register #10
+    </li>
+    <li>
+      211: Store value of current tape cell to register #11
+    </li>
+    <li>
+      212: Store value of current tape cell to register #12
+    </li>
+    <li>
+      213: Store value of current tape cell to register #13
+    </li>
+    <li>
+      214: Store value of current tape cell to register #14
+    </li>
+    <li>
+      215: Store value of current tape cell to register #15
+    </li>
+    <li>
+      216: Store value of current tape cell to register #16
+    </li>
+    <li>
+      217: Store value of current tape cell to register #17
+    </li>
+    <li>
+      218: Store value of current tape cell to register #18
+    </li>
+    <li>
+      219: Store value of current tape cell to register #19
+    </li>
+    <li>
+      220: Store value of current tape cell to register #20
+    </li>
+    <li>
+      221: Store value of current tape cell to register #21
+    </li>
+    <li>
+      222: Store value of current tape cell to register #22
+    </li>
+    <li>
+      223: Store value of current tape cell to register #23
+    </li>
+    <li>
+      224: Store value of current tape cell to register #24
+    </li>
+    <li>
+      225: Store value of current tape cell to register #25
+    </li>
+    <li>
+      226: Store value of current tape cell to register #26
+    </li>
+    <li>
+      227: Store value of current tape cell to register #27
+    </li>
+    <li>
+      228: Store value of current tape cell to register #28
+    </li>
+    <li>
+      229: Store value of current tape cell to register #29
+    </li>
+    <li>
+      230: Store value of current tape cell to register #30
+    </li>
+    <li>
+      231: Store value of current tape cell to register #31
+    </li>
+    <li>
+      232: Store value of current tape cell to register #32
+    </li>
+    <li>
+      233: Store value of current tape cell to register #33
+    </li>
+    <li>
+      234: Store value of current tape cell to register #34
+    </li>
+    <li>
+      235: Store value of current tape cell to register #35
+    </li>
+    <li>
+      236: Store value of current tape cell to register #36
+    </li>
+    <li>
+      237: Store value of current tape cell to register #37
+    </li>
+    <li>
+      238: Store value of current tape cell to register #38
+    </li>
+    <li>
+      239: Store value of current tape cell to register #39
+    </li>
+    <li>
+      240: Store value of current tape cell to register #40
+    </li>
+    <li>
+      241: Store value of current tape cell to register #41
+    </li>
+    <li>
+      242: Store value of current tape cell to register #42
+    </li>
+    <li>
+      243: Store value of current tape cell to register #43
+    </li>
+    <li>
+      244: Store value of current tape cell to register #44
+    </li>
+    <li>
+      245: Store value of current tape cell to register #45
+    </li>
+    <li>
+      246: Store value of current tape cell to register #46
+    </li>
+    <li>
+      247: Store value of current tape cell to register #47
+    </li>
+    <li>
+      248: Store value of current tape cell to register #48
+    </li>
+    <li>
+      249: Store value of current tape cell to register #49
+    </li>
+    <li>
+      250: Store value of current tape cell to register #50
+    </li>
+    <li>
+      251: Store value of current tape cell to register #51
+    </li>
+    <li>
+      252: Store value of current tape cell to register #52
+    </li>
+    <li>
+      253: Store value of current tape cell to register #53
+    </li>
+    <li>
+      254: Store value of current tape cell to register #54
+    </li>
+    <li>
+      255: Store value of current tape cell to register #55
+    </li>
+    <li>
+      256: Store value of current tape cell to register #56
+    </li>
+    <li>
+      257: Store value of current tape cell to register #57
+    </li>
+    <li>
+      258: Store value of current tape cell to register #58
+    </li>
+    <li>
+      259: Store value of current tape cell to register #59
+    </li>
+    <li>
+      260: Store value of current tape cell to register #60
+    </li>
+    <li>
+      261: Store value of current tape cell to register #61
+    </li>
+    <li>
+      262: Store value of current tape cell to register #62
+    </li>
+    <li>
+      263: Store value of current tape cell to register #63
+    </li>
+    <li>
+      264: Store value of current tape cell to register #64
+    </li>
+    <li>
+      265: Store value of current tape cell to register #65
+    </li>
+    <li>
+      266: Store value of current tape cell to register #66
+    </li>
+    <li>
+      267: Store value of current tape cell to register #67
+    </li>
+    <li>
+      268: Store value of current tape cell to register #68
+    </li>
+    <li>
+      269: Store value of current tape cell to register #69
+    </li>
+    <li>
+      270: Store value of current tape cell to register #70
+    </li>
+    <li>
+      271: Store value of current tape cell to register #71
+    </li>
+    <li>
+      272: Store value of current tape cell to register #72
+    </li>
+    <li>
+      273: Store value of current tape cell to register #73
+    </li>
+    <li>
+      274: Store value of current tape cell to register #74
+    </li>
+    <li>
+      275: Store value of current tape cell to register #75
+    </li>
+    <li>
+      276: Store value of current tape cell to register #76
+    </li>
+    <li>
+      277: Store value of current tape cell to register #77
+    </li>
+    <li>
+      278: Store value of current tape cell to register #78
+    </li>
+    <li>
+      279: Store value of current tape cell to register #79
+    </li>
+    <li>
+      280: Store value of current tape cell to register #80
+    </li>
+    <li>
+      281: Store value of current tape cell to register #81
+    </li>
+    <li>
+      282: Store value of current tape cell to register #82
+    </li>
+    <li>
+      283: Store value of current tape cell to register #83
+    </li>
+    <li>
+      284: Store value of current tape cell to register #84
+    </li>
+    <li>
+      285: Store value of current tape cell to register #85
+    </li>
+    <li>
+      286: Store value of current tape cell to register #86
+    </li>
+    <li>
+      287: Store value of current tape cell to register #87
+    </li>
+    <li>
+      288: Store value of current tape cell to register #88
+    </li>
+    <li>
+      289: Store value of current tape cell to register #89
+    </li>
+    <li>
+      290: Store value of current tape cell to register #90
+    </li>
+    <li>
+      291: Store value of current tape cell to register #91
+    </li>
+    <li>
+      292: Store value of current tape cell to register #92
+    </li>
+    <li>
+      293: Store value of current tape cell to register #93
+    </li>
+    <li>
+      294: Store value of current tape cell to register #94
+    </li>
+    <li>
+      295: Store value of current tape cell to register #95
+    </li>
+    <li>
+      296: Store value of current tape cell to register #96
+    </li>
+    <li>
+      297: Store value of current tape cell to register #97
+    </li>
+    <li>
+      298: Store value of current tape cell to register #98
+    </li>
+    <li>
+      299: Store value of current tape cell to register #99
+    </li>
+    <li>
+      301: Put value from register #1 to current tape cell
+    </li>
+    <li>
+      302: Put value from register #2 to current tape cell
+    </li>
+    <li>
+      303: Put value from register #3 to current tape cell
+    </li>
+    <li>
+      304: Put value from register #4 to current tape cell
+    </li>
+    <li>
+      305: Put value from register #5 to current tape cell
+    </li>
+    <li>
+      306: Put value from register #6 to current tape cell
+    </li>
+    <li>
+      307: Put value from register #7 to current tape cell
+    </li>
+    <li>
+      308: Put value from register #8 to current tape cell
+    </li>
+    <li>
+      309: Put value from register #9 to current tape cell
+    </li>
+    <li>
+      310: Put value from register #10 to current tape cell
+    </li>
+    <li>
+      311: Put value from register #11 to current tape cell
+    </li>
+    <li>
+      312: Put value from register #12 to current tape cell
+    </li>
+    <li>
+      313: Put value from register #13 to current tape cell
+    </li>
+    <li>
+      314: Put value from register #14 to current tape cell
+    </li>
+    <li>
+      315: Put value from register #15 to current tape cell
+    </li>
+    <li>
+      316: Put value from register #16 to current tape cell
+    </li>
+    <li>
+      317: Put value from register #17 to current tape cell
+    </li>
+    <li>
+      318: Put value from register #18 to current tape cell
+    </li>
+    <li>
+      319: Put value from register #19 to current tape cell
+    </li>
+    <li>
+      320: Put value from register #20 to current tape cell
+    </li>
+    <li>
+      321: Put value from register #21 to current tape cell
+    </li>
+    <li>
+      322: Put value from register #22 to current tape cell
+    </li>
+    <li>
+      323: Put value from register #23 to current tape cell
+    </li>
+    <li>
+      324: Put value from register #24 to current tape cell
+    </li>
+    <li>
+      325: Put value from register #25 to current tape cell
+    </li>
+    <li>
+      326: Put value from register #26 to current tape cell
+    </li>
+    <li>
+      327: Put value from register #27 to current tape cell
+    </li>
+    <li>
+      328: Put value from register #28 to current tape cell
+    </li>
+    <li>
+      329: Put value from register #29 to current tape cell
+    </li>
+    <li>
+      330: Put value from register #30 to current tape cell
+    </li>
+    <li>
+      331: Put value from register #31 to current tape cell
+    </li>
+    <li>
+      332: Put value from register #32 to current tape cell
+    </li>
+    <li>
+      333: Put value from register #33 to current tape cell
+    </li>
+    <li>
+      334: Put value from register #34 to current tape cell
+    </li>
+    <li>
+      335: Put value from register #35 to current tape cell
+    </li>
+    <li>
+      336: Put value from register #36 to current tape cell
+    </li>
+    <li>
+      337: Put value from register #37 to current tape cell
+    </li>
+    <li>
+      338: Put value from register #38 to current tape cell
+    </li>
+    <li>
+      339: Put value from register #39 to current tape cell
+    </li>
+    <li>
+      340: Put value from register #40 to current tape cell
+    </li>
+    <li>
+      341: Put value from register #41 to current tape cell
+    </li>
+    <li>
+      342: Put value from register #42 to current tape cell
+    </li>
+    <li>
+      343: Put value from register #43 to current tape cell
+    </li>
+    <li>
+      344: Put value from register #44 to current tape cell
+    </li>
+    <li>
+      345: Put value from register #45 to current tape cell
+    </li>
+    <li>
+      346: Put value from register #46 to current tape cell
+    </li>
+    <li>
+      347: Put value from register #47 to current tape cell
+    </li>
+    <li>
+      348: Put value from register #48 to current tape cell
+    </li>
+    <li>
+      349: Put value from register #49 to current tape cell
+    </li>
+    <li>
+      350: Put value from register #50 to current tape cell
+    </li>
+    <li>
+      351: Put value from register #51 to current tape cell
+    </li>
+    <li>
+      352: Put value from register #52 to current tape cell
+    </li>
+    <li>
+      353: Put value from register #53 to current tape cell
+    </li>
+    <li>
+      354: Put value from register #54 to current tape cell
+    </li>
+    <li>
+      355: Put value from register #55 to current tape cell
+    </li>
+    <li>
+      356: Put value from register #56 to current tape cell
+    </li>
+    <li>
+      357: Put value from register #57 to current tape cell
+    </li>
+    <li>
+      358: Put value from register #58 to current tape cell
+    </li>
+    <li>
+      359: Put value from register #59 to current tape cell
+    </li>
+    <li>
+      360: Put value from register #60 to current tape cell
+    </li>
+    <li>
+      361: Put value from register #61 to current tape cell
+    </li>
+    <li>
+      362: Put value from register #62 to current tape cell
+    </li>
+    <li>
+      363: Put value from register #63 to current tape cell
+    </li>
+    <li>
+      364: Put value from register #64 to current tape cell
+    </li>
+    <li>
+      365: Put value from register #65 to current tape cell
+    </li>
+    <li>
+      366: Put value from register #66 to current tape cell
+    </li>
+    <li>
+      367: Put value from register #67 to current tape cell
+    </li>
+    <li>
+      368: Put value from register #68 to current tape cell
+    </li>
+    <li>
+      369: Put value from register #69 to current tape cell
+    </li>
+    <li>
+      370: Put value from register #70 to current tape cell
+    </li>
+    <li>
+      371: Put value from register #71 to current tape cell
+    </li>
+    <li>
+      372: Put value from register #72 to current tape cell
+    </li>
+    <li>
+      373: Put value from register #73 to current tape cell
+    </li>
+    <li>
+      374: Put value from register #74 to current tape cell
+    </li>
+    <li>
+      375: Put value from register #75 to current tape cell
+    </li>
+    <li>
+      376: Put value from register #76 to current tape cell
+    </li>
+    <li>
+      377: Put value from register #77 to current tape cell
+    </li>
+    <li>
+      378: Put value from register #78 to current tape cell
+    </li>
+    <li>
+      379: Put value from register #79 to current tape cell
+    </li>
+    <li>
+      380: Put value from register #80 to current tape cell
+    </li>
+    <li>
+      381: Put value from register #81 to current tape cell
+    </li>
+    <li>
+      382: Put value from register #82 to current tape cell
+    </li>
+    <li>
+      383: Put value from register #83 to current tape cell
+    </li>
+    <li>
+      384: Put value from register #84 to current tape cell
+    </li>
+    <li>
+      385: Put value from register #85 to current tape cell
+    </li>
+    <li>
+      386: Put value from register #86 to current tape cell
+    </li>
+    <li>
+      387: Put value from register #87 to current tape cell
+    </li>
+    <li>
+      388: Put value from register #88 to current tape cell
+    </li>
+    <li>
+      389: Put value from register #89 to current tape cell
+    </li>
+    <li>
+      390: Put value from register #90 to current tape cell
+    </li>
+    <li>
+      391: Put value from register #91 to current tape cell
+    </li>
+    <li>
+      392: Put value from register #92 to current tape cell
+    </li>
+    <li>
+      393: Put value from register #93 to current tape cell
+    </li>
+    <li>
+      394: Put value from register #94 to current tape cell
+    </li>
+    <li>
+      395: Put value from register #95 to current tape cell
+    </li>
+    <li>
+      396: Put value from register #96 to current tape cell
+    </li>
+    <li>
+      397: Put value from register #97 to current tape cell
+    </li>
+    <li>
+      398: Put value from register #98 to current tape cell
+    </li>
+    <li>
+      399: Put value from register #99 to current tape cell
+    </li>
+    <li>
+      501: Clear register #1 (set to 0)
+    </li>
+    <li>
+      502: Clear register #2 (set to 0)
+    </li>
+    <li>
+      503: Clear register #3 (set to 0)
+    </li>
+    <li>
+      504: Clear register #4 (set to 0)
+    </li>
+    <li>
+      505: Clear register #5 (set to 0)
+    </li>
+    <li>
+      506: Clear register #6 (set to 0)
+    </li>
+    <li>
+      507: Clear register #7 (set to 0)
+    </li>
+    <li>
+      508: Clear register #8 (set to 0)
+    </li>
+    <li>
+      509: Clear register #9 (set to 0)
+    </li>
+    <li>
+      510: Clear register #10 (set to 0)
+    </li>
+    <li>
+      511: Clear register #11 (set to 0)
+    </li>
+    <li>
+      512: Clear register #12 (set to 0)
+    </li>
+    <li>
+      513: Clear register #13 (set to 0)
+    </li>
+    <li>
+      514: Clear register #14 (set to 0)
+    </li>
+    <li>
+      515: Clear register #15 (set to 0)
+    </li>
+    <li>
+      516: Clear register #16 (set to 0)
+    </li>
+    <li>
+      517: Clear register #17 (set to 0)
+    </li>
+    <li>
+      518: Clear register #18 (set to 0)
+    </li>
+    <li>
+      519: Clear register #19 (set to 0)
+    </li>
+    <li>
+      520: Clear register #20 (set to 0)
+    </li>
+    <li>
+      521: Clear register #21 (set to 0)
+    </li>
+    <li>
+      522: Clear register #22 (set to 0)
+    </li>
+    <li>
+      523: Clear register #23 (set to 0)
+    </li>
+    <li>
+      524: Clear register #24 (set to 0)
+    </li>
+    <li>
+      525: Clear register #25 (set to 0)
+    </li>
+    <li>
+      526: Clear register #26 (set to 0)
+    </li>
+    <li>
+      527: Clear register #27 (set to 0)
+    </li>
+    <li>
+      528: Clear register #28 (set to 0)
+    </li>
+    <li>
+      529: Clear register #29 (set to 0)
+    </li>
+    <li>
+      530: Clear register #30 (set to 0)
+    </li>
+    <li>
+      531: Clear register #31 (set to 0)
+    </li>
+    <li>
+      532: Clear register #32 (set to 0)
+    </li>
+    <li>
+      533: Clear register #33 (set to 0)
+    </li>
+    <li>
+      534: Clear register #34 (set to 0)
+    </li>
+    <li>
+      535: Clear register #35 (set to 0)
+    </li>
+    <li>
+      536: Clear register #36 (set to 0)
+    </li>
+    <li>
+      537: Clear register #37 (set to 0)
+    </li>
+    <li>
+      538: Clear register #38 (set to 0)
+    </li>
+    <li>
+      539: Clear register #39 (set to 0)
+    </li>
+    <li>
+      540: Clear register #40 (set to 0)
+    </li>
+    <li>
+      541: Clear register #41 (set to 0)
+    </li>
+    <li>
+      542: Clear register #42 (set to 0)
+    </li>
+    <li>
+      543: Clear register #43 (set to 0)
+    </li>
+    <li>
+      544: Clear register #44 (set to 0)
+    </li>
+    <li>
+      545: Clear register #45 (set to 0)
+    </li>
+    <li>
+      546: Clear register #46 (set to 0)
+    </li>
+    <li>
+      547: Clear register #47 (set to 0)
+    </li>
+    <li>
+      548: Clear register #48 (set to 0)
+    </li>
+    <li>
+      549: Clear register #49 (set to 0)
+    </li>
+    <li>
+      550: Clear register #50 (set to 0)
+    </li>
+    <li>
+      551: Clear register #51 (set to 0)
+    </li>
+    <li>
+      552: Clear register #52 (set to 0)
+    </li>
+    <li>
+      553: Clear register #53 (set to 0)
+    </li>
+    <li>
+      554: Clear register #54 (set to 0)
+    </li>
+    <li>
+      555: Clear register #55 (set to 0)
+    </li>
+    <li>
+      556: Clear register #56 (set to 0)
+    </li>
+    <li>
+      557: Clear register #57 (set to 0)
+    </li>
+    <li>
+      558: Clear register #58 (set to 0)
+    </li>
+    <li>
+      559: Clear register #59 (set to 0)
+    </li>
+    <li>
+      560: Clear register #60 (set to 0)
+    </li>
+    <li>
+      561: Clear register #61 (set to 0)
+    </li>
+    <li>
+      562: Clear register #62 (set to 0)
+    </li>
+    <li>
+      563: Clear register #63 (set to 0)
+    </li>
+    <li>
+      564: Clear register #64 (set to 0)
+    </li>
+    <li>
+      565: Clear register #65 (set to 0)
+    </li>
+    <li>
+      566: Clear register #66 (set to 0)
+    </li>
+    <li>
+      567: Clear register #67 (set to 0)
+    </li>
+    <li>
+      568: Clear register #68 (set to 0)
+    </li>
+    <li>
+      569: Clear register #69 (set to 0)
+    </li>
+    <li>
+      570: Clear register #70 (set to 0)
+    </li>
+    <li>
+      571: Clear register #71 (set to 0)
+    </li>
+    <li>
+      572: Clear register #72 (set to 0)
+    </li>
+    <li>
+      573: Clear register #73 (set to 0)
+    </li>
+    <li>
+      574: Clear register #74 (set to 0)
+    </li>
+    <li>
+      575: Clear register #75 (set to 0)
+    </li>
+    <li>
+      576: Clear register #76 (set to 0)
+    </li>
+    <li>
+      577: Clear register #77 (set to 0)
+    </li>
+    <li>
+      578: Clear register #78 (set to 0)
+    </li>
+    <li>
+      579: Clear register #79 (set to 0)
+    </li>
+    <li>
+      580: Clear register #80 (set to 0)
+    </li>
+    <li>
+      581: Clear register #81 (set to 0)
+    </li>
+    <li>
+      582: Clear register #82 (set to 0)
+    </li>
+    <li>
+      583: Clear register #83 (set to 0)
+    </li>
+    <li>
+      584: Clear register #84 (set to 0)
+    </li>
+    <li>
+      585: Clear register #85 (set to 0)
+    </li>
+    <li>
+      586: Clear register #86 (set to 0)
+    </li>
+    <li>
+      587: Clear register #87 (set to 0)
+    </li>
+    <li>
+      588: Clear register #88 (set to 0)
+    </li>
+    <li>
+      589: Clear register #89 (set to 0)
+    </li>
+    <li>
+      590: Clear register #90 (set to 0)
+    </li>
+    <li>
+      591: Clear register #91 (set to 0)
+    </li>
+    <li>
+      592: Clear register #92 (set to 0)
+    </li>
+    <li>
+      593: Clear register #93 (set to 0)
+    </li>
+    <li>
+      594: Clear register #94 (set to 0)
+    </li>
+    <li>
+      595: Clear register #95 (set to 0)
+    </li>
+    <li>
+      596: Clear register #96 (set to 0)
+    </li>
+    <li>
+      597: Clear register #97 (set to 0)
+    </li>
+    <li>
+      598: Clear register #98 (set to 0)
+    </li>
+    <li>
+      599: Clear register #99 (set to 0)
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="jump_identifier"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">jump_identifier</span>(<span class="sig-arg">array</span>,
+        <span class="sig-arg">apointer</span>,
+        <span class="sig-arg">inputdata</span>,
+        <span class="sig-arg">output</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">spointer</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#jump_identifier">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Defines jump location within the source tape. These instructions acts 
+  as pure identifiers and do not perform any operations.</p>
+  <p>Instructions handled: 200, 300, 400, 500, 600, 700, 800, 900</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="source_filter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">source_filter</span>(<span class="sig-arg">source</span>,
+        <span class="sig-arg">sfilter</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">007</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">008</code><code class="variable-quote">'</code><code class="variable-ellipsis">...</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#source_filter">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Checks a Ragaraja source code string and removes any instructions are 
+  not found in the filter</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>source</code></strong> (string) - Ragaraja source code string</li>
+        <li><strong class="pname"><code>sfilter</code></strong> - list of instructions allowed. Default = ragaraja_v1. Other 
+          defined list are nBF_instructions (NucleotideBF) and 
+          tested_ragaraja_instructions.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Ragaraja source code string</dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="nBF_to_Ragaraja"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nBF_to_Ragaraja</span>(<span class="sig-arg">source</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#nBF_to_Ragaraja">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts NucleotideBF (nBF) source code to Ragaraja source code</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>source</code></strong> (string) - NucleotideBF (nBF) source code</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Ragaraja source code string</dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="activate_version"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">activate_version</span>(<span class="sig-arg">version</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">instructions</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.ragaraja-pysrc.html#activate_version">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to set instructions for usage, based on version numbers. 
+  Allowable versions are:</p>
+  <ul>
+    <li>
+      0.1: Using NucleotideBF instructions.
+    </li>
+    <li>
+      0: User-defined set of instructions to be used.
+    </li>
+    <li>
+      1: As defined in Ling, MHT. 2012. An Artificial Life Simulation 
+      Library Based on Genetic Algorithm, 3-Character Genetic Code and 
+      Biological Hierarchy. The Python Papers 7: 5.
+    </li>
+    <li>
+      99: All currently tested instructions.
+    </li>
+  </ul>
+  <p>Instruction set for <b>version 0.1</b> is ['000', '004', '008', '011',
+  '020', '050', '051', '052', '053', '054', '055', '056', '057', '058', 
+  '059', '060']</p>
+  <p>Instruction set for <b>version 1</b> is ['000', '001', '002', '003', 
+  '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', 
+  '016', '017', '018', '019', '020', '021', '022', '023', '024', '025', 
+  '032', '033', '034', '035', '036', '037', '038', '039', '040', '041', 
+  '042', '043', '044', '045', '046', '047', '050', '051', '052', '053', 
+  '054', '055', '056', '057', '058', '059', '060', '061', '062', '063', 
+  '064', '065', '066', '067', '068', '069', '070', '071', '072', '073', 
+  '074', '075', '076', '077', '078', '079', '080', '081', '084', '085', 
+  '086', '087', '088', '089', '090', '091', '092', '093', '094', '095', 
+  '096', '097', '098', '099', '100', '101', '102', '103', '104', '105', 
+  '106', '107', '108', '109', '110', '111', '112', '113', '114', '115', 
+  '116', '117', '120', '121', '122', '123', '124', '125', '126', '127', 
+  '128', '140', '141', '142', '143', '144', '145', '146', '147', '150', 
+  '151', '152', '153', '154', '155', '156', '157', '158', '159', '160', 
+  '161', '162', '163', '164', '165', '166', '167', '168', '169', '170', 
+  '171', '189', '196', '197', '198', '201', '202', '203', '204', '205', 
+  '206', '207', '208', '209', '210', '211', '212', '213', '214', '215', 
+  '216', '217', '218', '219', '220', '221', '222', '223', '224', '225', 
+  '226', '227', '228', '229', '230', '231', '232', '233', '234', '235', 
+  '236', '237', '238', '239', '240', '241', '242', '243', '244', '245', 
+  '246', '247', '248', '249', '250', '251', '252', '253', '254', '255', 
+  '256', '257', '258', '259', '260', '261', '262', '263', '264', '265', 
+  '266', '267', '268', '269', '270', '271', '272', '273', '274', '275', 
+  '276', '277', '278', '279', '280', '281', '282', '283', '284', '285', 
+  '286', '287', '288', '289', '290', '291', '292', '293', '294', '295', 
+  '296', '297', '298', '299', '301', '302', '303', '304', '305', '306', 
+  '307', '308', '309', '310', '311', '312', '313', '314', '315', '316', 
+  '317', '318', '319', '320', '321', '322', '323', '324', '325', '326', 
+  '327', '328', '329', '330', '331', '332', '333', '334', '335', '336', 
+  '337', '338', '339', '340', '341', '342', '343', '344', '345', '346', 
+  '347', '348', '349', '350', '351', '352', '353', '354', '355', '356', 
+  '357', '358', '359', '360', '361', '362', '363', '364', '365', '366', 
+  '367', '368', '369', '370', '371', '372', '373', '374', '375', '376', 
+  '377', '378', '379', '380', '381', '382', '383', '384', '385', '386', 
+  '387', '388', '389', '390', '391', '392', '393', '394', '395', '396', 
+  '397', '398', '399']</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>version</code></strong> - Define the version to activate. Default = 1.</li>
+        <li><strong class="pname"><code>instructions</code></strong> - User-defined set of instructions (as list of instructions in 
+          string) to be activated. This will only be activated when version
+          = 0.</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="register"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">register</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">[</code>0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+ 0<code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ragaraja"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ragaraja</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+{'000': forward, '001': tape_move, '002': tape_move, '003': tape_move,<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ '004': backward, '005': tape_move, '006': tape_move, '007': tape_move<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+, '008': increment, '009': accumulations, '010': accumulations, '011':<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ decrement, '012': accumulations, '013': accumulations, '014': loop_st<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+art, '015': loop_end, '016': tape_size, '017': tape_size, '018': tape_<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+size, '019': tape_size, '020': call_out, '021': output_IO, '022': outp<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+ut_IO, '023': source_move, '024': source_move, '025': source_move, '02<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+6': source_move, '027': source_move, '028': source_move, '029': not_us<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ragaraja_v1"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ragaraja_v1</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">007</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ragaraja_v2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">ragaraja_v2</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">007</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="tested_ragaraja_instructions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">tested_ragaraja_instructions</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">001</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">002</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">003</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">005</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">006</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">007</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="nBF_instructions"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">nBF_instructions</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">000</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">004</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">008</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">011</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">020</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">050</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">051</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">052</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

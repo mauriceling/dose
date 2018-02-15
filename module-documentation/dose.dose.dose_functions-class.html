@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.dose.dose_functions</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.dose-module.html">Module&nbsp;dose</a> ::
+        Class&nbsp;dose_functions
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.dose.dose_functions-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class dose_functions</h1><p class="nomargin-top"><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions">source&nbsp;code</a></span></p>
+<p>Abstract class to contain all of the simulation-specific functions 
+  (functions that vary with each simulation) that are to be defined / 
+  implemented by the user to be used in a simulation. This class should be 
+  inherited by every simulation to over-ride each function / method.</p>
+  <p>This set of functions / methods is consolidated functions / methods to
+  be over-ridden from genetic.Organism, genetic.Population, and 
+  dose_world.World classes. As a result, the functions / methods can be 
+  working at different levels - at the level of individual organisms, at 
+  the level of entire population(s), or at the level of the world.</p>
+  <p>Please see the examples in examples directory on its use.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#mutation_scheme" class="summary-sig-name">mutation_scheme</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">organism</span>)</span><br />
+      Method / function to trigger mutational events in each chromosome of 
+      the genome within an organism.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.mutation_scheme">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#prepopulation_control" class="summary-sig-name">prepopulation_control</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to trigger population control events before mating 
+      event in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.prepopulation_control">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#fitness" class="summary-sig-name">fitness</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to calculate the fitness score of each organism 
+      within the population(s).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.fitness">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#mating" class="summary-sig-name">mating</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to trigger mating events in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.mating">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#postpopulation_control" class="summary-sig-name">postpopulation_control</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to trigger population control events after mating 
+      event in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.postpopulation_control">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#generation_events" class="summary-sig-name">generation_events</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to trigger other defined events in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.generation_events">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#population_report" class="summary-sig-name">population_report</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Method / function to generate a text report of the population(s) 
+      and/or each organisms within the population at regular intervals, 
+      within the simulation, as determined by &quot;print_frequency&quot; 
+      in the simulation parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.population_report">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#organism_movement" class="summary-sig-name">organism_movement</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      organism_movement and organism_location are both methods / functions 
+      to execute movement of organisms within the world.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.organism_movement">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#organism_location" class="summary-sig-name">organism_location</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      organism_movement and organism_location are both methods / functions 
+      to execute movement of organisms within the world.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.organism_location">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#ecoregulate" class="summary-sig-name">ecoregulate</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Method / function for broad spectrum management of the entire 
+      ecosystem defined as World.ecosystem[x-axis][y-axis][z-axis] 
+      ['local_input'] and World.ecosystem[x-axis][y-axis][z-axis] 
+      ['local_output']).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.ecoregulate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#update_ecology" class="summary-sig-name">update_ecology</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>,
+        <span class="summary-sig-arg">z</span>)</span><br />
+      Method / function to process the input and output from the activities
+      of the organisms in the current ecological cell (defined as 
+      World.ecosystem[x-axis][y-axis][z-axis]['temporary_input'] and 
+      World.ecosystem[x-axis][y-axis][z-axis]['temporary_output']) into a 
+      local ecological cell condition (defined as World.ecosystem 
+      [x-axis][y-axis][z-axis]['local_input'] and World.ecosystem[x-axis] 
+      [y-axis][z-axis]['local_output']), and update the ecosystem (which is
+      essentially the ecological cell adjacent to 
+      World.ecosystem[x-axis][y-axis][z-axis]).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.update_ecology">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#update_local" class="summary-sig-name">update_local</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>,
+        <span class="summary-sig-arg">z</span>)</span><br />
+      Method / function to update local ecological cell condition (defined 
+      as World.ecosystem[x-axis][y-axis][z-axis]['local_input'] and 
+      World.ecosystem[x-axis][y-axis][z-axis]['local_output']) from the 
+      ecosystem (World.ecosystem [x-axis][y-axis][z-axis]['local_input'] 
+      and World.ecosystem[x-axis][y-axis][z-axis]['local_output'] of 
+      adjacent ecological cells).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.update_local">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#report" class="summary-sig-name">report</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Method / function to generate a text report of the ecosystem status 
+      (World.ecosystem) at regular intervals, within the simulation, as 
+      determined by &quot;print_frequency&quot; in the simulation 
+      parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.report">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#deployment_scheme" class="summary-sig-name">deployment_scheme</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Method / function to implement a user-specific / simulation- specific
+      deployment scheme used to deploy organisms into the World.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.deployment_scheme">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.dose.dose_functions-class.html#database_report" class="summary-sig-name">database_report</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">con</span>,
+        <span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">Population</span>,
+        <span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">generation_count</span>)</span><br />
+      Method / function to implement database logging of each organism in 
+      each population, and the ecosystem status.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.database_report">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="mutation_scheme"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mutation_scheme</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">organism</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.mutation_scheme">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to trigger mutational events in each chromosome of 
+  the genome within an organism. This function works at the level of 
+  individual organisms.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>organism</code></strong> - genetic.Organism object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="prepopulation_control"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">prepopulation_control</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.prepopulation_control">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to trigger population control events before mating 
+  event in each generation. For example, it can be used to simulate 
+  pre-puberty (childhood) death. This function works at the level of entire
+  population(s).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fitness"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fitness</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.fitness">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to calculate the fitness score of each organism 
+  within the population(s). This function works at the level of entire 
+  population(s) even though fitness calculation occurs at the organism 
+  level. The fitness of each organism may be stored in 
+  Organism.status['fitness'] and may be used by mating scheme.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mating"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mating</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.mating">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to trigger mating events in each generation. For 
+  example, it can be used to simulates mate choices and progeny size. A 
+  support function provided is genetic.crossover() function which generates
+  one random crossover operation between 2 chromosomes, to simulate meiosis
+  crossover. This function may also use one or more of the 
+  dose.filter_XXX() functions to select or choose suitable mates. This 
+  function works at the level of entire population(s), which means that 
+  this function will have</p>
+  <ul>
+    <li>
+      to manage mating scheme and progeny (offspring) generation for the 
+      entire population
+    </li>
+    <li>
+      add or replace offsprings into the respective population(s)
+    </li>
+    <li>
+      (optional) store identity of parent(s) as list; for example, [parentA
+      identity, parentB identity], in offspring's status['parents'] for 
+      ancestral tracing.
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="postpopulation_control"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">postpopulation_control</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.postpopulation_control">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to trigger population control events after mating 
+  event in each generation. For example, it can be used to simulate old-age
+  death. This function works at the level of entire population(s).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="generation_events"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generation_events</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.generation_events">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to trigger other defined events in each generation. 
+  For example, it can be used to simulate catastrophe or epidemic that does
+  not occur regularly, or simulates unusual occurrences of multiple 
+  mutation events. This function works at the level of entire 
+  population(s).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="population_report"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">population_report</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.population_report">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to generate a text report of the population(s) 
+  and/or each organisms within the population at regular intervals, within 
+  the simulation, as determined by &quot;print_frequency&quot; in the 
+  simulation parameters. This function works at the level of entire 
+  population(s).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Entire report of a population at a generation count in a string. 
+          To make it human-readable, usually the report string is both 
+          tab-delimited (for one organism) and newline-delimited (for 
+          entire population).</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="organism_movement"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">organism_movement</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.organism_movement">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>organism_movement and organism_location are both methods / functions 
+  to execute movement of organisms within the world. The semantic 
+  difference between organism_movement and organism_location is that 
+  organism_movement is generally used for short travels while 
+  organism_location is used for long travel. For example, organism_movement
+  can be used to simulate foraging or nomadic behaviour. This function 
+  works at both the level of entire population(s) and world.</p>
+  <p>For each organism to move, this function will have to</p>
+  <ul>
+    <li>
+      update the number of organisms in each 
+      World.ecosystem[x-axis][y-axis][z-axis]['organisms']
+    </li>
+    <li>
+      update the respective Organism's location in the status dictionary 
+      (Population[pop_name].agents[&lt;index&gt;].status['location'])
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="organism_location"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">organism_location</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.organism_location">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>organism_movement and organism_location are both methods / functions 
+  to execute movement of organisms within the world. The semantic 
+  difference between organism_movement and organism_location is that 
+  organism_movement is generally used for short travels while 
+  organism_location is used for long travel. For example, organism_movement
+  can be used to simulate long distance migration, such as air travel. This
+  function works at both the level of entire population(s) and world.</p>
+  <p>For each organism to move, this function will have to</p>
+  <ul>
+    <li>
+      update the number of organisms in each 
+      World.ecosystem[x-axis][y-axis][z-axis]['organisms']
+    </li>
+    <li>
+      update the respective Organism's location in the status dictionary 
+      (Population[pop_name].agents[&lt;index&gt;].status['location'])
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="ecoregulate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ecoregulate</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.ecoregulate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function for broad spectrum management of the entire 
+  ecosystem defined as World.ecosystem[x-axis][y-axis][z-axis] 
+  ['local_input'] and World.ecosystem[x-axis][y-axis][z-axis] 
+  ['local_output']). For example, it can be used to simulate temperature, 
+  solar radiation, or resource gradients. This function works at the level 
+  of the world.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_ecology"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_ecology</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">World</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>,
+        <span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.update_ecology">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to process the input and output from the activities 
+  of the organisms in the current ecological cell (defined as 
+  World.ecosystem[x-axis][y-axis][z-axis]['temporary_input'] and 
+  World.ecosystem[x-axis][y-axis][z-axis]['temporary_output']) into a local
+  ecological cell condition (defined as World.ecosystem 
+  [x-axis][y-axis][z-axis]['local_input'] and World.ecosystem[x-axis] 
+  [y-axis][z-axis]['local_output']), and update the ecosystem (which is 
+  essentially the ecological cell adjacent to 
+  World.ecosystem[x-axis][y-axis][z-axis]). For example, it can be used to 
+  simulate secretion of chemicals or use of resources (such as food) by 
+  organisms, and diffusion of secretions to the neighbouring ecological 
+  cells.</p>
+  <p>Essentially, this function simulates the &quot;diffusion&quot; of 
+  local situation outwards. This function works at the level of the 
+  world.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+        <li><strong class="pname"><code>x</code></strong> - x-axis of the World.ecosystem to identify the cell.</li>
+        <li><strong class="pname"><code>y</code></strong> - y-axis of the World.ecosystem to identify the cell.</li>
+        <li><strong class="pname"><code>z</code></strong> - z-axis of the World.ecosystem to identify the cell.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="update_local"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">update_local</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">World</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>,
+        <span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.update_local">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to update local ecological cell condition (defined 
+  as World.ecosystem[x-axis][y-axis][z-axis]['local_input'] and 
+  World.ecosystem[x-axis][y-axis][z-axis]['local_output']) from the 
+  ecosystem (World.ecosystem [x-axis][y-axis][z-axis]['local_input'] and 
+  World.ecosystem[x-axis][y-axis][z-axis]['local_output'] of adjacent 
+  ecological cells). For example, it can be used to simulates movement or 
+  diffusion of resources from the ecosystem to local.</p>
+  <p>Essentially, this function is the reverse of update_ecology() 
+  function. In this case, the local ecological cell is affected by adjacent
+  conditions. This function works at the level of the world.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+        <li><strong class="pname"><code>x</code></strong> - x-axis of the World.ecosystem to identify the cell.</li>
+        <li><strong class="pname"><code>y</code></strong> - y-axis of the World.ecosystem to identify the cell.</li>
+        <li><strong class="pname"><code>z</code></strong> - z-axis of the World.ecosystem to identify the cell.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="report"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">report</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.report">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to generate a text report of the ecosystem status 
+  (World.ecosystem) at regular intervals, within the simulation, as 
+  determined by &quot;print_frequency&quot; in the simulation parameters. 
+  This function works at the level of world.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Entire report of a population at a generation count in a string. 
+          To make it human-readable, usually the report string is both 
+          tab-delimited (for one organism) and newline-delimited (for 
+          entire population).</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deployment_scheme"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deployment_scheme</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.deployment_scheme">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to implement a user-specific / simulation- specific 
+  deployment scheme used to deploy organisms into the World. This function 
+  will only be used when &quot;deployment_code&quot; in simulation 
+  parameters dictionary equals to 0. This function works at all three 
+  levels - organism(s), population(s), and world.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - Name of the population which is used as key in the the dictionary
+          (Populations parameter).</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="database_report"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">database_report</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">con</span>,
+        <span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">Population</span>,
+        <span class="sig-arg">World</span>,
+        <span class="sig-arg">generation_count</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.dose-pysrc.html#dose_functions.database_report">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method / function to implement database logging of each organism in 
+  each population, and the ecosystem status. The frequency of logging is 
+  determined by &quot;database_logging_frequency&quot; in the 
+  simulation_parameters.</p>
+  <p>Three database tables had been defined for use in this function:</p>
+  <ul>
+    <li>
+      organisms where the structure is (start_time text, pop_name text, 
+      org_name text, generation text, key text, value text)
+    </li>
+    <li>
+      world where the structure is (start_time text, x text, y text, z 
+      text, generation text, key text, value text)
+    </li>
+    <li>
+      miscellaneous where the structure is (start_time text, generation 
+      text, key text, value text)
+    </li>
+  </ul>
+  <p>The logical purpose of these tables are:</p>
+  <ul>
+    <li>
+      organisms, to log status of each organism. Starting time of current 
+      simulation (start_time), population name (pop_name), organism name 
+      (org_name), and generation count (generation) are used as complex 
+      primary key to identify the organism within a specific simulation at 
+      a specific generation. Key and value pair makes up the actual data to
+      be logged where key is the field and value is the datum or attribute.
+    </li>
+    <li>
+      world, to log the status of the ecosystem. Starting time of current 
+      simulation (start_time), location of ecological cell (x, y, z as 
+      coordinates), and generation count (generation) are used as complex 
+      primary key to identify the ecological cell within a specific 
+      simulation at a specific generation. Key and value pair makes up the 
+      actual data to be logged where key is the field and value is the 
+      datum or attribute.
+    </li>
+    <li>
+      miscellaneous, is used to log other undefined data. Starting time of 
+      current simulation (start_time), and generation count (generation) 
+      are used as complex primary key to identify a specific generation 
+      within a specific simulation. Key and value pair makes up the actual 
+      data to be logged where key is the field and value is the datum or 
+      attribute.
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>con</code></strong> - Database connector. See Python DB-API for details.</li>
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor. See Python DB-API for details.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>Population</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+        <li><strong class="pname"><code>generation_count</code></strong> - Current number of generations simulated.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>None</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:56 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

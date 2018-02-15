@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.copads.copadsexceptions</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.copads-module.html">Package&nbsp;copads</a> ::
+        Module&nbsp;copadsexceptions
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.copads.copadsexceptions-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="dose.copads.copadsexceptions-module.html">Module dose.copads.copadsexceptions</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Exceptions Defined for COPADS. </tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">    - CopadsError</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring">        - MatrixError</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixArithmeticError</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">                - MatrixMultiplicationError</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixAdditionError</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixSquareError</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixTraceError</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixMinorError</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">            - MatrixDeterminantError  </tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        - GraphError</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">            - EdgeNotFoundError</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">            - VertexNotFoundError</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">            - UnknownGraphMatrixError</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">                - NotAdjacencyGraphMatrixError</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">            - GraphEdgeSizeMismatchError</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        - StatisticsError</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">            - DistributionError</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">                - NormalDistributionTypeError</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">            - DistributionParameterError</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">            - DistributionFunctionError</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">        - DistanceError</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">            - DistanceInputSizeError</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        - TreeError</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">            - TreeNodeTypeError</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        - FunctionParameterTypeError</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        - FunctionParameterValueError</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">        - ArrayError</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">        - MaxIterationException</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">Credits</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">    - MatrixError subclasses </tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">    (http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/189971)</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">Copyright (c) Maurice H.T. Ling &lt;mauriceling@acm.org&gt;</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">Date created: 1st May 2005</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="CopadsError"></a><div id="CopadsError-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="CopadsError-toggle" onclick="return toggle('CopadsError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.CopadsError-class.html">CopadsError</a><tt class="py-op">(</tt><tt class="py-base-class">Exception</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="CopadsError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="CopadsError-expanded"><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">    <tt class="py-docstring">"""Base class for all Copads-defined exceptions."""</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">         </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"> </tt>
+<a name="MatrixError"></a><div id="MatrixError-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="MatrixError-toggle" onclick="return toggle('MatrixError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixError-class.html">MatrixError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixError-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all matrix exceptions"""</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="MatrixArithmeticError"></a><div id="MatrixArithmeticError-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="MatrixArithmeticError-toggle" onclick="return toggle('MatrixArithmeticError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixArithmeticError-class.html">MatrixArithmeticError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixArithmeticError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixArithmeticError-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-docstring">"""Incorrect dimensions for arithmetic</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">    This exception is thrown when you try to add or multiply matricies of</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">    incompatible sizes.</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">     </tt>
+<a name="MatrixArithmeticError.__init__"></a><div id="MatrixArithmeticError.__init__-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="MatrixArithmeticError.__init__-toggle" onclick="return toggle('MatrixArithmeticError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixArithmeticError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">a</tt><tt class="py-op">,</tt> <tt class="py-param">b</tt><tt class="py-op">,</tt> <tt class="py-param">operation</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixArithmeticError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MatrixArithmeticError.__init__-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt> <tt class="py-op">=</tt> <tt class="py-name">a</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt> <tt class="py-op">=</tt> <tt class="py-name">b</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">operation</tt> <tt class="py-op">=</tt> <tt class="py-name">operation</tt> </tt>
+</div><a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="MatrixArithmeticError.__str__"></a><div id="MatrixArithmeticError.__str__-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="MatrixArithmeticError.__str__-toggle" onclick="return toggle('MatrixArithmeticError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixArithmeticError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixArithmeticError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MatrixArithmeticError.__str__-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"Cannot %s a %dx%d and a %dx%d matrix"</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">operation</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt><tt class="py-op">.</tt><tt class="py-name">rows</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">a</tt><tt class="py-op">.</tt><tt class="py-name">cols</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> \ </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">rows</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">b</tt><tt class="py-op">.</tt><tt class="py-name">cols</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="MatrixMultiplicationError"></a><div id="MatrixMultiplicationError-def"><a name="L71"></a><tt class="py-lineno"> 71</tt> <a class="py-toggle" href="#" id="MatrixMultiplicationError-toggle" onclick="return toggle('MatrixMultiplicationError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixMultiplicationError-class.html">MatrixMultiplicationError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixArithmeticError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixMultiplicationError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixMultiplicationError-expanded"><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">    <tt class="py-docstring">"""Thrown when you try to multiply matricies of incompatible dimensions.</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">    This exception is also thrown when you try to right-multiply a row vector </tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">    or left-multiply a column vector.</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">     </tt>
+<a name="MatrixMultiplicationError.__init__"></a><div id="MatrixMultiplicationError.__init__-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="MatrixMultiplicationError.__init__-toggle" onclick="return toggle('MatrixMultiplicationError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixMultiplicationError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">a</tt><tt class="py-op">,</tt> <tt class="py-param">b</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt id="link-0" class="py-name" targets="Class dose.copads.copadsexceptions.MatrixArithmeticError=dose.copads.copadsexceptions.MatrixArithmeticError-class.html"><a title="dose.copads.copadsexceptions.MatrixArithmeticError" class="py-name" href="#" onclick="return doclink('link-0', 'MatrixArithmeticError', 'link-0');">MatrixArithmeticError</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method dose.analytics.Analysis.__init__()=dose.analytics.Analysis-class.html#__init__,Method dose.copads.copadsexceptions.ArrayError.__init__()=dose.copads.copadsexceptions.ArrayError-class.html#__init__,Method dose.copads.copadsexceptions.DistanceInputSizeError.__init__()=dose.copads.copadsexceptions.DistanceInputSizeError-class.html#__init__,Method dose.copads.copadsexceptions.DistributionFunctionError.__init__()=dose.copads.copadsexceptions.DistributionFunctionError-class.html#__init__,Method dose.copads.copadsexceptions.DistributionParameterError.__init__()=dose.copads.copadsexceptions.DistributionParameterError-class.html#__init__,Method dose.copads.copadsexceptions.EdgeNotFoundError.__init__()=dose.copads.copadsexceptions.EdgeNotFoundError-class.html#__init__,Method dose.copads.copadsexceptions.FunctionParameterTypeError.__init__()=dose.copads.copadsexceptions.FunctionParameterTypeError-class.html#__init__,Method dose.copads.copadsexceptions.FunctionParameterValueError.__init__()=dose.copads.copadsexceptions.FunctionParameterValueError-class.html#__init__,Method dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__()=dose.copads.copadsexceptions.GraphEdgeSizeMismatchError-class.html#__init__,Method dose.copads.copadsexceptions.GraphParameterError.__init__()=dose.copads.copadsexceptions.GraphParameterError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixAdditionError.__init__()=dose.copads.copadsexceptions.MatrixAdditionError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixArithmeticError.__init__()=dose.copads.copadsexceptions.MatrixArithmeticError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixDeterminantError.__init__()=dose.copads.copadsexceptions.MatrixDeterminantError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixMinorError.__init__()=dose.copads.copadsexceptions.MatrixMinorError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixMultiplicationError.__init__()=dose.copads.copadsexceptions.MatrixMultiplicationError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixSquareError.__init__()=dose.copads.copadsexceptions.MatrixSquareError-class.html#__init__,Method dose.copads.copadsexceptions.MatrixTraceError.__init__()=dose.copads.copadsexceptions.MatrixTraceError-class.html#__init__,Method dose.copads.copadsexceptions.NormalDistributionTypeError.__init__()=dose.copads.copadsexceptions.NormalDistributionTypeError-class.html#__init__,Method dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__()=dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError-class.html#__init__,Method dose.copads.copadsexceptions.TreeNodeTypeError.__init__()=dose.copads.copadsexceptions.TreeNodeTypeError-class.html#__init__,Method dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__()=dose.copads.copadsexceptions.UnknownGraphMatrixError-class.html#__init__,Method dose.copads.copadsexceptions.VertexNotFoundError.__init__()=dose.copads.copadsexceptions.VertexNotFoundError-class.html#__init__,Method dose.copads.lindenmayer.lindenmayer.__init__()=dose.copads.lindenmayer.lindenmayer-class.html#__init__,Method dose.copads.operations.Boolean.__init__()=dose.copads.operations.Boolean-class.html#__init__,Method dose.copads.operations.Modulus2.__init__()=dose.copads.operations.Modulus2-class.html#__init__,Method dose.copads.samplestatistics.SampleDistribution.__init__()=dose.copads.samplestatistics.SampleDistribution-class.html#__init__,Method dose.copads.samplestatistics.SingleSample.__init__()=dose.copads.samplestatistics.SingleSample-class.html#__init__,Method dose.copads.samplestatistics.TwoSample.__init__()=dose.copads.samplestatistics.TwoSample-class.html#__init__,Method dose.copads.statisticsdistribution.BernoulliDistribution.__init__()=dose.copads.statisticsdistribution.BernoulliDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.BetaDistribution.__init__()=dose.copads.statisticsdistribution.BetaDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.BinomialDistribution.__init__()=dose.copads.statisticsdistribution.BinomialDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.BradfordDistribution.__init__()=dose.copads.statisticsdistribution.BradfordDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.BurrDistribution.__init__()=dose.copads.statisticsdistribution.BurrDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.CauchyDistribution.__init__()=dose.copads.statisticsdistribution.CauchyDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.ChiSquareDistribution.__init__()=dose.copads.statisticsdistribution.ChiSquareDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.CosineDistribution.__init__()=dose.copads.statisticsdistribution.CosineDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.Distribution.__init__()=dose.copads.statisticsdistribution.Distribution-class.html#__init__,Method dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__()=dose.copads.statisticsdistribution.DoubleGammaDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.ExponentialDistribution.__init__()=dose.copads.statisticsdistribution.ExponentialDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.FDistribution.__init__()=dose.copads.statisticsdistribution.FDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.GammaDistribution.__init__()=dose.copads.statisticsdistribution.GammaDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.GeometricDistribution.__init__()=dose.copads.statisticsdistribution.GeometricDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.GumbelDistribution.__init__()=dose.copads.statisticsdistribution.GumbelDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.HalfNormalDistribution.__init__()=dose.copads.statisticsdistribution.HalfNormalDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__()=dose.copads.statisticsdistribution.HyperbolicSecantDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.HypergeometricDistribution.__init__()=dose.copads.statisticsdistribution.HypergeometricDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.LogNormalDistribution.__init__()=dose.copads.statisticsdistribution.LogNormalDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.LogarithmicDistribution.__init__()=dose.copads.statisticsdistribution.LogarithmicDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.MaxwellDistribution.__init__()=dose.copads.statisticsdistribution.MaxwellDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__()=dose.copads.statisticsdistribution.NegativeBinomialDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.NormalDistribution.__init__()=dose.copads.statisticsdistribution.NormalDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.ParetoDistribution.__init__()=dose.copads.statisticsdistribution.ParetoDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.PascalDistribution.__init__()=dose.copads.statisticsdistribution.PascalDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.PoissonDistribution.__init__()=dose.copads.statisticsdistribution.PoissonDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__()=dose.copads.statisticsdistribution.PowerFunctionDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.RademacherDistribution.__init__()=dose.copads.statisticsdistribution.RademacherDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.RayleighDistribution.__init__()=dose.copads.statisticsdistribution.RayleighDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.SemicircularDistribution.__init__()=dose.copads.statisticsdistribution.SemicircularDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.TDistribution.__init__()=dose.copads.statisticsdistribution.TDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.TriangularDistribution.__init__()=dose.copads.statisticsdistribution.TriangularDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.UniformDistribution.__init__()=dose.copads.statisticsdistribution.UniformDistribution-class.html#__init__,Method dose.copads.statisticsdistribution.WeiBullDistribution.__init__()=dose.copads.statisticsdistribution.WeiBullDistribution-class.html#__init__,Method dose.genetic.Chromosome.__init__()=dose.genetic.Chromosome-class.html#__init__,Method dose.genetic.Organism.__init__()=dose.genetic.Organism-class.html#__init__,Method dose.genetic.Population.__init__()=dose.genetic.Population-class.html#__init__"><a title="dose.analytics.Analysis.__init__
+dose.copads.copadsexceptions.ArrayError.__init__
+dose.copads.copadsexceptions.DistanceInputSizeError.__init__
+dose.copads.copadsexceptions.DistributionFunctionError.__init__
+dose.copads.copadsexceptions.DistributionParameterError.__init__
+dose.copads.copadsexceptions.EdgeNotFoundError.__init__
+dose.copads.copadsexceptions.FunctionParameterTypeError.__init__
+dose.copads.copadsexceptions.FunctionParameterValueError.__init__
+dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__
+dose.copads.copadsexceptions.GraphParameterError.__init__
+dose.copads.copadsexceptions.MatrixAdditionError.__init__
+dose.copads.copadsexceptions.MatrixArithmeticError.__init__
+dose.copads.copadsexceptions.MatrixDeterminantError.__init__
+dose.copads.copadsexceptions.MatrixMinorError.__init__
+dose.copads.copadsexceptions.MatrixMultiplicationError.__init__
+dose.copads.copadsexceptions.MatrixSquareError.__init__
+dose.copads.copadsexceptions.MatrixTraceError.__init__
+dose.copads.copadsexceptions.NormalDistributionTypeError.__init__
+dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__
+dose.copads.copadsexceptions.TreeNodeTypeError.__init__
+dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__
+dose.copads.copadsexceptions.VertexNotFoundError.__init__
+dose.copads.lindenmayer.lindenmayer.__init__
+dose.copads.operations.Boolean.__init__
+dose.copads.operations.Modulus2.__init__
+dose.copads.samplestatistics.SampleDistribution.__init__
+dose.copads.samplestatistics.SingleSample.__init__
+dose.copads.samplestatistics.TwoSample.__init__
+dose.copads.statisticsdistribution.BernoulliDistribution.__init__
+dose.copads.statisticsdistribution.BetaDistribution.__init__
+dose.copads.statisticsdistribution.BinomialDistribution.__init__
+dose.copads.statisticsdistribution.BradfordDistribution.__init__
+dose.copads.statisticsdistribution.BurrDistribution.__init__
+dose.copads.statisticsdistribution.CauchyDistribution.__init__
+dose.copads.statisticsdistribution.ChiSquareDistribution.__init__
+dose.copads.statisticsdistribution.CosineDistribution.__init__
+dose.copads.statisticsdistribution.Distribution.__init__
+dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__
+dose.copads.statisticsdistribution.ExponentialDistribution.__init__
+dose.copads.statisticsdistribution.FDistribution.__init__
+dose.copads.statisticsdistribution.GammaDistribution.__init__
+dose.copads.statisticsdistribution.GeometricDistribution.__init__
+dose.copads.statisticsdistribution.GumbelDistribution.__init__
+dose.copads.statisticsdistribution.HalfNormalDistribution.__init__
+dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__
+dose.copads.statisticsdistribution.HypergeometricDistribution.__init__
+dose.copads.statisticsdistribution.LogNormalDistribution.__init__
+dose.copads.statisticsdistribution.LogarithmicDistribution.__init__
+dose.copads.statisticsdistribution.MaxwellDistribution.__init__
+dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__
+dose.copads.statisticsdistribution.NormalDistribution.__init__
+dose.copads.statisticsdistribution.ParetoDistribution.__init__
+dose.copads.statisticsdistribution.PascalDistribution.__init__
+dose.copads.statisticsdistribution.PoissonDistribution.__init__
+dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__
+dose.copads.statisticsdistribution.RademacherDistribution.__init__
+dose.copads.statisticsdistribution.RayleighDistribution.__init__
+dose.copads.statisticsdistribution.SemicircularDistribution.__init__
+dose.copads.statisticsdistribution.TDistribution.__init__
+dose.copads.statisticsdistribution.TriangularDistribution.__init__
+dose.copads.statisticsdistribution.UniformDistribution.__init__
+dose.copads.statisticsdistribution.WeiBullDistribution.__init__
+dose.genetic.Chromosome.__init__
+dose.genetic.Organism.__init__
+dose.genetic.Population.__init__" class="py-name" href="#" onclick="return doclink('link-1', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">a</tt><tt class="py-op">,</tt> <tt class="py-name">b</tt><tt class="py-op">,</tt>  </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">                                                            <tt class="py-string">"multiply"</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="MatrixAdditionError"></a><div id="MatrixAdditionError-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="MatrixAdditionError-toggle" onclick="return toggle('MatrixAdditionError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixAdditionError-class.html">MatrixAdditionError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixArithmeticError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixAdditionError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixAdditionError-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-docstring">"""Thrown when you try to add matricies of incompatible dimensions.</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">     </tt>
+<a name="MatrixAdditionError.__init__"></a><div id="MatrixAdditionError.__init__-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="MatrixAdditionError.__init__-toggle" onclick="return toggle('MatrixAdditionError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixAdditionError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">a</tt><tt class="py-op">,</tt> <tt class="py-param">b</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt id="link-2" class="py-name"><a title="dose.copads.copadsexceptions.MatrixArithmeticError" class="py-name" href="#" onclick="return doclink('link-2', 'MatrixArithmeticError', 'link-0');">MatrixArithmeticError</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="dose.analytics.Analysis.__init__
+dose.copads.copadsexceptions.ArrayError.__init__
+dose.copads.copadsexceptions.DistanceInputSizeError.__init__
+dose.copads.copadsexceptions.DistributionFunctionError.__init__
+dose.copads.copadsexceptions.DistributionParameterError.__init__
+dose.copads.copadsexceptions.EdgeNotFoundError.__init__
+dose.copads.copadsexceptions.FunctionParameterTypeError.__init__
+dose.copads.copadsexceptions.FunctionParameterValueError.__init__
+dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__
+dose.copads.copadsexceptions.GraphParameterError.__init__
+dose.copads.copadsexceptions.MatrixAdditionError.__init__
+dose.copads.copadsexceptions.MatrixArithmeticError.__init__
+dose.copads.copadsexceptions.MatrixDeterminantError.__init__
+dose.copads.copadsexceptions.MatrixMinorError.__init__
+dose.copads.copadsexceptions.MatrixMultiplicationError.__init__
+dose.copads.copadsexceptions.MatrixSquareError.__init__
+dose.copads.copadsexceptions.MatrixTraceError.__init__
+dose.copads.copadsexceptions.NormalDistributionTypeError.__init__
+dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__
+dose.copads.copadsexceptions.TreeNodeTypeError.__init__
+dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__
+dose.copads.copadsexceptions.VertexNotFoundError.__init__
+dose.copads.lindenmayer.lindenmayer.__init__
+dose.copads.operations.Boolean.__init__
+dose.copads.operations.Modulus2.__init__
+dose.copads.samplestatistics.SampleDistribution.__init__
+dose.copads.samplestatistics.SingleSample.__init__
+dose.copads.samplestatistics.TwoSample.__init__
+dose.copads.statisticsdistribution.BernoulliDistribution.__init__
+dose.copads.statisticsdistribution.BetaDistribution.__init__
+dose.copads.statisticsdistribution.BinomialDistribution.__init__
+dose.copads.statisticsdistribution.BradfordDistribution.__init__
+dose.copads.statisticsdistribution.BurrDistribution.__init__
+dose.copads.statisticsdistribution.CauchyDistribution.__init__
+dose.copads.statisticsdistribution.ChiSquareDistribution.__init__
+dose.copads.statisticsdistribution.CosineDistribution.__init__
+dose.copads.statisticsdistribution.Distribution.__init__
+dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__
+dose.copads.statisticsdistribution.ExponentialDistribution.__init__
+dose.copads.statisticsdistribution.FDistribution.__init__
+dose.copads.statisticsdistribution.GammaDistribution.__init__
+dose.copads.statisticsdistribution.GeometricDistribution.__init__
+dose.copads.statisticsdistribution.GumbelDistribution.__init__
+dose.copads.statisticsdistribution.HalfNormalDistribution.__init__
+dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__
+dose.copads.statisticsdistribution.HypergeometricDistribution.__init__
+dose.copads.statisticsdistribution.LogNormalDistribution.__init__
+dose.copads.statisticsdistribution.LogarithmicDistribution.__init__
+dose.copads.statisticsdistribution.MaxwellDistribution.__init__
+dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__
+dose.copads.statisticsdistribution.NormalDistribution.__init__
+dose.copads.statisticsdistribution.ParetoDistribution.__init__
+dose.copads.statisticsdistribution.PascalDistribution.__init__
+dose.copads.statisticsdistribution.PoissonDistribution.__init__
+dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__
+dose.copads.statisticsdistribution.RademacherDistribution.__init__
+dose.copads.statisticsdistribution.RayleighDistribution.__init__
+dose.copads.statisticsdistribution.SemicircularDistribution.__init__
+dose.copads.statisticsdistribution.TDistribution.__init__
+dose.copads.statisticsdistribution.TriangularDistribution.__init__
+dose.copads.statisticsdistribution.UniformDistribution.__init__
+dose.copads.statisticsdistribution.WeiBullDistribution.__init__
+dose.genetic.Chromosome.__init__
+dose.genetic.Organism.__init__
+dose.genetic.Population.__init__" class="py-name" href="#" onclick="return doclink('link-3', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">a</tt><tt class="py-op">,</tt> <tt class="py-name">b</tt><tt class="py-op">,</tt>  </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                                                            <tt class="py-string">"add"</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="MatrixSquareError"></a><div id="MatrixSquareError-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="MatrixSquareError-toggle" onclick="return toggle('MatrixSquareError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixSquareError-class.html">MatrixSquareError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixSquareError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixSquareError-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-docstring">"""Square-matrix only</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    This exception is thrown when you try to calculate a function that is only</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    defined for square matricies on a non-square matrix.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">     </tt>
+<a name="MatrixSquareError.__init__"></a><div id="MatrixSquareError.__init__-def"><a name="L97"></a><tt class="py-lineno"> 97</tt> <a class="py-toggle" href="#" id="MatrixSquareError.__init__-toggle" onclick="return toggle('MatrixSquareError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixSquareError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">func</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">func</tt> <tt class="py-op">=</tt> <tt class="py-name">func</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="MatrixSquareError.__str__"></a><div id="MatrixSquareError.__str__-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="MatrixSquareError.__str__-toggle" onclick="return toggle('MatrixSquareError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixSquareError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-string">"%s only defined for square matricies."</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">func</tt> </tt>
+</div></div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt>
+<a name="MatrixTraceError"></a><div id="MatrixTraceError-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="MatrixTraceError-toggle" onclick="return toggle('MatrixTraceError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixTraceError-class.html">MatrixTraceError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixSquareError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixTraceError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixTraceError-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">    <tt class="py-docstring">"""Thrown when you try to get the trace of a non-square matrix."""</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="MatrixTraceError.__init__"></a><div id="MatrixTraceError.__init__-def"><a name="L106"></a><tt class="py-lineno">106</tt> <a class="py-toggle" href="#" id="MatrixTraceError.__init__-toggle" onclick="return toggle('MatrixTraceError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixTraceError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt id="link-4" class="py-name" targets="Class dose.copads.copadsexceptions.MatrixSquareError=dose.copads.copadsexceptions.MatrixSquareError-class.html"><a title="dose.copads.copadsexceptions.MatrixSquareError" class="py-name" href="#" onclick="return doclink('link-4', 'MatrixSquareError', 'link-4');">MatrixSquareError</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="dose.analytics.Analysis.__init__
+dose.copads.copadsexceptions.ArrayError.__init__
+dose.copads.copadsexceptions.DistanceInputSizeError.__init__
+dose.copads.copadsexceptions.DistributionFunctionError.__init__
+dose.copads.copadsexceptions.DistributionParameterError.__init__
+dose.copads.copadsexceptions.EdgeNotFoundError.__init__
+dose.copads.copadsexceptions.FunctionParameterTypeError.__init__
+dose.copads.copadsexceptions.FunctionParameterValueError.__init__
+dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__
+dose.copads.copadsexceptions.GraphParameterError.__init__
+dose.copads.copadsexceptions.MatrixAdditionError.__init__
+dose.copads.copadsexceptions.MatrixArithmeticError.__init__
+dose.copads.copadsexceptions.MatrixDeterminantError.__init__
+dose.copads.copadsexceptions.MatrixMinorError.__init__
+dose.copads.copadsexceptions.MatrixMultiplicationError.__init__
+dose.copads.copadsexceptions.MatrixSquareError.__init__
+dose.copads.copadsexceptions.MatrixTraceError.__init__
+dose.copads.copadsexceptions.NormalDistributionTypeError.__init__
+dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__
+dose.copads.copadsexceptions.TreeNodeTypeError.__init__
+dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__
+dose.copads.copadsexceptions.VertexNotFoundError.__init__
+dose.copads.lindenmayer.lindenmayer.__init__
+dose.copads.operations.Boolean.__init__
+dose.copads.operations.Modulus2.__init__
+dose.copads.samplestatistics.SampleDistribution.__init__
+dose.copads.samplestatistics.SingleSample.__init__
+dose.copads.samplestatistics.TwoSample.__init__
+dose.copads.statisticsdistribution.BernoulliDistribution.__init__
+dose.copads.statisticsdistribution.BetaDistribution.__init__
+dose.copads.statisticsdistribution.BinomialDistribution.__init__
+dose.copads.statisticsdistribution.BradfordDistribution.__init__
+dose.copads.statisticsdistribution.BurrDistribution.__init__
+dose.copads.statisticsdistribution.CauchyDistribution.__init__
+dose.copads.statisticsdistribution.ChiSquareDistribution.__init__
+dose.copads.statisticsdistribution.CosineDistribution.__init__
+dose.copads.statisticsdistribution.Distribution.__init__
+dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__
+dose.copads.statisticsdistribution.ExponentialDistribution.__init__
+dose.copads.statisticsdistribution.FDistribution.__init__
+dose.copads.statisticsdistribution.GammaDistribution.__init__
+dose.copads.statisticsdistribution.GeometricDistribution.__init__
+dose.copads.statisticsdistribution.GumbelDistribution.__init__
+dose.copads.statisticsdistribution.HalfNormalDistribution.__init__
+dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__
+dose.copads.statisticsdistribution.HypergeometricDistribution.__init__
+dose.copads.statisticsdistribution.LogNormalDistribution.__init__
+dose.copads.statisticsdistribution.LogarithmicDistribution.__init__
+dose.copads.statisticsdistribution.MaxwellDistribution.__init__
+dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__
+dose.copads.statisticsdistribution.NormalDistribution.__init__
+dose.copads.statisticsdistribution.ParetoDistribution.__init__
+dose.copads.statisticsdistribution.PascalDistribution.__init__
+dose.copads.statisticsdistribution.PoissonDistribution.__init__
+dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__
+dose.copads.statisticsdistribution.RademacherDistribution.__init__
+dose.copads.statisticsdistribution.RayleighDistribution.__init__
+dose.copads.statisticsdistribution.SemicircularDistribution.__init__
+dose.copads.statisticsdistribution.TDistribution.__init__
+dose.copads.statisticsdistribution.TriangularDistribution.__init__
+dose.copads.statisticsdistribution.UniformDistribution.__init__
+dose.copads.statisticsdistribution.WeiBullDistribution.__init__
+dose.genetic.Chromosome.__init__
+dose.genetic.Organism.__init__
+dose.genetic.Population.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"The trace is"</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line"> </tt>
+<a name="MatrixMinorError"></a><div id="MatrixMinorError-def"><a name="L109"></a><tt class="py-lineno">109</tt> <a class="py-toggle" href="#" id="MatrixMinorError-toggle" onclick="return toggle('MatrixMinorError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixMinorError-class.html">MatrixMinorError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixSquareError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixMinorError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixMinorError-expanded"><a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-docstring">"""Thrown when you try to take a minor of a non-square matrix."""</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="MatrixMinorError.__init__"></a><div id="MatrixMinorError.__init__-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="MatrixMinorError.__init__-toggle" onclick="return toggle('MatrixMinorError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixMinorError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt id="link-6" class="py-name"><a title="dose.copads.copadsexceptions.MatrixSquareError" class="py-name" href="#" onclick="return doclink('link-6', 'MatrixSquareError', 'link-4');">MatrixSquareError</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="dose.analytics.Analysis.__init__
+dose.copads.copadsexceptions.ArrayError.__init__
+dose.copads.copadsexceptions.DistanceInputSizeError.__init__
+dose.copads.copadsexceptions.DistributionFunctionError.__init__
+dose.copads.copadsexceptions.DistributionParameterError.__init__
+dose.copads.copadsexceptions.EdgeNotFoundError.__init__
+dose.copads.copadsexceptions.FunctionParameterTypeError.__init__
+dose.copads.copadsexceptions.FunctionParameterValueError.__init__
+dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__
+dose.copads.copadsexceptions.GraphParameterError.__init__
+dose.copads.copadsexceptions.MatrixAdditionError.__init__
+dose.copads.copadsexceptions.MatrixArithmeticError.__init__
+dose.copads.copadsexceptions.MatrixDeterminantError.__init__
+dose.copads.copadsexceptions.MatrixMinorError.__init__
+dose.copads.copadsexceptions.MatrixMultiplicationError.__init__
+dose.copads.copadsexceptions.MatrixSquareError.__init__
+dose.copads.copadsexceptions.MatrixTraceError.__init__
+dose.copads.copadsexceptions.NormalDistributionTypeError.__init__
+dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__
+dose.copads.copadsexceptions.TreeNodeTypeError.__init__
+dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__
+dose.copads.copadsexceptions.VertexNotFoundError.__init__
+dose.copads.lindenmayer.lindenmayer.__init__
+dose.copads.operations.Boolean.__init__
+dose.copads.operations.Modulus2.__init__
+dose.copads.samplestatistics.SampleDistribution.__init__
+dose.copads.samplestatistics.SingleSample.__init__
+dose.copads.samplestatistics.TwoSample.__init__
+dose.copads.statisticsdistribution.BernoulliDistribution.__init__
+dose.copads.statisticsdistribution.BetaDistribution.__init__
+dose.copads.statisticsdistribution.BinomialDistribution.__init__
+dose.copads.statisticsdistribution.BradfordDistribution.__init__
+dose.copads.statisticsdistribution.BurrDistribution.__init__
+dose.copads.statisticsdistribution.CauchyDistribution.__init__
+dose.copads.statisticsdistribution.ChiSquareDistribution.__init__
+dose.copads.statisticsdistribution.CosineDistribution.__init__
+dose.copads.statisticsdistribution.Distribution.__init__
+dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__
+dose.copads.statisticsdistribution.ExponentialDistribution.__init__
+dose.copads.statisticsdistribution.FDistribution.__init__
+dose.copads.statisticsdistribution.GammaDistribution.__init__
+dose.copads.statisticsdistribution.GeometricDistribution.__init__
+dose.copads.statisticsdistribution.GumbelDistribution.__init__
+dose.copads.statisticsdistribution.HalfNormalDistribution.__init__
+dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__
+dose.copads.statisticsdistribution.HypergeometricDistribution.__init__
+dose.copads.statisticsdistribution.LogNormalDistribution.__init__
+dose.copads.statisticsdistribution.LogarithmicDistribution.__init__
+dose.copads.statisticsdistribution.MaxwellDistribution.__init__
+dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__
+dose.copads.statisticsdistribution.NormalDistribution.__init__
+dose.copads.statisticsdistribution.ParetoDistribution.__init__
+dose.copads.statisticsdistribution.PascalDistribution.__init__
+dose.copads.statisticsdistribution.PoissonDistribution.__init__
+dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__
+dose.copads.statisticsdistribution.RademacherDistribution.__init__
+dose.copads.statisticsdistribution.RayleighDistribution.__init__
+dose.copads.statisticsdistribution.SemicircularDistribution.__init__
+dose.copads.statisticsdistribution.TDistribution.__init__
+dose.copads.statisticsdistribution.TriangularDistribution.__init__
+dose.copads.statisticsdistribution.UniformDistribution.__init__
+dose.copads.statisticsdistribution.WeiBullDistribution.__init__
+dose.genetic.Chromosome.__init__
+dose.genetic.Organism.__init__
+dose.genetic.Population.__init__" class="py-name" href="#" onclick="return doclink('link-7', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"Minors are"</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="MatrixDeterminantError"></a><div id="MatrixDeterminantError-def"><a name="L115"></a><tt class="py-lineno">115</tt> <a class="py-toggle" href="#" id="MatrixDeterminantError-toggle" onclick="return toggle('MatrixDeterminantError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixDeterminantError-class.html">MatrixDeterminantError</a><tt class="py-op">(</tt><tt class="py-base-class">MatrixSquareError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MatrixDeterminantError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MatrixDeterminantError-expanded"><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">    <tt class="py-docstring">"""Thrown when you try to take the determinant of a non-square matrix."""</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="MatrixDeterminantError.__init__"></a><div id="MatrixDeterminantError.__init__-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="MatrixDeterminantError.__init__-toggle" onclick="return toggle('MatrixDeterminantError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MatrixDeterminantError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt id="link-8" class="py-name"><a title="dose.copads.copadsexceptions.MatrixSquareError" class="py-name" href="#" onclick="return doclink('link-8', 'MatrixSquareError', 'link-4');">MatrixSquareError</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="dose.analytics.Analysis.__init__
+dose.copads.copadsexceptions.ArrayError.__init__
+dose.copads.copadsexceptions.DistanceInputSizeError.__init__
+dose.copads.copadsexceptions.DistributionFunctionError.__init__
+dose.copads.copadsexceptions.DistributionParameterError.__init__
+dose.copads.copadsexceptions.EdgeNotFoundError.__init__
+dose.copads.copadsexceptions.FunctionParameterTypeError.__init__
+dose.copads.copadsexceptions.FunctionParameterValueError.__init__
+dose.copads.copadsexceptions.GraphEdgeSizeMismatchError.__init__
+dose.copads.copadsexceptions.GraphParameterError.__init__
+dose.copads.copadsexceptions.MatrixAdditionError.__init__
+dose.copads.copadsexceptions.MatrixArithmeticError.__init__
+dose.copads.copadsexceptions.MatrixDeterminantError.__init__
+dose.copads.copadsexceptions.MatrixMinorError.__init__
+dose.copads.copadsexceptions.MatrixMultiplicationError.__init__
+dose.copads.copadsexceptions.MatrixSquareError.__init__
+dose.copads.copadsexceptions.MatrixTraceError.__init__
+dose.copads.copadsexceptions.NormalDistributionTypeError.__init__
+dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError.__init__
+dose.copads.copadsexceptions.TreeNodeTypeError.__init__
+dose.copads.copadsexceptions.UnknownGraphMatrixError.__init__
+dose.copads.copadsexceptions.VertexNotFoundError.__init__
+dose.copads.lindenmayer.lindenmayer.__init__
+dose.copads.operations.Boolean.__init__
+dose.copads.operations.Modulus2.__init__
+dose.copads.samplestatistics.SampleDistribution.__init__
+dose.copads.samplestatistics.SingleSample.__init__
+dose.copads.samplestatistics.TwoSample.__init__
+dose.copads.statisticsdistribution.BernoulliDistribution.__init__
+dose.copads.statisticsdistribution.BetaDistribution.__init__
+dose.copads.statisticsdistribution.BinomialDistribution.__init__
+dose.copads.statisticsdistribution.BradfordDistribution.__init__
+dose.copads.statisticsdistribution.BurrDistribution.__init__
+dose.copads.statisticsdistribution.CauchyDistribution.__init__
+dose.copads.statisticsdistribution.ChiSquareDistribution.__init__
+dose.copads.statisticsdistribution.CosineDistribution.__init__
+dose.copads.statisticsdistribution.Distribution.__init__
+dose.copads.statisticsdistribution.DoubleGammaDistribution.__init__
+dose.copads.statisticsdistribution.ExponentialDistribution.__init__
+dose.copads.statisticsdistribution.FDistribution.__init__
+dose.copads.statisticsdistribution.GammaDistribution.__init__
+dose.copads.statisticsdistribution.GeometricDistribution.__init__
+dose.copads.statisticsdistribution.GumbelDistribution.__init__
+dose.copads.statisticsdistribution.HalfNormalDistribution.__init__
+dose.copads.statisticsdistribution.HyperbolicSecantDistribution.__init__
+dose.copads.statisticsdistribution.HypergeometricDistribution.__init__
+dose.copads.statisticsdistribution.LogNormalDistribution.__init__
+dose.copads.statisticsdistribution.LogarithmicDistribution.__init__
+dose.copads.statisticsdistribution.MaxwellDistribution.__init__
+dose.copads.statisticsdistribution.NegativeBinomialDistribution.__init__
+dose.copads.statisticsdistribution.NormalDistribution.__init__
+dose.copads.statisticsdistribution.ParetoDistribution.__init__
+dose.copads.statisticsdistribution.PascalDistribution.__init__
+dose.copads.statisticsdistribution.PoissonDistribution.__init__
+dose.copads.statisticsdistribution.PowerFunctionDistribution.__init__
+dose.copads.statisticsdistribution.RademacherDistribution.__init__
+dose.copads.statisticsdistribution.RayleighDistribution.__init__
+dose.copads.statisticsdistribution.SemicircularDistribution.__init__
+dose.copads.statisticsdistribution.TDistribution.__init__
+dose.copads.statisticsdistribution.TriangularDistribution.__init__
+dose.copads.statisticsdistribution.UniformDistribution.__init__
+dose.copads.statisticsdistribution.WeiBullDistribution.__init__
+dose.genetic.Chromosome.__init__
+dose.genetic.Organism.__init__
+dose.genetic.Population.__init__" class="py-name" href="#" onclick="return doclink('link-9', '__init__', 'link-1');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"The determinant is"</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">         </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">     </tt>
+<a name="GraphError"></a><div id="GraphError-def"><a name="L121"></a><tt class="py-lineno">121</tt> <a class="py-toggle" href="#" id="GraphError-toggle" onclick="return toggle('GraphError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphError-class.html">GraphError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GraphError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GraphError-expanded"><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all graph exceptions"""</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="EdgeNotFoundError"></a><div id="EdgeNotFoundError-def"><a name="L125"></a><tt class="py-lineno">125</tt> <a class="py-toggle" href="#" id="EdgeNotFoundError-toggle" onclick="return toggle('EdgeNotFoundError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.EdgeNotFoundError-class.html">EdgeNotFoundError</a><tt class="py-op">(</tt><tt class="py-base-class">GraphError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="EdgeNotFoundError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="EdgeNotFoundError-expanded"><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying to retrieve an edge that is not </tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"><tt class="py-docstring">    found in the graph."""</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line"> </tt>
+<a name="EdgeNotFoundError.__init__"></a><div id="EdgeNotFoundError.__init__-def"><a name="L129"></a><tt class="py-lineno">129</tt> <a class="py-toggle" href="#" id="EdgeNotFoundError.__init__-toggle" onclick="return toggle('EdgeNotFoundError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.EdgeNotFoundError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">edge</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edge</tt> <tt class="py-op">=</tt> <tt class="py-name">edge</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="EdgeNotFoundError.__str__"></a><div id="EdgeNotFoundError.__str__-def"><a name="L131"></a><tt class="py-lineno">131</tt> <a class="py-toggle" href="#" id="EdgeNotFoundError.__str__-toggle" onclick="return toggle('EdgeNotFoundError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.EdgeNotFoundError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-string">"Edge, %s, is not found."</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edge</tt> </tt>
+</div></div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">         </tt>
+<a name="VertexNotFoundError"></a><div id="VertexNotFoundError-def"><a name="L133"></a><tt class="py-lineno">133</tt> <a class="py-toggle" href="#" id="VertexNotFoundError-toggle" onclick="return toggle('VertexNotFoundError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.VertexNotFoundError-class.html">VertexNotFoundError</a><tt class="py-op">(</tt><tt class="py-base-class">GraphError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VertexNotFoundError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="VertexNotFoundError-expanded"><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying to retrieve a vertex that is not </tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line"><tt class="py-docstring">    found in the graph."""</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="VertexNotFoundError.__init__"></a><div id="VertexNotFoundError.__init__-def"><a name="L137"></a><tt class="py-lineno">137</tt> <a class="py-toggle" href="#" id="VertexNotFoundError.__init__-toggle" onclick="return toggle('VertexNotFoundError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.VertexNotFoundError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">vertex</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VertexNotFoundError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VertexNotFoundError.__init__-expanded"><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">vertex</tt> <tt class="py-op">=</tt> <tt class="py-name">vertex</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="VertexNotFoundError.__str__"></a><div id="VertexNotFoundError.__str__-def"><a name="L140"></a><tt class="py-lineno">140</tt> <a class="py-toggle" href="#" id="VertexNotFoundError.__str__-toggle" onclick="return toggle('VertexNotFoundError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.VertexNotFoundError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-string">"Vertex, %s, is not found."</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">vertex</tt> </tt>
+</div></div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">         </tt>
+<a name="UnknownGraphMatrixError"></a><div id="UnknownGraphMatrixError-def"><a name="L142"></a><tt class="py-lineno">142</tt> <a class="py-toggle" href="#" id="UnknownGraphMatrixError-toggle" onclick="return toggle('UnknownGraphMatrixError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.UnknownGraphMatrixError-class.html">UnknownGraphMatrixError</a><tt class="py-op">(</tt><tt class="py-base-class">GraphError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnknownGraphMatrixError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="UnknownGraphMatrixError-expanded"><a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying to use an unknown type of graph </tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"><tt class="py-docstring">    matrix."""</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="UnknownGraphMatrixError.__init__"></a><div id="UnknownGraphMatrixError.__init__-def"><a name="L146"></a><tt class="py-lineno">146</tt> <a class="py-toggle" href="#" id="UnknownGraphMatrixError.__init__-toggle" onclick="return toggle('UnknownGraphMatrixError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.UnknownGraphMatrixError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="UnknownGraphMatrixError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="UnknownGraphMatrixError.__init__-expanded"><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt class="py-name">type</tt> </tt>
+</div><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="UnknownGraphMatrixError.__str__"></a><div id="UnknownGraphMatrixError.__str__-def"><a name="L149"></a><tt class="py-lineno">149</tt> <a class="py-toggle" href="#" id="UnknownGraphMatrixError.__str__-toggle" onclick="return toggle('UnknownGraphMatrixError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.UnknownGraphMatrixError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-string">"Graph matrix type, %s, is not known."</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> </tt>
+</div></div><a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">         </tt>
+<a name="NotAdjacencyGraphMatrixError"></a><div id="NotAdjacencyGraphMatrixError-def"><a name="L152"></a><tt class="py-lineno">152</tt> <a class="py-toggle" href="#" id="NotAdjacencyGraphMatrixError-toggle" onclick="return toggle('NotAdjacencyGraphMatrixError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError-class.html">NotAdjacencyGraphMatrixError</a><tt class="py-op">(</tt><tt class="py-base-class">UnknownGraphMatrixError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NotAdjacencyGraphMatrixError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NotAdjacencyGraphMatrixError-expanded"><a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying to enter a non-square matrix into </tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"><tt class="py-docstring">    Graph.GraphAdjacencyMatrix object or when not supplying an adjacency </tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"><tt class="py-docstring">    matrix when the calculation requires it."""</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line"> </tt>
+<a name="NotAdjacencyGraphMatrixError.__init__"></a><div id="NotAdjacencyGraphMatrixError.__init__-def"><a name="L157"></a><tt class="py-lineno">157</tt> <a class="py-toggle" href="#" id="NotAdjacencyGraphMatrixError.__init__-toggle" onclick="return toggle('NotAdjacencyGraphMatrixError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">type</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NotAdjacencyGraphMatrixError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NotAdjacencyGraphMatrixError.__init__-expanded"><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt class="py-name">type</tt> </tt>
+</div><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"> </tt>
+<a name="NotAdjacencyGraphMatrixError.__str__"></a><div id="NotAdjacencyGraphMatrixError.__str__-def"><a name="L160"></a><tt class="py-lineno">160</tt> <a class="py-toggle" href="#" id="NotAdjacencyGraphMatrixError.__str__-toggle" onclick="return toggle('NotAdjacencyGraphMatrixError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NotAdjacencyGraphMatrixError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NotAdjacencyGraphMatrixError.__str__-expanded"><a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">'The graph inputted or required is not an adjacency matrix.'</tt> </tt>
+</div></div><a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">         </tt>
+<a name="GraphEdgeSizeMismatchError"></a><div id="GraphEdgeSizeMismatchError-def"><a name="L163"></a><tt class="py-lineno">163</tt> <a class="py-toggle" href="#" id="GraphEdgeSizeMismatchError-toggle" onclick="return toggle('GraphEdgeSizeMismatchError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphEdgeSizeMismatchError-class.html">GraphEdgeSizeMismatchError</a><tt class="py-op">(</tt><tt class="py-base-class">GraphError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GraphEdgeSizeMismatchError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GraphEdgeSizeMismatchError-expanded"><a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception for number of output edges do not match the number of input </tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">    edges."""</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="GraphEdgeSizeMismatchError.__init__"></a><div id="GraphEdgeSizeMismatchError.__init__-def"><a name="L167"></a><tt class="py-lineno">167</tt> <a class="py-toggle" href="#" id="GraphEdgeSizeMismatchError.__init__-toggle" onclick="return toggle('GraphEdgeSizeMismatchError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphEdgeSizeMismatchError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">index</tt><tt class="py-op">,</tt> <tt class="py-param">edge</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GraphEdgeSizeMismatchError.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GraphEdgeSizeMismatchError.__init__-expanded"><a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">index</tt> <tt class="py-op">=</tt> <tt class="py-name">index</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edge</tt> <tt class="py-op">=</tt> <tt class="py-name">edge</tt> </tt>
+</div><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="GraphEdgeSizeMismatchError.__str__"></a><div id="GraphEdgeSizeMismatchError.__str__-def"><a name="L171"></a><tt class="py-lineno">171</tt> <a class="py-toggle" href="#" id="GraphEdgeSizeMismatchError.__str__-toggle" onclick="return toggle('GraphEdgeSizeMismatchError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphEdgeSizeMismatchError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GraphEdgeSizeMismatchError.__str__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="GraphEdgeSizeMismatchError.__str__-expanded"><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"Number of edges do not match at index %s, %s"</tt> <tt class="py-op">%</tt> \ </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">               <tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">index</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">edge</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">         </tt>
+<a name="GraphParameterError"></a><div id="GraphParameterError-def"><a name="L175"></a><tt class="py-lineno">175</tt> <a class="py-toggle" href="#" id="GraphParameterError-toggle" onclick="return toggle('GraphParameterError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphParameterError-class.html">GraphParameterError</a><tt class="py-op">(</tt><tt class="py-base-class">GraphError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="GraphParameterError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="GraphParameterError-expanded"><a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception for parameter errors in Graph.Graph class."""</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="GraphParameterError.__init__"></a><div id="GraphParameterError.__init__-def"><a name="L178"></a><tt class="py-lineno">178</tt> <a class="py-toggle" href="#" id="GraphParameterError.__init__-toggle" onclick="return toggle('GraphParameterError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphParameterError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line"> </tt>
+<a name="GraphParameterError.__str__"></a><div id="GraphParameterError.__str__-def"><a name="L180"></a><tt class="py-lineno">180</tt> <a class="py-toggle" href="#" id="GraphParameterError.__str__-toggle" onclick="return toggle('GraphParameterError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.GraphParameterError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">     </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="StatisticsError"></a><div id="StatisticsError-def"><a name="L183"></a><tt class="py-lineno">183</tt> <a class="py-toggle" href="#" id="StatisticsError-toggle" onclick="return toggle('StatisticsError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.StatisticsError-class.html">StatisticsError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="StatisticsError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="StatisticsError-expanded"><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all statistics exceptions</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line">     </tt>
+<a name="DistributionError"></a><div id="DistributionError-def"><a name="L188"></a><tt class="py-lineno">188</tt> <a class="py-toggle" href="#" id="DistributionError-toggle" onclick="return toggle('DistributionError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionError-class.html">DistributionError</a><tt class="py-op">(</tt><tt class="py-base-class">StatisticsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DistributionError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DistributionError-expanded"><a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all exceptions pertaining to statistical </tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">    distributions</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line">     </tt>
+<a name="NormalDistributionTypeError"></a><div id="NormalDistributionTypeError-def"><a name="L194"></a><tt class="py-lineno">194</tt> <a class="py-toggle" href="#" id="NormalDistributionTypeError-toggle" onclick="return toggle('NormalDistributionTypeError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NormalDistributionTypeError-class.html">NormalDistributionTypeError</a><tt class="py-op">(</tt><tt class="py-base-class">DistributionError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NormalDistributionTypeError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NormalDistributionTypeError-expanded"><a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception for type errors in normal distribution </tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-docstring">    (StatisticsDistribution.NormalDistribution)."""</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"> </tt>
+<a name="NormalDistributionTypeError.__init__"></a><div id="NormalDistributionTypeError.__init__-def"><a name="L198"></a><tt class="py-lineno">198</tt> <a class="py-toggle" href="#" id="NormalDistributionTypeError.__init__-toggle" onclick="return toggle('NormalDistributionTypeError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NormalDistributionTypeError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"> </tt>
+<a name="NormalDistributionTypeError.__str__"></a><div id="NormalDistributionTypeError.__str__-def"><a name="L200"></a><tt class="py-lineno">200</tt> <a class="py-toggle" href="#" id="NormalDistributionTypeError.__str__-toggle" onclick="return toggle('NormalDistributionTypeError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.NormalDistributionTypeError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line">     </tt>
+<a name="DistributionParameterError"></a><div id="DistributionParameterError-def"><a name="L202"></a><tt class="py-lineno">202</tt> <a class="py-toggle" href="#" id="DistributionParameterError-toggle" onclick="return toggle('DistributionParameterError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionParameterError-class.html">DistributionParameterError</a><tt class="py-op">(</tt><tt class="py-base-class">DistributionError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DistributionParameterError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DistributionParameterError-expanded"><a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception for parameter errors in distributions </tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"><tt class="py-docstring">    (StatisticsDistribution.*)."""</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"> </tt>
+<a name="DistributionParameterError.__init__"></a><div id="DistributionParameterError.__init__-def"><a name="L206"></a><tt class="py-lineno">206</tt> <a class="py-toggle" href="#" id="DistributionParameterError.__init__-toggle" onclick="return toggle('DistributionParameterError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionParameterError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"> </tt>
+<a name="DistributionParameterError.__str__"></a><div id="DistributionParameterError.__str__-def"><a name="L208"></a><tt class="py-lineno">208</tt> <a class="py-toggle" href="#" id="DistributionParameterError.__str__-toggle" onclick="return toggle('DistributionParameterError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionParameterError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">     </tt>
+<a name="DistributionFunctionError"></a><div id="DistributionFunctionError-def"><a name="L210"></a><tt class="py-lineno">210</tt> <a class="py-toggle" href="#" id="DistributionFunctionError-toggle" onclick="return toggle('DistributionFunctionError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionFunctionError-class.html">DistributionFunctionError</a><tt class="py-op">(</tt><tt class="py-base-class">DistributionError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DistributionFunctionError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DistributionFunctionError-expanded"><a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception for undefined functions in distributions </tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring">    (StatisticsDistribution.*)."""</tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="DistributionFunctionError.__init__"></a><div id="DistributionFunctionError.__init__-def"><a name="L214"></a><tt class="py-lineno">214</tt> <a class="py-toggle" href="#" id="DistributionFunctionError.__init__-toggle" onclick="return toggle('DistributionFunctionError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionFunctionError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line"> </tt>
+<a name="DistributionFunctionError.__str__"></a><div id="DistributionFunctionError.__str__-def"><a name="L216"></a><tt class="py-lineno">216</tt> <a class="py-toggle" href="#" id="DistributionFunctionError.__str__-toggle" onclick="return toggle('DistributionFunctionError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistributionFunctionError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">     </tt>
+<a name="DistanceError"></a><div id="DistanceError-def"><a name="L218"></a><tt class="py-lineno">218</tt> <a class="py-toggle" href="#" id="DistanceError-toggle" onclick="return toggle('DistanceError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistanceError-class.html">DistanceError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DistanceError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DistanceError-expanded"><a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all exceptions related to calculating distances </tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line"><tt class="py-docstring">    between lists."""</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">     </tt>
+<a name="DistanceInputSizeError"></a><div id="DistanceInputSizeError-def"><a name="L223"></a><tt class="py-lineno">223</tt> <a class="py-toggle" href="#" id="DistanceInputSizeError-toggle" onclick="return toggle('DistanceInputSizeError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistanceInputSizeError-class.html">DistanceInputSizeError</a><tt class="py-op">(</tt><tt class="py-base-class">DistanceError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DistanceInputSizeError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DistanceInputSizeError-expanded"><a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"><tt class="py-docstring">    Exception for input parameter size errors for list (object) distance</tt> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line"><tt class="py-docstring">    routines that have specific requirements for the size of inputs."""</tt> </tt>
+<a name="L227"></a><tt class="py-lineno">227</tt>  <tt class="py-line"> </tt>
+<a name="DistanceInputSizeError.__init__"></a><div id="DistanceInputSizeError.__init__-def"><a name="L228"></a><tt class="py-lineno">228</tt> <a class="py-toggle" href="#" id="DistanceInputSizeError.__init__-toggle" onclick="return toggle('DistanceInputSizeError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistanceInputSizeError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line"> </tt>
+<a name="DistanceInputSizeError.__str__"></a><div id="DistanceInputSizeError.__str__-def"><a name="L230"></a><tt class="py-lineno">230</tt> <a class="py-toggle" href="#" id="DistanceInputSizeError.__str__-toggle" onclick="return toggle('DistanceInputSizeError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.DistanceInputSizeError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">     </tt>
+<a name="TreeError"></a><div id="TreeError-def"><a name="L232"></a><tt class="py-lineno">232</tt> <a class="py-toggle" href="#" id="TreeError-toggle" onclick="return toggle('TreeError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.TreeError-class.html">TreeError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TreeError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TreeError-expanded"><a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract parent for all tree exceptions"""</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line"> </tt>
+<a name="TreeNodeTypeError"></a><div id="TreeNodeTypeError-def"><a name="L236"></a><tt class="py-lineno">236</tt> <a class="py-toggle" href="#" id="TreeNodeTypeError-toggle" onclick="return toggle('TreeNodeTypeError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.TreeNodeTypeError-class.html">TreeNodeTypeError</a><tt class="py-op">(</tt><tt class="py-base-class">TreeError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TreeNodeTypeError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TreeNodeTypeError-expanded"><a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying to add a non-Node class object </tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line"><tt class="py-docstring">    (Tree.Node) into a Tree object (Tree.BinaryTree)"""</tt> </tt>
+<a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"> </tt>
+<a name="TreeNodeTypeError.__init__"></a><div id="TreeNodeTypeError.__init__-def"><a name="L240"></a><tt class="py-lineno">240</tt> <a class="py-toggle" href="#" id="TreeNodeTypeError.__init__-toggle" onclick="return toggle('TreeNodeTypeError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.TreeNodeTypeError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"> </tt>
+<a name="TreeNodeTypeError.__str__"></a><div id="TreeNodeTypeError.__str__-def"><a name="L242"></a><tt class="py-lineno">242</tt> <a class="py-toggle" href="#" id="TreeNodeTypeError.__str__-toggle" onclick="return toggle('TreeNodeTypeError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.TreeNodeTypeError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">     </tt>
+<a name="FunctionParameterTypeError"></a><div id="FunctionParameterTypeError-def"><a name="L244"></a><tt class="py-lineno">244</tt> <a class="py-toggle" href="#" id="FunctionParameterTypeError-toggle" onclick="return toggle('FunctionParameterTypeError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterTypeError-class.html">FunctionParameterTypeError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FunctionParameterTypeError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="FunctionParameterTypeError-expanded"><a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying a function parameter is of the wrong </tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line"><tt class="py-docstring">    data type"""</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"> </tt>
+<a name="FunctionParameterTypeError.__init__"></a><div id="FunctionParameterTypeError.__init__-def"><a name="L248"></a><tt class="py-lineno">248</tt> <a class="py-toggle" href="#" id="FunctionParameterTypeError.__init__-toggle" onclick="return toggle('FunctionParameterTypeError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterTypeError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line"> </tt>
+<a name="FunctionParameterTypeError.__str__"></a><div id="FunctionParameterTypeError.__str__-def"><a name="L250"></a><tt class="py-lineno">250</tt> <a class="py-toggle" href="#" id="FunctionParameterTypeError.__str__-toggle" onclick="return toggle('FunctionParameterTypeError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterTypeError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line">     </tt>
+<a name="FunctionParameterValueError"></a><div id="FunctionParameterValueError-def"><a name="L252"></a><tt class="py-lineno">252</tt> <a class="py-toggle" href="#" id="FunctionParameterValueError-toggle" onclick="return toggle('FunctionParameterValueError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterValueError-class.html">FunctionParameterValueError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FunctionParameterValueError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="FunctionParameterValueError-expanded"><a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when trying a function parameter is of wrong </tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line"><tt class="py-docstring">    value"""</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line"> </tt>
+<a name="FunctionParameterValueError.__init__"></a><div id="FunctionParameterValueError.__init__-def"><a name="L256"></a><tt class="py-lineno">256</tt> <a class="py-toggle" href="#" id="FunctionParameterValueError.__init__-toggle" onclick="return toggle('FunctionParameterValueError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterValueError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"> </tt>
+<a name="FunctionParameterValueError.__str__"></a><div id="FunctionParameterValueError.__str__-def"><a name="L258"></a><tt class="py-lineno">258</tt> <a class="py-toggle" href="#" id="FunctionParameterValueError.__str__-toggle" onclick="return toggle('FunctionParameterValueError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.FunctionParameterValueError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line">     </tt>
+<a name="ArrayError"></a><div id="ArrayError-def"><a name="L260"></a><tt class="py-lineno">260</tt> <a class="py-toggle" href="#" id="ArrayError-toggle" onclick="return toggle('ArrayError');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.ArrayError-class.html">ArrayError</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ArrayError-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ArrayError-expanded"><a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line">    <tt class="py-docstring">"""Exception to be thrown when encountered error in Array type"""</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"> </tt>
+<a name="ArrayError.__init__"></a><div id="ArrayError.__init__-def"><a name="L263"></a><tt class="py-lineno">263</tt> <a class="py-toggle" href="#" id="ArrayError.__init__-toggle" onclick="return toggle('ArrayError.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.ArrayError-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">msg</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> <tt class="py-op">=</tt> <tt class="py-name">msg</tt> </tt>
+</div><a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"> </tt>
+<a name="ArrayError.__str__"></a><div id="ArrayError.__str__-def"><a name="L265"></a><tt class="py-lineno">265</tt> <a class="py-toggle" href="#" id="ArrayError.__str__-toggle" onclick="return toggle('ArrayError.__str__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.ArrayError-class.html#__str__">__str__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">msg</tt> </tt>
+</div></div><a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">     </tt>
+<a name="MaxIterationsException"></a><div id="MaxIterationsException-def"><a name="L267"></a><tt class="py-lineno">267</tt> <a class="py-toggle" href="#" id="MaxIterationsException-toggle" onclick="return toggle('MaxIterationsException');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="dose.copads.copadsexceptions.MaxIterationsException-class.html">MaxIterationsException</a><tt class="py-op">(</tt><tt class="py-base-class">CopadsError</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MaxIterationsException-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MaxIterationsException-expanded"><a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"><tt class="py-docstring">    Exception to catch maximum looping.</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line">    <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:58 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

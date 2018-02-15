@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;dose
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="dose-module.html">Package dose</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring">Digital Organism Simulation Environment (DOSE)</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">Date created: 27th September 2013</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">'''</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module dose.metadata=dose.metadata-module.html"><a title="dose.metadata" class="py-name" href="#" onclick="return doclink('link-0', 'metadata', 'link-0');">metadata</a></tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-name">__version__</tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name"><a title="dose.metadata" class="py-name" href="#" onclick="return doclink('link-1', 'metadata', 'link-0');">metadata</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Variable dose.metadata.version=dose.metadata-module.html#version"><a title="dose.metadata.version" class="py-name" href="#" onclick="return doclink('link-2', 'version', 'link-2');">version</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable dose.__maintainer__=dose-module.html#__maintainer__"><a title="dose.__maintainer__" class="py-name" href="#" onclick="return doclink('link-3', '__maintainer__', 'link-3');">__maintainer__</a></tt> <tt class="py-op">=</tt> <tt id="link-4" class="py-name"><a title="dose.metadata" class="py-name" href="#" onclick="return doclink('link-4', 'metadata', 'link-0');">metadata</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Variable dose.metadata.maintainer=dose.metadata-module.html#maintainer"><a title="dose.metadata.maintainer" class="py-name" href="#" onclick="return doclink('link-5', 'maintainer', 'link-5');">maintainer</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable dose.__email__=dose-module.html#__email__"><a title="dose.__email__" class="py-name" href="#" onclick="return doclink('link-6', '__email__', 'link-6');">__email__</a></tt> <tt class="py-op">=</tt> <tt id="link-7" class="py-name"><a title="dose.metadata" class="py-name" href="#" onclick="return doclink('link-7', 'metadata', 'link-0');">metadata</a></tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Variable dose.metadata.email=dose.metadata-module.html#email"><a title="dose.metadata.email" class="py-name" href="#" onclick="return doclink('link-8', 'email', 'link-8');">email</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable dose.__description__=dose-module.html#__description__"><a title="dose.__description__" class="py-name" href="#" onclick="return doclink('link-9', '__description__', 'link-9');">__description__</a></tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="dose.metadata" class="py-name" href="#" onclick="return doclink('link-10', 'metadata', 'link-0');">metadata</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Variable dose.metadata.long_description=dose.metadata-module.html#long_description"><a title="dose.metadata.long_description" class="py-name" href="#" onclick="return doclink('link-11', 'long_description', 'link-11');">long_description</a></tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># Package imports (in ascending order of package names)</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-12" class="py-name" targets="Package dose.copads=dose.copads-module.html"><a title="dose.copads" class="py-name" href="#" onclick="return doclink('link-12', 'copads', 'link-12');">copads</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># Module imports (in ascending order of module names)</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-13" class="py-name" targets="Module dose.database_calls=dose.database_calls-module.html"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-13', 'database_calls', 'link-13');">database_calls</a></tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-14" class="py-name" targets="Package dose=dose-module.html,Module dose.dose=dose.dose-module.html"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-14', 'dose', 'link-14');">dose</a></tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Module dose.genetic=dose.genetic-module.html"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-15', 'genetic', 'link-15');">genetic</a></tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-16" class="py-name" targets="Module dose.register_machine=dose.register_machine-module.html"><a title="dose.register_machine" class="py-name" href="#" onclick="return doclink('link-16', 'register_machine', 'link-16');">register_machine</a></tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-17" class="py-name" targets="Module dose.ragaraja=dose.ragaraja-module.html,Variable dose.ragaraja.ragaraja=dose.ragaraja-module.html#ragaraja"><a title="dose.ragaraja
+dose.ragaraja.ragaraja" class="py-name" href="#" onclick="return doclink('link-17', 'ragaraja', 'link-17');">ragaraja</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># COPADS Class imports (in ascending order of module names, then class names)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="dose.copads" class="py-name" href="#" onclick="return doclink('link-18', 'copads', 'link-12');">copads</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Module dose.copads.lindenmayer=dose.copads.lindenmayer-module.html,Class dose.copads.lindenmayer.lindenmayer=dose.copads.lindenmayer.lindenmayer-class.html"><a title="dose.copads.lindenmayer
+dose.copads.lindenmayer.lindenmayer" class="py-name" href="#" onclick="return doclink('link-19', 'lindenmayer', 'link-19');">lindenmayer</a></tt> <tt class="py-keyword">import</tt> <tt id="link-20" class="py-name"><a title="dose.copads.lindenmayer
+dose.copads.lindenmayer.lindenmayer" class="py-name" href="#" onclick="return doclink('link-20', 'lindenmayer', 'link-19');">lindenmayer</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># DOSE Class imports (in ascending order of module names, then class names)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-21', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-22" class="py-name" targets="Class dose.dose.dose_functions=dose.dose.dose_functions-class.html"><a title="dose.dose.dose_functions" class="py-name" href="#" onclick="return doclink('link-22', 'dose_functions', 'link-22');">dose_functions</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt class="py-name">dose_world</tt> <tt class="py-keyword">import</tt> <tt class="py-name">World</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-23', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-24" class="py-name" targets="Class dose.genetic.Chromosome=dose.genetic.Chromosome-class.html"><a title="dose.genetic.Chromosome" class="py-name" href="#" onclick="return doclink('link-24', 'Chromosome', 'link-24');">Chromosome</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-25', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-26" class="py-name" targets="Class dose.genetic.Organism=dose.genetic.Organism-class.html"><a title="dose.genetic.Organism" class="py-name" href="#" onclick="return doclink('link-26', 'Organism', 'link-26');">Organism</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-27', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-28" class="py-name" targets="Class dose.genetic.Population=dose.genetic.Population-class.html"><a title="dose.genetic.Population" class="py-name" href="#" onclick="return doclink('link-28', 'Population', 'link-28');">Population</a></tt>  </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-comment"># Function imports (in ascending order of module names, then function names)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-29', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-30" class="py-name" targets="Function dose.database_calls.connect_database()=dose.database_calls-module.html#connect_database"><a title="dose.database_calls.connect_database" class="py-name" href="#" onclick="return doclink('link-30', 'connect_database', 'link-30');">connect_database</a></tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-31', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-32" class="py-name" targets="Function dose.database_calls.db_list_datafields()=dose.database_calls-module.html#db_list_datafields"><a title="dose.database_calls.db_list_datafields" class="py-name" href="#" onclick="return doclink('link-32', 'db_list_datafields', 'link-32');">db_list_datafields</a></tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-33" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-33', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-34" class="py-name" targets="Function dose.database_calls.db_list_generations()=dose.database_calls-module.html#db_list_generations"><a title="dose.database_calls.db_list_generations" class="py-name" href="#" onclick="return doclink('link-34', 'db_list_generations', 'link-34');">db_list_generations</a></tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-35', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-36" class="py-name" targets="Function dose.database_calls.db_list_simulations()=dose.database_calls-module.html#db_list_simulations"><a title="dose.database_calls.db_list_simulations" class="py-name" href="#" onclick="return doclink('link-36', 'db_list_simulations', 'link-36');">db_list_simulations</a></tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-37', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-38" class="py-name" targets="Function dose.database_calls.db_list_population_name()=dose.database_calls-module.html#db_list_population_name"><a title="dose.database_calls.db_list_population_name" class="py-name" href="#" onclick="return doclink('link-38', 'db_list_population_name', 'link-38');">db_list_population_name</a></tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-39" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-39', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-40" class="py-name" targets="Function dose.database_calls.db_get_ecosystem()=dose.database_calls-module.html#db_get_ecosystem"><a title="dose.database_calls.db_get_ecosystem" class="py-name" href="#" onclick="return doclink('link-40', 'db_get_ecosystem', 'link-40');">db_get_ecosystem</a></tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-41" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-41', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-42" class="py-name" targets="Function dose.database_calls.db_get_organisms_chromosome_sequences()=dose.database_calls-module.html#db_get_organisms_chromosome_sequences"><a title="dose.database_calls.db_get_organisms_chromosome_sequences" class="py-name" href="#" onclick="return doclink('link-42', 'db_get_organisms_chromosome_sequences', 'link-42');">db_get_organisms_chromosome_sequences</a></tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-43', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-44" class="py-name" targets="Function dose.database_calls.db_get_organisms_genome()=dose.database_calls-module.html#db_get_organisms_genome"><a title="dose.database_calls.db_get_organisms_genome" class="py-name" href="#" onclick="return doclink('link-44', 'db_get_organisms_genome', 'link-44');">db_get_organisms_genome</a></tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="dose.database_calls" class="py-name" href="#" onclick="return doclink('link-45', 'database_calls', 'link-13');">database_calls</a></tt> <tt class="py-keyword">import</tt> <tt id="link-46" class="py-name" targets="Function dose.database_calls.db_get_organisms_status()=dose.database_calls-module.html#db_get_organisms_status"><a title="dose.database_calls.db_get_organisms_status" class="py-name" href="#" onclick="return doclink('link-46', 'db_get_organisms_status', 'link-46');">db_get_organisms_status</a></tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-47', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-48" class="py-name" targets="Function dose.dose.database_report_populations()=dose.dose-module.html#database_report_populations"><a title="dose.dose.database_report_populations" class="py-name" href="#" onclick="return doclink('link-48', 'database_report_populations', 'link-48');">database_report_populations</a></tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-49', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-50" class="py-name" targets="Function dose.dose.database_report_world()=dose.dose-module.html#database_report_world"><a title="dose.dose.database_report_world" class="py-name" href="#" onclick="return doclink('link-50', 'database_report_world', 'link-50');">database_report_world</a></tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-51', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-52" class="py-name" targets="Function dose.dose.filter_age()=dose.dose-module.html#filter_age"><a title="dose.dose.filter_age" class="py-name" href="#" onclick="return doclink('link-52', 'filter_age', 'link-52');">filter_age</a></tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-53', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-54" class="py-name" targets="Function dose.dose.filter_deme()=dose.dose-module.html#filter_deme"><a title="dose.dose.filter_deme" class="py-name" href="#" onclick="return doclink('link-54', 'filter_deme', 'link-54');">filter_deme</a></tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-55', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-56" class="py-name" targets="Function dose.dose.filter_gender()=dose.dose-module.html#filter_gender"><a title="dose.dose.filter_gender" class="py-name" href="#" onclick="return doclink('link-56', 'filter_gender', 'link-56');">filter_gender</a></tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-57', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-58" class="py-name" targets="Function dose.dose.filter_location()=dose.dose-module.html#filter_location"><a title="dose.dose.filter_location" class="py-name" href="#" onclick="return doclink('link-58', 'filter_location', 'link-58');">filter_location</a></tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-59', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-60" class="py-name" targets="Function dose.dose.filter_status()=dose.dose-module.html#filter_status"><a title="dose.dose.filter_status" class="py-name" href="#" onclick="return doclink('link-60', 'filter_status', 'link-60');">filter_status</a></tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-61', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-62" class="py-name" targets="Function dose.dose.filter_vitality()=dose.dose-module.html#filter_vitality"><a title="dose.dose.filter_vitality" class="py-name" href="#" onclick="return doclink('link-62', 'filter_vitality', 'link-62');">filter_vitality</a></tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-63" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-63', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-64" class="py-name" targets="Function dose.dose.revive_simulation()=dose.dose-module.html#revive_simulation"><a title="dose.dose.revive_simulation" class="py-name" href="#" onclick="return doclink('link-64', 'revive_simulation', 'link-64');">revive_simulation</a></tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="dose
+dose.dose" class="py-name" href="#" onclick="return doclink('link-65', 'dose', 'link-14');">dose</a></tt> <tt class="py-keyword">import</tt> <tt id="link-66" class="py-name" targets="Function dose.dose.simulate()=dose.dose-module.html#simulate,Function dose.run_dose.simulate()=dose.run_dose-module.html#simulate"><a title="dose.dose.simulate
+dose.run_dose.simulate" class="py-name" href="#" onclick="return doclink('link-66', 'simulate', 'link-66');">simulate</a></tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-67', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-68" class="py-name" targets="Function dose.genetic.crossover()=dose.genetic-module.html#crossover"><a title="dose.genetic.crossover" class="py-name" href="#" onclick="return doclink('link-68', 'crossover', 'link-68');">crossover</a></tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-69', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-70" class="py-name" targets="Function dose.genetic.population_constructor()=dose.genetic-module.html#population_constructor"><a title="dose.genetic.population_constructor" class="py-name" href="#" onclick="return doclink('link-70', 'population_constructor', 'link-70');">population_constructor</a></tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="dose.genetic" class="py-name" href="#" onclick="return doclink('link-71', 'genetic', 'link-15');">genetic</a></tt> <tt class="py-keyword">import</tt> <tt id="link-72" class="py-name" targets="Function dose.genetic.population_simulate()=dose.genetic-module.html#population_simulate"><a title="dose.genetic.population_simulate" class="py-name" href="#" onclick="return doclink('link-72', 'population_simulate', 'link-72');">population_simulate</a></tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:57 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

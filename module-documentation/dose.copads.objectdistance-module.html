@@ -1,0 +1,2412 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.copads.objectdistance</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.copads-module.html">Package&nbsp;copads</a> ::
+        Module&nbsp;objectdistance
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.copads.objectdistance-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module objectdistance</h1><p class="nomargin-top"><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html">source&nbsp;code</a></span></p>
+<p>Functions for Calculating Similarity Coefficients between 2 
+  Objects.</p>
+  <p>Generally, the lower boundary of similar coefficient signifies 
+  complete difference (no similarity) while the upper boundary (if any) 
+  signifies complete similarity (no difference).</p>
+  <p>In the following formulae, the following notations will be used</p>
+  <ul>
+    <li>
+      A = found in both 'original' and 'test'
+    </li>
+    <li>
+      B = found in 'original' only
+    </li>
+    <li>
+      C = found in 'test' only
+    </li>
+    <li>
+      D = not found in either 'original' or 'test'
+    </li>
+  </ul>
+  <p>Copyright (c) Maurice H.T. Ling &lt;mauriceling@acm.org&gt;</p>
+  <p>Date created: 17th August 2005</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#binarize" class="summary-sig-name">binarize</a>(<span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Converts input data in a list of presence or absence of values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#binarize">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#compare" class="summary-sig-name">compare</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Used for processing list-based (positional) or set-based 
+      (non-positional) distance of categorical data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#compare">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Jaccard" class="summary-sig-name">Jaccard</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Jaccard coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Jaccard">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Sokal_Michener" class="summary-sig-name">Sokal_Michener</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Sokal and Michener coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Michener">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Matching" class="summary-sig-name">Matching</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Matching coefficient for nominal or ordinal data</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Matching">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Dice" class="summary-sig-name">Dice</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Dice coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Dice">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Ochiai" class="summary-sig-name">Ochiai</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Ochiai coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Ochiai">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Ochiai2" class="summary-sig-name">Ochiai2</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Ochiai 2 coefficient for nominal or ordinal data, and requires the 
+      presence of regions whereby both original and test are not present.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Ochiai2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Anderberg" class="summary-sig-name">Anderberg</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Anderberg coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Anderberg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Kulczynski2" class="summary-sig-name">Kulczynski2</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Second Kulczynski coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Kulczynski2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Kulczynski" class="summary-sig-name">Kulczynski</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      First Kulczyski coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Kulczynski">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Forbes" class="summary-sig-name">Forbes</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Forbes coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Forbes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Hamann" class="summary-sig-name">Hamann</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Hamann coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Hamann">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Simpson" class="summary-sig-name">Simpson</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Simpson coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Simpson">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Russel_Rao" class="summary-sig-name">Russel_Rao</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Russel and Rao coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Russel_Rao">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Roger_Tanimoto" class="summary-sig-name">Roger_Tanimoto</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Roger and Tanimoto coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Roger_Tanimoto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Sokal_Sneath" class="summary-sig-name">Sokal_Sneath</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Sokal and Sneath coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Sokal_Sneath2" class="summary-sig-name">Sokal_Sneath2</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Sokal and Sneath 2 coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Sokal_Sneath3" class="summary-sig-name">Sokal_Sneath3</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Sokal and Sneath 3 coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath3">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Buser" class="summary-sig-name">Buser</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Buser coefficient (also known as Baroni-Urbani coefficient) for 
+      nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Buser">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Fossum" class="summary-sig-name">Fossum</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Fossum coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Fossum">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#YuleQ" class="summary-sig-name">YuleQ</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Yule Q coefficient (also known as First Yule coefficient) for nominal
+      or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#YuleQ">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#YuleY" class="summary-sig-name">YuleY</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Yule Y coefficient (also known as Second Yule coefficient) for 
+      nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#YuleY">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Mcconnaughey" class="summary-sig-name">Mcconnaughey</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      McConnaughey coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Mcconnaughey">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Stiles" class="summary-sig-name">Stiles</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Stiles coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Stiles">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Pearson" class="summary-sig-name">Pearson</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Pearson coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Pearson">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Dennis" class="summary-sig-name">Dennis</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Dennis coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Dennis">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Gower_Legendre" class="summary-sig-name">Gower_Legendre</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Gower and Legendre coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Gower_Legendre">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Tulloss" class="summary-sig-name">Tulloss</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">absent</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span><br />
+      Tulloss coefficient for nominal or ordinal data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Tulloss">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Hamming" class="summary-sig-name">Hamming</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Hamming coefficient for ordinal data - only for positional data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Hamming">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Euclidean" class="summary-sig-name">Euclidean</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Euclidean coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Euclidean">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Minkowski" class="summary-sig-name">Minkowski</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>,
+        <span class="summary-sig-arg">power</span>=<span class="summary-sig-default">3</span>)</span><br />
+      Minkowski coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Minkowski">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Manhattan" class="summary-sig-name">Manhattan</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Manhattan coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Manhattan">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Canberra" class="summary-sig-name">Canberra</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Canberra coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Canberra">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Bray_Curtis" class="summary-sig-name">Bray_Curtis</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Complement Bray and Curtis coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Bray_Curtis">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Cosine" class="summary-sig-name">Cosine</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Cosine coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Cosine">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.objectdistance-module.html#Tanimoto" class="summary-sig-name">Tanimoto</a>(<span class="summary-sig-arg">original</span>,
+        <span class="summary-sig-arg">test</span>)</span><br />
+      Tanimoto coefficient for interval or ratio data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Tanimoto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dose.copads'"><code class="variable-quote">'</code><code class="variable-string">dose.copads</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="math">math</span>,
+  <span title="dose.dose.copads.copadsexceptions.DistanceInputSizeError">DistanceInputSizeError</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="binarize"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">binarize</span>(<span class="sig-arg">data</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#binarize">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts input data in a list of presence or absence of values. For 
+  example, binarize([1, 2, 0, 3, 4, 0], 0) --&gt; [1, 1, 0, 1, 1, 0] 
+  binarize([1, 2, 0, 3, 4, 0], 2) --&gt; [1, 0, 1, 1, 1, 1]</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="compare"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">compare</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#compare">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Used for processing list-based (positional) or set-based 
+  (non-positional) distance of categorical data.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - indicator to define absent data</li>
+        <li><strong class="pname"><code>type</code></strong> - {List | Set}</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="Jaccard"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Jaccard</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Jaccard">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Jaccard coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / (A + B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Sokal_Michener"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Sokal_Michener</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Michener">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sokal and Michener coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(A + D) / (A + B + C + D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Matching"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Matching</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Matching">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Matching coefficient for nominal or ordinal data</p>
+  <p>Coefficient: <i class="math">(A + D) / (2A + B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Dice"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Dice</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Dice">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Dice coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">2A / (2A + B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Ochiai"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Ochiai</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Ochiai">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Ochiai coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">2A / sqrt((A + B)(A + C)))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Ochiai2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Ochiai2</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Ochiai2">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Ochiai 2 coefficient for nominal or ordinal data, and requires the 
+  presence of regions whereby both original and test are not present.</p>
+  <p>Coefficient: <i class="math">(A * D) / sqrt((A + B)(A + C)(D + B)(D + 
+  C))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Anderberg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Anderberg</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Anderberg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Anderberg coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / (A + 2(B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Kulczynski2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Kulczynski2</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Kulczynski2">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Second Kulczynski coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A / (A + B)) + (A / (A + C))) / 
+  2</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Kulczynski"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Kulczynski</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Kulczynski">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>First Kulczyski coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / (B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Forbes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Forbes</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Forbes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Forbes coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A(A + B + C + D) / ((A + B)(A + 
+  C))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Hamann"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Hamann</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Hamann">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Hamann coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A + D) - (B + C)) / (A + B + C + 
+  D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Simpson"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Simpson</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Simpson">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Simpson coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / min(A + B, A + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Russel_Rao"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Russel_Rao</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Russel_Rao">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Russel and Rao coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / (A + B + C + D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Roger_Tanimoto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Roger_Tanimoto</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Roger_Tanimoto">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Roger and Tanimoto coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(A + D) / (A + 2B + 2C + D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Sokal_Sneath"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Sokal_Sneath</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sokal and Sneath coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">A / (A + 2B + 2C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Sokal_Sneath2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Sokal_Sneath2</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath2">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sokal and Sneath 2 coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(2A + 2D) / (2A + B + C + 2D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Sokal_Sneath3"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Sokal_Sneath3</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Sokal_Sneath3">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sokal and Sneath 3 coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(A + D) / (B + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Buser"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Buser</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Buser">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Buser coefficient (also known as Baroni-Urbani coefficient) for 
+  nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(sqrt(A * D) + A) / (sqrt(A * D) + A + B 
+  + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Fossum"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Fossum</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Fossum">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fossum coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A + B + C + D)(A - 0.5)^2) / ((A + B)(A
+  + C))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="YuleQ"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">YuleQ</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#YuleQ">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Yule Q coefficient (also known as First Yule coefficient) for nominal 
+  or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A * D) - (B * C)) / ((A * D) + (B * 
+  C))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="YuleY"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">YuleY</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#YuleY">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Yule Y coefficient (also known as Second Yule coefficient) for nominal
+  or ordinal data.</p>
+  <p>Coefficient: <i class="math">(sqrt(A * D) - sqrt(B * C)) / (sqrt(A * 
+  D) + sqrt(B * C))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Mcconnaughey"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Mcconnaughey</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Mcconnaughey">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>McConnaughey coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(A^2 - (B * C)) / (A + B)(A + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Stiles"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Stiles</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Stiles">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Stiles coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">log10(((A + B + C + D)(|(A * D) - (B * 
+  C)| - ((A + B + C + D) / 2)) ^ 2) / (A + B)(A + C)(B + D)(C + D))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Pearson"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Pearson</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Pearson">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Pearson coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A * D) - (B * C)) / (A + B)(A + C)(B + 
+  D)(C + D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Dennis"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Dennis</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Dennis">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Dennis coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">((A * D) - (B * C)) / (A + B + C + D)(A +
+  B)(A + C)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Gower_Legendre"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Gower_Legendre</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Gower_Legendre">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Gower and Legendre coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">(A + D) / ((0.5 * (B + C)) + A + 
+  D)</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Tulloss"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Tulloss</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">absent</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Set</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Tulloss">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Tulloss coefficient for nominal or ordinal data.</p>
+  <p>Coefficient: <i class="math">sqrt(U * S * R)</i></p>
+  <ul>
+    <li>
+      <i class="math">U = log(1 + ((min(B, C) + A) / (max(B, C) + A))) / 
+      log2</i>
+    </li>
+    <li>
+      <i class="math">S = 1 / sqrt(log(2 + (min(B, C) / (A + 1))) / 
+      log2)</i>
+    </li>
+    <li>
+      <i class="math">R = log(1 + A / (A + B))log(1 + A / (A + C)) / 
+      log2log2</i>
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>absent</code></strong> - user-defined identifier for absent of region, default = 0</li>
+        <li><strong class="pname"><code>type</code></strong> - {Set | List}, define whether use Set comparison (non-positional) 
+          or list comparison (positional), default = Set</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.3
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Hamming"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Hamming</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Hamming">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Hamming coefficient for ordinal data - only for positional data.</p>
+  <p>Coefficient: number of mismatches with respect to position</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Ling, MHT. 2010. COPADS, I: Distances Measures between Two Lists or
+        Sets. The Python Papers Source Codes 2:2.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Euclidean"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Euclidean</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Euclidean">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Euclidean coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">sqrt(&sum;(((A + B)(i) - (A + C)(i)) ^ 
+  2))</i></p>
+  <p>euclidean(original, test) -&gt; euclidean distance between original 
+  and test. Adapted from BioPython</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.1
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Minkowski"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Minkowski</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>,
+        <span class="sig-arg">power</span>=<span class="sig-default">3</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Minkowski">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Minkowski coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">power-th root(&sum;(((A + B)(i) - (A + 
+  C)(i)) ^ power))</i></p>
+  <p>Minkowski Distance is a generalized absolute form of Euclidean 
+  Distance. Minkowski Distance = Euclidean Distance when power = 2</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+        <li><strong class="pname"><code>power</code></strong> (integer) - expontential variable</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Manhattan"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Manhattan</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Manhattan">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Manhattan coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">&sum;(abs((A + B)(i) - (A + 
+  C)(i)))</i></p>
+  <p>Manhattan Distance is also known as City Block Distance. It is 
+  essentially summation of the absolute difference between each 
+  element.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Krause, Eugene F. 1987. Taxicab Geometry. Dover. ISBN 0-486- 
+        25202-7.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Canberra"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Canberra</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Canberra">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Canberra coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">&sum;(abs((A + B)(i) - (A + C)(i)) / 
+  abs((A + B)(i) + (A + C)(i)))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Lance GN and Williams WT. 1966. Computer programs for hierarchical 
+        polythetic classification. Computer Journal 9: 60-64.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Bray_Curtis"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Bray_Curtis</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Bray_Curtis">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Complement Bray and Curtis coefficient for interval or ratio data. 
+  Lower boundary of Bray and Curtis coefficient represents complete 
+  similarity (no difference).</p>
+  <p>Coefficient: <i class="math">1 - &sum;(abs((A + B)(i) - (A + C)(i))) /
+  (&sum;((A + B)(i)) + &sum;((A + C)(i)))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        Bray JR and Curtis JT. 1957. An ordination of the upland forest 
+        communities of S. Winconsin. Ecological Monographs 27: 325-349.
+      </p>
+      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Cosine"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Cosine</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Cosine">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Cosine coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">&sum;(abs((A + B)(i) * (A + C)(i))) / 
+  (&sum;((A + B) ^ 2) * &sum;((A + C) ^ 2))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="Tanimoto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Tanimoto</span>(<span class="sig-arg">original</span>,
+        <span class="sig-arg">test</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.objectdistance-pysrc.html#Tanimoto">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Tanimoto coefficient for interval or ratio data.</p>
+  <p>Coefficient: <i class="math">&sum;(abs((A + B)(i) * (A + C)(i))) / 
+  (&sum;((A + B) ^ 2) + &sum;((A + C) ^ 2) - &sum;(abs((A + B)(i) * (A + 
+  C)(i))))</i></p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>original</code></strong> - list of original data</li>
+        <li><strong class="pname"><code>test</code></strong> - list of data to test against original</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested function
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

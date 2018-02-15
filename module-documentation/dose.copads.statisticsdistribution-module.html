@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.copads.statisticsdistribution</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.copads-module.html">Package&nbsp;copads</a> ::
+        Module&nbsp;statisticsdistribution
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.copads.statisticsdistribution-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module statisticsdistribution</h1><p class="nomargin-top"><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html">source&nbsp;code</a></span></p>
+<p>Classes for Various Statistical Distributions.</p>
+  <p>References:</p>
+  <ul>
+    <li>
+      Regress+ A compendium of common probability distributions (version 
+      2.3) by Michael P. McLaughlin (mpmcl@mitre.org) 
+      http://www.causascientia.org/math_stat/Dists/Compendium.pdf
+    </li>
+    <li>
+      Hand-book on statistical distributions for experimentalists Internal 
+      report SUF-PFY/96-01. University of Stockholms by Christian Walck 
+      (walck@physto.se)
+    </li>
+  </ul>
+  <p>Distributions:</p>
+  <ul>
+    <li>
+      BetaDistribution(location, scale, p, q)
+      <ul>
+        <li>
+          PowerFunctionDistribution(shape)
+        </li>
+      </ul>
+    </li>
+    <li>
+      BinomialDistribution(success, trial)
+      <ul>
+        <li>
+          BernoulliDistribution(success)
+        </li>
+      </ul>
+    </li>
+    <li>
+      BradfordDistribution
+    </li>
+    <li>
+      BurrDistribution
+    </li>
+    <li>
+      CauchyDistribution(location=0.0, scale=1.0)
+      <ul>
+        <li>
+          LorentzDistribution (alias of CauchyDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      ChiDistribution
+      <ul>
+        <li>
+          HalfNormalDistribution(location, scale)
+        </li>
+        <li>
+          MaxwellDistribution(scale)
+        </li>
+        <li>
+          RayleighDistribution(scale)
+        </li>
+      </ul>
+    </li>
+    <li>
+      CosineDistribution(location=0.0, scale=1.0)
+    </li>
+    <li>
+      DoubleGammaDistribution
+    </li>
+    <li>
+      DoubleWeibullDistribution
+    </li>
+    <li>
+      ExponentialDistribution(location=0.0, scale=1.0)
+      <ul>
+        <li>
+          NegativeExponentialDistribution (alias of 
+          ExponentialDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      ExtremeLBDistribution
+    </li>
+    <li>
+      FDistribution
+    </li>
+    <li>
+      FiskDistribution
+      <ul>
+        <li>
+          LogLogisticDistribution (alias of FiskDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      FoldedNormalDistribution
+    </li>
+    <li>
+      GammaDistribution
+      <ul>
+        <li>
+          ChiSquareDistribution(df)
+        </li>
+        <li>
+          ErlangDistribution(shape)
+        </li>
+        <li>
+          FurryDistribution (alias of GammaDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      GenLogisticDistribution
+    </li>
+    <li>
+      GeometricDistribution(success=0.5)
+    </li>
+    <li>
+      GumbelDistribution(location, scale)
+      <ul>
+        <li>
+          FisherTippettDistribution (alias of GumbelDistribution)
+        </li>
+        <li>
+          GompertzDistribution  (alias of GumbelDistribution)
+        </li>
+        <li>
+          LogWeibullDistribution (alias of GumbelDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      HyperbolicSecantDistribution
+    </li>
+    <li>
+      HypergeometricDistribution
+    </li>
+    <li>
+      InverseNormalDistribution
+      <ul>
+        <li>
+          WaldDistribution (alias of InverseNormalDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      LaplaceDistribution
+      <ul>
+        <li>
+          BilateralExponentialDistribution (alias of LaplaceDistribution)
+        </li>
+        <li>
+          DoubleExponentialDistribution (alias of LaplaceDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      LogarithmicDistribution(shape)
+    </li>
+    <li>
+      LogisticDistribution
+      <ul>
+        <li>
+          SechSquaredDistribution (alias of LogisticDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      LogNormalDistribution
+      <ul>
+        <li>
+          AntiLogNormalDistribution (alias of LogNormalDistribution)
+        </li>
+        <li>
+          CobbDouglasDistribution (alias of LogNormalDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      NakagamiDistribution
+    </li>
+    <li>
+      NegativeBinomialDistribution(success, target)
+      <ul>
+        <li>
+          PascalDistribution(success, target)
+        </li>
+        <li>
+          PolyaDistribution (alias of NegativeBinomialDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      NormalDistribution()
+    </li>
+    <li>
+      ParetoDistribution(location=1.0, shape=1.0)
+    </li>
+    <li>
+      PoissonDistribution(expectation)
+    </li>
+    <li>
+      RademacherDistribution()
+    </li>
+    <li>
+      ReciprocalDistribution
+    </li>
+    <li>
+      SemicircularDistribution(location=0.0, scale=1.0)
+    </li>
+    <li>
+      TDistribution(location=0.0, scale=1.0, shape=2)
+    </li>
+    <li>
+      TriangularDistribution
+    </li>
+    <li>
+      UniformDistribution(location, scale)
+      <ul>
+        <li>
+          RectangularDistribution (alias of UniformDistribution)
+        </li>
+      </ul>
+    </li>
+    <li>
+      WeibullDistribution
+      <ul>
+        <li>
+          FrechetDistribution (alias of WeibullDistribution)
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Copyright (c) Maurice H.T. Ling &lt;mauriceling@acm.org&gt;</p>
+  <p>Date created: 17th August 2005</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.Distribution-class.html" class="summary-name">Distribution</a><br />
+      Abstract class for all statistical distributions.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.BetaDistribution-class.html" class="summary-name">BetaDistribution</a><br />
+      Class for Beta Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.BinomialDistribution-class.html" class="summary-name">BinomialDistribution</a><br />
+      Class for Binomial Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.CauchyDistribution-class.html" class="summary-name">CauchyDistribution</a><br />
+      Class for Cauchy Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.CosineDistribution-class.html" class="summary-name">CosineDistribution</a><br />
+      Cosine distribution is sometimes used as a simple approximation to 
+        Normal distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ExponentialDistribution-class.html" class="summary-name">ExponentialDistribution</a><br />
+      Exponential distribution is the continuous version of Geometric 
+        distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.FDistribution-class.html" class="summary-name">FDistribution</a><br />
+      Class for F Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.GammaDistribution-class.html" class="summary-name">GammaDistribution</a><br />
+      Class for Gamma Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ChiSquareDistribution-class.html" class="summary-name">ChiSquareDistribution</a><br />
+      Chi-square distribution is a special case of Gamma distribution 
+        where location = 0, scale = 2 and shape is twice that of the 
+        degrees of freedom.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.GeometricDistribution-class.html" class="summary-name">GeometricDistribution</a><br />
+      Geometric distribution is the discrete version of Exponential 
+        distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.HypergeometricDistribution-class.html" class="summary-name">HypergeometricDistribution</a><br />
+      Class for Hypergeometric distribution
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.LogarithmicDistribution-class.html" class="summary-name">LogarithmicDistribution</a><br />
+      Class for Logarithmic Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.NormalDistribution-class.html" class="summary-name">NormalDistribution</a><br />
+      Class for standardized normal distribution (area under the curve = 
+        1)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.PoissonDistribution-class.html" class="summary-name">PoissonDistribution</a><br />
+      Class for Poisson Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.SemicircularDistribution-class.html" class="summary-name">SemicircularDistribution</a><br />
+      Class for Semicircular Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.TDistribution-class.html" class="summary-name">TDistribution</a><br />
+      Class for Student's t-distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.TriangularDistribution-class.html" class="summary-name">TriangularDistribution</a><br />
+      Class for Triangular Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.UniformDistribution-class.html" class="summary-name">UniformDistribution</a><br />
+      Class for Uniform distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.WeiBullDistribution-class.html" class="summary-name">WeiBullDistribution</a><br />
+      Class for Weibull distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.BernoulliDistribution-class.html" class="summary-name">BernoulliDistribution</a><br />
+      Bernoulli distribution is a special case of Binomial distribution 
+        where where number of trials = 1
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.BradfordDistribution-class.html" class="summary-name">BradfordDistribution</a><br />
+      Class for Bradford distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.BurrDistribution-class.html" class="summary-name">BurrDistribution</a><br />
+      Burr distribution is the generalization of Fisk distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ChiDistribution-class.html" class="summary-name">ChiDistribution</a><br />
+      Class for Chi distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.DoubleGammaDistribution-class.html" class="summary-name">DoubleGammaDistribution</a><br />
+      Double Gamma distribution is the signed version of Gamma 
+        distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.DoubleWeibullDistribution-class.html" class="summary-name">DoubleWeibullDistribution</a><br />
+      Double Weibull distribution is the signed version of Weibull 
+        distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ExtremeLBDistribution-class.html" class="summary-name">ExtremeLBDistribution</a><br />
+      Class for Extreme LB distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.FiskDistribution-class.html" class="summary-name">FiskDistribution</a><br />
+      Class for Fisk distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.FoldedNormalDistribution-class.html" class="summary-name">FoldedNormalDistribution</a><br />
+      Class for Folded Normal distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.GenLogisticDistribution-class.html" class="summary-name">GenLogisticDistribution</a><br />
+      Generalized Logistic distribution is a generalization of Logistic 
+        distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.GumbelDistribution-class.html" class="summary-name">GumbelDistribution</a><br />
+      Class for Gumbel Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.HalfNormalDistribution-class.html" class="summary-name">HalfNormalDistribution</a><br />
+      Half Normal distribution is a special case of Chi distribution 
+        where shape (also degrees of freedom) = 1, and Folded Normal 
+        distribution where location = 0
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.HyperbolicSecantDistribution-class.html" class="summary-name">HyperbolicSecantDistribution</a><br />
+      Class for Hyperbolic Secant Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.LaplaceDistribution-class.html" class="summary-name">LaplaceDistribution</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.LogisticDistribution-class.html" class="summary-name">LogisticDistribution</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.LogNormalDistribution-class.html" class="summary-name">LogNormalDistribution</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.MaxwellDistribution-class.html" class="summary-name">MaxwellDistribution</a><br />
+      Maxwell distribution is a special case of Chi distribution where 
+        location = 0 and shape (degrees of freedom) = 3
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.NakagamiDistribution-class.html" class="summary-name">NakagamiDistribution</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.NegativeBinomialDistribution-class.html" class="summary-name">NegativeBinomialDistribution</a><br />
+      Class for Negative Binomial Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ParetoDistribution-class.html" class="summary-name">ParetoDistribution</a><br />
+      Class for Pareto Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.PascalDistribution-class.html" class="summary-name">PascalDistribution</a><br />
+      Class for Pascal Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.PowerFunctionDistribution-class.html" class="summary-name">PowerFunctionDistribution</a><br />
+      Class for Power Function Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.RademacherDistribution-class.html" class="summary-name">RademacherDistribution</a><br />
+      Class for Rademacher Distribution.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.RayleighDistribution-class.html" class="summary-name">RayleighDistribution</a><br />
+      Rayleigh distribution is a special case of Chi distribution where 
+        location = 0 and shape (degrees of freedom) = 2
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.statisticsdistribution.ReciprocalDistribution-class.html" class="summary-name">ReciprocalDistribution</a>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#ErlangDistribution" class="summary-sig-name">ErlangDistribution</a>(<span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">scale</span>,
+        <span class="summary-sig-arg">shape</span>)</span><br />
+      Erlang distribution is an alias of Gamma distribution where the shape
+      parameter is an integer.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#ErlangDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#FurryDistribution" class="summary-sig-name">FurryDistribution</a>(<span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">scale</span>,
+        <span class="summary-sig-arg">shape</span>)</span><br />
+      Furry distribution is an alias of Gamma distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#FurryDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="FrechetDistribution"></a><span class="summary-sig-name">FrechetDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Frechet distribution is an alias of Weibull distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#FrechetDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="AntiLogNormalDistribution"></a><span class="summary-sig-name">AntiLogNormalDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Anti-Lognormal distribution is an alias of Lognormal distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#AntiLogNormalDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="BilateralExponentialDistribution"></a><span class="summary-sig-name">BilateralExponentialDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Bilateral Exponential distribution is an alias of Laplace 
+      distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#BilateralExponentialDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="CobbDouglasDistribution"></a><span class="summary-sig-name">CobbDouglasDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Cobb-Douglas distribution is an alias of Lognormal distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#CobbDouglasDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="DoubleExponentialDistribution"></a><span class="summary-sig-name">DoubleExponentialDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Double Exponential distribution is an alias of Laplace distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#DoubleExponentialDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#FisherTippettDistribution" class="summary-sig-name">FisherTippettDistribution</a>(<span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">scale</span>)</span><br />
+      Fisher-Tippett distribution is an alias of Gumbel distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#FisherTippettDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#GompertzDistribution" class="summary-sig-name">GompertzDistribution</a>(<span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">scale</span>)</span><br />
+      Gompertz distribution is an alias of Gumbel distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#GompertzDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="LogLogisticDistribution"></a><span class="summary-sig-name">LogLogisticDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Log-Logistic distribution is an alias of Fisk distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#LogLogisticDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#LogWeibullDistribution" class="summary-sig-name">LogWeibullDistribution</a>(<span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">scale</span>)</span><br />
+      Log-Weibull distribution is an alias of Gumbel distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#LogWeibullDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="LorentzDistribution"></a><span class="summary-sig-name">LorentzDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Lorentz distribution is an alias of Cauchy distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#LorentzDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="NegativeExponentialDistribution"></a><span class="summary-sig-name">NegativeExponentialDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Negative-exponential distribution is an alias of Exponential 
+      distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#NegativeExponentialDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.copads.statisticsdistribution-module.html#PolyaDistribution" class="summary-sig-name">PolyaDistribution</a>(<span class="summary-sig-arg">success</span>,
+        <span class="summary-sig-arg">target</span>)</span><br />
+      Polya distribution is an alias of Negative Binomial distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#PolyaDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="RectangularDistribution"></a><span class="summary-sig-name">RectangularDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Rectangular distribution is an alias of Uniform distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#RectangularDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="SechSquaredDistribution"></a><span class="summary-sig-name">SechSquaredDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Sech-squared distribution is an alias of Logistic distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#SechSquaredDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="WaldDistribution"></a><span class="summary-sig-name">WaldDistribution</span>(<span class="summary-sig-arg">**parameters</span>)</span><br />
+      Wald distribution is an alias of Inverse Normal distribution.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#WaldDistribution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dose.copads'"><code class="variable-quote">'</code><code class="variable-string">dose.copads</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="math">math</span>,
+  <span title="random">random</span>,
+  <span title="dose.dose.copads.copadsexceptions.DistributionParameterError">DistributionParameterError</span>,
+  <span title="dose.dose.copads.copadsexceptions.DistributionFunctionError">DistributionFunctionError</span>,
+  <span title="dose.dose.copads.copadsexceptions.NormalDistributionTypeError">NormalDistributionTypeError</span>,
+  <span title="dose.dose.copads.nrpy">nrpy</span>,
+  <span title="dose.dose.copads.constants">constants</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="ErlangDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ErlangDistribution</span>(<span class="sig-arg">location</span>,
+        <span class="sig-arg">scale</span>,
+        <span class="sig-arg">shape</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#ErlangDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Erlang distribution is an alias of Gamma distribution where the shape 
+  parameter is an integer.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong></li>
+        <li><strong class="pname"><code>scale</code></strong></li>
+        <li><strong class="pname"><code>shape</code></strong></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested method
+      </p>
+      <p><strong>Since:</strong>
+        version 0.2
+      </p>
+</div></td></tr></table>
+</div>
+<a name="FurryDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">FurryDistribution</span>(<span class="sig-arg">location</span>,
+        <span class="sig-arg">scale</span>,
+        <span class="sig-arg">shape</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#FurryDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Furry distribution is an alias of Gamma distribution.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong></li>
+        <li><strong class="pname"><code>scale</code></strong></li>
+        <li><strong class="pname"><code>shape</code></strong></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Status:</strong>
+        Tested method
+      </p>
+      <p><strong>Since:</strong>
+        version 0.2
+      </p>
+</div></td></tr></table>
+</div>
+<a name="FisherTippettDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">FisherTippettDistribution</span>(<span class="sig-arg">location</span>,
+        <span class="sig-arg">scale</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#FisherTippettDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fisher-Tippett distribution is an alias of Gumbel distribution.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> - &eta;</li>
+        <li><strong class="pname"><code>scale</code></strong> - &theta;</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="GompertzDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">GompertzDistribution</span>(<span class="sig-arg">location</span>,
+        <span class="sig-arg">scale</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#GompertzDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Gompertz distribution is an alias of Gumbel distribution.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> - &eta;</li>
+        <li><strong class="pname"><code>scale</code></strong> - &theta;</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="LogWeibullDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">LogWeibullDistribution</span>(<span class="sig-arg">location</span>,
+        <span class="sig-arg">scale</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#LogWeibullDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Log-Weibull distribution is an alias of Gumbel distribution.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> - &eta;</li>
+        <li><strong class="pname"><code>scale</code></strong> - &theta;</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="PolyaDistribution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">PolyaDistribution</span>(<span class="sig-arg">success</span>,
+        <span class="sig-arg">target</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.copads.statisticsdistribution-pysrc.html#PolyaDistribution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Polya distribution is an alias of Negative Binomial distribution.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>success</code></strong> - probability of success; 0 &lt;= success &lt;= 1</li>
+        <li><strong class="pname"><code>target</code></strong> - a constant, target number of successes</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

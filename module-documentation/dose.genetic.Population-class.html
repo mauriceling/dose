@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.genetic.Population</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.genetic-module.html">Module&nbsp;genetic</a> ::
+        Class&nbsp;Population
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.genetic.Population-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Population</h1><p class="nomargin-top"><span class="codelink"><a href="dose.genetic-pysrc.html#Population">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">Population</strong>
+</pre>
+
+<hr />
+<p>Representation of a population as a list of organisms. The entire 
+  population is in memory.</p>
+  <p>Methods to be over-ridden in the inherited class or substituted 
+  are</p>
+  <ul>
+    <li>
+      prepopulation_control
+    </li>
+    <li>
+      mating
+    </li>
+    <li>
+      postpopulation_control
+    </li>
+    <li>
+      generation_events
+    </li>
+    <li>
+      report
+    </li>
+  </ul>
+
+<hr />
+<div class="fields">      <p><strong>See Also:</strong>
+        Lim, JZR, Aw, ZQ, Goh, DJW, How, JA, Low, SXZ, Loo, BZL, Ling, MHT.
+        2010. A genetic algorithm framework grounded in biology. The Python
+        Papers Source Codes 2: 6.
+      </p>
+      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div><!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">goal</span>,
+        <span class="summary-sig-arg">maxgenerations</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">infinite</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">agents</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span><br />
+      Establishes a population of organisms.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#prepopulation_control" class="summary-sig-name">prepopulation_control</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to trigger population control events before mating event in 
+      each generation (For example, to simulate pre-puberty death).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.prepopulation_control">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#mating" class="summary-sig-name">mating</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to trigger mating events in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.mating">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#postpopulation_control" class="summary-sig-name">postpopulation_control</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to trigger population control events after mating event in 
+      each generation(For example, to simulate old-age death).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.postpopulation_control">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#generation_events" class="summary-sig-name">generation_events</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to trigger other defined events in each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.generation_events">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#report" class="summary-sig-name">report</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to report the status of each generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.report">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#generation_step" class="summary-sig-name">generation_step</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Function to simulate events for one generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.generation_step">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#add_organism" class="summary-sig-name">add_organism</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">organism</span>)</span><br />
+      Add a new organism(s) to the population.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.add_organism">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#freeze" class="summary-sig-name">freeze</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">pop</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">proportion</span>=<span class="summary-sig-default">0.01</span>)</span><br />
+      Preserves part or the entire population.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.freeze">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.genetic.Population-class.html#revive" class="summary-sig-name">revive</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filename</span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">replace</code><code class="variable-quote">'</code></span>)</span><br />
+      Revives a frozen population.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.genetic-pysrc.html#Population.revive">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">goal</span>,
+        <span class="sig-arg">maxgenerations</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">infinite</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">agents</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Establishes a population of organisms.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>goal</code></strong> (the return type of Organism.fitness()) - the goal to be reached by the population.</li>
+        <li><strong class="pname"><code>maxgenerations</code></strong> - maximum number of generations to evolve. Default = 'infinite'.</li>
+        <li><strong class="pname"><code>agents</code></strong> (list of Organism objects) - organisms making up the initial population.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="prepopulation_control"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">prepopulation_control</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.prepopulation_control">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to trigger population control events before mating event in 
+  each generation (For example, to simulate pre-puberty death). <b>This 
+  function may be over-ridden by the inherited class or substituted to 
+  cater for specific events.</b> Although this is not an absolute 
+  requirement, it is extremely encouraged to prevent exhaustion of memory 
+  space. Without population control, it will seems like a reproducing 
+  immortal population.</p>
+  <p>Here, the sample implementation eliminates the bottom half of the 
+  population based on fitness score unless the number of organisms is less 
+  than 20. This is to prevent extinction. However, if the number of 
+  organisms is more than 2000 (more than 100x initial population size, a 
+  random selection of 2000 will be used for the next generation.</p>
+  <dl class="fields">
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="mating"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mating</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.mating">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to trigger mating events in each generation. <b>This function
+  may be over-ridden by the inherited class or substituted to cater for 
+  specific mating schemes but not an absolute requirement to do so.</b> 
+  Mating schemes should include</p>
+  <ul>
+    <li>
+      selection of mating partners using Organism.fitness() function and/or
+      other status
+    </li>
+    <li>
+      processes and actions of mating
+    </li>
+  </ul>
+  <p>Here, the sample implementation randomly selects any 2 organisms from 
+  the culled list and generate a new genome for the progeny organism by 
+  single crossover.</p>
+  <dl class="fields">
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="postpopulation_control"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">postpopulation_control</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.postpopulation_control">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to trigger population control events after mating event in 
+  each generation(For example, to simulate old-age death). <b>This function
+  may be over-ridden by the inherited class or substituted to cater for 
+  specific events.</b> Although this is not an absolute requirement, it is 
+  extremely encouraged to prevent exhaustion of memory space. Without 
+  population control, it will seems like a reproducing immortal 
+  population.</p>
+  <dl class="fields">
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="generation_events"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generation_events</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.generation_events">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to trigger other defined events in each generation. <b>This 
+  function may be over-ridden by the inherited class or substituted to 
+  cater for specific events but not an absolute requirement to do so.</b> 
+  Events and controls may include</p>
+  <ul>
+    <li>
+      processes simulating disaster or other catastrophic events
+    </li>
+    <li>
+      changes in mutations
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="report"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">report</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.report">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to report the status of each generation. <b>This function may
+  be over-ridden by the inherited class or substituted to cater for 
+  specific reporting schemes but not an absolute requirement to do so.</b> 
+  At the very least, this function should report whether the goal is 
+  reached.</p>
+  <dl class="fields">
+    <dt>Returns:</dt>
+        <dd>dictionary of status describing the current generation</dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="generation_step"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generation_step</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.generation_step">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to simulate events for one generation. These includes</p>
+  <ul>
+    <li>
+      mating (according to the mating scheme or function)
+    </li>
+    <li>
+      mutating each organism in the population
+    </li>
+    <li>
+      population size control
+    </li>
+    <li>
+      other events defined under generation_events function
+    </li>
+    <li>
+      increment of generation count
+    </li>
+    <li>
+      reporting the population status
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Returns:</dt>
+        <dd>information returned from report function.</dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="add_organism"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">add_organism</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">organism</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.add_organism">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Add a new organism(s) to the population.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>organism</code></strong> - list of new Organism object(s)</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="freeze"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">freeze</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">pop</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">proportion</span>=<span class="sig-default">0.01</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.freeze">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Preserves part or the entire population. If the population size or the
+  preserved proportion is below 100, the entire population will be 
+  preserved. The preserved sample will be written into a file with name in 
+  the following format - &lt;prefix&gt;&lt;generation count&gt;_&lt;sample 
+  size&gt;.gap</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>prefix</code></strong> - prefix of file name. Default = 'pop'.</li>
+        <li><strong class="pname"><code>proportion</code></strong> - proportion of population to be preserved. Default = 0.01, 
+          preserves 1% of the population.</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<a name="revive"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">revive</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filename</span>,
+        <span class="sig-arg">type</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">replace</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.genetic-pysrc.html#Population.revive">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Revives a frozen population.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>filename</code></strong> - file name of frozen population (generated by Population.freeze() 
+          function)</li>
+        <li><strong class="pname"><code>type</code></strong> - type of revival. Allows 'replace' (replace the current population
+          with the revived population) or 'add' (add the revived population
+          to the current population). Default = 'replace'.</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Since:</strong>
+        version 0.4
+      </p>
+</div></td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:56 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

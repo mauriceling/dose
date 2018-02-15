@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.simulation_calls</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        Module&nbsp;simulation_calls
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.simulation_calls-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module simulation_calls</h1><p class="nomargin-top"><span class="codelink"><a href="dose.simulation_calls-pysrc.html">source&nbsp;code</a></span></p>
+<p>File containing support functions for running a simulation. The 
+  functions in this file is not for public use; all functions in this file 
+  are private functions.</p>
+  <p>Date created: 10th October 2013</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#simulation_core" class="summary-sig-name">simulation_core</a>(<span class="summary-sig-arg">sim_functions</span>,
+        <span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Sequential ecological cell DOSE simulator.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#simulation_core">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#coordinates" class="summary-sig-name">coordinates</a>(<span class="summary-sig-arg">location</span>)</span><br />
+      Helper function to transpose ecological cell into a tuple.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#coordinates">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#adjacent_cells" class="summary-sig-name">adjacent_cells</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">location</span>)</span><br />
+      Function to get a list of adjacent ecological cells from a given 
+      location.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#adjacent_cells">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#spawn_populations" class="summary-sig-name">spawn_populations</a>(<span class="summary-sig-arg">sim_parameters</span>)</span><br />
+      Initializing starting population(s) for a simulation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#spawn_populations">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#eco_cell_iterator" class="summary-sig-name">eco_cell_iterator</a>(<span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">function</span>)</span><br />
+      Generic caller to call any function to be executed in each ecological
+      cell in sequence.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#eco_cell_iterator">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#deploy_0" class="summary-sig-name">deploy_0</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Organism deployment scheme 0 - User defined deployment scheme.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_0">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#deploy_1" class="summary-sig-name">deploy_1</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Organism deployment scheme 1 - Single ecological cell deployment 
+      scheme.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_1">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#deploy_2" class="summary-sig-name">deploy_2</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Organism deployment scheme 2 - Random deployment scheme.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#deploy_3" class="summary-sig-name">deploy_3</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Organism deployment scheme 3 - Even deployment scheme.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_3">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#deploy_4" class="summary-sig-name">deploy_4</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Organism deployment scheme 4 - Centralized deployment scheme.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_4">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#interpret_chromosome" class="summary-sig-name">interpret_chromosome</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">World</span>)</span><br />
+      Function to call Ragaraja interpreter to express / execute the genome
+      for each organism in a population.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#interpret_chromosome">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#step" class="summary-sig-name">step</a>(<span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">sim_functions</span>)</span><br />
+      Performs a generational step for a population</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#step">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#report_generation" class="summary-sig-name">report_generation</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>,
+        <span class="summary-sig-arg">sim_functions</span>,
+        <span class="summary-sig-arg">generation_count</span>)</span><br />
+      Performs a generational step (using step function) for a population 
+      and writes out the resulting report into results text file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#report_generation">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#bury_world" class="summary-sig-name">bury_world</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">generation_count</span>)</span><br />
+      Function to bury entire world into a file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#bury_world">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#excavate_world" class="summary-sig-name">excavate_world</a>(<span class="summary-sig-arg">eco_file</span>)</span><br />
+      Excavate buried world from file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#excavate_world">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#freeze_population" class="summary-sig-name">freeze_population</a>(<span class="summary-sig-arg">file</span>,
+        <span class="summary-sig-arg">proportion</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Function to freeze part or whole of the population into a file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#freeze_population">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#revive_population" class="summary-sig-name">revive_population</a>(<span class="summary-sig-arg">gap_file</span>)</span><br />
+      Revive population from a frozen population file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#revive_population">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#write_parameters" class="summary-sig-name">write_parameters</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Function to write simulation parameters into results text file as 
+      header.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#write_parameters">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.simulation_calls-module.html#close_results" class="summary-sig-name">close_results</a>(<span class="summary-sig-arg">sim_parameters</span>,
+        <span class="summary-sig-arg">pop_name</span>)</span><br />
+      Function to write footer of results text file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.simulation_calls-pysrc.html#close_results">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dose'"><code class="variable-quote">'</code><code class="variable-string">dose</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="random">random</span>,
+  <span title="inspect">inspect</span>,
+  <span title="os">os</span>,
+  <span title="datetime.datetime">datetime</span>,
+  <span title="time.time">time</span>,
+  <span title="copy.deepcopy">deepcopy</span>,
+  <span title="shutil.copyfile">copyfile</span>,
+  <span title="pickle">pickle</span>,
+  <span title="dose.dose.dose_world">dose_world</span>,
+  <a href="dose.genetic-module.html" title="dose.dose.genetic">genetic</a>,
+  <a href="dose.ragaraja-module.html" title="dose.dose.ragaraja">ragaraja</a>,
+  <a href="dose.register_machine-module.html" title="dose.dose.register_machine">register_machine</a>,
+  <span title="dose.dose.database_calls.connect_database">connect_database</span>,
+  <span title="dose.dose.database_calls.db_log_simulation_parameters">db_log_simulation_parameters</span>,
+  <span title="dose.dose.database_calls.db_report">db_report</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="simulation_core"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">simulation_core</span>(<span class="sig-arg">sim_functions</span>,
+        <span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#simulation_core">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sequential ecological cell DOSE simulator.</p>
+  <p>Performs the following operations:</p>
+  <ul>
+    <li>
+      Creating simulation file directory for results text file, population 
+      freeze, and world burial storage
+    </li>
+    <li>
+      Generate a simulation start time to identify the current simulation
+    </li>
+    <li>
+      Define active Ragaraja instructions
+    </li>
+    <li>
+      Connecting to logging database (if needed)
+    </li>
+    <li>
+      Writing simulation parameters into results text file
+    </li>
+    <li>
+      Initialize World and Population
+    </li>
+    <li>
+      Deploy population(s) onto the world
+    </li>
+    <li>
+      Run the simulation and recording the results
+    </li>
+    <li>
+      Writing final results into results text file
+    </li>
+    <li>
+      Close logging database (if used)
+    </li>
+    <li>
+      Copy simulation script into simulation file directory
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_functions</code></strong> - implemented simulation functions (see dose.dose_functions)</li>
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="coordinates"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">coordinates</span>(<span class="sig-arg">location</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#coordinates">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Helper function to transpose ecological cell into a tuple.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> - location of ecological cell as 3-element iterable data type</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>location of ecological cell as (x,y,z)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="adjacent_cells"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">adjacent_cells</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">location</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#adjacent_cells">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to get a list of adjacent ecological cells from a given 
+  location.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>location</code></strong> - location of ecological cell as (x,y,z)</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>list of locations of adjacent cells.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="spawn_populations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">spawn_populations</span>(<span class="sig-arg">sim_parameters</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#spawn_populations">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initializing starting population(s) for a simulation. Each organism in
+  each population at this stage will be genetic clones of each other.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>dictionary of population objects with population name as key</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="eco_cell_iterator"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eco_cell_iterator</span>(<span class="sig-arg">World</span>,
+        <span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">function</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#eco_cell_iterator">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generic caller to call any function to be executed in each ecological 
+  cell in sequence.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>function</code></strong> - function to be executed</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deploy_0"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deploy_0</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_0">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Organism deployment scheme 0 - User defined deployment scheme. This is
+  called when &quot;deployment_code&quot; in simulation parameters = 0. 
+  User will have to provide a deployment scheme/function as 
+  &quot;deployment_scheme&quot; in simulation parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deploy_1"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deploy_1</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_1">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Organism deployment scheme 1 - Single ecological cell deployment 
+  scheme. This is called when &quot;deployment_code&quot; in simulation 
+  parameters = 1. In this scheme, all organisms in the specified population
+  (specified by population name) will be deployed in the ecological cell 
+  specified in &quot;population_locations&quot; of simulation 
+  parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deploy_2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deploy_2</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_2">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Organism deployment scheme 2 - Random deployment scheme. This is 
+  called when &quot;deployment_code&quot; in simulation parameters = 2. In 
+  this scheme, all organisms in the specified population (specified by 
+  population name) will be randomly deployed across the list of ecological 
+  cells specified as &quot;population_locations&quot; of simulation 
+  parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deploy_3"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deploy_3</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_3">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Organism deployment scheme 3 - Even deployment scheme. This is called 
+  when &quot;deployment_code&quot; in simulation parameters = 3. In this 
+  scheme, all organisms in the specified population (specified by 
+  population name) will be evenly deployed (as much as possible) across the
+  list of ecological cells specified as &quot;population_locations&quot; of
+  simulation parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="deploy_4"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deploy_4</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#deploy_4">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Organism deployment scheme 4 - Centralized deployment scheme. This is 
+  called when &quot;deployment_code&quot; in simulation parameters = 4. In 
+  this scheme, all organisms in the specified population (specified by 
+  population name) will be deployed onto the ecological cell specified in 
+  &quot;population_locations&quot; of simulation parameters, up to the 
+  organism capacity of the ecological cell (specified in 
+  &quot;eco_cell_capacity&quot; of simulation parameters). In event that 
+  the specified deployment locations is filled, undeployed organisms will 
+  be randomly deployed onto adjacent cells.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="interpret_chromosome"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">interpret_chromosome</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">World</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#interpret_chromosome">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to call Ragaraja interpreter to express / execute the genome 
+  for each organism in a population. The Turing tape (array) after 
+  execution will be logged as &quot;blood&quot; of each organism. Ragaraja 
+  interpreter will use the temporary_input and temporary_output lists from 
+  each ecological cell as the input data and output data respectively for 
+  genome execution - this will resemble consumption of environmental 
+  resources and replenishing of environmental resources or dumping of 
+  wastes respectively.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="step"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">step</span>(<span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">sim_functions</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#step">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a generational step for a population</p>
+  <ul>
+    <li>
+      Prepopulation control
+    </li>
+    <li>
+      Mutations
+    </li>
+    <li>
+      Before mating fitness measurement
+    </li>
+    <li>
+      Mating
+    </li>
+    <li>
+      Postpopulation control
+    </li>
+    <li>
+      Generational events
+    </li>
+    <li>
+      After mating fitness measurement
+    </li>
+    <li>
+      Generate a textual report for the current generation
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>sim_functions</code></strong> - implemented simulation functions (see dose.dose_functions)</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>report as a string</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="report_generation"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">report_generation</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>,
+        <span class="sig-arg">sim_functions</span>,
+        <span class="sig-arg">generation_count</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#report_generation">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a generational step (using step function) for a population 
+  and writes out the resulting report into results text file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+        <li><strong class="pname"><code>sim_functions</code></strong> - implemented simulation functions (see dose.dose_functions)</li>
+        <li><strong class="pname"><code>generation_count</code></strong> - current generation count for reporting</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="bury_world"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">bury_world</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">World</span>,
+        <span class="sig-arg">generation_count</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#bury_world">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to bury entire world into a file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object</li>
+        <li><strong class="pname"><code>generation_count</code></strong> - current generation count for file name generation</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="excavate_world"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">excavate_world</span>(<span class="sig-arg">eco_file</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#excavate_world">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Excavate buried world from file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>eco_file</code></strong> - buried world file generated by bury_world function.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>excavated dose_world.World object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="freeze_population"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">freeze_population</span>(<span class="sig-arg">file</span>,
+        <span class="sig-arg">proportion</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#freeze_population">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to freeze part or whole of the population into a file. If the
+  number of organisms is less than 101, the entire population will be 
+  frozen.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>file</code></strong> - file name prefix</li>
+        <li><strong class="pname"><code>proportion</code></strong> - proportion of the population to freeze</li>
+        <li><strong class="pname"><code>Populations</code></strong> - dictionary of population objects</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name to freeze</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="revive_population"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">revive_population</span>(<span class="sig-arg">gap_file</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#revive_population">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Revive population from a frozen population file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>gap_file</code></strong> - frozen population file generated by freeze_population function.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>revived population object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="write_parameters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write_parameters</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#write_parameters">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to write simulation parameters into results text file as 
+  header.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="close_results"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">close_results</span>(<span class="sig-arg">sim_parameters</span>,
+        <span class="sig-arg">pop_name</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.simulation_calls-pysrc.html#close_results">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to write footer of results text file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>sim_parameters</code></strong> - simulation parameters dictionary (see Examples)</li>
+        <li><strong class="pname"><code>pop_name</code></strong> - population name</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>none</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.copads.copadsexceptions</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        <a href="dose.copads-module.html">Package&nbsp;copads</a> ::
+        Module&nbsp;copadsexceptions
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.copads.copadsexceptions-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module copadsexceptions</h1><p class="nomargin-top"><span class="codelink"><a href="dose.copads.copadsexceptions-pysrc.html">source&nbsp;code</a></span></p>
+<p>Exceptions Defined for COPADS.</p>
+  <ul>
+    <li>
+      CopadsError
+      <ul>
+        <li>
+          MatrixError
+          <ul>
+            <li>
+              MatrixArithmeticError
+              <ul>
+                <li>
+                  MatrixMultiplicationError
+                </li>
+              </ul>
+            </li>
+            <li>
+              MatrixAdditionError
+            </li>
+            <li>
+              MatrixSquareError
+            </li>
+            <li>
+              MatrixTraceError
+            </li>
+            <li>
+              MatrixMinorError
+            </li>
+            <li>
+              MatrixDeterminantError
+            </li>
+          </ul>
+        </li>
+        <li>
+          GraphError
+          <ul>
+            <li>
+              EdgeNotFoundError
+            </li>
+            <li>
+              VertexNotFoundError
+            </li>
+            <li>
+              UnknownGraphMatrixError
+              <ul>
+                <li>
+                  NotAdjacencyGraphMatrixError
+                </li>
+              </ul>
+            </li>
+            <li>
+              GraphEdgeSizeMismatchError
+            </li>
+          </ul>
+        </li>
+        <li>
+          StatisticsError
+          <ul>
+            <li>
+              DistributionError
+              <ul>
+                <li>
+                  NormalDistributionTypeError
+                </li>
+              </ul>
+            </li>
+            <li>
+              DistributionParameterError
+            </li>
+            <li>
+              DistributionFunctionError
+            </li>
+          </ul>
+        </li>
+        <li>
+          DistanceError
+          <ul>
+            <li>
+              DistanceInputSizeError
+            </li>
+          </ul>
+        </li>
+        <li>
+          TreeError
+          <ul>
+            <li>
+              TreeNodeTypeError
+            </li>
+          </ul>
+        </li>
+        <li>
+          FunctionParameterTypeError
+        </li>
+        <li>
+          FunctionParameterValueError
+        </li>
+        <li>
+          ArrayError
+        </li>
+        <li>
+          MaxIterationException
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p>Credits</p>
+  <ul>
+    <li>
+      MatrixError subclasses 
+      (http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/189971)
+    </li>
+  </ul>
+  <p>Copyright (c) Maurice H.T. Ling &lt;mauriceling@acm.org&gt;</p>
+  <p>Date created: 1st May 2005</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.CopadsError-class.html" class="summary-name">CopadsError</a><br />
+      Base class for all Copads-defined exceptions.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixError-class.html" class="summary-name">MatrixError</a><br />
+      Abstract parent for all matrix exceptions
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixArithmeticError-class.html" class="summary-name">MatrixArithmeticError</a><br />
+      Incorrect dimensions for arithmetic
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixMultiplicationError-class.html" class="summary-name">MatrixMultiplicationError</a><br />
+      Thrown when you try to multiply matricies of incompatible 
+        dimensions.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixAdditionError-class.html" class="summary-name">MatrixAdditionError</a><br />
+      Thrown when you try to add matricies of incompatible dimensions.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixSquareError-class.html" class="summary-name">MatrixSquareError</a><br />
+      Square-matrix only
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixTraceError-class.html" class="summary-name">MatrixTraceError</a><br />
+      Thrown when you try to get the trace of a non-square matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixMinorError-class.html" class="summary-name">MatrixMinorError</a><br />
+      Thrown when you try to take a minor of a non-square matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MatrixDeterminantError-class.html" class="summary-name">MatrixDeterminantError</a><br />
+      Thrown when you try to take the determinant of a non-square matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.GraphError-class.html" class="summary-name">GraphError</a><br />
+      Abstract parent for all graph exceptions
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.EdgeNotFoundError-class.html" class="summary-name">EdgeNotFoundError</a><br />
+      Exception to be thrown when trying to retrieve an edge that is not 
+        found in the graph.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.VertexNotFoundError-class.html" class="summary-name">VertexNotFoundError</a><br />
+      Exception to be thrown when trying to retrieve a vertex that is not
+        found in the graph.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.UnknownGraphMatrixError-class.html" class="summary-name">UnknownGraphMatrixError</a><br />
+      Exception to be thrown when trying to use an unknown type of graph 
+        matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.NotAdjacencyGraphMatrixError-class.html" class="summary-name">NotAdjacencyGraphMatrixError</a><br />
+      Exception to be thrown when trying to enter a non-square matrix 
+        into Graph.GraphAdjacencyMatrix object or when not supplying an 
+        adjacency matrix when the calculation requires it.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.GraphEdgeSizeMismatchError-class.html" class="summary-name">GraphEdgeSizeMismatchError</a><br />
+      Exception for number of output edges do not match the number of 
+        input edges.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.GraphParameterError-class.html" class="summary-name">GraphParameterError</a><br />
+      Exception for parameter errors in Graph.Graph class.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.StatisticsError-class.html" class="summary-name">StatisticsError</a><br />
+      Abstract parent for all statistics exceptions
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.DistributionError-class.html" class="summary-name">DistributionError</a><br />
+      Abstract parent for all exceptions pertaining to statistical 
+        distributions
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.NormalDistributionTypeError-class.html" class="summary-name">NormalDistributionTypeError</a><br />
+      Exception for type errors in normal distribution 
+        (StatisticsDistribution.NormalDistribution).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.DistributionParameterError-class.html" class="summary-name">DistributionParameterError</a><br />
+      Exception for parameter errors in distributions 
+        (StatisticsDistribution.*).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.DistributionFunctionError-class.html" class="summary-name">DistributionFunctionError</a><br />
+      Exception for undefined functions in distributions 
+        (StatisticsDistribution.*).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.DistanceError-class.html" class="summary-name">DistanceError</a><br />
+      Abstract parent for all exceptions related to calculating distances
+        between lists.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.DistanceInputSizeError-class.html" class="summary-name">DistanceInputSizeError</a><br />
+      Exception for input parameter size errors for list (object) 
+        distance routines that have specific requirements for the size of 
+        inputs.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.TreeError-class.html" class="summary-name">TreeError</a><br />
+      Abstract parent for all tree exceptions
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.TreeNodeTypeError-class.html" class="summary-name">TreeNodeTypeError</a><br />
+      Exception to be thrown when trying to add a non-Node class object 
+        (Tree.Node) into a Tree object (Tree.BinaryTree)
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.FunctionParameterTypeError-class.html" class="summary-name">FunctionParameterTypeError</a><br />
+      Exception to be thrown when trying a function parameter is of the 
+        wrong data type
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.FunctionParameterValueError-class.html" class="summary-name">FunctionParameterValueError</a><br />
+      Exception to be thrown when trying a function parameter is of wrong
+        value
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.ArrayError-class.html" class="summary-name">ArrayError</a><br />
+      Exception to be thrown when encountered error in Array type
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="dose.copads.copadsexceptions.MaxIterationsException-class.html" class="summary-name">MaxIterationsException</a><br />
+      Exception to catch maximum looping.
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

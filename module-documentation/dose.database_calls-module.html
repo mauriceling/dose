@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>dose.database_calls</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="dose-module.html">Package&nbsp;dose</a> ::
+        Module&nbsp;database_calls
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="dose.database_calls-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module database_calls</h1><p class="nomargin-top"><span class="codelink"><a href="dose.database_calls-pysrc.html">source&nbsp;code</a></span></p>
+<p>File containing support functions for database logging of 
+  simulations.</p>
+  <p>Date created: 10th October 2013</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#connect_database" class="summary-sig-name">connect_database</a>(<span class="summary-sig-arg">dbpath</span>,
+        <span class="summary-sig-arg">sim_parameters</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Connects to logging database and prepares database for use, if 
+      database does not exist.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#connect_database">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_log_simulation_parameters" class="summary-sig-name">db_log_simulation_parameters</a>(<span class="summary-sig-arg">con</span>,
+        <span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">sim_parameters</span>)</span><br />
+      Function to log the simulation parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_log_simulation_parameters">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_report" class="summary-sig-name">db_report</a>(<span class="summary-sig-arg">con</span>,
+        <span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">sim_functions</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">Populations</span>,
+        <span class="summary-sig-arg">World</span>,
+        <span class="summary-sig-arg">generation_count</span>)</span><br />
+      Wrapper around user-implemented database logging which over-rides 
+      dose.dose_functions.database_report() function.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_report">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_list_simulations" class="summary-sig-name">db_list_simulations</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">table</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">parameters</code><code class="variable-quote">'</code></span>)</span><br />
+      Function to list simulations, identified by starting time of the 
+      simulation (and simulation name, if available), from logging 
+      database.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_simulations">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_list_generations" class="summary-sig-name">db_list_generations</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">table</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">organisms</code><code class="variable-quote">'</code></span>)</span><br />
+      Function to list all logged generations within a simulation, 
+      identified by starting time of the simulation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_generations">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_list_datafields" class="summary-sig-name">db_list_datafields</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">table</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">organisms</code><code class="variable-quote">'</code></span>)</span><br />
+      Function to list all logged data fields (types of data logged) within
+      a simulation, identified by starting time of the simulation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_datafields">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_list_population_name" class="summary-sig-name">db_list_population_name</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>)</span><br />
+      Function to list all logged populations (as population names) within 
+      a simulation, identified by starting time of the simulation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_population_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_get_ecosystem" class="summary-sig-name">db_get_ecosystem</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">datafield</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">generation</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span><br />
+      Analysis helper function to get a specific field of the ecosystem 
+      (World.ecosystem) or the entire ecosystem for one or more generations
+      within a simulation (as identified by the starting time of the 
+      simulation).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_ecosystem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_get_organisms_status" class="summary-sig-name">db_get_organisms_status</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">population_name</span>,
+        <span class="summary-sig-arg">datafield</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">generation</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span><br />
+      Analysis helper function to get a specific field of the 
+      Organism.status dictionary or the entire Organism.status dictionary 
+      for one or more generations within a simulation (as identified by the
+      starting time of the simulation).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_status">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_get_organisms_genome" class="summary-sig-name">db_get_organisms_genome</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">population_name</span>,
+        <span class="summary-sig-arg">generation</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span><br />
+      Analysis helper function to get entire genome of organisms for one or
+      more generations within a simulation (as identified by the starting 
+      time of the simulation).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_genome">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_get_organisms_chromosome_sequences" class="summary-sig-name">db_get_organisms_chromosome_sequences</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">population_name</span>,
+        <span class="summary-sig-arg">generation</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span><br />
+      Analysis helper function to get chromosomal sequences of entire 
+      genome of organisms for one or more generations within a simulation 
+      (as identified by the starting time of the simulation).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_chromosome_sequences">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_reconstruct_simulation_parameters" class="summary-sig-name">db_reconstruct_simulation_parameters</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>)</span><br />
+      Function to reconstruct simulation parameters dictionary of a 
+      simulation (as identified by the starting time of the simulation).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_simulation_parameters">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_reconstruct_world" class="summary-sig-name">db_reconstruct_world</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">generation</span>)</span><br />
+      Function to reconstruct the world object of a simulation (as 
+      identified by the starting time of the simulation) at a specific 
+      generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_world">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_reconstruct_organisms" class="summary-sig-name">db_reconstruct_organisms</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">population_name</span>,
+        <span class="summary-sig-arg">generation</span>)</span><br />
+      Function to reconstruct a list of organisms (genetic.Organism 
+      objects) of a population within a simulation (as identified by the 
+      starting time of the simulation) at a specific generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_organisms">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="dose.database_calls-module.html#db_reconstruct_population" class="summary-sig-name">db_reconstruct_population</a>(<span class="summary-sig-arg">cur</span>,
+        <span class="summary-sig-arg">start_time</span>,
+        <span class="summary-sig-arg">population_name</span>,
+        <span class="summary-sig-arg">generation</span>)</span><br />
+      Function to reconstruct a population within a simulation (as 
+      identified by the starting time of the simulation) at a specific 
+      generation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_population">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'dose'"><code class="variable-quote">'</code><code class="variable-string">dose</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<p class="indent-wrapped-lines"><b>Imports:</b>
+  <span title="os">os</span>,
+  <span title="copy">copy</span>,
+  <span title="ast">ast</span>,
+  <span title="sqlite3">s</span>
+</p><br />
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="connect_database"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">connect_database</span>(<span class="sig-arg">dbpath</span>,
+        <span class="sig-arg">sim_parameters</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#connect_database">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Connects to logging database and prepares database for use, if 
+  database does not exist. This function can be used to connect to the 
+  logging database using a file path or using simulation parameters 
+  dictionary.</p>
+  <p>Simulation parameters dictionary takes precedence - if simulation 
+  parameters dictionary (sim_parameters) is not None, this function will 
+  look for database file in &lt;simulation execution 
+  directory&gt;/Simulations/ &lt;database file&gt;.</p>
+  <p>In both cases, if the database is not present, it will create a 
+  SQLite3 database file and create the required database tables.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dbpath</code></strong> - File path of logging database. This parameter will only be used 
+          when sim_parameters == None.</li>
+        <li><strong class="pname"><code>sim_parameters</code></strong> - Dictionary of simulation parameters. Default is None.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>(con, cur) where
+          <ul>
+            <li>
+              con = connector
+            </li>
+            <li>
+              cur = cursor
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_log_simulation_parameters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_log_simulation_parameters</span>(<span class="sig-arg">con</span>,
+        <span class="sig-arg">cur</span>,
+        <span class="sig-arg">sim_parameters</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_log_simulation_parameters">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to log the simulation parameters. A database table, 
+  parameters, had been defined for simulation parameters logging where the 
+  structure is (start_time text, simulation_name text, key text, value 
+  text). The starting time of current simulation (start_time) and name of 
+  the current simulation (simulation_name) are used as complex primary key 
+  to identify the current simulation. All parameters will be logged, except
+  for &quot;starting_time&quot; and &quot;simulation_name&quot;.</p>
+  <p>The following transformations of data are made:</p>
+  <ul>
+    <li>
+      Population name (key = &quot;population_names&quot;) is a list of 
+      names. These are concatenated and delimited by '|'. For example, 
+      ['pop_01', 'pop_02'] ==&gt; pop_01|pop_02
+    </li>
+    <li>
+      Genetic bases (key = &quot;chromosome_bases&quot;) is a list of bases
+      to make up the genetic code. These are concatenated and delimited by 
+      '|'. For example, ['1', '2'] ==&gt; 1|2
+    </li>
+    <li>
+      Ragaraja instructions to be used (key = 
+      &quot;ragaraja_instructions&quot;) is a list of 3-character Ragaraja 
+      instructions in numbers. These are concatenated and delimited by '|'.
+      For example, ['000', '004', '008']  ==&gt; 000|004|008
+    </li>
+    <li>
+      Initial (ancestral) chromosome is a list of bases. These bases are 
+      concatenated with no delimiter. For example, [1, 2, 3] ==&gt; 123
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>con</code></strong> - Database connector from connect_database() function.</li>
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>sim_parameters</code></strong> - Dictionary of parameters used in simulation.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>(con, cur) where
+          <ul>
+            <li>
+              con = connector
+            </li>
+            <li>
+              cur = cursor
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_report"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_report</span>(<span class="sig-arg">con</span>,
+        <span class="sig-arg">cur</span>,
+        <span class="sig-arg">sim_functions</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">Populations</span>,
+        <span class="sig-arg">World</span>,
+        <span class="sig-arg">generation_count</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_report">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Wrapper around user-implemented database logging which over-rides 
+  dose.dose_functions.database_report() function.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>con</code></strong> - Database connector from connect_database() function.</li>
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>sim_functions</code></strong> - Object of simulation-specific functions, which inherits 
+          dose.dose_functions class.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>Populations</code></strong> - A dictionary containing one or more populations where the value 
+          is a genetic.Population object.</li>
+        <li><strong class="pname"><code>World</code></strong> - dose_world.World object.</li>
+        <li><strong class="pname"><code>generation_count</code></strong> - Current number of generations simulated.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>(con, cur) where
+          <ul>
+            <li>
+              con = connector
+            </li>
+            <li>
+              cur = cursor
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_list_simulations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_list_simulations</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">table</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">parameters</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_simulations">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to list simulations, identified by starting time of the 
+  simulation (and simulation name, if available), from logging 
+  database.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>table</code></strong> - Database table name to list simulations. Allowable values are 
+          'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+          value is 'parameters'.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A list containing the results.
+          <ul>
+            <li>
+              If table = 'parameters', the returned list will be a list of 
+              list (consisting of [starting time of simulation, simulation 
+              name]).
+            </li>
+            <li>
+              If table is not 'parameters', the returned list will be a 
+              list of starting time of simulation.
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_list_generations"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_list_generations</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">table</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">organisms</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_generations">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to list all logged generations within a simulation, 
+  identified by starting time of the simulation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>table</code></strong> - Database table name to list simulations. Allowable values are 
+          'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+          value is 'organisms'.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A list containing the results (generation counts).</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_list_datafields"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_list_datafields</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">table</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">organisms</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_datafields">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to list all logged data fields (types of data logged) within 
+  a simulation, identified by starting time of the simulation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>table</code></strong> - Database table name to list simulations. Allowable values are 
+          'parameters', 'organisms', 'world', and 'miscellaneous'. Default 
+          value is 'organisms'.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A list containing the results (types of data logged).</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_list_population_name"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_list_population_name</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_list_population_name">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to list all logged populations (as population names) within a
+  simulation, identified by starting time of the simulation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A list containing the results (types of data logged).</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_get_ecosystem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_get_ecosystem</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">datafield</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">generation</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_ecosystem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Analysis helper function to get a specific field of the ecosystem 
+  (World.ecosystem) or the entire ecosystem for one or more generations 
+  within a simulation (as identified by the starting time of the 
+  simulation).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>datafield</code></strong> (string) - The specific datafield in World.ecosystem to extract. Predefined 
+          datafields for ecosystem are 'local_input', 'local_output', 
+          'temporary_input', 'temporary_output', and 'organisms'. Default =
+          'all', which returns the entire World.ecosystem(s) of the 
+          generation(s). Only one or all datafield(s) in World.ecosystem 
+          can be extracted at a time.</li>
+        <li><strong class="pname"><code>generation</code></strong> (list) - Generation(s) to extract World.ecosystem. Default = 'all', which 
+          extracts World.ecosystems for all logged generations within the 
+          specific simulation.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A dictionary of results - {&lt;generation count&gt;: 
+          &lt;value&gt;}. The value is the value of the specific datafield 
+          if a specific datafield is required (the data type of this value 
+          is dependent on that of the data type of 
+          World.ecosystem[datafield]) or the entire ecosystem as a 
+          dictionary.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_get_organisms_status"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_get_organisms_status</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">population_name</span>,
+        <span class="sig-arg">datafield</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">generation</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_status">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Analysis helper function to get a specific field of the 
+  Organism.status dictionary or the entire Organism.status dictionary for 
+  one or more generations within a simulation (as identified by the 
+  starting time of the simulation).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>population_name</code></strong> - Name of the population.</li>
+        <li><strong class="pname"><code>datafield</code></strong> (string) - The specific key in Organism.status dictionary to extract. 
+          Predefined keys for Organism.status dictionary are'age', 'alive',
+          'blood', 'death', 'deme', 'fitness', 'gender', 'identity', 
+          'lifespan', 'location', 'parents', 'vitality'. Default = 'all', 
+          which returns the entire Organism.status dictionaries of the 
+          generation(s). Only one or all datafield(s) in Organism.status 
+          dictionary can be extracted at a time.</li>
+        <li><strong class="pname"><code>generation</code></strong> (list) - Generation(s) to extract Organism.status dictionary. Default = 
+          'all', which extracts Organism.status dictionary for all logged 
+          generations within the specific simulation.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A dictionary of dictionary of results - {&lt;generation 
+          count&gt;: {&lt;Organism identity&gt;: &lt;value&gt;}}. The value
+          is the value of the specific datafield if a specific datafield is
+          required (the data type of this value is dependent on that of the
+          data type of Organism.status[datafield]) or the entire 
+          Organism.status as a dictionary.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_get_organisms_genome"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_get_organisms_genome</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">population_name</span>,
+        <span class="sig-arg">generation</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_genome">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Analysis helper function to get entire genome of organisms for one or 
+  more generations within a simulation (as identified by the starting time 
+  of the simulation).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>population_name</code></strong> - Name of the population.</li>
+        <li><strong class="pname"><code>generation</code></strong> (list) - Generation(s) to extract Organism.genome. Default = 'all', which 
+          extracts Organism.genome for all logged generations within the 
+          specific simulation.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A dictionary of dictionary of genome - {&lt;generation count&gt;:
+          {&lt;Organism identity&gt;: &lt;genome as list of 
+          chromosomes&gt;}}.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_get_organisms_chromosome_sequences"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_get_organisms_chromosome_sequences</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">population_name</span>,
+        <span class="sig-arg">generation</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">all</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_get_organisms_chromosome_sequences">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Analysis helper function to get chromosomal sequences of entire genome
+  of organisms for one or more generations within a simulation (as 
+  identified by the starting time of the simulation).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>population_name</code></strong> - Name of the population.</li>
+        <li><strong class="pname"><code>generation</code></strong> (list) - Generation(s) to extract Organism.genome. Default = 'all', which 
+          extracts Organism.genome for all logged generations within the 
+          specific simulation.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A dictionary of dictionary of chromosomal sequences - 
+          {&lt;generation count&gt;: {&lt;Organism identity&gt;: &lt;list 
+          (all chromosomes) of list (individual chromosome) of chromosomal 
+          sequence&gt;}}.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_reconstruct_simulation_parameters"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_reconstruct_simulation_parameters</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_simulation_parameters">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to reconstruct simulation parameters dictionary of a 
+  simulation (as identified by the starting time of the simulation).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Simulation parameters dictionary containing the following keys:
+          <ul>
+            <li>
+              simulation_name
+            </li>
+            <li>
+              population_names
+            </li>
+            <li>
+              population_locations
+            </li>
+            <li>
+              deployment_code
+            </li>
+            <li>
+              chromosome_bases
+            </li>
+            <li>
+              background_mutation
+            </li>
+            <li>
+              additional_mutation
+            </li>
+            <li>
+              mutation_type
+            </li>
+            <li>
+              chromosome_size
+            </li>
+            <li>
+              genome_size
+            </li>
+            <li>
+              max_tape_length
+            </li>
+            <li>
+              clean_cell
+            </li>
+            <li>
+              interpret_chromosome
+            </li>
+            <li>
+              max_codon
+            </li>
+            <li>
+              population_size
+            </li>
+            <li>
+              eco_cell_capacity
+            </li>
+            <li>
+              world_x
+            </li>
+            <li>
+              world_y
+            </li>
+            <li>
+              world_z
+            </li>
+            <li>
+              goal
+            </li>
+            <li>
+              maximum_generations
+            </li>
+            <li>
+              fossilized_ratio
+            </li>
+            <li>
+              fossilized_frequency
+            </li>
+            <li>
+              print_frequency
+            </li>
+            <li>
+              ragaraja_version
+            </li>
+            <li>
+              ragaraja_instructions
+            </li>
+            <li>
+              eco_buried_frequency
+            </li>
+            <li>
+              database_file
+            </li>
+            <li>
+              database_logging_frequency
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_reconstruct_world"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_reconstruct_world</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">generation</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_world">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to reconstruct the world object of a simulation (as 
+  identified by the starting time of the simulation) at a specific 
+  generation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>generation</code></strong> - Current number of generations simulated.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>dose_world.World object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_reconstruct_organisms"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_reconstruct_organisms</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">population_name</span>,
+        <span class="sig-arg">generation</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_organisms">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to reconstruct a list of organisms (genetic.Organism objects)
+  of a population within a simulation (as identified by the starting time 
+  of the simulation) at a specific generation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>population_name</code></strong> - Name of the population</li>
+        <li><strong class="pname"><code>generation</code></strong> - Current number of generations simulated.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>A list of Organisms (genetic.Organism objects)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="db_reconstruct_population"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">db_reconstruct_population</span>(<span class="sig-arg">cur</span>,
+        <span class="sig-arg">start_time</span>,
+        <span class="sig-arg">population_name</span>,
+        <span class="sig-arg">generation</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="dose.database_calls-pysrc.html#db_reconstruct_population">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to reconstruct a population within a simulation (as 
+  identified by the starting time of the simulation) at a specific 
+  generation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>cur</code></strong> - Database cursor from connect_database() function.</li>
+        <li><strong class="pname"><code>start_time</code></strong> - Starting time of current simulation in the format of 
+          &lt;date&gt;-&lt;seconds since epoch&gt;; for example, 
+          2013-10-11-1381480985.77.</li>
+        <li><strong class="pname"><code>population_name</code></strong> - Name of the population</li>
+        <li><strong class="pname"><code>generation</code></strong> - Current number of generations simulated.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>genetic.Population object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="dose-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/mauriceling/dose">https://github.com/mauriceling/dose</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Feb 15 15:37:55 2018
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
