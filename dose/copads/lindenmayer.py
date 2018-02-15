@@ -7,7 +7,7 @@ Date created: 4th January 2015
 '''
 import random
 
-import constants
+from . import constants
 
 class lindenmayer(object):
     '''

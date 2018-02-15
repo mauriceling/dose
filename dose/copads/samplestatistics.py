@@ -19,11 +19,13 @@ Copyright (c) Maurice H.T. Ling <mauriceling@acm.org>
 """
 
 import math
-from statisticsdistribution import Distribution
-from copadsexceptions import FunctionParameterTypeError
-from copadsexceptions import FunctionParameterValueError
-from operations import summation
-import nrpy
+
+from .statisticsdistribution import Distribution
+from .copadsexceptions import FunctionParameterTypeError
+from .copadsexceptions import FunctionParameterValueError
+from .operations import summation
+
+from . import nrpy
 
 class SingleSample:
     """
