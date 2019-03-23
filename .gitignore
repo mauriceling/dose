@@ -16,3 +16,4 @@ dose.egg-info/
 *.egg
 examples/*_turtle.py
 examples/*.svg
+*.dropbox.attr
