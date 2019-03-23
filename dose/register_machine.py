@@ -50,7 +50,10 @@ def interpret(source, functions,
     instruction_count = 0
     while spointer < len(source):
         instruction_count = instruction_count + 1
-        
+        original_array = [x for x in array]
+        original_inputdata = [x for x in inputdata]
+        original_output = [x for x in output]
+        original_source = [x for x in source]
         try:
             cmd = source[spointer:spointer+function_size]
             #print instruction_count, cmd
@@ -61,6 +64,12 @@ def interpret(source, functions,
         except KeyError:
             print(' '.join(['Unknown function: ', cmd,
                             'at source position', str(spointer)]))
+        except:
+            # implement roll back operation
+            array = original_array
+            inputdata = original_inputdata
+            output = original_output
+            source = original_source
         if apointer > size - 1:
             apointer = apointer - size
         if apointer < 0:
