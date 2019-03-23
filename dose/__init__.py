@@ -11,14 +11,14 @@ __email__ = metadata.email
 __description__ = metadata.long_description
 
 # Package imports (in ascending order of package names)
-from . import copads
+import copads
 
 # Module imports (in ascending order of module names)
-from . import database_calls
-from . import dose
-from . import genetic
-from . import register_machine
-from . import ragaraja
+import database_calls
+import dose
+import genetic
+import register_machine
+import ragaraja
 
 # COPADS Class imports (in ascending order of module names, then class names)
 from .copads.lindenmayer import lindenmayer

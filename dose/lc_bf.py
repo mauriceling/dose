@@ -22,7 +22,7 @@ following differences:
 @see: http://esolangs.org/wiki/Loose_Circular_Brainfuck_(LCBF)
 '''
 
-from . import register_machine as r
+import register_machine as r
 
 def increment(array, apointer, inputdata, output, source, spointer):
     '''
