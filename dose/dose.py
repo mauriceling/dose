@@ -735,8 +735,9 @@ def simulate(sim_parameters, sim_functions):
     print('\n[' + sim_parameters["simulation_name"].upper() + ' SIMULATION]')
     if "initial_chromosome" not in sim_parameters:
         print('Adding initial chromosome to simulation parameters...')
-        sim_parameters["initial_chromosome"] = ['0'] * \
-                                        sim_parameters["chromosome_size"]
+        sim_parameters["initial_chromosome"] = \
+            [random.choice(sim_parameters["chromosome_bases"])] * \
+            sim_parameters["chromosome_size"]
     print('Adding deployment scheme to simulation parameters...')
     sim_parameters["deployment_scheme"] = sim_functions.deployment_scheme
     print('Constructing World entity...')
