@@ -31,9 +31,11 @@ The interpreter environment consists of the following elements:
     initialization.
     4. Output List: A list of output from the execution. This may also be 
     used as a secondary tape. 
+    5. Set of 99 registers: Can be used as temporary storage for writing 
+    to and reading cell values from the tape.
 
-When the program terminates, all 4 elements are returned, and the 
-interpreter terminates itself. 
+When the program terminates, 4 elements (Array, Source, Input List and 
+Output List) are returned, and the interpreter terminates itself. 
 
 @see: http://esolangs.org/wiki/Ragaraja
 '''
