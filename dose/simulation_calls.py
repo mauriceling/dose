@@ -32,9 +32,9 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     Sequential ecological cell DOSE simulator.
     
     Performs the following operations:
+        - Generate a simulation start time to identify the current simulation
         - Creating simulation file directory for results text file, population 
         freeze, and world burial storage
-        - Generate a simulation start time to identify the current simulation
         - Define active Ragaraja instructions
         - Connecting to logging database (if needed)
         - Writing simulation parameters into results text file
@@ -51,8 +51,12 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     @param Populations: dictionary of population objects
     @param World: dose_world.World object
     '''
+    # Step 1: - Generate a simulation start time to identify the 
+    # current simulation
     time_start = '-'.join([str(datetime.utcnow()).split(' ')[0],
                            str(time())])
+    # Step 2: Creating simulation file directory for results text 
+    # file, population freeze, and world burial storage
     print('Creating simulation file directories...')
     directory ='_'.join([sim_parameters["simulation_name"],time_start])
     directory = os.sep.join([os.getcwd(), 'Simulations', directory]) 
@@ -63,6 +67,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     print('Adding starting time to simulation parameters...')
     sim_parameters["starting_time"] = time_start
     sim_functions = sim_functions()
+    # Step 3: Define active Ragaraja instructions
     if sim_parameters["ragaraja_version"] == 0 or \
         sim_parameters["ragaraja_version"] == 66:
         print('Activating ragaraja version: 0...')
@@ -72,6 +77,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print('Activating ragaraja version: ' + \
             str(sim_parameters["ragaraja_version"]) + '...')
         ragaraja.activate_version(sim_parameters["ragaraja_version"])
+    # Step 4: Connecting to logging database (if needed)
     if "database_file" in sim_parameters and \
         "database_logging_frequency" in sim_parameters: 
         print('Connecting to database file: ' + \
@@ -79,6 +85,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         (con, cur) = connect_database(None, sim_parameters)
         print('Logging simulation parameters to database file...')
         (con, cur) = db_log_simulation_parameters(con, cur, sim_parameters)
+    # Step 5: Initialize World and Population, then deploy 
+    # population(s) onto the world
     for pop_name in Populations:
         print('\nPreparing population: ' + pop_name + ' for simulation...')
         if 'sim_folder' in sim_parameters or \
@@ -109,11 +117,13 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
             print('Adding maximum generations to simulation parameters...')
             max = sim_parameters["maximum_generations"]
             generation_count = 0
+        # Writing simulation parameters into results text file
         print('Writing simulation parameters into txt file report...')
         write_parameters(sim_parameters, pop_name)
         print('Updating generation count...')
         Populations[pop_name].generation = generation_count
     print('\nSimulation preparation complete...')
+    # Step 6: Run the simulation and recording the results
     while generation_count < max:
         generation_count = generation_count + 1
         sim_functions.ecoregulate(World)
@@ -139,6 +149,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
                                    sim_parameters["starting_time"],
                                    Populations, World, generation_count)
         print('Generation ' + str(generation_count) + ' complete...')
+    # Step 7: Close logging database (if used)
     print('\nClosing simulation results...')
     for pop_name in Populations: close_results(sim_parameters, pop_name)
     if "database_file" in sim_parameters and \
@@ -147,6 +158,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         con.commit()
         print('Terminating database connection...') 
         con.close()
+    # Step 8: Copy simulation script into simulation file directory
     print('Copying simulation file script to simulation results directory...')
 
     #DV on my system, the inspect.stack()[2][1] value returns the full
