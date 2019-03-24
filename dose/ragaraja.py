@@ -2307,10 +2307,14 @@ def activate_version(version=1, instructions=None):
     Allowable versions are: 
         - 0.1: Using NucleotideBF instructions as 3-digit code.
         - 0.2: Using NucleotideBF instructions as IUPAC nucleotide code.
-        - 0: User-defined set of instructions to be used.
+        - 0: User-defined set of instructions to be used, where genome 
+        comprises of Ragaraja instructions.
         - 1: As defined in Ling, MHT. 2012. An Artificial Life Simulation 
         Library Based on Genetic Algorithm, 3-Character Genetic Code and 
         Biological Hierarchy. The Python Papers 7: 5.
+        - 66: User-defined set of instructions to be used, where genome 
+        comprises of user-defined bases which have to be converted to 
+        Ragaraja instructions.
         - 98: All currently implemented instructions.
         - 99: All currently tested instructions.
     
@@ -2362,7 +2366,7 @@ def activate_version(version=1, instructions=None):
     
     @since: version 0.4
     '''
-    if version == 0: 
+    if version == 0 or version == 66: 
         for key in list(ragaraja.keys()):
             if key not in instructions:
                 ragaraja[key] = not_used

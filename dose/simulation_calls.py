@@ -63,7 +63,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
     print('Adding starting time to simulation parameters...')
     sim_parameters["starting_time"] = time_start
     sim_functions = sim_functions()
-    if sim_parameters["ragaraja_version"] == 0:
+    if sim_parameters["ragaraja_version"] == 0 or \
+        sim_parameters["ragaraja_version"] == 66:
         print('Activating ragaraja version: 0...')
         ragaraja.activate_version(sim_parameters["ragaraja_version"],
                                   sim_parameters["ragaraja_instructions"])
@@ -420,6 +421,9 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             source = ''.join(individual.genome[chromosome_count].sequence)
             if sim_parameters["ragaraja_version"] == 0.2:
                 source = ragaraja.nBF_to_Ragaraja(source)
+            elif sim_parameters["ragaraja_version"] == 66:
+                source = sim_parameters["base_converter"](source)
+            # print(source)
             array = Populations[pop_name].agents[i].status['blood']
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
