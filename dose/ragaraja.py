@@ -40,11 +40,12 @@ interpreter terminates itself.
 import random
 import math
 
-import copads
-from copads.samplestatistics import SingleSample
-from lc_bf import increment, decrement
-from lc_bf import forward, backward
-from lc_bf import call_out, accept_predefined
+from . import copads
+from . import lc_bf
+from .copads.samplestatistics import SingleSample
+from .lc_bf import increment, decrement
+from .lc_bf import forward, backward
+from .lc_bf import call_out, accept_predefined
 
 register = [0]*99
 

@@ -9,9 +9,9 @@ Date created: 27th September 2013
 '''
 import sys, os, random, inspect
 
-import ragaraja, register_machine
-import dose_world
-import genetic, simulation_calls
+from . import ragaraja, register_machine
+from . import dose_world
+from . import genetic, simulation_calls
 
 from .simulation_calls import spawn_populations, simulation_core
 from .simulation_calls import excavate_world, revive_population
