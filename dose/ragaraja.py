@@ -2280,34 +2280,36 @@ def nBF_to_Ragaraja(source):
     '''
     converted = []
     for x in source:
-        if x == 'G': converted.append('000')
-        elif x == 'C': converted.append('004')
-        elif x == 'A': converted.append('008')
-        elif x == 'T': converted.append('011')
-        elif x == '.': converted.append('020')
-        elif x == 'R': converted.append('050')
-        elif x == 'Y': converted.append('051')
-        elif x == 'S': converted.append('052')
-        elif x == 'W': converted.append('053')
-        elif x == 'K': converted.append('054')
-        elif x == 'M': converted.append('055')
-        elif x == 'B': converted.append('056')
-        elif x == 'D': converted.append('057')
-        elif x == 'H': converted.append('058')
-        elif x == 'V': converted.append('059')
-        elif x == 'N': converted.append('060')
-        else: converted.append('...')
+        if x.upper() == 'G': converted.append('000')
+        elif x.upper()  == 'C': converted.append('004')
+        elif x.upper()  == 'A': converted.append('008')
+        elif x.upper()  == 'T': converted.append('011')
+        elif x.upper()  == '.': converted.append('020')
+        elif x.upper()  == 'R': converted.append('050')
+        elif x.upper()  == 'Y': converted.append('051')
+        elif x.upper()  == 'S': converted.append('052')
+        elif x.upper()  == 'W': converted.append('053')
+        elif x.upper()  == 'K': converted.append('054')
+        elif x.upper()  == 'M': converted.append('055')
+        elif x.upper()  == 'B': converted.append('056')
+        elif x.upper()  == 'D': converted.append('057')
+        elif x.upper()  == 'H': converted.append('058')
+        elif x.upper()  == 'V': converted.append('059')
+        elif x.upper()  == 'N': converted.append('060')
+        else: converted.append('200') # Jump identifier I
     return ''.join(converted)
 
 def activate_version(version=1, instructions=None):
     '''
     Function to set instructions for usage, based on version numbers. 
     Allowable versions are: 
-        - 0.1: Using NucleotideBF instructions.
+        - 0.1: Using NucleotideBF instructions as 3-digit code.
+        - 0.2: Using NucleotideBF instructions as IUPAC nucleotide code.
         - 0: User-defined set of instructions to be used.
         - 1: As defined in Ling, MHT. 2012. An Artificial Life Simulation 
         Library Based on Genetic Algorithm, 3-Character Genetic Code and 
         Biological Hierarchy. The Python Papers 7: 5.
+        - 98: All currently implemented instructions.
         - 99: All currently tested instructions.
     
     Instruction set for B{version 0.1} is ['000', '004', '008', '011', 
@@ -2358,11 +2360,25 @@ def activate_version(version=1, instructions=None):
     
     @since: version 0.4
     '''
-    if version == 0.1: instructions = nBF_instructions
-    if version == 1: instructions = ragaraja_v1
-    if version == 2: instructions = ragaraja_v2
-    if version == 99: instructions = tested_ragaraja_instructions
-    for key in list(ragaraja.keys()):
-        if key not in instructions:
-            ragaraja[key] = not_used
-    return instructions
+    if version == 0: 
+        for key in list(ragaraja.keys()):
+            if key not in instructions:
+                ragaraja[key] = not_used
+    elif version == 0.1 or version == 0.2: 
+        for key in list(ragaraja.keys()):
+            if key not in nBF_instructions:
+                ragaraja[key] = not_used
+    elif version == 1: 
+        for key in list(ragaraja.keys()):
+            if key not in ragaraja_v1:
+                ragaraja[key] = not_used
+    elif version == 2: 
+        for key in list(ragaraja.keys()):
+            if key not in ragaraja_v2:
+                ragaraja[key] = not_used
+    elif version == 98:
+        pass
+    elif version == 99:
+        for key in list(ragaraja.keys()):
+            if key not in tested_ragaraja_instructions:
+                ragaraja[key] = not_used

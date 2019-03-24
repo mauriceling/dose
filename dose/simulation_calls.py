@@ -418,6 +418,8 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             inputdata = World.ecosystem[x][y][z]['local_input']
             output = World.ecosystem[x][y][z]['local_output']
             source = ''.join(individual.genome[chromosome_count].sequence)
+            if sim_parameters["ragaraja_version"] == 0.2:
+                source = ragaraja.nBF_to_Ragaraja(source)
             array = Populations[pop_name].agents[i].status['blood']
             try: (array, apointer, inputdata, output, source, spointer) = \
                 register_machine.interpret(source, ragaraja.ragaraja, 3,
