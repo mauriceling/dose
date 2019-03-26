@@ -994,7 +994,7 @@ def tape_manipulate(array, apointer, inputdata, output, source, spointer):
     
     Instructions handled:
         - 081: Swap the value of the current cell (n) and (n+1)th cell. 
-        - 133: Flip the tape from the cell after the current cell to the 
+        - 131: Flip the tape from the cell after the current cell to the 
         end of the tape (temporarily breaking the circularity of the tape).
         - 161: Cut the tape before the current cell (n) and append it to 
         the end of the tape and set tape pointer to 0. 
@@ -1019,7 +1019,7 @@ def tape_manipulate(array, apointer, inputdata, output, source, spointer):
             temp = array[apointer]
             array[apointer] = array[0]
             array[0] = temp
-    if cmd == '133' and (apointer + 1) < len(array):
+    if cmd == '131' and (apointer + 1) < len(array):
         temp = array[apointer+1:]
         array = array[0:apointer+1]
         temp.reverse()
@@ -1733,8 +1733,8 @@ ragaraja = {'000': forward, '001': tape_move,
             '124': logic, '125': logic,
             '126': logic, '127': logic,
             '128': logic, '129': logic,
-            '130': logic, '131': not_used,
-            '132': not_used, '133': tape_manipulate,
+            '130': logic, '131': tape_manipulate,
+            '132': not_used, '133': not_used,
             '134': not_used, '135': not_used,
             '136': not_used, '137': not_used,
             '138': not_used, '139': not_used,
