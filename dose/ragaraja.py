@@ -414,11 +414,37 @@ def source_move(array, apointer, inputdata, output, source, spointer):
         spointer = spointer + (3 * abs(int(array[apointer])))
     return (array, apointer, inputdata, output, source, spointer)
     
+def source_manipulate(array, apointer, inputdata, output, source, spointer):
+    '''!
+    Manipulating the source.
+
+    Instructions handled:
+        - 029: Replace current source instruction with modulus current 
+        tape cell value by 1000.
+        - 030: Invert the next source instruction if it is not the end 
+        of the source.
+    '''
+    cmd = source[spointer:spointer+3]
+    if cmd == '029':
+        value = instruction_padding((array[apointer]) % 1000)
+        value = list(value)
+        source[spointer] = str(value[0])
+        source[spointer+1] = str(value[1])
+        source[spointer+2] = str(value[2])
+    if cmd == '030' and (spointer + 6) < len(source):
+        instruction = list(source[spointer+3:spointer+6])
+        source[spointer+3] = str(10 - source[spointer+3])
+        source[spointer+4] = str(10 - source[spointer+4])
+        source[spointer+5] = str(10 - source[spointer+5])
+    return (array, apointer, inputdata, output, source, spointer)
+
 def set_tape_value(array, apointer, inputdata, output, source, spointer):
     '''
     Set values into tape cell by over-writing the original value.
     
     Instructions handled:
+        - 031: Set current tape cell value to modulus current tape cell 
+        value by 1000.
         - 084: Set current tape cell to "0".
         - 085: Set current tape cell to "-1".
         - 086: Set current tape cell to "1". 
@@ -444,6 +470,7 @@ def set_tape_value(array, apointer, inputdata, output, source, spointer):
         to the tape position of current cell. 
     '''
     cmd = source[spointer:spointer+3]
+    if cmd == '031': array[apointer] = float(array[apointer]) % 1000
     if cmd == '084': array[apointer] = 0
     if cmd == '085': array[apointer] = -1
     if cmd == '086': array[apointer] = 1
@@ -1647,8 +1674,8 @@ ragaraja = {'000': forward, '001': tape_move,
             '022': output_IO, '023': source_move,
             '024': source_move, '025': source_move,
             '026': source_move, '027': source_move,
-            '028': source_move, '029': not_used,
-            '030': not_used, '031': not_used,
+            '028': source_move, '029': source_manipulate,
+            '030': source_manipulate, '031': set_tape_value,
             '032': accumulations, '033': accumulations,
             '034': tape_size, '035': tape_size,
             '036': tape_size, '037': output_IO,
