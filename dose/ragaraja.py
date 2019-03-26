@@ -423,6 +423,8 @@ def source_manipulate(array, apointer, inputdata, output, source, spointer):
         tape cell value by 1000.
         - 030: Invert the next source instruction if it is not the end 
         of the source.
+        - 049: Randomly replace the current instruction with any of 
+        the 1000 instructions.
     '''
     cmd = source[spointer:spointer+3]
     if cmd == '029':
@@ -436,6 +438,12 @@ def source_manipulate(array, apointer, inputdata, output, source, spointer):
         source[spointer+3] = str(10 - source[spointer+3])
         source[spointer+4] = str(10 - source[spointer+4])
         source[spointer+5] = str(10 - source[spointer+5])
+    if cmd == '049':
+        instruction = instruction_padding(random.randint(0, 1001))
+        instruction = list(instruction)
+        source[spointer] = instruction[0]
+        source[spointer+1] = instruction[1]
+        source[spointer+2] = instruction[2]
     return (array, apointer, inputdata, output, source, spointer)
 
 def set_tape_value(array, apointer, inputdata, output, source, spointer):
@@ -1684,7 +1692,7 @@ ragaraja = {'000': forward, '001': tape_move,
             '042': output_IO, '043': tape_move,
             '044': tape_move, '045': tape_move,
             '046': flipping, '047': flipping,
-            '048': flipping, '049': not_used,
+            '048': flipping, '049': source_manipulate,
             '050': nBF_random_op, '051': nBF_random_op,
             '052': nBF_random_op, '053': nBF_random_op,
             '054': nBF_random_op, '055': nBF_random_op,
