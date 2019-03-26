@@ -61,6 +61,7 @@ parameters = {# Part 1: Simulation metadata
               "mutation_type": 'point',
               
               # Part 6: Metabolic settings
+              "interpreter": 'Ragaraja',
               "ragaraja_version": 66,
               "base_converter": base_converter,
               "ragaraja_instructions": ['000', '004', '008', '011'],
