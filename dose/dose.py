@@ -374,8 +374,9 @@ def database_report_populations(con, cur, start_time,
             org_name = str(org.status['identity'])
             # log each item in Organism.status dictionary
             for key in [key for key in list(org.status.keys())
-                               if key != 'identity']:
-                if key in ('blood', 'location', 'parents'):
+                        if key != 'identity']:
+                if type(org.status[key]) is list or \
+                    type(org.status[key]) is tuple:
                     try:
                         # TypeError will occur when genome/chromosomes are 
                         # not interpreted
