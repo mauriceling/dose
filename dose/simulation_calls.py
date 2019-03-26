@@ -35,7 +35,7 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         - Generate a simulation start time to identify the current simulation
         - Creating simulation file directory for results text file, population 
         freeze, and world burial storage
-        - Define active Ragaraja instructions
+        - Define active interpreter instructions
         - Connecting to logging database (if needed)
         - Writing simulation parameters into results text file
         - Initialize World and Population
@@ -73,6 +73,8 @@ def simulation_core(sim_functions, sim_parameters, Populations, World):
         print('Activating ragaraja version: 0...')
         ragaraja.activate_version(sim_parameters["ragaraja_version"],
                                   sim_parameters["ragaraja_instructions"])
+    elif sim_parameters["ragaraja_version"] == 'user-defined':
+        pass
     else:
         print('Activating ragaraja version: ' + \
             str(sim_parameters["ragaraja_version"]) + '...')
@@ -428,18 +430,34 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
             if array == None: 
                 array = [0] * sim_parameters["max_tape_length"]
         for chromosome_count in range(len(individual.genome)):
+            # get world environment conditions
             inputdata = World.ecosystem[x][y][z]['local_input']
             output = World.ecosystem[x][y][z]['local_output']
+            # get chromosomal sequence
             source = ''.join(individual.genome[chromosome_count].sequence)
+            # process chromosome sequence if needed
             if sim_parameters["ragaraja_version"] == 0.2:
                 source = ragaraja.nBF_to_Ragaraja(source)
             elif sim_parameters["ragaraja_version"] == 66:
-                source = sim_parameters["base_converter"](source)
+                source = sim_parameters["base_converter"](source) 
             # print(source)
+            # change interpreter if needed
+            if sim_parameters["ragaraja_version"] == 'user-defined':
+                interpreter = sim_parameters["interpreter"]
+                instruction_size = sim_parameters["instruction_size"]
+            elif sim_parameters["interpreter"] == 'ragaraja':
+                interpreter = ragaraja.ragaraja
+                instruction_size = 3
+            else:
+                interpreter = ragaraja.ragaraja
+                instruction_size = 3
+            # get cytoplasm / blood
             array = Populations[pop_name].agents[i].status['blood']
+            # interpret chromosme
             try: (array, apointer, inputdata, output, source, spointer) = \
-                register_machine.interpret(source, ragaraja.ragaraja, 3,
-                                           inputdata, array,
+                register_machine.interpret(source, interpreter, 
+                                           instruction_size,
+                                           inputdata, array, 
                                            sim_parameters["max_tape_length"],
                                            sim_parameters["max_codon"])
             except Exception as e: 
@@ -448,6 +466,7 @@ def interpret_chromosome(sim_parameters, Populations, pop_name, World):
                 Populations[pop_name].agents[i]. \
                     status['chromosome_error'] = error_msg
                 Populations[pop_name].agents[i].status['blood'] = array
+            # update world environment conditions and cytoplasm / blood
             Populations[pop_name].agents[i].status['blood'] = array
             World.ecosystem[x][y][z]['temporary_input'] = inputdata
             World.ecosystem[x][y][z]['temporary_output'] = output
