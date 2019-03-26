@@ -2309,9 +2309,8 @@ def activate_version(version=1, instructions=None):
         - 0.2: Using NucleotideBF instructions as IUPAC nucleotide code.
         - 0: User-defined set of instructions to be used, where genome 
         comprises of Ragaraja instructions.
-        - 1: As defined in Ling, MHT. 2012. An Artificial Life Simulation 
-        Library Based on Genetic Algorithm, 3-Character Genetic Code and 
-        Biological Hierarchy. The Python Papers 7: 5.
+        - 1: Ragaraja instruction set verion 1.
+        - 2: Ragaraja instruction set verion 2.
         - 66: User-defined set of instructions to be used, where genome 
         comprises of user-defined bases which have to be converted to 
         Ragaraja instructions.
@@ -2358,6 +2357,19 @@ def activate_version(version=1, instructions=None):
     '378', '379', '380', '381', '382', '383', '384', '385', '386', '387', 
     '388', '389', '390', '391', '392', '393', '394', '395', '396', '397', 
     '398', '399']
+
+    Instruction set for B{version 2} is the following, on top of 
+    B{version 1}, ['400', '500', '501', '502', '503', '504', '505', 
+    '506', '507', '508', '509', '510', '511', '512', '513', '514', '515', 
+    '516', '517', '518', '519', '520', '521', '522', '523', '524', '525', 
+    '526', '527', '528', '529', '530', '531', '532', '533', '534', '535', 
+    '536', '537', '538', '539', '540', '541', '542', '543', '544', '545', 
+    '546', '547', '548', '549', '550', '551', '552', '553', '554', '555', 
+    '556', '557', '558', '559', '560', '561', '562', '563', '564', '565', 
+    '566', '567', '568', '569', '570', '571', '572', '573', '574', '575', 
+    '576', '577', '578', '579', '580', '581', '582', '583', '584', '585', 
+    '586', '587', '588', '589', '590', '591', '592', '593', '594', '595', 
+    '596', '597', '598', '599', '600']
         
     @param version: Define the version to activate. Default = 1. 
     @param instructions: User-defined set of instructions (as list of 
