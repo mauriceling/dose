@@ -515,6 +515,9 @@ def report_generation(sim_parameters, Populations, pop_name,
     @param generation_count: current generation count for reporting
     @return: none
     '''
+    for index in range(len(Populations[pop_name].agents)):
+        Populations[pop_name].agents[index].status['generation'] = \
+        generation_count
     report = step(Populations, pop_name, sim_functions)
     if generation_count % int(sim_parameters["fossilized_frequency"]) == 0:
         file = '%s%s_%s_' % (sim_parameters["directory"],

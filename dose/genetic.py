@@ -197,6 +197,7 @@ class Organism(object):
         10. identity - 32-character randomly generated name.
         11. deme - defined as a sub-population or local population.
         12. location - location of the organism within the ecosystem.
+        13. generation - current generation count.
 
     
     List of defined death codes
@@ -247,6 +248,7 @@ class Organism(object):
                        'identity': None,         # name of the organism
                        'deme': None,             # sub-population or race
                        'location': None,         # location of the organism
+                       'generation': 0,          # generation of organism
                        'death': None}
         if genome == 'dummy':
             self.genome = [Chromosome([0], [0])]
