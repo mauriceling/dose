@@ -13,8 +13,8 @@ In this simulation,
     - the lowest dectile of the organisms (by fitness) will be removed 
     if there are more than 50% population remaining after removal; or 
     else, a random selection of 10 organisms will be removed.
-    - a random selection of organisms after removal will be replicated 
-    to top up the population to 100 organisms
+    - a random selection of remaining organisms after removal will be 
+    replicated to top up the population to 100 organisms
     - 100 generations to be simulated
 '''
 # needed to run this example without prior
@@ -32,8 +32,6 @@ import dose
 from Bio import Align
 aligner = Align.PairwiseAligner()
 aligner.mode = str('global')
-
-fitness_threshold = 25
 
 known_sequences = ["ATAGCAGTAGCTAGTCGATGCTAGCTAG"]
 
@@ -117,17 +115,17 @@ class simulation_functions(dose.dose_functions):
 
     def prepopulation_control(self, Populations, pop_name): 
         agents = Populations[pop_name].agents
-        fitness = [(index, agents[index].status['fitness'])
+        status = [(index, agents[index].status['fitness'])
                    for index in range(len(agents))]
-        eliminate = [x[1] for x in fitness]
+        eliminate = [x[1] for x in status]
         eliminate.sort()
-        if len([x for x in eliminate if x > eliminate[9]]) > 50:
-            ethreshold = eliminate[9]
+        ethreshold = eliminate[9]
+        if len([x for x in eliminate if x > ethreshold]) > 50:
             Populations[pop_name].agents = \
                 [agents[i] for i in range(len(agents))
                     if agents[i].status['fitness'] > ethreshold]
         else:
-            eliminate = [x[0] for x in fitness]
+            eliminate = [x[0] for x in status]
             eliminate = [random.choice(eliminate) for x in range(10)]
             Populations[pop_name].agents = \
                 [agents[i] for i in range(len(agents))
@@ -137,15 +135,10 @@ class simulation_functions(dose.dose_functions):
 
     def mating(self, Populations, pop_name):
         agents = Populations[pop_name].agents
-        if len(agents) <= 100:
-            replicate = \
-                [index for index in range(len(agents))
-                 if agents[index].status['fitness'] > fitness_threshold]
-            replicate = [random.choice(replicate) 
-                         for x in range(100-len(agents))]
-            for index in replicate:
-                new_agent = copy.deepcopy(agents[index])
-                agents.append(new_agent)
+        while len(agents) < 100:
+            chosen_agent = random.choice(agents)
+            new_agent = copy.deepcopy(chosen_agent)
+            agents.append(new_agent)
 
     def postpopulation_control(self, Populations, pop_name): pass
 
