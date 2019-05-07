@@ -6,10 +6,16 @@ In this simulation,
     - 1 population of 100 organisms
     - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
     - entire population will be deployed in one eco-cell (0, 0, 0)
-    - 10% background point mutation on chromosome of 30 bases
+    - 10% background point mutation on chromosome (PMID 14616055, 
+    27185891)
     - no organism movement throughout the simulation
-    - fitness is calculated as minimum pairwise alignment of organism 
+    - fitness is calculated as average pairwise alignment of organism 
     chromosome to known sequences
+    - the lowest dectile of the organisms (by fitness) will be removed 
+    if there are more than 50% population remaining after removal; or 
+    else, a random selection of 10 organisms will be removed.
+    - a random selection of remaining organisms after removal will be 
+    replicated to top up the population to 100 organisms
     - 100 generations to be simulated
 '''
 # needed to run this example without prior
@@ -39,7 +45,7 @@ parameters = {# Part 1: Simulation metadata
               "world_y": 1,
               "world_z": 1,
               "population_locations": [[(0,0,0)]],
-              "eco_cell_capacity": 100,
+              "eco_cell_capacity": 1000,
               "deployment_code": 1,
 
               # Part 3: Population settings
@@ -69,7 +75,7 @@ parameters = {# Part 1: Simulation metadata
 
               # Part 7: Simulation settings
               "goal": 0,
-              "maximum_generations": 100,
+              "maximum_generations": 500,
               "eco_buried_frequency": 100,
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 20,
@@ -95,51 +101,68 @@ class simulation_functions(dose.dose_functions):
     def report(self, World): pass
 
     def fitness(self, Populations, pop_name):
-      for index in range(len(Populations[pop_name].agents)):
-        organism = Populations[pop_name].agents[index]
-        chromosome = ''.join(organism.genome[0].sequence)
-        score = min([aligner.score(chromosome, seq) 
-                     for seq in known_sequences])
-        Populations[pop_name].agents[index].status['fitness'] = score
+        agents = Populations[pop_name].agents
+        for index in range(len(agents)):
+            organism = agents[index]
+            chromosome = ''.join(organism.genome[0].sequence)
+            score = [aligner.score(chromosome, seq) 
+                     for seq in known_sequences]
+            score = sum(score) / len(score)
+            agents[index].status['fitness'] = score
 
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
                                    parameters["additional_mutation"])
 
-    def prepopulation_control(self, Populations, pop_name): pass
+    def prepopulation_control(self, Populations, pop_name): 
+        agents = Populations[pop_name].agents
+        status = [(index, agents[index].status['fitness'])
+                   for index in range(len(agents))]
+        eliminate = [x[1] for x in status]
+        eliminate.sort()
+        ethreshold = eliminate[9]
+        if len([x for x in eliminate if x > ethreshold]) > 50:
+            Populations[pop_name].agents = \
+                [agents[i] for i in range(len(agents))
+                    if agents[i].status['fitness'] > ethreshold]
+        else:
+            eliminate = [x[0] for x in status]
+            eliminate = [random.choice(eliminate) for x in range(10)]
+            Populations[pop_name].agents = \
+                [agents[i] for i in range(len(agents))
+                    if i not in eliminate]
+        print("Population size after elimination: " + \
+            str(len(Populations[pop_name].agents)))
 
     def mating(self, Populations, pop_name):
-      fitness = [org.status['fitness'] for org in Populations[pop_name].agents] 
-      index = fitness.index(max(fitness))
-      elimination = [x for x in range(parameters["population_size"]) 
-                     if x != index]
-      elimination = random.choice(elimination)
-      replicated = copy.deepcopy(Populations[pop_name].agents[index])
-      Populations[pop_name].agents[elimination] = replicated
+        agents = Populations[pop_name].agents
+        while len(agents) < 100:
+            chosen_agent = random.choice(agents)
+            new_agent = copy.deepcopy(chosen_agent)
+            agents.append(new_agent)
 
     def postpopulation_control(self, Populations, pop_name): pass
 
     def generation_events(self, Populations, pop_name): pass
 
     def population_report(self, Populations, pop_name):
-        sequences = [''.join(org.genome[0].sequence) for org in Populations[pop_name].agents]
-        identities = [org.status['identity'] for org in Populations[pop_name].agents]
-        locations = [str(org.status['location']) for org in Populations[pop_name].agents]
-        demes = [org.status['deme'] for org in Populations[pop_name].agents]
-        fitness = [org.status['fitness'] for org in Populations[pop_name].agents]
-        print(fitness)
-        print(max(fitness), sum(fitness)/len(fitness))
+        agents = Populations[pop_name].agents
+        sequences = [''.join(org.genome[0].sequence) for org in agents]
+        identities = [org.status['identity'] for org in agents]
+        locations = [str(org.status['location']) for org in agents]
+        demes = [org.status['deme'] for org in agents]
+        fitness = [org.status['fitness'] for org in agents]
+        gen_count = agents[0].status["generation"]
+        print(gen_count, max(fitness), sum(fitness)/len(fitness))
         return '\n'.join(sequences)
 
     def database_report(self, con, cur, start_time, 
                         Populations, World, generation_count):
-        try:
-            dose.database_report_populations(con, cur, start_time, 
-                                             Populations, generation_count)
+        try: dose.database_report_populations(con, cur, start_time, 
+                                    Populations, generation_count)
         except: pass
-        try:
-            dose.database_report_world(con, cur, start_time, 
-                                       World, generation_count)
+        try: dose.database_report_world(con, cur, start_time, 
+                                        World, generation_count)
         except: pass
 
     def deployment_scheme(self, Populations, pop_name, World): pass
