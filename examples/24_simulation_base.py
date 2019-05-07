@@ -6,7 +6,8 @@ In this simulation,
     - 1 population of 100 organisms
     - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
     - entire population will be deployed in one eco-cell (0, 0, 0)
-    - 10% background point mutation on chromosome (PMID 27185891)
+    - 10% background point mutation on chromosome (PMID 14616055, 
+    27185891)
     - no organism movement throughout the simulation
     - fitness is calculated as average pairwise alignment of organism 
     chromosome to known sequences
