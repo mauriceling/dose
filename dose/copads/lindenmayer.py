@@ -436,7 +436,7 @@ class lindenmayer(object):
             f.write("    canvasvg.saveall('%s', t.getscreen()._canvas) \n" \
                     % imagefile)
             f.write('except ImportError: pass \n')
-        exec('turtle.done()')
+        exec('turtle.bye()')
         print('%s instructions processed. Drawing completed.' % str(count))
         if scriptfile != None:
             f.write('\n')
