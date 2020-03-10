@@ -1,6 +1,11 @@
 '''
 Example 25: De novo origins of beta-lactamase.
 
+Reference: Kwek, BZN, Ardhanari-Shanmugam, KD, Woo, JH, Usman, S, Chua, 
+JW, B, V, Shahrukh, K, Thong-Ek, C, Ling, MHT. 2019. Random Sequences 
+May Have Putative Beta-Lactamase Properties. Acta Scientific Medical 
+Sciences 3(7): 113-117.
+
 In this simulation,
     - 1 population of 100 organisms
     - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
