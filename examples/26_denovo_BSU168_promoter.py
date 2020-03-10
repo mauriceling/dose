@@ -1,6 +1,10 @@
 '''
-Example 24: This is a basic template for simulating the evolution of 
-de novo origins of sequences.
+Example 26: De novo origins of Bacillus subtilis 168 promoters.
+
+Reference: Ardhanari-Shanmugam, KD, Shahrukh, K, B, V, Woo, JH, 
+Thong-Ek, C, Usman, S, Kwek, BZN, Chua, JW, Ling, MHT. 2019. De Novo 
+Origination of Bacillus subtilis 168 Promoters from Random Sequences. 
+Acta Scientific Microbiology 2(11): 07-10.
 
 In this simulation,
     - 1 population of 100 organisms
