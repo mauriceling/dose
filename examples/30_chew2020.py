@@ -1,15 +1,18 @@
 '''
-Example 23: This is almost identical to Simulation 22 but genomic 
-interpretation using user-defined interpreter.
+Example 30: Simulation code for Chew et al. 2020. Rapid Genetic Diversity 
+with Variability between Replicated Digital Organism Simulations and its 
+Implications on Cambrian Explosion. EC Clinical and Medical Case Reports 
+3(11): 64-68.
 
 In this simulation,
-    - 1 population of 1 organisms
+    - 1 population of 100 organisms
     - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
+    - each chromosome is 1200 bases
     - entire population will be deployed in one eco-cell (0, 0, 0)
-    - 10% background point mutation on chromosome of 30 bases
+    - 10% background point mutation on chromosome (PMID 14616055, 
+    27185891)
     - no organism movement throughout the simulation
-    - user-defined interpretation of genome (without new blood option)
-    - 100 generations to be simulated
+    - 1000 generations to be simulated
 '''
 # needed to run this example without prior
 # installation of DOSE into Python site-packages
@@ -17,48 +20,32 @@ try:
 	import run_examples_without_installation
 except ImportError: pass
 
+import copy
+import random
+
 # Example codes starts from here
 import dose
 
-# User-defined interpreter: interpreter_alpha
-def move(array, apointer, inputdata, output, source, spointer):
-    cmd = source[spointer]
-    if cmd == 'A': apointer = apointer + 1
-    if cmd == 'T': apointer = apointer - 1
-    return (array, apointer, inputdata, output, source, spointer)
-
-def add(array, apointer, inputdata, output, source, spointer):
-    cmd = source[spointer]
-    if cmd == 'G': array[apointer] = array[apointer] + 1
-    if cmd == 'C': array[apointer] = array[apointer] - 1
-    return (array, apointer, inputdata, output, source, spointer)
-
-interpreter_alpha = {'A': move,
-                     'T': move,
-                     'G': add,
-                     'C': add}
-# End of user-defined interpreter
-
 parameters = {# Part 1: Simulation metadata
-              "simulation_name": "23_simulation_22_with_interpretation",
+              "simulation_name": "30_chew2020",
               "population_names": ['pop_01'],
 
               # Part 2: World settings
-              "world_x": 5,
-              "world_y": 5,
-              "world_z": 5,
+              "world_x": 1,
+              "world_y": 1,
+              "world_z": 1,
               "population_locations": [[(0,0,0)]],
-              "eco_cell_capacity": 100,
+              "eco_cell_capacity": 1000,
               "deployment_code": 1,
 
               # Part 3: Population settings
-              "population_size": 1,
+              "population_size": 100,
 
               # Part 4: Genetics settings
               "genome_size": 1,
-              "chromosome_size": 300,
+              "chromosome_size": 2000,
               "chromosome_bases": ['A', 'T', 'G', 'C'],
-              "initial_chromosome": ['A', 'T', 'G', 'C'] * 75,
+              "initial_chromosome": ['A', 'T', 'G', 'C'] * 300,
 
               # Part 5: Mutation settings
               "background_mutation": 0.1,
@@ -66,19 +53,19 @@ parameters = {# Part 1: Simulation metadata
               "mutation_type": 'point',
               
               # Part 6: Metabolic settings
-              "interpreter": interpreter_alpha,
-              "instruction_size": 1,
-              "ragaraja_version": "user-defined",
+              "interpreter": 'ragaraja',
+              "instruction_size": 3,
+              "ragaraja_version": 0,
               "base_converter": None,
               "ragaraja_instructions": [],
               "max_tape_length": 50,
-              "interpret_chromosome": True,
+              "interpret_chromosome": False,
               "clean_cell": False,
               "max_codon": 2000,
 
               # Part 7: Simulation settings
               "goal": 0,
-              "maximum_generations": 100,
+              "maximum_generations": 2500,
               "eco_buried_frequency": 100,
               "fossilized_ratio": 0.01,
               "fossilized_frequency": 20,
@@ -103,38 +90,39 @@ class simulation_functions(dose.dose_functions):
 
     def report(self, World): pass
 
-    def fitness(self, Populations, pop_name): pass
+    def fitness(self, Populations, pop_name):
+        pass
 
     def mutation_scheme(self, organism): 
         organism.genome[0].rmutate(parameters["mutation_type"],
                                    parameters["additional_mutation"])
 
-    def prepopulation_control(self, Populations, pop_name): pass
+    def prepopulation_control(self, Populations, pop_name): 
+        pass
 
-    def mating(self, Populations, pop_name): pass
+    def mating(self, Populations, pop_name):
+        pass
 
     def postpopulation_control(self, Populations, pop_name): pass
 
     def generation_events(self, Populations, pop_name): pass
 
     def population_report(self, Populations, pop_name):
-        sequences = [''.join(org.genome[0].sequence) for org in Populations[pop_name].agents]
-        identities = [org.status['identity'] for org in Populations[pop_name].agents]
-        locations = [str(org.status['location']) for org in Populations[pop_name].agents]
-        demes = [org.status['deme'] for org in Populations[pop_name].agents]
-        print(sequences)
-        print([org.status['blood'] for org in Populations[pop_name].agents])
-        return '\n'.join(sequences)
+        agents = Populations[pop_name].agents
+        sequences = [''.join(org.genome[0].sequence) for org in agents]
+        identities = [org.status['identity'] for org in agents]
+        gen_count = agents[0].status["generation"]
+        for index in range(len(agents)):
+            print('> %s|%s' % (str(gen_count), str(identities[index])))
+            print(str(sequences[index]))
 
     def database_report(self, con, cur, start_time, 
                         Populations, World, generation_count):
-        try:
-            dose.database_report_populations(con, cur, start_time, 
-                                             Populations, generation_count)
+        try: dose.database_report_populations(con, cur, start_time, 
+                                    Populations, generation_count)
         except: pass
-        try:
-            dose.database_report_world(con, cur, start_time, 
-                                       World, generation_count)
+        try: dose.database_report_world(con, cur, start_time, 
+                                        World, generation_count)
         except: pass
 
     def deployment_scheme(self, Populations, pop_name, World): pass

@@ -1,14 +1,16 @@
 '''
-Example 23: This is almost identical to Simulation 22 but genomic 
-interpretation using user-defined interpreter.
+Example 29: This is almost identical to Simulation 01 - most basic 
+simulation (using default simulation functions) - but Ragaraja 
+interpretation of genome.
 
 In this simulation,
     - 1 population of 1 organisms
-    - each organism will have 1 chromosome of only 4 bases (A, T, G, C)
+    - each organism will have 1 chromosome of only 10 bases (1 to 0)
     - entire population will be deployed in one eco-cell (0, 0, 0)
     - 10% background point mutation on chromosome of 30 bases
     - no organism movement throughout the simulation
-    - user-defined interpretation of genome (without new blood option)
+    - Ragaraja interpretation of genome on all instructions (without 
+    new blood option)
     - 100 generations to be simulated
 '''
 # needed to run this example without prior
@@ -20,27 +22,9 @@ except ImportError: pass
 # Example codes starts from here
 import dose
 
-# User-defined interpreter: interpreter_alpha
-def move(array, apointer, inputdata, output, source, spointer):
-    cmd = source[spointer]
-    if cmd == 'A': apointer = apointer + 1
-    if cmd == 'T': apointer = apointer - 1
-    return (array, apointer, inputdata, output, source, spointer)
-
-def add(array, apointer, inputdata, output, source, spointer):
-    cmd = source[spointer]
-    if cmd == 'G': array[apointer] = array[apointer] + 1
-    if cmd == 'C': array[apointer] = array[apointer] - 1
-    return (array, apointer, inputdata, output, source, spointer)
-
-interpreter_alpha = {'A': move,
-                     'T': move,
-                     'G': add,
-                     'C': add}
-# End of user-defined interpreter
 
 parameters = {# Part 1: Simulation metadata
-              "simulation_name": "23_simulation_22_with_interpretation",
+              "simulation_name": "29_simulation_01_with_interpretation",
               "population_names": ['pop_01'],
 
               # Part 2: World settings
@@ -57,8 +41,8 @@ parameters = {# Part 1: Simulation metadata
               # Part 4: Genetics settings
               "genome_size": 1,
               "chromosome_size": 300,
-              "chromosome_bases": ['A', 'T', 'G', 'C'],
-              "initial_chromosome": ['A', 'T', 'G', 'C'] * 75,
+              "chromosome_bases": ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+              "initial_chromosome": ['9'] * 300,
 
               # Part 5: Mutation settings
               "background_mutation": 0.1,
@@ -66,11 +50,11 @@ parameters = {# Part 1: Simulation metadata
               "mutation_type": 'point',
               
               # Part 6: Metabolic settings
-              "interpreter": interpreter_alpha,
-              "instruction_size": 1,
-              "ragaraja_version": "user-defined",
+              "interpreter": 'ragaraja',
+              "instruction_size": 3,
+              "ragaraja_version": 98,
               "base_converter": None,
-              "ragaraja_instructions": [],
+              "ragaraja_instructions": [str(i).rjust(3, '0') for i in range(1000)],
               "max_tape_length": 50,
               "interpret_chromosome": True,
               "clean_cell": False,
