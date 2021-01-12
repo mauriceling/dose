@@ -557,6 +557,35 @@ def filter_status(status_key, condition, agents):
         and float(individual.status[status_key]) < float(condition[1]) + 0.01]
     return extract
 
+def load_one_local_input(World, x, y, z, inputdata):
+    """
+    Function to insert data into the local_input of a specific ecological 
+    cell defined by (x, y, z) coordinate.
+
+    @param World: dose.dose_world.World object.
+    @param x: x-coordinate of ecological cell.
+    @param y: y-coordinate of ecological cell.
+    @param z: y-coordinate of ecological cell.
+    @param inputdata: Data to put into local_input of the ecological cell.
+    @return: Updated World
+    """
+    World.ecosystem[x][y][z]['local_input'] = inputdata
+    return World
+
+def load_all_local_input(World, inputdata):
+    """
+    Function to insert data into the local_input of all ecological cells.
+    
+    @param World: dose.dose_world.World object.
+    @param inputdata: Data to put into local_input of the ecological cell.
+    @return: Updated World
+    """
+    for x in World.ecosystem:
+        for y in World.ecosystem[x]:
+            for z in World.ecosystem[x][y]:
+                World.ecosystem[x][y][z]['local_input'] = inputdata
+    return World
+
 def revive_simulation(rev_parameters, sim_functions):
     print('\n[' + rev_parameters["simulation_name"].upper() + ' REVIVAL SIMULATION]')
     Populations = {}

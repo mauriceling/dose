@@ -50,6 +50,8 @@ from .dose import filter_gender
 from .dose import filter_location
 from .dose import filter_status
 from .dose import filter_vitality
+from .dose import load_one_local_input
+from .dose import load_all_local_input
 from .dose import revive_simulation
 from .dose import simulate
 from .genetic import crossover
