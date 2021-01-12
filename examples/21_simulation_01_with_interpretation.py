@@ -35,6 +35,7 @@ parameters = {
               "genome_size": 1,
               "max_tape_length": 50,
               "clean_cell": False,
+              "interpreter": 'ragaraja',
               "interpret_chromosome": True,
               "max_codon": 2000,
               "population_size": 1,
