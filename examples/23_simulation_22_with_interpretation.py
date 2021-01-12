@@ -71,7 +71,7 @@ parameters = {# Part 1: Simulation metadata
               "ragaraja_version": "user-defined",
               "base_converter": None,
               "ragaraja_instructions": [],
-              "max_tape_length": 50,
+              "max_tape_length": 15,
               "interpret_chromosome": True,
               "clean_cell": False,
               "max_codon": 2000,
