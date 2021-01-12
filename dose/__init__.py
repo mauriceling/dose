@@ -14,6 +14,7 @@ __description__ = metadata.long_description
 from . import copads
 
 # Module imports (in ascending order of module names)
+from . import codonA
 from . import database_calls
 from . import dose
 from . import genetic
