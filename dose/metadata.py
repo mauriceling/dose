@@ -12,7 +12,7 @@ email = 'mauriceling@acm.org'
 download_url = 'https://github.com/mauriceling/dose/releases'
 project_start_year = '2010'
 project_website = 'https://github.com/mauriceling/dose'
-documentation_website = 'http://maurice.vodien.com/project-dose'
+documentation_website = 'https://github.com/mauriceling/dose/wiki'
 short_license = 'GNU General Public License version 3'
 long_license = '''
 Unless otherwise specified, dose.copads package will be licensed 
