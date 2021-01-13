@@ -1,5 +1,9 @@
 '''
-Example 28: Variations in 30 populations evolving without selection.
+Example 28: Variations in 30 populations evolving without selection. 
+Simulation code for Chew et al. 2020. Rapid Genetic Diversity with 
+Variability between Replicated Digital Organism Simulations and its 
+Implications on Cambrian Explosion. EC Clinical and Medical Case Reports 
+3(11): 64-68.
 
 In this simulation,
     - 1 population of 100 organisms
