@@ -10,7 +10,7 @@ In this simulation,
     - the local_input of all all ecological cells is set to [1, 2, 3, 4]
     - 5% background point mutation on chromosome of 30 bases
     - no organism movement throughout the simulation
-    - CodonA interpretation of genome on all instructions (without 
+    - CodonA interpretation of genome on all instructions (with 
     new blood option)
     - 100 generations to be simulated
 '''
@@ -59,7 +59,7 @@ parameters = {# Part 1: Simulation metadata
               "ragaraja_instructions": [],
               "max_tape_length": 4,
               "interpret_chromosome": True,
-              "clean_cell": False,
+              "clean_cell": True,
               "max_codon": 2000,
 
               # Part 7: Simulation settings
@@ -108,7 +108,7 @@ class simulation_functions(dose.dose_functions):
         identities = [org.status['identity'] for org in Populations[pop_name].agents]
         locations = [str(org.status['location']) for org in Populations[pop_name].agents]
         demes = [org.status['deme'] for org in Populations[pop_name].agents]
-        print(sequences)
+        #print(sequences)
         print([org.status['blood'] for org in Populations[pop_name].agents])
         return '\n'.join(sequences)
 
