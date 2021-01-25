@@ -18,8 +18,6 @@ Output List) are returned, and the interpreter terminates itself.
 '''
 codonLength = 3
 
-interpreter = {'AAA': interpret_codon, 'AAT': interpret_codon}
-
 def interpret_codon(array, apointer, inputdata, output, source, spointer):
     '''
     Boiler plate to interpret codon.
@@ -27,3 +25,5 @@ def interpret_codon(array, apointer, inputdata, output, source, spointer):
     cmd = source[spointer:spointer+codonLength]
     if cmd == 'xxx': pass
     return (array, apointer, inputdata, output, source, spointer)
+
+interpreter = {'AAA': interpret_codon, 'AAT': interpret_codon}
