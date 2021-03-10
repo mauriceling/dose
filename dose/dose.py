@@ -270,6 +270,31 @@ class dose_functions():
         @return: None
         '''
         raise NotImplementedError
+    def other_operations(self, Populations, pop_name, World): 
+        '''
+        Method / function to cater for any other operations with regards 
+        to either the World or population(s) that have not been considered 
+        in:
+            - organism_movement(Populations, pop_name, World)
+            - organism_location(Populations, pop_name, World)
+            - ecoregulate(World)
+            - update_ecology(World, x, y, z)
+            - update_local(World, x, y, z)
+            - fitness(Populations, pop_name)
+            - mutation_scheme(self, organism)
+            - prepopulation_control(Populations, pop_name)
+            - mating(Populations, pop_name)
+            - postpopulation_control(Populations, pop_name)
+            - generation_events(Populations, pop_name)
+
+        @param Populations: A dictionary containing one or more populations 
+        where the value is a genetic.Population object.
+        @param pop_name: Name of the population which is used as key in 
+        the the dictionary (Populations parameter).
+        @param World: dose_world.World object.
+        @return: None
+        '''
+        pass
     def report(self, World):
         '''
         Method / function to generate a text report of the ecosystem status 

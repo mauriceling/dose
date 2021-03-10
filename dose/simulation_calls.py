@@ -173,8 +173,10 @@ def simulate_one_cycle(sim_functions, sim_parameters, Populations, World,
                                  pop_name, World)
         report_generation(sim_parameters, Populations, pop_name, 
                           sim_functions, generation_count)
+        sim_functions.generation_events(Populations, pop_name)
         sim_functions.organism_movement(Populations, pop_name, World)
         sim_functions.organism_location(Populations, pop_name, World)
+        sim_functions.other_operations(Populations, pop_name, World)
     return (sim_functions, sim_parameters, Populations, World)
 
 def database_logging(sim_functions, sim_parameters, Populations, World, 
