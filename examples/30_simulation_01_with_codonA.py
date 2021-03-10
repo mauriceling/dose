@@ -1,5 +1,5 @@
 '''
-Example 31: This is almost identical to Simulation 01 - most basic 
+Example 30: This is almost identical to Simulation 01 - most basic 
 simulation (using default simulation functions) - but CodonA 
 interpretation of genome.
 
