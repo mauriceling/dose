@@ -27,9 +27,9 @@ parameters = {# Part 1: Simulation metadata
               "world_x": 1,
               "world_y": 1,
               "world_z": 1,
-              "population_locations": [[(0,0,0)]],
+              "population_locations": None,
               "eco_cell_capacity": 100,
-              "deployment_code": 1,
+              "deployment_code": None,
 
               # Part 3: Population settings
               "population_size": 10,
