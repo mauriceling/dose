@@ -5,8 +5,6 @@ Environment) Simulations].
 
 Date created: 17th April 2021
 """
-from pprint import pprint
-
 import dossier
 
 print("OPERATION: Connect to a DOSE simulation results database")
@@ -53,4 +51,6 @@ print("SQL statement used: %s" % db.last_sql_statement)
 print(dataframe)
 print("")
 
-pprint(db.sql_statements)
+print("Listing of SQL Statements Used")
+for k in db.sql_statements:
+    print("%i : %s" % (k, db.sql_statements[k]))
