@@ -56,24 +56,27 @@ class DOSE_Result_Database(object):
         self.sql_statements = {}
         self.last_sql_statement = ""
 
-    def execute_sql(self, sqlstmt):
+    def _execute_sql(self, sqlstmt, operation_type="USER"):
         """!
-        Method to execute a user-defined SQL statement recognized by 
-        SQLite.
+        Private method to execute a SQL statement recognized by SQLite.
 
         @param sqlstmt: SQLite SQL statement to execute.
         @type sqlstmt: String
+        @param operation_type: Define type of operation. Default = "USER".
+        @type operation_type: String
         @return: Pandas dataframe containing results.
         """
         dataframe = pd.read_sql_query(sqlstmt, self.con)
-        self.sql_statements[self.operation_count + 1] = sqlstmt
+        statement = operation_type.upper() + "|" + sqlstmt
+        self.sql_statements[self.operation_count + 1] = statement
         self.last_sql_statement = self.sql_statements[self.operation_count + 1]
         self.operation_count = self.operation_count + 1
         return dataframe
 
     def list_simulations(self):
         """!
-        Method to list available simulation results.
+        Method to list available simulation results. Logged operation 
+        type = LSIM.
 
         Returned Pandas dataframe columns:
             - start_time (start time of simulation, which is used as 
@@ -84,12 +87,13 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct start_time, simulation_name from parameters"
-        dataframe = self.execute_sql(sqlstmt)
+        dataframe = self._execute_sql(sqlstmt, "LSIM")
         return dataframe
 
     def list_parameter_types(self, table, to_list=True):
         """!
-        Method to list parameters types for a table.
+        Method to list parameters types for a table. Logged operation 
+        type = LPT.
 
         @param table: Data table to list. Allowable types are 
         "parameters", "organisms", "world", and "miscellaneous".
@@ -100,7 +104,7 @@ class DOSE_Result_Database(object):
         return Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key from %s" % table.lower()
-        dataframe = self.execute_sql(sqlstmt)
+        dataframe = self._execute_sql(sqlstmt, "LPT")
         if to_list:
             return [x[0] for x in dataframe.values.tolist()]
         else:
@@ -109,6 +113,7 @@ class DOSE_Result_Database(object):
     def simulation_parameters(self, start_time):
         """!
         Method to list parameters of a given simulation (by start_time).
+        Logged operation type = SP1.
 
         Returned Pandas dataframe columns:
             - key (parameter name)
@@ -121,5 +126,5 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key, value from parameters where start_time = '%s' and key != 'interpreter' and key != 'deployment_scheme'" % str(start_time)
-        dataframe = self.execute_sql(sqlstmt)
+        dataframe = self._execute_sql(sqlstmt, "SP1")
         return dataframe
