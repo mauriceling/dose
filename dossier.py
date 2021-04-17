@@ -1,6 +1,7 @@
 """!
-DOSSIER - A Library of Utility Functions to Analyze Simulation Results 
-Database from DOSE (Digital Organism Simulation Environment) Simulations. 
+DOSSIER - Functions to Analyze Simulation Results Database and 
+Periodic Archives from DOSE (Digital Organism Simulation Environment) 
+Simulations. 
 
 Date created: 17th April 2021
 """
@@ -50,7 +51,10 @@ class DOSE_Result_Database(object):
         self.path = path
         self.abspath = os.path.abspath(self.path)
         self.con = s.connect(self.abspath)
-        self.sql_statements = []
+        self.record_results = True
+        self.operation_count = 0
+        self.sql_statements = {}
+        self.last_sql_statement = ""
 
     def execute_sql(self, sqlstmt):
         """!
@@ -62,7 +66,9 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         dataframe = pd.read_sql_query(sqlstmt, self.con)
-        self.sql_statements.append(sqlstmt)
+        self.sql_statements[self.operation_count + 1] = sqlstmt
+        self.last_sql_statement = self.sql_statements[self.operation_count + 1]
+        self.operation_count = self.operation_count + 1
         return dataframe
 
     def list_simulations(self):
@@ -75,16 +81,32 @@ class DOSE_Result_Database(object):
             simulation)
             - simulation_name (name of simulation)
 
-        @param sqlstmt: SQLite SQL statement to execute.
-        @type sqlstmt: String
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct start_time, simulation_name from parameters"
-        dataframe = pd.read_sql_query(sqlstmt, self.con)
-        self.sql_statements.append(sqlstmt)
+        dataframe = self.execute_sql(sqlstmt)
         return dataframe
 
-    def list_simulation_parameters(self, start_time):
+    def list_parameter_types(self, table, to_list=True):
+        """!
+        Method to list parameters types for a table.
+
+        @param table: Data table to list. Allowable types are 
+        "parameters", "organisms", "world", and "miscellaneous".
+        @type table: String
+        @param to_list: If True, returns parameter types as a list. 
+        Default = True. 
+        @return: if to_list == True, returns a list of results; else, 
+        return Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct key from %s" % table.lower()
+        dataframe = self.execute_sql(sqlstmt)
+        if to_list:
+            return [x[0] for x in dataframe.values.tolist()]
+        else:
+            return dataframe
+
+    def simulation_parameters(self, start_time):
         """!
         Method to list parameters of a given simulation (by start_time).
 
@@ -99,6 +121,5 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key, value from parameters where start_time = '%s' and key != 'interpreter' and key != 'deployment_scheme'" % str(start_time)
-        dataframe = pd.read_sql_query(sqlstmt, self.con)
-        self.sql_statements.append(sqlstmt)
+        dataframe = self.execute_sql(sqlstmt)
         return dataframe
