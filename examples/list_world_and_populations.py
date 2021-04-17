@@ -1,5 +1,5 @@
 '''
-This example is to list aWorld and Population objects after initialization.
+This example is to list World and Population objects after initialization.
 
 In this simulation,
     - 1 population of 10 organisms
