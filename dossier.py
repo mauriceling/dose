@@ -67,7 +67,7 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         dataframe = pd.read_sql_query(sqlstmt, self.con)
-        statement = operation_type.upper() + "|" + sqlstmt
+        statement = operation_type + "|" + sqlstmt
         self.sql_statements[self.operation_count + 1] = statement
         self.last_sql_statement = self.sql_statements[self.operation_count + 1]
         self.operation_count = self.operation_count + 1
@@ -76,7 +76,7 @@ class DOSE_Result_Database(object):
     def Sims(self):
         """!
         Method to list available simulation results. Logged operation 
-        type = LSIM.
+        type = SIMS.
 
         Returned Pandas dataframe columns:
             - start_time (start time of simulation, which is used as 
@@ -87,13 +87,13 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct start_time, simulation_name from parameters"
-        dataframe = self._ExecuteSQL(sqlstmt, "LSIM")
+        dataframe = self._ExecuteSQL(sqlstmt, "SIMS")
         return dataframe
 
     def ParamTypes(self, table, to_list=True):
         """!
         Method to list parameters types for a table. Logged operation 
-        type = LPT.
+        type = PType.
 
         @param table: Data table to list. Allowable types are 
         "parameters", "organisms", "world", and "miscellaneous".
@@ -104,7 +104,7 @@ class DOSE_Result_Database(object):
         return Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key from %s" % table.lower()
-        dataframe = self._ExecuteSQL(sqlstmt, "LPT")
+        dataframe = self._ExecuteSQL(sqlstmt, "PType")
         if to_list:
             return dataframe['key'].values.tolist()
         else:
@@ -113,7 +113,7 @@ class DOSE_Result_Database(object):
     def SimParam_Time(self, start_time):
         """!
         Method to list parameters of a given simulation (by start_time).
-        Logged operation type = SP1.
+        Logged operation type = SPTime.
 
         Returned Pandas dataframe columns:
             - key (parameter name)
@@ -126,5 +126,24 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key, value from parameters where start_time = '%s' and key != 'interpreter' and key != 'deployment_scheme'" % str(start_time)
-        dataframe = self._ExecuteSQL(sqlstmt, "SP1")
+        dataframe = self._ExecuteSQL(sqlstmt, "SPTime")
+        return dataframe
+
+    def SimParam_Name(self, parameter):
+        """!
+        Method to list one parameter of a given parameter name.
+        Logged operation type = SPName.
+
+        Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - value (parameter value)
+
+        @param parameter: Required parameter value.
+        @type parameter: String
+        @return: Parameter value.
+        """
+        sqlstmt = "SELECT start_time, value from parameters where key = '%s'" % str(parameter)
+        dataframe = self._ExecuteSQL(sqlstmt, "SPName")
         return dataframe
