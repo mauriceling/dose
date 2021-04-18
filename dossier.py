@@ -56,6 +56,9 @@ class DOSE_Result_Database(object):
         self.sql_statements = {}
         self.last_sql_statement = ""
 
+    ##################################################################
+    # 1. SQL Executor
+    ##################################################################
     def _ExecuteSQL(self, sqlstmt, operation_type="USER"):
         """!
         Private method to execute a SQL statement recognized by SQLite.
@@ -72,7 +75,13 @@ class DOSE_Result_Database(object):
         self.last_sql_statement = self.sql_statements[self.operation_count + 1]
         self.operation_count = self.operation_count + 1
         return dataframe
+    ##################################################################
+    # (End of) SQL Executor
+    ##################################################################
 
+    ##################################################################
+    # 2. Primary Metadata Information Getter
+    ##################################################################
     def Sims(self):
         """!
         Method to list available simulation results. Logged operation 
@@ -109,7 +118,13 @@ class DOSE_Result_Database(object):
             return dataframe['key'].values.tolist()
         else:
             return dataframe
+    ##################################################################
+    # (End of) Primary Metadata Information Getter
+    ##################################################################
 
+    ##################################################################
+    # 3. Simulation Parameters (Table = parameters) Getter
+    ##################################################################
     def SimParam_Time(self, start_time):
         """!
         Method to list parameters of a given simulation (by start_time).
@@ -168,7 +183,13 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT value from parameters where start_time = '%s' and key = '%s'" % (str(start_time), str(parameter))
         dataframe = self._ExecuteSQL(sqlstmt, "SPTN")
         return dataframe['value'].values.tolist()[0]
+    ##################################################################
+    # (End of) Simulation Parameters (Table = parameters) Getter
+    ##################################################################
 
+    ##################################################################
+    # 4. World Parameters (Table = world) Getter
+    ##################################################################
     def WorldParam_Time(self, start_time):
         """!
         Method to list world parameters of a given simulation (by start_time).
@@ -246,3 +267,22 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT distinct generation, value from world where start_time = '%s' and x = '%s' and y = '%s' and z = '%s' and key = '%s'" % (str(start_time), str(x), str(y), str(z), str(parameter))
         dataframe = self._ExecuteSQL(sqlstmt, "WPTCN")
         return dataframe
+    ##################################################################
+    # (End of) World Parameters (Table = world) Getter
+    ##################################################################
+
+    ##################################################################
+    # 5. Organisms Parameters (Table = organisms) Getter
+    ##################################################################
+
+    ##################################################################
+    # (End of) Organisms Parameters (Table = organisms) Getter
+    ##################################################################
+
+    ##################################################################
+    # 6. Miscellaneous Parameters (Table = miscellaneous) Getter
+    ##################################################################
+
+    ##################################################################
+    # (End of) Miscellaneous Parameters (Table = miscellaneous) Getter
+    ##################################################################
