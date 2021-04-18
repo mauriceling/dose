@@ -32,6 +32,12 @@ print("SQL statement used: %s" % db.last_sql_statement)
 print(dataframe)
 print("")
 
+print("OPERATION: Get the organism parameter for " + start_time + ", location 0,0,0")
+dataframe = db.WorldParam_TimeCellName(start_time, 0, 0, 0, "organisms")
+print("SQL statement used: %s" % db.last_sql_statement)
+print(dataframe)
+print("")
+
 print("Listing of SQL Statements Used")
 for k in db.sql_statements:
     print("%i : %s" % (k, db.sql_statements[k]))
