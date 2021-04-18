@@ -1,7 +1,7 @@
 """!
-Common Usage of DOSSIER [Functions to Analyze Simulation Results 
+Example 01 of DOSSIER [Functions to Analyze Simulation Results 
 Database and Periodic Archives from DOSE (Digital Organism Simulation 
-Environment) Simulations]. 
+Environment) Simulations] - Simulation Parameters. 
 
 Date created: 17th April 2021
 """
