@@ -142,8 +142,29 @@ class DOSE_Result_Database(object):
 
         @param parameter: Required parameter value.
         @type parameter: String
-        @return: Parameter value.
+        @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT start_time, value from parameters where key = '%s'" % str(parameter)
         dataframe = self._ExecuteSQL(sqlstmt, "SPName")
         return dataframe
+
+    def SimParam_TimeName(self, start_time, parameter):
+        """!
+        Method to list parameters of a given simulation (by start_time).
+        Logged operation type = SPTN.
+
+        Returned Pandas dataframe columns:
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @param parameter: Required parameter value.
+        @type parameter: String
+        @return: Parameter value.
+        """
+        sqlstmt = "SELECT value from parameters where start_time = '%s' and key = '%s'" % (str(start_time), str(parameter))
+        dataframe = self._ExecuteSQL(sqlstmt, "SPTN")
+        return dataframe['value'].values.tolist()[0]

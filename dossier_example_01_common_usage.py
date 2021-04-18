@@ -57,6 +57,12 @@ print("SQL statement used: %s" % db.last_sql_statement)
 print(dataframe)
 print("")
 
+print("OPERATION: Get the value of background_mutation for " + start_time)
+value = db.SimParam_TimeName(start_time, "background_mutation")
+print("SQL statement used: %s" % db.last_sql_statement)
+print(value)
+print("")
+
 print("Listing of SQL Statements Used")
 for k in db.sql_statements:
     print("%i : %s" % (k, db.sql_statements[k]))
