@@ -131,7 +131,7 @@ class DOSE_Result_Database(object):
 
     def SimParam_Name(self, parameter):
         """!
-        Method to list one parameter of a given parameter name.
+        Method to list the values of parameter across simulations.
         Logged operation type = SPName.
 
         Returned Pandas dataframe columns:
@@ -150,7 +150,7 @@ class DOSE_Result_Database(object):
 
     def SimParam_TimeName(self, start_time, parameter):
         """!
-        Method to list parameters of a given simulation (by start_time).
+        Method to get the value of one parameter in one simulation.
         Logged operation type = SPTN.
 
         Returned Pandas dataframe columns:
