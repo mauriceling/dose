@@ -168,3 +168,26 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT value from parameters where start_time = '%s' and key = '%s'" % (str(start_time), str(parameter))
         dataframe = self._ExecuteSQL(sqlstmt, "SPTN")
         return dataframe['value'].values.tolist()[0]
+
+    def WorldParam_Time(self, start_time):
+        """!
+        Method to list world parameters of a given simulation (by start_time).
+        Logged operation type = WPTime.
+
+        Returned Pandas dataframe columns:
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct x, y, z, generation, key, value from world where start_time = '%s'" % str(start_time)
+        dataframe = self._ExecuteSQL(sqlstmt, "WPTime")
+        return dataframe
