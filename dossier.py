@@ -12,7 +12,7 @@ import sys
 
 import pandas as pd
 
-def connect_db(path):
+def ConnectDB(path):
     """!
     Function to connect to a DOSE simulation results database.
 
@@ -56,7 +56,7 @@ class DOSE_Result_Database(object):
         self.sql_statements = {}
         self.last_sql_statement = ""
 
-    def _execute_sql(self, sqlstmt, operation_type="USER"):
+    def _ExecuteSQL(self, sqlstmt, operation_type="USER"):
         """!
         Private method to execute a SQL statement recognized by SQLite.
 
@@ -73,7 +73,7 @@ class DOSE_Result_Database(object):
         self.operation_count = self.operation_count + 1
         return dataframe
 
-    def list_simulations(self):
+    def Sims(self):
         """!
         Method to list available simulation results. Logged operation 
         type = LSIM.
@@ -87,10 +87,10 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct start_time, simulation_name from parameters"
-        dataframe = self._execute_sql(sqlstmt, "LSIM")
+        dataframe = self._ExecuteSQL(sqlstmt, "LSIM")
         return dataframe
 
-    def list_parameter_types(self, table, to_list=True):
+    def ParamTypes(self, table, to_list=True):
         """!
         Method to list parameters types for a table. Logged operation 
         type = LPT.
@@ -104,13 +104,13 @@ class DOSE_Result_Database(object):
         return Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key from %s" % table.lower()
-        dataframe = self._execute_sql(sqlstmt, "LPT")
+        dataframe = self._ExecuteSQL(sqlstmt, "LPT")
         if to_list:
-            return [x[0] for x in dataframe.values.tolist()]
+            return dataframe['key'].values.tolist()
         else:
             return dataframe
 
-    def simulation_parameters(self, start_time):
+    def SimParam_Time(self, start_time):
         """!
         Method to list parameters of a given simulation (by start_time).
         Logged operation type = SP1.
@@ -126,5 +126,5 @@ class DOSE_Result_Database(object):
         @return: Pandas dataframe containing results.
         """
         sqlstmt = "SELECT distinct key, value from parameters where start_time = '%s' and key != 'interpreter' and key != 'deployment_scheme'" % str(start_time)
-        dataframe = self._execute_sql(sqlstmt, "SP1")
+        dataframe = self._ExecuteSQL(sqlstmt, "SP1")
         return dataframe
