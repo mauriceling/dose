@@ -282,7 +282,46 @@ class DOSE_Result_Database(object):
     ##################################################################
     # 6. Miscellaneous Parameters (Table = miscellaneous) Getter
     ##################################################################
+    def MiscParam_Time(self, start_time):
+        """!
+        Method to list miscellaneous parameters of a given simulation 
+        (by start_time). Logged operation type = MPTime.
 
+        Returned Pandas dataframe columns:
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct generation, key, value from miscellaneous where start_time = '%s'" % str(start_time)
+        dataframe = self._ExecuteSQL(sqlstmt, "MPTime")
+        return dataframe
+
+    def MiscParam_TimeName(self, start_time, parameter):
+        """!
+        Method to list specific world parameters of a given simulation 
+        (by start_time). Logged operation type = MPTN.
+
+        Returned Pandas dataframe columns:
+            - generation (generation count)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @param parameter: Required parameter value.
+        @type parameter: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct generation, value from miscellaneous where start_time = '%s' and key = '%s'" % (str(start_time), str(parameter))
+        dataframe = self._ExecuteSQL(sqlstmt, "MPTN")
+        return dataframe
     ##################################################################
     # (End of) Miscellaneous Parameters (Table = miscellaneous) Getter
     ##################################################################
