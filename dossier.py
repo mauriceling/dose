@@ -131,6 +131,13 @@ class DOSE_Result_Database(object):
         Logged operation type = SPTime.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
+            - generation (generation count)
             - key (parameter name)
             - value (parameter value)
 
@@ -142,6 +149,11 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct key, value from parameters where start_time = '%s' and key != 'interpreter' and key != 'deployment_scheme'" % str(start_time)
         dataframe = self._ExecuteSQL(sqlstmt, "SPTime")
+        dataframe["start_time"] = start_time
+        dataframe["x"] = None
+        dataframe["y"] = None
+        dataframe["z"] = None
+        dataframe["generation"] = None
         return dataframe
 
     def SimParam_Name(self, parameter):
@@ -153,6 +165,11 @@ class DOSE_Result_Database(object):
             - start_time (start time of simulation, which is used as 
             primary key to extract data and results pertaining to the 
             simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
+            - generation (generation count)
+            - key (parameter name)
             - value (parameter value)
 
         @param parameter: Required parameter value.
@@ -161,6 +178,11 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT start_time, value from parameters where key = '%s'" % str(parameter)
         dataframe = self._ExecuteSQL(sqlstmt, "SPName")
+        dataframe["key"] = parameter
+        dataframe["x"] = None
+        dataframe["y"] = None
+        dataframe["z"] = None
+        dataframe["generation"] = None
         return dataframe
 
     def SimParam_TimeName(self, start_time, parameter):
@@ -196,6 +218,9 @@ class DOSE_Result_Database(object):
         Logged operation type = WPTime.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
             - x (x-axis of ecological cell)
             - y (y-axis of ecological cell)
             - z (z-axis of ecological cell)
@@ -211,6 +236,7 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct x, y, z, generation, key, value from world where start_time = '%s'" % str(start_time)
         dataframe = self._ExecuteSQL(sqlstmt, "WPTime")
+        dataframe["start_time"] = start_time
         return dataframe
 
     def WorldParam_TimeCell(self, start_time, x, y, z):
@@ -220,6 +246,12 @@ class DOSE_Result_Database(object):
         WPTCell.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
             - generation (generation count)
             - key (parameter name)
             - value (parameter value)
@@ -238,6 +270,10 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct generation, key, value from world where start_time = '%s' and x = '%s' and y = '%s' and z = '%s'" % (str(start_time), str(x), str(y), str(z))
         dataframe = self._ExecuteSQL(sqlstmt, "WPTCell")
+        dataframe["start_time"] = start_time
+        dataframe["x"] = x
+        dataframe["y"] = y
+        dataframe["z"] = z
         return dataframe
 
     def WorldParam_TimeCellName(self, start_time, x, y, z, parameter):
@@ -247,7 +283,14 @@ class DOSE_Result_Database(object):
         operation type = WPTCN.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
             - generation (generation count)
+            - key (parameter name)
             - value (parameter value)
 
         @param start_time: Start time of simulation, which is used as 
@@ -266,6 +309,11 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct generation, value from world where start_time = '%s' and x = '%s' and y = '%s' and z = '%s' and key = '%s'" % (str(start_time), str(x), str(y), str(z), str(parameter))
         dataframe = self._ExecuteSQL(sqlstmt, "WPTCN")
+        dataframe["start_time"] = start_time
+        dataframe["key"] = parameter
+        dataframe["x"] = x
+        dataframe["y"] = y
+        dataframe["z"] = z
         return dataframe
     ##################################################################
     # (End of) World Parameters (Table = world) Getter
@@ -288,6 +336,12 @@ class DOSE_Result_Database(object):
         (by start_time). Logged operation type = MPTime.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
             - generation (generation count)
             - key (parameter name)
             - value (parameter value)
@@ -300,6 +354,10 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct generation, key, value from miscellaneous where start_time = '%s'" % str(start_time)
         dataframe = self._ExecuteSQL(sqlstmt, "MPTime")
+        dataframe["start_time"] = start_time
+        dataframe["x"] = None
+        dataframe["y"] = None
+        dataframe["z"] = None
         return dataframe
 
     def MiscParam_TimeName(self, start_time, parameter):
@@ -308,7 +366,14 @@ class DOSE_Result_Database(object):
         (by start_time). Logged operation type = MPTN.
 
         Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - x (x-axis of ecological cell)
+            - y (y-axis of ecological cell)
+            - z (z-axis of ecological cell)
             - generation (generation count)
+            - key (parameter name)
             - value (parameter value)
 
         @param start_time: Start time of simulation, which is used as 
@@ -321,6 +386,11 @@ class DOSE_Result_Database(object):
         """
         sqlstmt = "SELECT distinct generation, value from miscellaneous where start_time = '%s' and key = '%s'" % (str(start_time), str(parameter))
         dataframe = self._ExecuteSQL(sqlstmt, "MPTN")
+        dataframe["start_time"] = start_time
+        dataframe["key"] = parameter
+        dataframe["x"] = None
+        dataframe["y"] = None
+        dataframe["z"] = None
         return dataframe
     ##################################################################
     # (End of) Miscellaneous Parameters (Table = miscellaneous) Getter
