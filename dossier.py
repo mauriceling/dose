@@ -395,3 +395,26 @@ class DOSE_Result_Database(object):
     ##################################################################
     # (End of) Miscellaneous Parameters (Table = miscellaneous) Getter
     ##################################################################
+
+def FindConstantColumns(dataframe):
+    """!
+    Function to identify columns with constant value.
+
+    @param dataframe: Pandas dataframe to process.
+    @return: List of column names with constant value.
+    """
+    constantCols = [c for c in dataframe.columns 
+                        if len(set(dataframe[c])) == 1]
+    return constantCols
+
+def RemoveColumn(dataframe, column_name):
+    """!
+    Function to remove / drop a column from data frame.
+
+    @param dataframe: Pandas data frame to process.
+    @param column_name: Column to remove / drop.
+    @type column_name: String
+    @return: Reduced Pandas data frame
+    """
+    return dataframe.drop(column_name, 1)
+
