@@ -190,10 +190,6 @@ class DOSE_Result_Database(object):
         Method to get the value of one parameter in one simulation.
         Logged operation type = SPTN.
 
-        Returned Pandas dataframe columns:
-            - key (parameter name)
-            - value (parameter value)
-
         @param start_time: Start time of simulation, which is used as 
         primary key to extract data and results pertaining to the 
         simulation
@@ -322,7 +318,117 @@ class DOSE_Result_Database(object):
     ##################################################################
     # 5. Organisms Parameters (Table = organisms) Getter
     ##################################################################
+    def OrgParam_Time(self, start_time):
+        """!
+        Method to list organism data for a simulation (by start_time). 
+        Logged operation type = OPTime.
 
+        Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - pop_name (population name)
+            - org_name (organism name)
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct pop_name, org_name, generation, key, value from organisms where start_time = '%s'" % (str(start_time))
+        dataframe = self._ExecuteSQL(sqlstmt, "OPTime")
+        dataframe["start_time"] = start_time
+        return dataframe
+
+    def OrgParam_Pop(self, pop_name):
+        """!
+        Method to list organism data for a population (by pop_name). 
+        Logged operation type = OPPN.
+
+        Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - pop_name (population name)
+            - org_name (organism name)
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param pop_name: Name of the population.
+        @type pop_name: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct start_time, org_name, generation, key, value from organisms where pop_name = '%s'" % (str(pop_name))
+        dataframe = self._ExecuteSQL(sqlstmt, "OPPN")
+        dataframe["pop_name"] = pop_name
+        return dataframe
+
+    def OrgParam_TimePop(self, start_time, pop_name):
+        """!
+        Method to list organism data for a population within a simulation.
+        Logged operation type = OPTP.
+
+        Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - pop_name (population name)
+            - org_name (organism name)
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @param pop_name: Name of the population.
+        @type pop_name: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct org_name, generation, key, value from organisms where start_time = '%s' and pop_name = '%s'" % (str(start_time), str(pop_name))
+        dataframe = self._ExecuteSQL(sqlstmt, "OPTP")
+        dataframe["start_time"] = start_time
+        dataframe["pop_name"] = pop_name
+        return dataframe
+
+    def OrgParam_TimePopName(self, start_time, pop_name, parameter):
+        """!
+        Method to list specific organism parameter for a population 
+        within a simulation.
+        Logged operation type = OPTPN.
+
+        Returned Pandas dataframe columns:
+            - start_time (start time of simulation, which is used as 
+            primary key to extract data and results pertaining to the 
+            simulation)
+            - pop_name (population name)
+            - org_name (organism name)
+            - generation (generation count)
+            - key (parameter name)
+            - value (parameter value)
+
+        @param start_time: Start time of simulation, which is used as 
+        primary key to extract data and results pertaining to the 
+        simulation
+        @type start_time: String
+        @param pop_name: Name of the population.
+        @type pop_name: String
+        @param parameter: Required parameter value.
+        @type parameter: String
+        @return: Pandas dataframe containing results.
+        """
+        sqlstmt = "SELECT distinct org_name, generation, value from organisms where start_time = '%s' and pop_name = '%s' and key = '%s'" % (str(start_time), str(pop_name), str(parameter))
+        dataframe = self._ExecuteSQL(sqlstmt, "OPTPN")
+        dataframe["start_time"] = start_time
+        dataframe["pop_name"] = pop_name
+        dataframe["key"] = parameter
+        return dataframe
     ##################################################################
     # (End of) Organisms Parameters (Table = organisms) Getter
     ##################################################################
