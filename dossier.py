@@ -546,3 +546,57 @@ def RemoveColumn(dataframe, column_name):
     """
     return dataframe.drop(column_name, 1)
 
+def generateFitness(fitnessFunction, simSet, DOSEdb, **fitF):
+    """!
+    Runner function to generate fitness score table using given fitness 
+    function(**fitF). Depending on simSet, multiple replicates of the 
+    same simulation can be processed.
+
+    @param fitnessFunction: User-defined function for fitness 
+    calculation of one replicate.
+    @type fitnessFunction: Function
+    @param simSet: Dictionary of {<start_time>: <replicate>}
+    @type simSet: Dictionary
+    @param DOSEdb: dossier.DOSE_Result_Database object
+    @type DOSEdb: Object
+    @return: Pandas dataframe of {Replicate, Generation, DO(1), ..., DO(n)}
+    """
+    fitnessTables = []
+    for sim_time in simSet:
+        print("Processing simulation start time %s as replicate %s" % \
+            (str(sim_time), str(simSet[sim_time])))
+        simDF = DOSEdb.OrgParam_Time(sim_time)
+        fTable = fitnessFunction(simDF, simSet[sim_time], fitF)
+        org_count = max([len(x)-2 for x in fTable])
+        columns = ["Replicate", "Generation"] + \
+                  ["DO" + str(i+1) for i in range(org_count)]
+        fDF = pd.DataFrame(fTable, columns=columns)
+        fitnessTables.append(fDF)
+    fitnessDF = pd.concat(fitnessTables, ignore_index=True)
+    return fitnessDF
+
+def subsequenceCounter(dataframe, replicate, kwargs):
+    """!
+    Fitness Function for generateFitness() - Fitness score = number of 
+    subsequences in the first chromosome.
+
+    @param dataframe: Returned dataframe from dossier.
+    DOSE_Result_Database.OrgParam_Time()
+    @param replicate: Replicate number
+    @type replicate: Integer
+    @param kwargs: Keyword parameters used for fitness calculation.
+    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
+    scores.
+    """
+    subsequence = kwargs["subsequence"]
+    generations = list(set(dataframe["generation"].tolist()))
+    generations.sort()
+    fitnessTable = []
+    for gen_count in generations:
+        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
+                           (dataframe["key"] == "chromosome_0")]
+        fScore = [replicate, gen_count] + \
+                 [row["value"].count(subsequence)
+                    for index, row in dataDF.iterrows()]
+        fitnessTable.append(fScore)
+    return fitnessTable
