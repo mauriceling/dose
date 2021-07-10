@@ -154,7 +154,9 @@ class DOSE_Result_Database(object):
         dataframe["y"] = None
         dataframe["z"] = None
         dataframe["generation"] = None
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def SimParam_Name(self, parameter):
         """!
@@ -183,7 +185,9 @@ class DOSE_Result_Database(object):
         dataframe["y"] = None
         dataframe["z"] = None
         dataframe["generation"] = None
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def SimParam_TimeName(self, start_time, parameter):
         """!
@@ -233,7 +237,9 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT distinct x, y, z, generation, key, value from world where start_time = '%s'" % str(start_time)
         dataframe = self._ExecuteSQL(sqlstmt, "WPTime")
         dataframe["start_time"] = start_time
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def WorldParam_TimeCell(self, start_time, x, y, z):
         """!
@@ -270,7 +276,9 @@ class DOSE_Result_Database(object):
         dataframe["x"] = x
         dataframe["y"] = y
         dataframe["z"] = z
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def WorldParam_TimeCellName(self, start_time, x, y, z, parameter):
         """!
@@ -310,7 +318,9 @@ class DOSE_Result_Database(object):
         dataframe["x"] = x
         dataframe["y"] = y
         dataframe["z"] = z
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
     ##################################################################
     # (End of) World Parameters (Table = world) Getter
     ##################################################################
@@ -342,7 +352,9 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT distinct pop_name, org_name, generation, key, value from organisms where start_time = '%s'" % (str(start_time))
         dataframe = self._ExecuteSQL(sqlstmt, "OPTime")
         dataframe["start_time"] = start_time
-        return dataframe
+        column_names = ["start_time", "pop_name", "org_name", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def OrgParam_Pop(self, pop_name):
         """!
@@ -366,7 +378,9 @@ class DOSE_Result_Database(object):
         sqlstmt = "SELECT distinct start_time, org_name, generation, key, value from organisms where pop_name = '%s'" % (str(pop_name))
         dataframe = self._ExecuteSQL(sqlstmt, "OPPN")
         dataframe["pop_name"] = pop_name
-        return dataframe
+        column_names = ["start_time", "pop_name", "org_name", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def OrgParam_TimePop(self, start_time, pop_name):
         """!
@@ -395,7 +409,9 @@ class DOSE_Result_Database(object):
         dataframe = self._ExecuteSQL(sqlstmt, "OPTP")
         dataframe["start_time"] = start_time
         dataframe["pop_name"] = pop_name
-        return dataframe
+        column_names = ["start_time", "pop_name", "org_name", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def OrgParam_TimePopName(self, start_time, pop_name, parameter):
         """!
@@ -428,7 +444,9 @@ class DOSE_Result_Database(object):
         dataframe["start_time"] = start_time
         dataframe["pop_name"] = pop_name
         dataframe["key"] = parameter
-        return dataframe
+        column_names = ["start_time", "pop_name", "org_name", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
     ##################################################################
     # (End of) Organisms Parameters (Table = organisms) Getter
     ##################################################################
@@ -464,7 +482,9 @@ class DOSE_Result_Database(object):
         dataframe["x"] = None
         dataframe["y"] = None
         dataframe["z"] = None
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
 
     def MiscParam_TimeName(self, start_time, parameter):
         """!
@@ -497,7 +517,9 @@ class DOSE_Result_Database(object):
         dataframe["x"] = None
         dataframe["y"] = None
         dataframe["z"] = None
-        return dataframe
+        column_names = ["start_time", "x", "y", "z", 
+                        "generation", "key", "value"]
+        return dataframe.reindex(columns=column_names)
     ##################################################################
     # (End of) Miscellaneous Parameters (Table = miscellaneous) Getter
     ##################################################################
