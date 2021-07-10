@@ -1,9 +1,9 @@
 """!
-Example 02 of DOSSIER [Functions to Analyze Simulation Results 
+Example 03 of DOSSIER [Functions to Analyze Simulation Results 
 Database and Periodic Archives from DOSE (Digital Organism Simulation 
-Environment) Simulations] - World Parameters. 
+Environment) Simulations] - Organism Parameters. 
 
-Date created: 18th April 2021
+Date created: 9th July 2021
 """
 import dossier
 
