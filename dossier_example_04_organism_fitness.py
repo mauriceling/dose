@@ -23,8 +23,11 @@ for index, row in dataframe.iterrows():
     simSet[row["start_time"]] = index
 print("simSet = " + str(simSet))
 
-fitnessFunction = dossier.subsequenceCounter
-fitnessDF = dossier.generateFitness(fitnessFunction, simSet, db, 
+fitnessFunction = dossier.SubsequenceCounter
+fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
                                     subsequence="AA")
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
+
+dossier.SaveDataframe(fitnessDF, "dossier_example_04.csv", "csv")
+dossier.SaveDataframe(fitnessDF, "dossier_example_04.xlsx", "xlsx")

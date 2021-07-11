@@ -546,7 +546,26 @@ def RemoveColumn(dataframe, column_name):
     """
     return dataframe.drop(column_name, 1)
 
-def generateFitness(fitnessFunction, simSet, DOSEdb, **fitF):
+def SaveDataframe(dataframe, filepath, format="xlsx"):
+    """!
+    Function to save a data frame into a file.
+
+    @param dataframe: Pandas data frame to save.
+    @param filepath: Relative or absolute file path to save.
+    @type filepath: String
+    @param format: Type of format to save as. Allowable types are 
+    "xlsx" (Microsoft Excel), "csv" (comma-separated values). 
+    Default = xlsx.
+    @type format: String
+    """
+    filepath = os.path.abspath(filepath)
+    if format.lower() == "xlsx": 
+        dataframe.to_excel(filepath, index=False)
+    elif format.lower() == "csv": 
+        dataframe.to_csv(filepath, index=False)
+    print("Data saved as %s format into %s" % (format, filepath))
+
+def GenerateFitness(fitnessFunction, simSet, DOSEdb, **fitF):
     """!
     Runner function to generate fitness score table using given fitness 
     function(**fitF). Depending on simSet, multiple replicates of the 
@@ -575,7 +594,7 @@ def generateFitness(fitnessFunction, simSet, DOSEdb, **fitF):
     fitnessDF = pd.concat(fitnessTables, ignore_index=True)
     return fitnessDF
 
-def subsequenceCounter(dataframe, replicate, kwargs):
+def SubsequenceCounter(dataframe, replicate, kwargs):
     """!
     Fitness Function for generateFitness() - Fitness score = number of 
     subsequences in the first chromosome.
