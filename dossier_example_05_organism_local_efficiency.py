@@ -6,6 +6,7 @@ Environment) Simulations] - Process Local Efficiency Scores.
 Date created: 1st August 2021
 """
 import dossier
+from metabolism import *
 
 print("OPERATION: Connect to a DOSE simulation results database")
 db = dossier.ConnectDB("Simulations//control_simulation_high_mutation.db")
