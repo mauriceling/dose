@@ -6,7 +6,6 @@ Simulations.
 Date created: 17th April 2021
 """
 
-from metabolism import *
 import networkx as nx
 
 import os
@@ -636,11 +635,11 @@ def LocalEfficiency(dataframe, replicate, kwargs):
     @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
     scores.
     """
-    subsequence = kwargs["subsequence"]
+    enzymatic_reactions = kwargs["enzymatic_reactions"]
     generations = list(set(dataframe["generation"].tolist()))
     generations.sort()
     fitnessTable = []
-    def _core(sequence):
+    def _core(sequence, enzymatic_reactions):
         reactions = []
         for nucleotide in range(0, len(sequence), 2):
             if sequence[nucleotide:nucleotide+2] in enzymatic_reactions.keys():
