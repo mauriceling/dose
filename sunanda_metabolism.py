@@ -1,5 +1,5 @@
 """
-ENZYMATIC REACTIONS
+ENZYMATIC REACTIONS, ENZYMATIC GENES & PERCEPTION GENES
 
 """
 
@@ -141,3 +141,14 @@ enzymatic_reactions = {
     "ZV": ('M136', 'M117'), "ZW": ('M132', 'M6'), "ZX": ('M25', 'M209'),
     "ZY": ('M11', 'M288')
 }
+
+enzymatic_genes = list(enzymatic_reactions.keys())
+
+perception_genes = [
+    "AL", "AN", "BA", "BZ", "CG", "CI", "CR", "CX", "DF", "DZ", "EC", "EJ",
+    "FA", "GA", "GI", "GK", "HB", "HI", "HJ", "IP", "JB", "JH", "JV", "KA",
+    "KC", "KN", "KO", "LG", "LI", "LW", "LX", "MD", "ME", "NM", "NO", "OR",
+    "PE", "QG", "QH", "RB", "RE", "RN", "SD", "SG", "SO", "SR", "SV", "TB",
+    "TM", "TQ", "UB", "UD", "UF", "UG", "UJ", "UL", "UN", "VZ", "WD", "WF",
+    "WG", "WO", "WR", "XY", "YF", "YU", "ZO", "ZT"
+]
