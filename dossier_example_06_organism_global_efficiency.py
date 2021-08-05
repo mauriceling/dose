@@ -24,7 +24,7 @@ for index, row in dataframe.iterrows():
     simSet[row["start_time"]] = index
 print("simSet = " + str(simSet))
 
-fitnessFunction = dossier.LocalEfficiency
+fitnessFunction = dossier.GlobalEfficiency
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
                                     enzymatic_reactions=enzymatic_reactions)
 print("Fitness Score Data Frame ..............................")
