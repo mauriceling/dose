@@ -1,12 +1,12 @@
 """!
-Example 05 of DOSSIER [Functions to Analyze Simulation Results 
+Example 06 of DOSSIER [Functions to Analyze Simulation Results 
 Database and Periodic Archives from DOSE (Digital Organism Simulation 
-Environment) Simulations] - Process Local Efficiency Scores. 
+Environment) Simulations] - Process Global Efficiency Scores. 
 
-Date created: 1st August 2021
+Date created: 4th August 2021
 """
 import dossier
-from sunanda_metabolism import *
+import sunanda_metabolism as metab
 
 print("OPERATION: Connect to a DOSE simulation results database")
 db = dossier.ConnectDB("Simulations//control_simulation_high_mutation.db")
@@ -26,9 +26,9 @@ print("simSet = " + str(simSet))
 
 fitnessFunction = dossier.GlobalEfficiency
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    enzymatic_reactions=enzymatic_reactions)
+                                    enzymatic_reactions=metab.enzymatic_reactions)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 
-dossier.SaveDataframe(fitnessDF, "dossier_example_05.csv", "csv")
-dossier.SaveDataframe(fitnessDF, "dossier_example_05.xlsx", "xlsx")
+dossier.SaveDataframe(fitnessDF, "dossier_example_06.csv", "csv")
+dossier.SaveDataframe(fitnessDF, "dossier_example_06.xlsx", "xlsx")

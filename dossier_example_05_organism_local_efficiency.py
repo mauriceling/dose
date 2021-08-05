@@ -6,7 +6,7 @@ Environment) Simulations] - Process Local Efficiency Scores.
 Date created: 1st August 2021
 """
 import dossier
-from sunanda_metabolism import *
+import sunanda_metabolism as metab
 
 print("OPERATION: Connect to a DOSE simulation results database")
 db = dossier.ConnectDB("Simulations//control_simulation_high_mutation.db")
@@ -26,7 +26,7 @@ print("simSet = " + str(simSet))
 
 fitnessFunction = dossier.LocalEfficiency
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    enzymatic_reactions=enzymatic_reactions)
+                                    enzymatic_reactions=metab.enzymatic_reactions)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 
