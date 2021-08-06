@@ -5,11 +5,15 @@ Environment) Simulations] - Process Global Efficiency Scores.
 
 Date created: 4th August 2021
 """
+try: 
+    import run_examples_without_installation
+except ImportError: pass
+
 import dossier
 import sunanda_metabolism as metab
 
 print("OPERATION: Connect to a DOSE simulation results database")
-db = dossier.ConnectDB("Simulations//control_simulation_high_mutation.db")
+db = dossier.ConnectDB("..//Simulations//control_simulation_high_mutation.db")
 print("")
 
 print("OPERATION: List available simulation results")

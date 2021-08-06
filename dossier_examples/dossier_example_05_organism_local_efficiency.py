@@ -1,14 +1,19 @@
 """!
-Example 04 of DOSSIER [Functions to Analyze Simulation Results 
+Example 05 of DOSSIER [Functions to Analyze Simulation Results 
 Database and Periodic Archives from DOSE (Digital Organism Simulation 
-Environment) Simulations] - Process Fitness Scores. 
+Environment) Simulations] - Process Local Efficiency Scores. 
 
-Date created: 10th July 2021
+Date created: 1st August 2021
 """
+try: 
+    import run_examples_without_installation
+except ImportError: pass
+
 import dossier
+import sunanda_metabolism as metab
 
 print("OPERATION: Connect to a DOSE simulation results database")
-db = dossier.ConnectDB("Simulations\\simulation.db")
+db = dossier.ConnectDB("..//Simulations//control_simulation_high_mutation.db")
 print("")
 
 print("OPERATION: List available simulation results")
@@ -23,11 +28,11 @@ for index, row in dataframe.iterrows():
     simSet[row["start_time"]] = index
 print("simSet = " + str(simSet))
 
-fitnessFunction = dossier.SubsequenceCounter
+fitnessFunction = dossier.LocalEfficiency
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    subsequence="AA")
+                                    enzymatic_reactions=metab.enzymatic_reactions)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 
-dossier.SaveDataframe(fitnessDF, "dossier_example_04.csv", "csv")
-dossier.SaveDataframe(fitnessDF, "dossier_example_04.xlsx", "xlsx")
+dossier.SaveDataframe(fitnessDF, "dossier_example_05.csv", "csv")
+dossier.SaveDataframe(fitnessDF, "dossier_example_05.xlsx", "xlsx")

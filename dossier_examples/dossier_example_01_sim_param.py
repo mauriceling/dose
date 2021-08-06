@@ -5,10 +5,16 @@ Environment) Simulations] - Simulation Parameters.
 
 Date created: 17th April 2021
 """
+# needed to run this example without prior
+# installation of DOSE into Python site-packages
+try: 
+    import run_examples_without_installation
+except ImportError: pass
+
 import dossier
 
 print("OPERATION: Connect to a DOSE simulation results database")
-db = dossier.ConnectDB("Simulations\\simulation.db")
+db = dossier.ConnectDB("..\\Simulations\\simulation.db")
 print("")
 
 print("OPERATION: List available simulation results")
