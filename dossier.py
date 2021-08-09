@@ -801,3 +801,75 @@ def GeneSpaceUtilization(dataframe, replicate, kwargs):
                     for index, row in dataDF.iterrows()]
         fitnessTable.append(fScore)
     return fitnessTable
+
+def DensityUndirected(dataframe, replicate, kwargs):
+    """!
+    Fitness Function for generateFitness() - Fitness score = density (undirected) 
+    scores of the first chromosome.
+
+    @param dataframe: Returned dataframe from dossier.
+    DOSE_Result_Database.OrgParam_Time()
+    @param replicate: Replicate number
+    @type replicate: Integer
+    @param kwargs: Keyword parameters used for fitness calculation.
+    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
+    scores.
+    """
+    enzymatic_reactions = kwargs["enzymatic_reactions"]
+    generations = list(set(dataframe["generation"].tolist()))
+    generations.sort()
+    fitnessTable = []
+    def _core(sequence, enzymatic_reactions):
+        reactions = []
+        for nucleotide in range(0, len(sequence), 2):
+            if sequence[nucleotide:nucleotide+2] in enzymatic_reactions.keys():
+                reactions.append(enzymatic_reactions[sequence[nucleotide:nucleotide+2]])
+            else:
+                pass
+        G = nx.Graph()
+        G.add_edges_from([r for r in reactions])
+        return nx.diameter(G)
+    for gen_count in generations:
+        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
+                           (dataframe["key"] == "chromosome_0")]
+        fScore = [replicate, gen_count] + \
+                 [_core(row["value"], enzymatic_reactions)
+                    for index, row in dataDF.iterrows()]
+        fitnessTable.append(fScore)
+    return fitnessTable
+
+def DensityDirected(dataframe, replicate, kwargs):
+    """!
+    Fitness Function for generateFitness() - Fitness score = density (directed) 
+    scores of the first chromosome.
+
+    @param dataframe: Returned dataframe from dossier.
+    DOSE_Result_Database.OrgParam_Time()
+    @param replicate: Replicate number
+    @type replicate: Integer
+    @param kwargs: Keyword parameters used for fitness calculation.
+    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
+    scores.
+    """
+    enzymatic_reactions = kwargs["enzymatic_reactions"]
+    generations = list(set(dataframe["generation"].tolist()))
+    generations.sort()
+    fitnessTable = []
+    def _core(sequence, enzymatic_reactions):
+        reactions = []
+        for nucleotide in range(0, len(sequence), 2):
+            if sequence[nucleotide:nucleotide+2] in enzymatic_reactions.keys():
+                reactions.append(enzymatic_reactions[sequence[nucleotide:nucleotide+2]])
+            else:
+                pass
+        G = nx.DiGraph()
+        G.add_edges_from([r for r in reactions])
+        return nx.diameter(G)
+    for gen_count in generations:
+        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
+                           (dataframe["key"] == "chromosome_0")]
+        fScore = [replicate, gen_count] + \
+                 [_core(row["value"], enzymatic_reactions)
+                    for index, row in dataDF.iterrows()]
+        fitnessTable.append(fScore)
+    return fitnessTable
