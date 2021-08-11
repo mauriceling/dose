@@ -828,7 +828,7 @@ def DensityUndirected(dataframe, replicate, kwargs):
                 pass
         G = nx.Graph()
         G.add_edges_from([r for r in reactions])
-        return nx.diameter(G)
+        return nx.density(G)
     for gen_count in generations:
         dataDF = dataframe[(dataframe["generation"] == gen_count) & \
                            (dataframe["key"] == "chromosome_0")]
@@ -864,7 +864,7 @@ def DensityDirected(dataframe, replicate, kwargs):
                 pass
         G = nx.DiGraph()
         G.add_edges_from([r for r in reactions])
-        return nx.diameter(G)
+        return nx.density(G)
     for gen_count in generations:
         dataDF = dataframe[(dataframe["generation"] == gen_count) & \
                            (dataframe["key"] == "chromosome_0")]

@@ -30,7 +30,7 @@ print("simSet = " + str(simSet))
 
 fitnessFunction = dossier.DensityDirected
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    enzymatic_genes=metab.enzymatic_genes)
+                                    enzymatic_reactions=metab.enzymatic_reactions)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 
