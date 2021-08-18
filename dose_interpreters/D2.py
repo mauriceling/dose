@@ -1,6 +1,6 @@
 '''
-Dennis Genomic Interpreter
-Date created: 25th January 2021
+D2 Interpreter - An Improved Version of Dennic Interpreter
+Date created: 20th July 2021
 
 The interpreter environment consists of the following elements:
 
