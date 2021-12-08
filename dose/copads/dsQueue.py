@@ -1,7 +1,11 @@
 """
-https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaQueueinPython.html
+Data Structure: Queue.
+Date created: 30th January 2021
+Licence: Python Software Foundation License version 2
+
+Implemented from https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaQueueinPython.html
 """
-class Queue:
+class Queue(object):
     def __init__(self):
         self.items = []
 

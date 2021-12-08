@@ -1,9 +1,13 @@
 """
-https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementinganOrderedList.html
+Data Structure: Ordered List.
+Date created: 30th January 2021
+Licence: Python Software Foundation License version 2
+
+Implemented from https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementinganOrderedList.html
 """
 
 
-class Node:
+class Node(object):
     def __init__(self, init_data: any):
         self.data: any = init_data
         self.next: any = None
@@ -21,7 +25,7 @@ class Node:
         self.next = newnext
 
 
-class OrderedList:
+class OrderedList(object):
     def __init__(self):
         self.head = None
 
@@ -68,18 +72,4 @@ class OrderedList:
         while current is not None:
             count = count + 1
             current = current.get_next()
-
         return count
-
-
-mylist = OrderedList()
-mylist.add(31)
-mylist.add(77)
-mylist.add(17)
-mylist.add(93)
-mylist.add(26)
-mylist.add(54)
-
-print(mylist.size())
-print(mylist.search(93))
-print(mylist.search(100))

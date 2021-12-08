@@ -35,8 +35,16 @@ __author__ = 'Maurice H.T. Ling <mauriceling@acm.org> on behalf of all developer
 
 __copyright__ = '(c) 2007-%s, Maurice H.T. Ling.' % (datetime.now().year)
 
-# Data Structures
+# Constants
+from .constants import * 
 
+# Data Structures
+from .dsDeque import Deque
+from .dsHashTable import HashTable
+from .dsOrderedList import OrderedList
+from .dsQueue import Queue
+from .dsStack import Stack
+from .dsUnorderedList import UnorderedList
 
 # Operational classes
 from .randomize import MersenneTwister

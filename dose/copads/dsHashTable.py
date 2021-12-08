@@ -1,9 +1,13 @@
 """
-https://runestone.academy/runestone/books/published/pythonds/SortSearch/Hashing.html#implementing-the-map-abstract-data-type
+Data Structure: Hash Table.
+Date created: 30th January 2021
+Licence: Python Software Foundation License version 2
+
+Implemented from https://runestone.academy/runestone/books/published/pythonds/SortSearch/Hashing.html#implementing-the-map-abstract-data-type
 """
 import typing
 
-class HashTable:
+class HashTable(object):
     def __init__(self):
         self.size: int = 11
         self.slots: list = [None] * self.size

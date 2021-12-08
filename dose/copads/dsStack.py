@@ -1,7 +1,11 @@
 """
-https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaStackinPython.html
+Data Structure: Stack.
+Date created: 30th January 2021
+Licence: Python Software Foundation License version 2
+
+Implemented from https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementingaStackinPython.html
 """
-class Stack:
+class Stack(object):
     def __init__(self):
         self.items = []
 

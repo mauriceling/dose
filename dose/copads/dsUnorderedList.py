@@ -1,7 +1,11 @@
 """
-https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementinganUnorderedListLinkedLists.html
+Data Structure: Unordered List.
+Date created: 30th January 2021
+Licence: Python Software Foundation License version 2
+
+Implemented from https://runestone.academy/runestone/books/published/pythonds/BasicDS/ImplementinganUnorderedListLinkedLists.html
 """
-class Node:
+class Node(object):
     def __init__(self,initdata):
         self.data = initdata
         self.next = None
@@ -19,7 +23,7 @@ class Node:
         self.next = newnext
 
 
-class UnorderedList:
+class UnorderedList(object):
 
     def __init__(self):
         self.head = None

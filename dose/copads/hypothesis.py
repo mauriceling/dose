@@ -22,7 +22,7 @@ Date created: 1st September 2008
 """
 
 from math import sqrt, log, e
-from statisticsdistribution import *
+from .statisticsdistribution import *
 
 def test(statistic, distribution, confidence):
     """Generates the critical value from distribution and confidence value
