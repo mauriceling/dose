@@ -7,9 +7,9 @@ Date created: 4th January 2015
 '''
 import random
 
-import constants
+from . import constants
 
-class lindenmayer(object):
+class Lindenmayer(object):
     '''
     Lindenmayer system, also commonly known as L-System, is developed
     by Aristid Lindenmayer in 1968 (reference: Mathematical models for

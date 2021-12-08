@@ -47,6 +47,8 @@ from .dsStack import Stack
 from .dsUnorderedList import UnorderedList
 
 # Operational classes
+from .lindenmayer import Lindenmayer
+from .pnet import PNet
 from .randomize import MersenneTwister
 from .randomize import LCG
 from .randomize import CLCG
@@ -76,6 +78,7 @@ from .statisticsdistribution import WeiBullDistribution
 from . import hypothesis
 from . import nrpy
 from . import objectdistance
+from . import ode
 
 # Type-casting functions
 

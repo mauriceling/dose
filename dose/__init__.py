@@ -23,7 +23,7 @@ from . import ragaraja
 from . import simulation_calls
 
 # COPADS Class imports (in ascending order of module names, then class names)
-from .copads.lindenmayer import lindenmayer
+from .copads.lindenmayer import Lindenmayer
 
 # DOSE Class imports (in ascending order of module names, then class names)
 from .dose import dose_functions
