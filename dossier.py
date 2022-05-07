@@ -662,10 +662,10 @@ def MeasureEfficiency(dataframe, replicate, kwargs):
         fitnessTable.append(fScore)
     return fitnessTable
 
-def PerceptionSum(dataframe, replicate, kwargs):
+def MeasureSum(dataframe, replicate, kwargs):
     """!
-    Fitness Function for generateFitness() - Fitness score = sum of perception 
-    genes for the first chromosome.
+    Fitness Function for generateFitness(): Fitness score - sum of 
+    perception or enzymatic genes in the first chromosome.
 
     @param dataframe: Returned dataframe from dossier.
     DOSE_Result_Database.OrgParam_Time()
@@ -675,57 +675,24 @@ def PerceptionSum(dataframe, replicate, kwargs):
     @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
     scores.
     """
-    perception_genes = kwargs["perception_genes"]
+    measure = kwargs["measure"]
+    len_of_measure = kwargs["len_of_measure"]
     generations = list(set(dataframe["generation"].tolist()))
     generations.sort()
     fitnessTable = []
-    def _core(sequence, perception_genes):
-        perception_sum = 0
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in perception_genes:
-                perception_sum += 1
+    def _core(sequence, measure):
+        measure_sum = 0
+        for dinucleotide in range(0, len(sequence), len_of_measure):
+            if sequence[dinucleotide:dinucleotide+len_of_measure] in measure:
+                measure_sum += 1
             else:
                 pass
-        return perception_sum
+        return measure_sum
     for gen_count in generations:
         dataDF = dataframe[(dataframe["generation"] == gen_count) & \
                            (dataframe["key"] == "chromosome_0")]
         fScore = [replicate, gen_count] + \
-                 [_core(row["value"], perception_genes)
-                    for index, row in dataDF.iterrows()]
-        fitnessTable.append(fScore)
-    return fitnessTable
-
-def EnzymaticSum(dataframe, replicate, kwargs):
-    """!
-    Fitness Function for generateFitness() - Fitness score = sum of enzymatic 
-    genes for the first chromosome.
-
-    @param dataframe: Returned dataframe from dossier.
-    DOSE_Result_Database.OrgParam_Time()
-    @param replicate: Replicate number
-    @type replicate: Integer
-    @param kwargs: Keyword parameters used for fitness calculation.
-    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
-    scores.
-    """
-    enzymatic_genes = kwargs["enzymatic_genes"]
-    generations = list(set(dataframe["generation"].tolist()))
-    generations.sort()
-    fitnessTable = []
-    def _core(sequence, enzymatic_genes):
-        enzymatic_sum = 0
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in enzymatic_genes:
-                enzymatic_sum += 1
-            else:
-                pass
-        return enzymatic_sum
-    for gen_count in generations:
-        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
-                           (dataframe["key"] == "chromosome_0")]
-        fScore = [replicate, gen_count] + \
-                 [_core(row["value"], enzymatic_genes)
+                 [_core(row["value"], measure)
                     for index, row in dataDF.iterrows()]
         fitnessTable.append(fScore)
     return fitnessTable
