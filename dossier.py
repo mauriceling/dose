@@ -621,10 +621,10 @@ def SubsequenceCounter(dataframe, replicate, kwargs):
         fitnessTable.append(fScore)
     return fitnessTable
 
-def LocalEfficiency(dataframe, replicate, kwargs):
+def MeasureEfficiency(dataframe, replicate, kwargs):
     """!
-    Fitness Function for generateFitness() - Fitness score = local efficiency 
-    scores of the first chromosome.
+    Fitness Function for generateFitness(): Fitness score - local
+    or global efficiency for the first chromosome.
 
     @param dataframe: Returned dataframe from dossier.
     DOSE_Result_Database.OrgParam_Time()
@@ -634,61 +634,30 @@ def LocalEfficiency(dataframe, replicate, kwargs):
     @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
     scores.
     """
-    enzymatic_reactions = kwargs["enzymatic_reactions"]
+    measure = kwargs["measure"]
+    len_of_measure = kwargs["len_of_measure"]
+    type_of_measure = kwargs["type_of_measure"]
     generations = list(set(dataframe["generation"].tolist()))
     generations.sort()
     fitnessTable = []
-    def _core(sequence, enzymatic_reactions):
+    def _core(sequence, measure):
         reactions = []
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in enzymatic_reactions.keys():
-                reactions.append(enzymatic_reactions[sequence[nucleotide:nucleotide+2]])
+        for dinucleotide in range(0, len(sequence), len_of_measure):
+            if sequence[dinucleotide:dinucleotide+len_of_measure] in measure.keys():
+                reactions.append(measure[sequence[dinucleotide:dinucleotide+len_of_measure]])
             else:
                 pass
         G = nx.Graph()
         G.add_edges_from([r for r in reactions])
-        return nx.local_efficiency(G)
+        if type_of_measure == "local":
+            return nx.local_efficiency(G)
+        elif type_of_measure == "global":
+            return nx.global_efficiency(G)
     for gen_count in generations:
         dataDF = dataframe[(dataframe["generation"] == gen_count) & \
                            (dataframe["key"] == "chromosome_0")]
         fScore = [replicate, gen_count] + \
-                 [_core(row["value"], enzymatic_reactions)
-                    for index, row in dataDF.iterrows()]
-        fitnessTable.append(fScore)
-    return fitnessTable
-
-def GlobalEfficiency(dataframe, replicate, kwargs):
-    """!
-    Fitness Function for generateFitness() - Fitness score = global efficiency 
-    scores of the first chromosome.
-
-    @param dataframe: Returned dataframe from dossier.
-    DOSE_Result_Database.OrgParam_Time()
-    @param replicate: Replicate number
-    @type replicate: Integer
-    @param kwargs: Keyword parameters used for fitness calculation.
-    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
-    scores.
-    """
-    enzymatic_reactions = kwargs["enzymatic_reactions"]
-    generations = list(set(dataframe["generation"].tolist()))
-    generations.sort()
-    fitnessTable = []
-    def _core(sequence, enzymatic_reactions):
-        reactions = []
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in enzymatic_reactions.keys():
-                reactions.append(enzymatic_reactions[sequence[nucleotide:nucleotide+2]])
-            else:
-                pass
-        G = nx.Graph()
-        G.add_edges_from([r for r in reactions])
-        return nx.global_efficiency(G)
-    for gen_count in generations:
-        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
-                           (dataframe["key"] == "chromosome_0")]
-        fScore = [replicate, gen_count] + \
-                 [_core(row["value"], enzymatic_reactions)
+                 [_core(row["value"], measure)
                     for index, row in dataDF.iterrows()]
         fitnessTable.append(fScore)
     return fitnessTable
