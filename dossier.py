@@ -697,10 +697,10 @@ def MeasureSum(dataframe, replicate, kwargs):
         fitnessTable.append(fScore)
     return fitnessTable
 
-def GeneSpaceUtilization(dataframe, replicate, kwargs):
+def MeasureGeneSpaceUtilization(dataframe, replicate, kwargs):
     """!
-    Fitness Function for generateFitness() - Fitness score = gene space 
-    being utilized for the first chromosome.
+    Fitness Function for generateFitness(): Fitness score - gene space 
+    being utilized by the first chromosome.
 
     @param dataframe: Returned dataframe from dossier.
     DOSE_Result_Database.OrgParam_Time()
@@ -710,30 +710,31 @@ def GeneSpaceUtilization(dataframe, replicate, kwargs):
     @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
     scores.
     """
-    enzymatic_genes = kwargs["enzymatic_genes"]
-    perception_genes = kwargs["perception_genes"]
+    measure1 = kwargs["measure1"]
+    measure2 = kwargs["measure2"]
+    len_of_measure = kwargs["len_of_measure"]
     generations = list(set(dataframe["generation"].tolist()))
     generations.sort()
     fitnessTable = []
-    def _core(sequence, enzymatic_genes, perception_genes):
-        enzymatic_total = 0
-        perception_total = 0
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in enzymatic_genes:
-                enzymatic_total += 1
+    def _core(sequence, measure1, measure2):
+        measure1_sum = 0
+        measure2_sum = 0
+        for dinucleotide in range(0, len(sequence), len_of_measure):
+            if sequence[dinucleotide:dinucleotide+len_of_measure] in measure1:
+                measure1_sum += 1
             else:
                 pass
-        for nucleotide in range(0, len(sequence), 2):
-            if sequence[nucleotide:nucleotide+2] in perception_genes:
-                perception_total += 1
+        for dinucleotide in range(0, len(sequence), len_of_measure):
+            if sequence[dinucleotide:dinucleotide+len_of_measure] in measure2:
+                measure2_sum += 1
             else:
                 pass
-        return (((perception_total + enzymatic_total) / 780) * 100)
+        return (((measure2_sum + measure1_sum) / 780) * 100)
     for gen_count in generations:
         dataDF = dataframe[(dataframe["generation"] == gen_count) & \
                            (dataframe["key"] == "chromosome_0")]
         fScore = [replicate, gen_count] + \
-                 [_core(row["value"], enzymatic_genes, perception_genes)
+                 [_core(row["value"], measure1, measure2)
                     for index, row in dataDF.iterrows()]
         fitnessTable.append(fScore)
     return fitnessTable
