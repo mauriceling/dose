@@ -779,3 +779,38 @@ def MeasureDensity(dataframe, replicate, kwargs):
                     for index, row in dataDF.iterrows()]
         fitnessTable.append(fScore)
     return fitnessTable
+
+def MeasureDiversity(dataframe, replicate, kwargs):
+    """!
+    Fitness Function for generateFitness(): Fitness score - unique number
+    of perception or enzymatic genes for the first chromosome.
+
+    @param dataframe: Returned dataframe from dossier.
+    DOSE_Result_Database.OrgParam_Time()
+    @param replicate: Replicate number
+    @type replicate: Integer
+    @param kwargs: Keyword parameters used for fitness calculation.
+    @return: [Replicate, Generation, DO(1), ..., DO(n)] of fitness 
+    scores.
+    """
+    measure = kwargs["measure"]
+    len_of_measure = kwargs["len_of_measure"]
+    generations = list(set(dataframe["generation"].tolist()))
+    generations.sort()
+    fitnessTable = []
+    def _core(sequence, measure):
+        measure_diversity = []
+        for dinucleotide in range(0, len(sequence), len_of_measure):
+            if sequence[dinucleotide:dinucleotide+len_of_measure] in measure:
+                measure_diversity.append(sequence[dinucleotide:dinucleotide+len_of_measure])
+            else:
+                pass
+        return len(set(measure_diversity))
+    for gen_count in generations:
+        dataDF = dataframe[(dataframe["generation"] == gen_count) & \
+                           (dataframe["key"] == "chromosome_0")]
+        fScore = [replicate, gen_count] + \
+                 [_core(row["value"], measure)
+                    for index, row in dataDF.iterrows()]
+        fitnessTable.append(fScore)
+    return fitnessTable
