@@ -13,7 +13,7 @@ import dossier
 import sunanda_metabolism as metab
 
 print("OPERATION: Connect to a DOSE simulation results database")
-db = dossier.ConnectDB("..//Simulations//control_simulation_high_mutation.db")
+db = dossier.ConnectDB("..//Simulations//simulation.db")
 print("")
 
 print("OPERATION: List available simulation results")
@@ -28,10 +28,11 @@ for index, row in dataframe.iterrows():
     simSet[row["start_time"]] = index
 print("simSet = " + str(simSet))
 
-fitnessFunction = dossier.GeneSpaceUtilization
+fitnessFunction = dossier.MeasureGeneSpaceUtilization
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    enzymatic_genes=metab.enzymatic_genes,
-                                    perception_genes=metab.perception_genes)
+                                    measure1=metab.enzymatic_genes,
+                                    measure2=metab.perception_genes,
+                                    len_of_measure=2)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 

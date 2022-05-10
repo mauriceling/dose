@@ -1,9 +1,9 @@
 """!
-Example 11 of DOSSIER [Functions to Analyze Simulation Results 
+Example 12 of DOSSIER [Functions to Analyze Simulation Results 
 Database and Periodic Archives from DOSE (Digital Organism Simulation 
-Environment) Simulations] - Process Density (Directed) Scores. 
+Environment) Simulations] - Process Unique Number of Perception Genes. 
 
-Date created: 9th August 2021
+Date created: 22nd November 2021
 """
 try: 
     import run_examples_without_installation
@@ -28,13 +28,12 @@ for index, row in dataframe.iterrows():
     simSet[row["start_time"]] = index
 print("simSet = " + str(simSet))
 
-fitnessFunction = dossier.DensityDirected
+fitnessFunction = dossier.MeasureDiversity
 fitnessDF = dossier.GenerateFitness(fitnessFunction, simSet, db, 
-                                    measure=metab.enzymatic_reactions,
-                                    len_of_measure=2,
-                                    type_of_measure="directed")
+                                    measure=metab.perception_genes,
+                                    len_of_measure=2)
 print("Fitness Score Data Frame ..............................")
 print(fitnessDF)
 
-dossier.SaveDataframe(fitnessDF, "dossier_example_11.csv", "csv")
-dossier.SaveDataframe(fitnessDF, "dossier_example_11.xlsx", "xlsx")
+dossier.SaveDataframe(fitnessDF, "dossier_example_12.csv", "csv")
+dossier.SaveDataframe(fitnessDF, "dossier_example_12.xlsx", "xlsx")
