@@ -1,5 +1,8 @@
 Digital Organism Simulation Environment (DOSE)
 ==============================================
+
+[![SWH](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/mauriceling/dose/)](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/mauriceling/dose/)
+
 Life is fascinating and deeply intriguing. Despite so, life forms on Earth or carbon-based life forms as a group is just one form, one possible sample of possibly a whole magnitude of life. Even then, there are many aspects of life that cannot be deciphered even by examining current life forms; for example, how did chemical reactions organize themselves into biochemical pathways? How did life start? How is intelligence formed?
 
 To answer such questions, we will have to restart our evolutionary time to the very beginning - clearly an impossibly gargantuan task. At the same time, studying biological/carbon-based life forms is expensive, time consuming and destructive. As a molecular biologist, there is no way I can examine the entire genome of even a bacteria in an inanimate state, then somehow allow it to continue living as if time had just stopped while I am examining it.
