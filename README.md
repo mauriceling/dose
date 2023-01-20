@@ -1,7 +1,7 @@
 Digital Organism Simulation Environment (DOSE)
 ==============================================
 
-[![SWH](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/mauriceling/dose/)](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/mauriceling/dose/)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/mauriceling/dose/)](https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/mauriceling/dose/)
 
 Life is fascinating and deeply intriguing. Despite so, life forms on Earth or carbon-based life forms as a group is just one form, one possible sample of possibly a whole magnitude of life. Even then, there are many aspects of life that cannot be deciphered even by examining current life forms; for example, how did chemical reactions organize themselves into biochemical pathways? How did life start? How is intelligence formed?
 
