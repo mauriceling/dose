@@ -18,3 +18,4 @@ examples/*_turtle.py
 examples/*.svg
 *.dropbox.attr
 /Simulations/
+*.db
